@@ -672,6 +672,56 @@
     .topic-btn .ic { font-size: 16px; }
     .mode-card .mc-icon { font-size: 24px; }
   }
+
+  /* ===== 拼写默写模式 ===== */
+  .type-card {
+    background: #fff; border-radius: 20px;
+    padding: 26px 18px 22px; text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin-bottom: 14px; position: relative;
+  }
+  .type-card .tc-topic {
+    font-size: 11px; color: #b85a3c; background: #fdf3ef;
+    border-radius: 8px; padding: 3px 9px; display: inline-block; margin-bottom: 10px;
+  }
+  .type-card .tc-cn { font-size: 30px; font-weight: 600; margin: 0 0 4px; line-height: 1.2; }
+  .type-card .tc-ipa { font-size: 15px; color: #d97757; font-weight: 500; min-height: 18px; margin: 0 0 4px; }
+  .type-card .tc-hint-word { font-size: 13px; color: #c0392b; letter-spacing: 3px; min-height: 18px; margin: 2px 0 0; font-weight: 600; }
+  .type-speak {
+    position: absolute; top: 14px; right: 14px;
+    width: 38px; height: 38px; border-radius: 50%;
+    background: #fdf3ef; border: none; color: #d97757; font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; transition: transform 0.15s;
+  }
+  .type-speak:active { transform: scale(0.9); background: #f7e3d8; }
+  .type-speak.speaking { background: #d97757; color: #fff; }
+
+  .type-slots {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 6px 5px; margin: 18px 0 6px; min-height: 46px;
+    cursor: text;
+  }
+  .tslot {
+    width: 26px; height: 40px; border-bottom: 3px solid #e0ddd3;
+    display: flex; align-items: flex-end; justify-content: center;
+    font-size: 26px; font-weight: 600; color: #2c2c2a; line-height: 1.1;
+    text-transform: lowercase; transition: border-color 0.12s, background 0.12s;
+  }
+  .tslot.done { border-bottom-color: #4caf50; color: #2e7d32; }
+  .tslot.cur { border-bottom-color: #d97757; background: #fdf3ef; }
+  .tslot.bad { border-bottom-color: #ef5350; background: #ffebee; animation: tshake 0.22s; }
+  .tslot.space { width: 14px; border-bottom-color: transparent; }
+  @keyframes tshake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+  .type-input {
+    position: absolute; opacity: 0; pointer-events: none;
+    width: 1px; height: 1px; border: 0; padding: 0;
+  }
+  .type-tap-tip { font-size: 12px; color: #b0b0a8; margin: 4px 0 0; }
+  .type-toolbar { display: flex; gap: 8px; margin-bottom: 10px; }
+  .type-toolbar .btn-mini { flex: 1; }
+  .type-sound-row { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: #8a8a85; margin-bottom: 10px; }
+  .type-feedback { text-align: center; min-height: 20px; font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .type-feedback.ok { color: #2e7d32; }
 </style>
 </head>
 <body>
@@ -737,6 +787,11 @@
         <div class="mc-icon">🎮</div>
         <div class="mc-title">游戏乐园</div>
         <div class="mc-desc">玩中学单词</div>
+      </div>
+      <div class="mode-card" data-pagemode="type">
+        <div class="mc-icon">⌨️</div>
+        <div class="mc-title">拼写默写</div>
+        <div class="mc-desc">听音敲单词</div>
       </div>
     </div>
 
@@ -998,6 +1053,58 @@
 
     <button class="btn-primary" id="restart-btn">再玩一次</button>
     <button class="btn-secondary" id="home-btn">返回首页</button>
+  </div>
+
+  <!-- ===== 拼写默写模式 ===== -->
+  <div id="type-screen" class="hidden">
+    <div class="study-hud">
+      <span class="progress-text"><span id="type-idx">1</span> / <span id="type-total">0</span></span>
+      <span class="stats-mini">
+        <span class="known">正确率 <span id="type-acc">100%</span></span>
+        <span class="unknown">满分 <span id="type-perfect">0</span></span>
+      </span>
+    </div>
+    <div class="progress"><div class="progress-bar" id="type-progress"></div></div>
+
+    <div class="type-card" id="type-card">
+      <span class="tc-topic" id="type-topic">主题</span>
+      <button class="type-speak" id="type-speak" aria-label="朗读">🔊</button>
+      <p class="tc-cn" id="type-cn">中文</p>
+      <p class="tc-ipa" id="type-ipa">/.../</p>
+      <p class="tc-hint-word" id="type-hint-word"></p>
+      <div class="type-slots" id="type-slots"></div>
+      <input class="type-input" id="type-input" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="latin" aria-label="输入单词">
+      <p class="type-tap-tip" id="type-tap-tip">点这里调出键盘，按发音/中文敲出英文</p>
+    </div>
+
+    <div class="type-feedback" id="type-feedback"></div>
+    <div class="type-sound-row">
+      <label><input type="checkbox" id="type-sound" checked> 键盘音效</label>
+      <span>·</span>
+      <label><input type="checkbox" id="type-autospeak" checked> 自动朗读</label>
+    </div>
+    <div class="type-toolbar">
+      <button class="btn-mini" id="type-hint">提示 👀🔊</button>
+      <button class="btn-mini" id="type-skip">跳过 →</button>
+    </div>
+    <button class="btn-secondary" id="type-back">结束默写</button>
+  </div>
+
+  <!-- ===== 拼写默写结束 ===== -->
+  <div id="type-end-screen" class="hidden">
+    <div class="center">
+      <div class="emoji" id="type-end-emoji">⌨️</div>
+      <h1>默写完成！</h1>
+      <p class="subtitle">本次默写了 <span id="type-end-total">0</span> 个单词</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n" id="type-end-perfect">0</div><div class="l">一次拼对</div></div>
+      <div class="stat"><div class="n" id="type-end-retry">0</div><div class="l">出过错</div></div>
+      <div class="stat"><div class="n" id="type-end-acc">0%</div><div class="l">按键正确率</div></div>
+    </div>
+    <div id="type-end-list"></div>
+    <button class="btn-primary" id="type-restart">再来一组</button>
+    <button class="btn-secondary" id="type-home">返回首页</button>
   </div>
 
   <!-- ===== 生词本复习 ===== -->
@@ -1287,11 +1394,13 @@ const LOW_QUALITY_KEYWORDS = [
       document.getElementById("count-label").style.display = hideOpts ? "none" : "";
       document.querySelector(".count-grid").style.display = hideOpts ? "none" : "";
 
-      document.getElementById("count-label").textContent = pageMode === "study" ? "每次学习数量" : "题目数量";
+      document.getElementById("count-label").textContent =
+        pageMode === "study" ? "每次学习数量" : (pageMode === "type" ? "每次默写数量" : "题目数量");
       let btnText = "开始游戏";
       if (pageMode === "study") btnText = "开始学习";
       else if (pageMode === "phonics") btnText = "进入字母拼读";
       else if (pageMode === "games") btnText = "进入游戏乐园";
+      else if (pageMode === "type") btnText = "开始默写";
       document.getElementById("start-btn").textContent = btnText;
     };
   });
@@ -1782,6 +1891,7 @@ const LOW_QUALITY_KEYWORDS = [
     if (pageMode === "study") startStudy();
     else if (pageMode === "phonics") startPhonics();
     else if (pageMode === "games") openGamesMenu();
+    else if (pageMode === "type") startTyping();
     else startGame();
   };
   document.getElementById("restart-btn").onclick = startGame;
@@ -2103,7 +2213,8 @@ const LOW_QUALITY_KEYWORDS = [
 
   // ============ 屏幕切换辅助 ============
   const TOP_SCREENS = ["start-screen","study-screen","study-end-screen","phonics-screen",
-    "games-screen","game-screen","end-screen","review-screen","review-end-screen","achv-screen"];
+    "games-screen","game-screen","end-screen","review-screen","review-end-screen","achv-screen",
+    "type-screen","type-end-screen"];
   function showScreen(id) {
     window.speechSynthesis && window.speechSynthesis.cancel();
     TOP_SCREENS.forEach(s => { const el = document.getElementById(s); if (el) el.classList.toggle("hidden", s !== id); });
@@ -2324,6 +2435,204 @@ const LOW_QUALITY_KEYWORDS = [
     setTimeout(() => { listenIdx++; renderListenQ(); }, 1300);
   }
   document.getElementById("listen-replay").onclick = () => { if (listenCurrent) speak(listenCurrent.en, document.getElementById("listen-replay")); };
+
+  // ============ ⌨️ 拼写默写模式（吸收 TypeWords 打字记忆思路，自研单文件版）============
+  let typeWords = [], typeIdx = 0, typePerfect = 0, typeGoodKeys = 0, typeWrongKeys = 0;
+  let typeTarget = "", typePrevLen = 0, typeWordErr = false, typeLocked = false, typeWrongList = [];
+  let typeSoundOn = true, typeAutoSpeak = true;
+
+  // —— Web Audio 键盘音效（零文件实时合成，离线可用）——
+  let typeAC = null;
+  function typeAudio() {
+    if (!typeAC) { try { typeAC = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) { typeAC = null; } }
+    if (typeAC && typeAC.state === "suspended") typeAC.resume();
+    return typeAC;
+  }
+  function typeBlip(freq, dur, wave, gain) {
+    if (!typeSoundOn) return;
+    const ac = typeAudio(); if (!ac) return;
+    const o = ac.createOscillator(), g = ac.createGain();
+    o.type = wave || "sine"; o.frequency.value = freq;
+    const t = ac.currentTime, vol = gain || 0.05;
+    g.gain.setValueAtTime(vol, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(ac.destination);
+    o.start(t); o.stop(t + dur);
+  }
+  function sfxKey()   { typeBlip(880, 0.05, "sine", 0.035); }
+  function sfxWrong() { typeBlip(150, 0.13, "sawtooth", 0.05); }
+  function sfxDone()  { typeBlip(660, 0.08, "sine", 0.05); setTimeout(() => typeBlip(990, 0.11, "sine", 0.05), 80); }
+
+  function typeAcc() {
+    const tot = typeGoodKeys + typeWrongKeys;
+    return tot ? Math.round(typeGoodKeys / tot * 100) : 100;
+  }
+
+  function startTyping() {
+    const pool = getVocabPool();
+    typeWords = shuffle(pool).slice(0, selectedCount);
+    typeIdx = 0; typePerfect = 0; typeGoodKeys = 0; typeWrongKeys = 0; typeWrongList = [];
+    document.getElementById("type-total").textContent = typeWords.length;
+    showScreen("type-screen");
+    renderTypeWord();
+  }
+
+  function renderTypeWord() {
+    const w = typeWords[typeIdx];
+    typeTarget = (w.en || "").toLowerCase();
+    typePrevLen = 0; typeWordErr = false; typeLocked = false;
+    document.getElementById("type-idx").textContent = typeIdx + 1;
+    document.getElementById("type-progress").style.width = (typeIdx / typeWords.length * 100) + "%";
+    document.getElementById("type-acc").textContent = typeAcc() + "%";
+    document.getElementById("type-perfect").textContent = typePerfect;
+    document.getElementById("type-topic").textContent = (w._icon || "") + " " + (w._topic || "");
+    document.getElementById("type-cn").textContent = w.cn;
+    document.getElementById("type-ipa").textContent = IPA_MAP[w.en] || "";
+    document.getElementById("type-hint-word").textContent = "";
+    const fb = document.getElementById("type-feedback"); fb.textContent = ""; fb.className = "type-feedback";
+    const input = document.getElementById("type-input");
+    input.value = "";
+    renderTypeSlots("");
+    if (typeAutoSpeak) setTimeout(() => speak(w.en, document.getElementById("type-speak")), 250);
+    setTimeout(() => input.focus(), 120);
+  }
+
+  function renderTypeSlots(val) {
+    const box = document.getElementById("type-slots");
+    let h = "";
+    for (let i = 0; i < typeTarget.length; i++) {
+      const ch = typeTarget[i];
+      if (ch === " ") { h += '<span class="tslot space"></span>'; continue; }
+      let cls = "tslot", show = "";
+      if (i < val.length) { cls += " done"; show = val[i]; }
+      else if (i === val.length) { cls += " cur"; }
+      h += '<span class="' + cls + '">' + show + '</span>';
+    }
+    box.innerHTML = h;
+  }
+
+  function flashBadSlot() {
+    const cur = document.querySelector("#type-slots .tslot.cur");
+    if (cur) { cur.classList.add("bad"); setTimeout(() => cur.classList.remove("bad"), 220); }
+  }
+
+  function onTypeInput() {
+    if (typeLocked) return;
+    const input = document.getElementById("type-input");
+    let val = input.value.toLowerCase();
+    let p = 0;
+    while (p < val.length && p < typeTarget.length && val[p] === typeTarget[p]) p++;
+    if (val.length > p) {
+      // 第 p 位敲错：砍掉错误字符，必须敲对才能前进
+      typeWrongKeys++; typeWordErr = true;
+      flashBadSlot(); sfxWrong();
+      val = typeTarget.slice(0, p);
+      input.value = val;
+    } else if (p > typePrevLen) {
+      typeGoodKeys += (p - typePrevLen);
+      sfxKey();
+    }
+    typePrevLen = p;
+    document.getElementById("type-acc").textContent = typeAcc() + "%";
+    renderTypeSlots(val);
+    if (typeTarget.length > 0 && p === typeTarget.length) finishTypeWord();
+  }
+
+  function finishTypeWord() {
+    typeLocked = true;
+    const w = typeWords[typeIdx];
+    sfxDone();
+    const fb = document.getElementById("type-feedback");
+    if (!typeWordErr) {
+      typePerfect++;
+      fb.textContent = "✓ 一次拼对！ " + w.en;
+      fb.className = "type-feedback ok";
+      if (window.recordWord) window.recordWord(w.en);
+    } else {
+      fb.textContent = "✓ 拼对了（中途有错，已加入生词本复习）";
+      fb.className = "type-feedback ok";
+      if (window.recordStudied) window.recordStudied();
+      if (window.addToNotebook) window.addToNotebook(w);
+      typeWrongList.push(w);
+    }
+    document.getElementById("type-perfect").textContent = typePerfect;
+    document.getElementById("type-progress").style.width = ((typeIdx + 1) / typeWords.length * 100) + "%";
+    setTimeout(nextTypeWord, 750);
+  }
+
+  function nextTypeWord() {
+    typeIdx++;
+    if (typeIdx >= typeWords.length) showTypeEnd();
+    else renderTypeWord();
+  }
+
+  function skipTypeWord() {
+    if (typeLocked) return;
+    typeLocked = true;
+    const w = typeWords[typeIdx];
+    renderTypeSlots(typeTarget);
+    document.getElementById("type-hint-word").textContent = w.en;
+    const fb = document.getElementById("type-feedback");
+    fb.textContent = "正确拼写：" + w.en + " · 已加入生词本";
+    fb.className = "type-feedback";
+    if (window.recordStudied) window.recordStudied();
+    if (window.addToNotebook) window.addToNotebook(w);
+    typeWrongList.push(w);
+    speak(w.en, document.getElementById("type-speak"));
+    setTimeout(nextTypeWord, 1100);
+  }
+
+  function showTypeEnd() {
+    document.getElementById("type-end-total").textContent = typeWords.length;
+    document.getElementById("type-end-perfect").textContent = typePerfect;
+    document.getElementById("type-end-retry").textContent = typeWords.length - typePerfect;
+    document.getElementById("type-end-acc").textContent = typeAcc() + "%";
+    document.getElementById("type-end-emoji").textContent =
+      typePerfect === typeWords.length ? "🏆" : (typePerfect >= typeWords.length * 0.6 ? "🎉" : "💪");
+    const list = document.getElementById("type-end-list");
+    if (typeWrongList.length) {
+      let html = '<div class="review"><p class="rtitle">📥 已进生词本的单词（点 🔊 复习）：</p>';
+      typeWrongList.forEach(w => {
+        html += '<div class="review-row"><span>' + w.cn + '</span><span class="right"><span class="en">' + w.en +
+                '</span><button class="speak-mini" data-w="' + w.en.replace(/"/g, '&quot;') + '">🔊</button></span></div>';
+      });
+      html += '</div>';
+      list.innerHTML = html;
+      list.querySelectorAll(".speak-mini").forEach(b => { b.onclick = () => speak(b.dataset.w, b); });
+    } else {
+      list.innerHTML = '<div class="tip" style="text-align:center">🌟 全部一次拼对，太强了！</div>';
+    }
+    showScreen("type-end-screen");
+    if (window.updateDashboard) window.updateDashboard();
+  }
+
+  // 事件绑定
+  document.getElementById("type-input").addEventListener("input", onTypeInput);
+  document.getElementById("type-card").addEventListener("click", (e) => {
+    if (e.target.closest("#type-speak")) return;
+    document.getElementById("type-input").focus();
+  });
+  document.getElementById("type-speak").onclick = (e) => {
+    e.stopPropagation();
+    const w = typeWords[typeIdx]; if (w) speak(w.en, e.currentTarget);
+  };
+  document.getElementById("type-hint").onclick = () => {
+    const w = typeWords[typeIdx]; if (!w || typeLocked) return;
+    const el = document.getElementById("type-hint-word");
+    el.textContent = w.en;
+    speak(w.en, document.getElementById("type-speak"));
+    typeWordErr = true;          // 用了提示即算"出过错"，会进生词本
+    typeWrongKeys++;             // 轻微影响正确率，鼓励先自己试
+    document.getElementById("type-acc").textContent = typeAcc() + "%";
+    setTimeout(() => { if (!typeLocked) el.textContent = ""; }, 1600);
+    document.getElementById("type-input").focus();
+  };
+  document.getElementById("type-skip").onclick = skipTypeWord;
+  document.getElementById("type-back").onclick = backHome;
+  document.getElementById("type-restart").onclick = startTyping;
+  document.getElementById("type-home").onclick = backHome;
+  document.getElementById("type-sound").onchange = (e) => { typeSoundOn = e.target.checked; if (typeSoundOn) typeAudio(); };
+  document.getElementById("type-autospeak").onchange = (e) => { typeAutoSpeak = e.target.checked; };
 
   renderTopics();
 })();
