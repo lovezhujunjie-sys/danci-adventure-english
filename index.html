@@ -8,14 +8,29 @@
 <meta name="theme-color" content="#f7f5f0">
 <title>单词大冒险 · 学习版</title>
 <style>
+  :root {
+    --bg: #f7f5f0; --bg2: #faf8f3; --card: #fff;
+    --ink: #2c2c2a; --ink2: #6b6b66; --ink3: #8a8a85; --ink4: #b0b0a8;
+    --soft: #fdf3ef; --soft2: #fce8e0; --soft-ink: #b85a3c;
+    --line: #f0ede5; --line2: #e0ddd3; --track: #e8e5dc;
+  }
+  body.dark {
+    --bg: #14141a; --bg2: #1b1b22; --card: #23232c;
+    --ink: #ececf0; --ink2: #c2c2cc; --ink3: #9a9aa6; --ink4: #74747f;
+    --soft: #3a2a23; --soft2: #2f231d; --soft-ink: #f0a981;
+    --line: #32323c; --line2: #3b3b46; --track: #34343e;
+  }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body {
     margin: 0; padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: #f7f5f0; color: #2c2c2a;
+    background: var(--bg); color: var(--ink);
+    transition: background-color 0.25s ease, color 0.25s ease;
     min-height: 100vh; overscroll-behavior: none;
     -webkit-user-select: none; user-select: none;
   }
+  body.dark .progress-dashboard { background: linear-gradient(135deg, #2c2018, #241a14); }
+  body.dark img, body.dark .emoji-big { filter: none; }
   .app {
     max-width: 480px; margin: 0 auto;
     padding: 18px 16px;
@@ -26,25 +41,25 @@
   .center { text-align: center; }
   .emoji { font-size: 56px; margin-bottom: 8px; line-height: 1; }
   h1 { font-size: 24px; font-weight: 600; margin: 0 0 6px; }
-  .subtitle { font-size: 13px; color: #6b6b66; margin: 0 0 20px; }
+  .subtitle { font-size: 13px; color: var(--ink2); margin: 0 0 20px; }
   .section-label {
-    font-size: 12px; color: #8a8a85; margin: 16px 0 8px;
+    font-size: 12px; color: var(--ink3); margin: 16px 0 8px;
     padding-left: 4px; font-weight: 500;
   }
 
   /* 学习进度卡片 */
   .progress-dashboard {
-    background: linear-gradient(135deg, #fdf3ef, #fce8e0);
+    background: linear-gradient(135deg, var(--soft), var(--soft2));
     border-radius: 16px; padding: 16px;
     margin-bottom: 18px;
   }
   .pd-row { display: flex; justify-content: space-around; margin-bottom: 14px; }
   .pd-stat { text-align: center; }
   .pd-num { font-size: 26px; font-weight: 700; color: #d97757; line-height: 1; }
-  .pd-label { font-size: 11px; color: #8a6a5a; margin-top: 4px; }
+  .pd-label { font-size: 11px; color: var(--soft-ink); margin-top: 4px; }
   .pd-goal { }
-  .pd-goal-text { font-size: 12px; color: #8a6a5a; margin-bottom: 6px; text-align: center; }
-  .pd-goal-bar { height: 8px; background: #fff; border-radius: 4px; overflow: hidden; }
+  .pd-goal-text { font-size: 12px; color: var(--soft-ink); margin-bottom: 6px; text-align: center; }
+  .pd-goal-bar { height: 8px; background: var(--card); border-radius: 4px; overflow: hidden; }
   .pd-goal-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #d97757, #e89878); border-radius: 4px; transition: width 0.5s; }
 
   /* 模式大卡片 */
@@ -55,46 +70,46 @@
   .mode-cards-3 { grid-template-columns: 1fr 1fr 1fr; }
   .mode-cards-4 { grid-template-columns: 1fr 1fr; }
   .mode-card {
-    background: #fff; border: 2px solid transparent;
+    background: var(--card); border: 2px solid transparent;
     border-radius: 14px; padding: 16px 12px;
     cursor: pointer; text-align: center;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     transition: all 0.15s;
   }
   .mode-card:active { transform: scale(0.97); }
-  .mode-card.active { border-color: #d97757; background: #fdf3ef; }
+  .mode-card.active { border-color: #d97757; background: var(--soft); }
   .mode-card .mc-icon { font-size: 28px; margin-bottom: 4px; }
   .mode-card .mc-title { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
-  .mode-card .mc-desc { font-size: 11px; color: #8a8a85; line-height: 1.3; }
-  .mode-card.active .mc-desc { color: #b85a3c; }
+  .mode-card .mc-desc { font-size: 11px; color: var(--ink3); line-height: 1.3; }
+  .mode-card.active .mc-desc { color: var(--soft-ink); }
 
   .topic-grid {
     display: grid; grid-template-columns: 1fr 1fr 1fr;
     gap: 6px; margin-bottom: 16px;
   }
   .topic-btn {
-    padding: 10px 4px; background: #fff;
+    padding: 10px 4px; background: var(--card);
     border: 2px solid transparent; border-radius: 10px;
-    font-size: 11px; font-weight: 500; color: #2c2c2a;
+    font-size: 11px; font-weight: 500; color: var(--ink);
     cursor: pointer; transition: all 0.15s;
     box-shadow: 0 1px 2px rgba(0,0,0,0.04); text-align: center;
   }
-  .topic-btn.active { border-color: #d97757; background: #fdf3ef; color: #b85a3c; }
+  .topic-btn.active { border-color: #d97757; background: var(--soft); color: var(--soft-ink); }
   .topic-btn .ic { font-size: 18px; display: block; margin-bottom: 2px; }
   .topic-btn .cnt { font-size: 9px; color: #999; display: block; margin-top: 1px; }
-  .topic-btn.active .cnt { color: #b85a3c; }
+  .topic-btn.active .cnt { color: var(--soft-ink); }
 
   .count-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 6px; margin-bottom: 14px;
   }
   .count-btn, .mode-btn-mini {
-    padding: 10px 4px; background: #fff;
+    padding: 10px 4px; background: var(--card);
     border: 2px solid transparent; border-radius: 10px;
     font-size: 13px; font-weight: 500; cursor: pointer;
     box-shadow: 0 1px 2px rgba(0,0,0,0.04);
   }
-  .count-btn.active, .mode-btn-mini.active { border-color: #d97757; background: #fdf3ef; color: #b85a3c; }
+  .count-btn.active, .mode-btn-mini.active { border-color: #d97757; background: var(--soft); color: var(--soft-ink); }
   .mode-mini-grid {
     display: grid; grid-template-columns: 1fr 1fr;
     gap: 6px; margin-bottom: 16px;
@@ -103,7 +118,7 @@
 
   /* 语音设置 */
   .voice-panel {
-    background: #fff; border-radius: 14px;
+    background: var(--card); border-radius: 14px;
     padding: 14px; margin-bottom: 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
@@ -113,31 +128,31 @@
     cursor: pointer;
   }
   .voice-header .vh-title { font-size: 14px; font-weight: 600; }
-  .voice-header .vh-now { font-size: 12px; color: #8a8a85; margin-top: 2px; }
+  .voice-header .vh-now { font-size: 12px; color: var(--ink3); margin-top: 2px; }
   .voice-header .vh-toggle { color: #d97757; font-size: 13px; font-weight: 500; }
   .voice-content { margin-top: 14px; }
 
   .voice-list {
     max-height: 200px; overflow-y: auto;
     margin-bottom: 12px;
-    border: 1px solid #f0ede5; border-radius: 10px;
+    border: 1px solid var(--line); border-radius: 10px;
   }
   .voice-item {
     display: flex; justify-content: space-between; align-items: center;
     padding: 10px 12px; cursor: pointer;
-    border-bottom: 1px solid #f0ede5; font-size: 13px;
+    border-bottom: 1px solid var(--line); font-size: 13px;
   }
   .voice-item:last-child { border-bottom: none; }
-  .voice-item.selected { background: #fdf3ef; color: #b85a3c; font-weight: 600; }
+  .voice-item.selected { background: var(--soft); color: var(--soft-ink); font-weight: 600; }
   .voice-item .vi-name { flex: 1; }
   .voice-item .vi-tag {
     font-size: 10px; padding: 2px 6px; border-radius: 6px;
-    background: #f0ede5; color: #6b6b66; margin-right: 8px;
+    background: var(--line); color: var(--ink2); margin-right: 8px;
   }
   .voice-item.recommended .vi-tag { background: #e8f5e9; color: #2e7d32; }
   .voice-item .vi-play {
     width: 28px; height: 28px; border-radius: 50%;
-    background: #fdf3ef; color: #d97757;
+    background: var(--soft); color: #d97757;
     border: none; cursor: pointer; font-size: 13px;
     flex-shrink: 0;
   }
@@ -148,11 +163,11 @@
     padding: 0 4px;
   }
   .speed-row label {
-    font-size: 13px; color: #6b6b66; min-width: 36px;
+    font-size: 13px; color: var(--ink2); min-width: 36px;
   }
   .speed-row input[type=range] {
     flex: 1; -webkit-appearance: none;
-    height: 4px; background: #e8e5dc;
+    height: 4px; background: var(--track);
     border-radius: 2px; outline: none;
   }
   .speed-row input[type=range]::-webkit-slider-thumb {
@@ -178,24 +193,24 @@
 
   .btn-secondary {
     display: block; width: 100%;
-    padding: 13px; background: #fff; color: #2c2c2a;
-    border: 1.5px solid #e0ddd3; border-radius: 14px;
+    padding: 13px; background: var(--card); color: var(--ink);
+    border: 1.5px solid var(--line2); border-radius: 14px;
     font-size: 14px; font-weight: 500; cursor: pointer;
     margin-top: 8px;
   }
-  .btn-secondary:active { background: #f0ede5; }
+  .btn-secondary:active { background: var(--line); }
 
   /* ===== 游戏界面 ===== */
   .hud {
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 12px; font-size: 12px; color: #6b6b66;
+    margin-bottom: 12px; font-size: 12px; color: var(--ink2);
   }
-  .hud .val { color: #2c2c2a; font-weight: 600; }
+  .hud .val { color: var(--ink); font-weight: 600; }
   .hud .combo { color: #d97757; font-weight: 600; opacity: 0; transition: opacity 0.2s; }
   .hud .combo.show { opacity: 1; }
 
   .progress {
-    height: 5px; background: #e8e5dc; border-radius: 3px;
+    height: 5px; background: var(--track); border-radius: 3px;
     overflow: hidden; margin-bottom: 20px;
   }
   .progress-bar {
@@ -204,31 +219,31 @@
   }
 
   .qcard {
-    background: #fff; border-radius: 18px;
+    background: var(--card); border-radius: 18px;
     padding: 30px 16px; text-align: center;
     margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.05);
     position: relative;
   }
-  .qcard .qlabel { font-size: 12px; color: #8a8a85; margin: 0 0 12px; }
+  .qcard .qlabel { font-size: 12px; color: var(--ink3); margin: 0 0 12px; }
   .qword { font-size: 34px; font-weight: 600; margin: 0; line-height: 1.2; word-break: break-word; }
   .qword-ipa { font-size: 16px; color: #d97757; margin: 6px 0 0; font-weight: 500; min-height: 18px; }
 
   .speak-btn {
     position: absolute; top: 12px; right: 12px;
     width: 36px; height: 36px; border-radius: 50%;
-    background: #fdf3ef; border: none; color: #d97757;
+    background: var(--soft); border: none; color: #d97757;
     font-size: 18px; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     transition: transform 0.15s;
   }
-  .speak-btn:active { transform: scale(0.9); background: #f7e3d8; }
+  .speak-btn:active { transform: scale(0.9); background: var(--soft); }
   .speak-btn.speaking { background: #d97757; color: #fff; }
 
   .options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .option {
-    padding: 18px 10px; background: #fff;
+    padding: 18px 10px; background: var(--card);
     border: 2px solid transparent; border-radius: 12px;
-    font-size: 16px; font-weight: 500; color: #2c2c2a;
+    font-size: 16px; font-weight: 500; color: var(--ink);
     cursor: pointer; transition: all 0.15s;
     box-shadow: 0 1px 2px rgba(0,0,0,0.04);
     min-height: 60px; word-break: break-word;
@@ -249,7 +264,7 @@
   .feedback-speak {
     display: inline-flex; align-items: center; justify-content: center;
     width: 28px; height: 28px; border-radius: 50%;
-    background: #fdf3ef; border: none; color: #d97757;
+    background: var(--soft); border: none; color: #d97757;
     font-size: 14px; cursor: pointer;
     margin-left: 6px; vertical-align: middle;
     transition: transform 0.15s;
@@ -260,16 +275,16 @@
   /* ===== 学习卡片模式 ===== */
   .study-hud {
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 12px; font-size: 12px; color: #6b6b66;
+    margin-bottom: 12px; font-size: 12px; color: var(--ink2);
   }
-  .study-hud .progress-text { font-weight: 600; color: #2c2c2a; }
+  .study-hud .progress-text { font-weight: 600; color: var(--ink); }
   .study-hud .stats-mini { display: flex; gap: 10px; }
   .study-hud .stats-mini span { font-weight: 600; }
   .study-hud .stats-mini .known { color: #2e7d32; }
   .study-hud .stats-mini .unknown { color: #d97757; }
 
   .flashcard {
-    background: #fff; border-radius: 20px;
+    background: var(--card); border-radius: 20px;
     padding: 40px 24px; text-align: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     margin-bottom: 16px;
@@ -288,20 +303,20 @@
     margin: 0 0 14px; font-weight: 500;
   }
   .flashcard .fc-cn {
-    font-size: 22px; color: #6b6b66;
+    font-size: 22px; color: var(--ink2);
     margin: 0 0 12px;
     transition: opacity 0.25s;
   }
   .flashcard .fc-cn.hidden-cn { opacity: 0; }
   .flashcard .fc-tap {
-    font-size: 12px; color: #b0b0a8;
+    font-size: 12px; color: var(--ink4);
     margin: 0;
     font-style: italic;
   }
   .flashcard .fc-speak {
     position: absolute; top: 16px; right: 16px;
     width: 40px; height: 40px; border-radius: 50%;
-    background: #fdf3ef; border: none; color: #d97757;
+    background: var(--soft); border: none; color: #d97757;
     font-size: 20px; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
   }
@@ -310,8 +325,8 @@
 
   .flashcard .fc-topic-tag {
     position: absolute; top: 16px; left: 16px;
-    font-size: 11px; color: #8a8a85;
-    background: #f0ede5; padding: 3px 8px; border-radius: 8px;
+    font-size: 11px; color: var(--ink3);
+    background: var(--line); padding: 3px 8px; border-radius: 8px;
   }
 
   .study-actions {
@@ -321,16 +336,16 @@
   .action-btn {
     padding: 16px 8px; border: 2px solid transparent;
     border-radius: 14px; font-size: 15px; font-weight: 600;
-    cursor: pointer; background: #fff;
+    cursor: pointer; background: var(--card);
     transition: all 0.15s;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
   .action-btn:active { transform: scale(0.97); }
   .action-btn.unknown {
     background: #fff5f0; color: #c66848;
-    border-color: #f7d4c1;
+    border-color: var(--soft2);
   }
-  .action-btn.unknown:active { background: #f7d4c1; }
+  .action-btn.unknown:active { background: var(--soft2); }
   .action-btn.known {
     background: #f0f9f0; color: #2e7d32;
     border-color: #c8e6c9;
@@ -346,17 +361,17 @@
   }
   .nav-btn {
     padding: 12px 8px;
-    background: #fff; border: 1.5px solid #e0ddd3;
+    background: var(--card); border: 1.5px solid var(--line2);
     border-radius: 12px; font-size: 13px;
     cursor: pointer;
   }
-  .nav-btn:active { background: #f0ede5; }
+  .nav-btn:active { background: var(--line); }
   .nav-btn:disabled { opacity: 0.4; cursor: default; }
 
   .auto-speak-row {
     display: flex; align-items: center; justify-content: center;
     gap: 8px; margin: 10px 0;
-    font-size: 12px; color: #6b6b66;
+    font-size: 12px; color: var(--ink2);
   }
   .auto-speak-row input[type=checkbox] {
     width: 16px; height: 16px;
@@ -368,29 +383,29 @@
     gap: 6px; margin: 0 0 16px;
   }
   .stat {
-    padding: 12px 6px; background: #fff;
+    padding: 12px 6px; background: var(--card);
     border-radius: 12px; text-align: center;
   }
   .stat .n { font-size: 22px; font-weight: 600; color: #d97757; }
-  .stat .l { font-size: 11px; color: #6b6b66; margin-top: 2px; }
+  .stat .l { font-size: 11px; color: var(--ink2); margin-top: 2px; }
 
   .review {
-    background: #fff; border-radius: 14px;
+    background: var(--card); border-radius: 14px;
     padding: 12px 14px; margin-bottom: 16px;
     text-align: left; max-height: 300px; overflow-y: auto;
   }
-  .review .rtitle { font-size: 12px; color: #6b6b66; margin: 0 0 6px; font-weight: 600; }
+  .review .rtitle { font-size: 12px; color: var(--ink2); margin: 0 0 6px; font-weight: 600; }
   .review-row {
     display: flex; justify-content: space-between; align-items: center;
     padding: 8px 0; font-size: 14px;
-    border-top: 1px solid #f0ede5;
+    border-top: 1px solid var(--line);
   }
   .review-row:first-of-type { border-top: none; }
   .review-row .right { display: flex; align-items: center; gap: 8px; }
   .review-row .en { font-weight: 600; color: #d97757; }
   .review-row .speak-mini {
     width: 26px; height: 26px; border-radius: 50%;
-    background: #fdf3ef; border: none; color: #d97757;
+    background: var(--soft); border: none; color: #d97757;
     cursor: pointer; font-size: 12px;
   }
 
@@ -405,33 +420,33 @@
 
   /* ===== 游戏乐园 ===== */
   .games-title { font-size: 24px; font-weight: 700; text-align: center; margin: 8px 0 4px; }
-  .games-sub { font-size: 13px; color: #8a8a85; text-align: center; margin-bottom: 20px; }
+  .games-sub { font-size: 13px; color: var(--ink3); text-align: center; margin-bottom: 20px; }
   .game-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
   .game-item {
     display: flex; align-items: center; gap: 14px;
-    background: #fff; border-radius: 14px; padding: 16px;
+    background: var(--card); border-radius: 14px; padding: 16px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.06); cursor: pointer;
     transition: transform 0.12s;
   }
   .game-item:active { transform: scale(0.98); }
   .game-item .gi-icon { font-size: 32px; }
-  .game-item .gi-name { font-size: 16px; font-weight: 600; color: #2c2c2a; }
-  .game-item .gi-desc { font-size: 12px; color: #8a8a85; margin-top: 2px; }
+  .game-item .gi-name { font-size: 16px; font-weight: 600; color: var(--ink); }
+  .game-item .gi-desc { font-size: 12px; color: var(--ink3); margin-top: 2px; }
   .game-area { text-align: center; }
 
   /* ===== 首页快捷入口(生词本/成就) ===== */
   .home-entries { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
   .home-entry {
     display: flex; align-items: center; gap: 10px;
-    background: #fff; border-radius: 14px; padding: 13px 14px;
+    background: var(--card); border-radius: 14px; padding: 13px 14px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05); cursor: pointer;
     border: 2px solid transparent; transition: transform 0.12s, border-color 0.15s;
   }
   .home-entry:active { transform: scale(0.97); }
   .home-entry .he-icon { font-size: 24px; }
   .home-entry .he-title { font-size: 14px; font-weight: 600; }
-  .home-entry .he-sub { font-size: 11px; color: #8a8a85; margin-top: 1px; }
-  .home-entry.has-due { border-color: #d97757; background: #fdf3ef; }
+  .home-entry .he-sub { font-size: 11px; color: var(--ink3); margin-top: 1px; }
+  .home-entry.has-due { border-color: #d97757; background: var(--soft); }
   .home-entry .he-badge {
     margin-left: auto; min-width: 22px; height: 22px; padding: 0 6px;
     border-radius: 11px; background: #d97757; color: #fff;
@@ -443,64 +458,64 @@
   .review-empty { text-align: center; padding: 40px 16px; }
   .review-empty .re-emoji { font-size: 56px; margin-bottom: 10px; }
   .review-empty .re-title { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
-  .review-empty .re-sub { font-size: 13px; color: #8a8a85; line-height: 1.6; margin-bottom: 20px; }
+  .review-empty .re-sub { font-size: 13px; color: var(--ink3); line-height: 1.6; margin-bottom: 20px; }
   .nb-list { margin: 8px 0 16px; }
-  .nb-section-title { font-size: 12px; color: #8a8a85; font-weight: 600; margin: 14px 0 8px; padding-left: 4px; }
+  .nb-section-title { font-size: 12px; color: var(--ink3); font-weight: 600; margin: 14px 0 8px; padding-left: 4px; }
   .nb-row {
     display: flex; align-items: center; gap: 10px;
-    background: #fff; border-radius: 12px; padding: 12px 14px;
+    background: var(--card); border-radius: 12px; padding: 12px 14px;
     margin-bottom: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.04);
   }
-  .nb-row .nb-cn { font-size: 15px; color: #2c2c2a; flex-shrink: 0; }
+  .nb-row .nb-cn { font-size: 15px; color: var(--ink); flex-shrink: 0; }
   .nb-row .nb-mid { flex: 1; min-width: 0; }
   .nb-row .nb-en { font-size: 15px; font-weight: 600; color: #d97757; }
   .nb-row .nb-ipa { font-size: 11px; color: #b0875a; }
   .nb-row .nb-dots { display: flex; gap: 3px; margin-top: 4px; }
-  .nb-row .nb-dot { width: 8px; height: 8px; border-radius: 50%; background: #e8e5dc; }
+  .nb-row .nb-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--track); }
   .nb-row .nb-dot.on { background: #4caf50; }
-  .nb-row .nb-due { font-size: 10px; color: #8a8a85; }
+  .nb-row .nb-due { font-size: 10px; color: var(--ink3); }
   .nb-row .nb-due.ready { color: #d97757; font-weight: 600; }
   .nb-row .nb-speak {
     width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-    background: #fdf3ef; color: #d97757; border: none; font-size: 14px; cursor: pointer;
+    background: var(--soft); color: #d97757; border: none; font-size: 14px; cursor: pointer;
   }
   .nb-row .nb-speak:active { background: #d97757; color: #fff; }
   .review-srs-dots { display: flex; gap: 5px; justify-content: center; margin-top: 14px; }
-  .review-srs-dots .d { width: 9px; height: 9px; border-radius: 50%; background: #e8e5dc; }
+  .review-srs-dots .d { width: 9px; height: 9px; border-radius: 50%; background: var(--track); }
   .review-srs-dots .d.on { background: #4caf50; }
   .reveal-hint-btn {
     display: block; margin: 0 auto; padding: 8px 20px;
-    background: #fdf3ef; color: #d97757; border: none; border-radius: 20px;
+    background: var(--soft); color: #d97757; border: none; border-radius: 20px;
     font-size: 13px; font-weight: 600; cursor: pointer;
   }
-  .reveal-hint-btn:active { background: #f7d4c1; }
+  .reveal-hint-btn:active { background: var(--soft2); }
 
   /* ===== 成就/数据界面 ===== */
-  .achv-block { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .achv-block { background: var(--card); border-radius: 16px; padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
   .achv-block h3 { font-size: 15px; font-weight: 600; margin: 0 0 12px; }
   .achv-summary { display: flex; justify-content: space-around; }
   .achv-summary .as-item { text-align: center; }
   .achv-summary .as-n { font-size: 24px; font-weight: 700; color: #d97757; line-height: 1; }
-  .achv-summary .as-l { font-size: 11px; color: #8a8a85; margin-top: 4px; }
+  .achv-summary .as-l { font-size: 11px; color: var(--ink3); margin-top: 4px; }
   .heatmap { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
   .heatmap .hm-cell { aspect-ratio: 1; border-radius: 4px; background: #eeece5; }
   .heatmap .hm-cell.l1 { background: #f6d3c2; }
   .heatmap .hm-cell.l2 { background: #ecae90; }
   .heatmap .hm-cell.l3 { background: #e08a5f; }
   .heatmap .hm-cell.l4 { background: #d97757; }
-  .heatmap .hm-cell.today { box-shadow: 0 0 0 2px #2c2c2a; }
-  .heatmap-legend { display: flex; align-items: center; justify-content: flex-end; gap: 4px; font-size: 10px; color: #8a8a85; margin-top: 8px; }
+  .heatmap .hm-cell.today { box-shadow: 0 0 0 2px var(--ink); }
+  .heatmap-legend { display: flex; align-items: center; justify-content: flex-end; gap: 4px; font-size: 10px; color: var(--ink3); margin-top: 8px; }
   .heatmap-legend .hl-box { width: 10px; height: 10px; border-radius: 2px; }
   .badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .badge {
     display: flex; align-items: center; gap: 10px;
-    background: #faf8f3; border-radius: 12px; padding: 10px 12px;
+    background: var(--bg2); border-radius: 12px; padding: 10px 12px;
     opacity: 0.45; filter: grayscale(1); transition: all 0.2s;
   }
-  .badge.earned { opacity: 1; filter: none; background: #fdf3ef; }
+  .badge.earned { opacity: 1; filter: none; background: var(--soft); }
   .badge .b-icon { font-size: 26px; }
   .badge .b-name { font-size: 13px; font-weight: 600; }
-  .badge .b-desc { font-size: 10px; color: #8a8a85; margin-top: 1px; }
+  .badge .b-desc { font-size: 10px; color: var(--ink3); margin-top: 1px; }
   .topic-progress-row { margin-bottom: 10px; }
   .topic-progress-row .tpr-head { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
   .topic-progress-row .tpr-bar { height: 6px; background: #eeece5; border-radius: 3px; overflow: hidden; }
@@ -522,9 +537,9 @@
   @keyframes pop { 0%{transform:scale(0.5);opacity:0;} 100%{transform:scale(1);opacity:1;} }
   .emoji-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .emoji-options .eo-btn {
-    background: #fff; border: 2px solid transparent; border-radius: 12px;
+    background: var(--card); border: 2px solid transparent; border-radius: 12px;
     padding: 16px 8px; font-size: 17px; font-weight: 600; cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05); color: #2c2c2a;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); color: var(--ink);
   }
   .emoji-options .eo-btn:active { transform: scale(0.97); }
   .emoji-options .eo-btn.correct { background: #e8f5e9; border-color: #4caf50; color: #2e7d32; }
@@ -535,12 +550,12 @@
   .spell-answer {
     min-height: 50px; display: flex; flex-wrap: wrap; gap: 6px;
     justify-content: center; align-items: center; margin-bottom: 16px;
-    padding: 10px; background: #faf8f3; border-radius: 12px; border: 2px dashed #e0dcd0;
+    padding: 10px; background: var(--bg2); border-radius: 12px; border: 2px dashed #e0dcd0;
   }
   .spell-answer .slot {
     width: 36px; height: 44px; border-radius: 8px;
-    background: #fff; display: flex; align-items: center; justify-content: center;
-    font-size: 22px; font-weight: 700; color: #2c2c2a; cursor: pointer;
+    background: var(--card); display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 700; color: var(--ink); cursor: pointer;
     box-shadow: 0 1px 2px rgba(0,0,0,0.08);
   }
   .spell-letters { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 16px; }
@@ -555,7 +570,7 @@
   .spell-btns { display: flex; gap: 10px; justify-content: center; margin-bottom: 12px; }
   .btn-mini {
     padding: 8px 18px; border-radius: 20px; border: none;
-    background: #f0ede5; color: #6b6b66; font-size: 13px; font-weight: 600; cursor: pointer;
+    background: var(--line); color: var(--ink2); font-size: 13px; font-weight: 600; cursor: pointer;
   }
   .btn-mini:active { transform: scale(0.96); }
   /* 限时 */
@@ -565,14 +580,14 @@
   /* 连连看 */
   .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .match-grid .mcell {
-    padding: 16px 6px; border-radius: 12px; background: #fff;
-    font-size: 15px; font-weight: 600; cursor: pointer; color: #2c2c2a;
+    padding: 16px 6px; border-radius: 12px; background: var(--card);
+    font-size: 15px; font-weight: 600; cursor: pointer; color: var(--ink);
     box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 2px solid transparent;
     min-height: 24px; display: flex; align-items: center; justify-content: center;
     transition: all 0.15s;
   }
   .match-grid .mcell:active { transform: scale(0.97); }
-  .match-grid .mcell.sel { border-color: #d97757; background: #fdf3ef; }
+  .match-grid .mcell.sel { border-color: #d97757; background: var(--soft); }
   .match-grid .mcell.done { opacity: 0; pointer-events: none; }
   /* 结果页 */
   .result-emoji { font-size: 70px; margin: 30px 0 10px; }
@@ -586,14 +601,14 @@
   }
   .ph-tab {
     flex: 1; min-width: 60px;
-    padding: 10px 4px; background: #fff;
+    padding: 10px 4px; background: var(--card);
     border: 2px solid transparent; border-radius: 10px;
     font-size: 12px; font-weight: 600; cursor: pointer;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04); color: #2c2c2a;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04); color: var(--ink);
   }
-  .ph-tab.active { border-color: #d97757; background: #fdf3ef; color: #b85a3c; }
+  .ph-tab.active { border-color: #d97757; background: var(--soft); color: var(--soft-ink); }
   .phonics-hint {
-    font-size: 11px; color: #8a8a85; line-height: 1.5;
+    font-size: 11px; color: var(--ink3); line-height: 1.5;
     margin-bottom: 14px; padding: 0 4px;
   }
   .phonics-grid {
@@ -601,7 +616,7 @@
     gap: 8px; margin-bottom: 16px;
   }
   .ph-card {
-    background: #fff; border-radius: 14px;
+    background: var(--card); border-radius: 14px;
     padding: 14px 12px; cursor: pointer;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     transition: transform 0.12s;
@@ -609,7 +624,7 @@
   }
   .ph-card:active { transform: scale(0.97); }
   .ph-card .ph-main {
-    font-size: 24px; font-weight: 600; color: #2c2c2a;
+    font-size: 24px; font-weight: 600; color: var(--ink);
     margin-bottom: 8px;
   }
   .ph-card .ph-row {
@@ -617,8 +632,8 @@
     margin-bottom: 4px;
   }
   .ph-card .ph-label {
-    font-size: 11px; color: #8a8a85;
-    background: #f0ede5; padding: 2px 6px; border-radius: 6px;
+    font-size: 11px; color: var(--ink3);
+    background: var(--line); padding: 2px 6px; border-radius: 6px;
     flex-shrink: 0;
   }
   .ph-card .ph-sound {
@@ -626,36 +641,36 @@
     flex: 1;
   }
   .ph-card .ph-name {
-    font-size: 14px; color: #6b6b66; font-weight: 500;
+    font-size: 14px; color: var(--ink2); font-weight: 500;
     flex: 1;
   }
   .ph-card .ph-tip {
-    font-size: 11px; color: #8a8a85; margin-top: 6px;
+    font-size: 11px; color: var(--ink3); margin-top: 6px;
     min-height: 14px;
   }
   .ph-card .ph-example {
     display: flex; align-items: center; justify-content: space-between;
     gap: 8px; margin-top: 8px;
-    padding-top: 8px; border-top: 1px solid #f0ede5;
+    padding-top: 8px; border-top: 1px solid var(--line);
   }
   .ph-card .ph-example .ex-left {
     display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0;
   }
   .ph-card .ph-example .ex-word {
-    font-size: 15px; font-weight: 600; color: #2c2c2a;
+    font-size: 15px; font-weight: 600; color: var(--ink);
   }
   .ph-card .ph-example .ex-ipa {
     font-size: 12px; color: #d97757;
   }
   .ph-card .ph-example .ex-cn {
-    font-size: 11px; color: #8a8a85;
+    font-size: 11px; color: var(--ink3);
   }
   .ph-card .ph-example .ph-speak-ex {
     width: 30px; height: 30px; flex-shrink: 0;
   }
   .ph-card .ph-speak {
     width: 28px; height: 28px; border-radius: 50%;
-    background: #fdf3ef; border: none; color: #d97757;
+    background: var(--soft); border: none; color: #d97757;
     font-size: 13px; cursor: pointer; flex-shrink: 0;
   }
   .ph-card > .ph-speak {
@@ -675,13 +690,13 @@
 
   /* ===== 拼写默写模式 ===== */
   .type-card {
-    background: #fff; border-radius: 20px;
+    background: var(--card); border-radius: 20px;
     padding: 26px 18px 22px; text-align: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     margin-bottom: 14px; position: relative;
   }
   .type-card .tc-topic {
-    font-size: 11px; color: #b85a3c; background: #fdf3ef;
+    font-size: 11px; color: var(--soft-ink); background: var(--soft);
     border-radius: 8px; padding: 3px 9px; display: inline-block; margin-bottom: 10px;
   }
   .type-card .tc-cn { font-size: 30px; font-weight: 600; margin: 0 0 4px; line-height: 1.2; }
@@ -690,10 +705,10 @@
   .type-speak {
     position: absolute; top: 14px; right: 14px;
     width: 38px; height: 38px; border-radius: 50%;
-    background: #fdf3ef; border: none; color: #d97757; font-size: 18px; cursor: pointer;
+    background: var(--soft); border: none; color: #d97757; font-size: 18px; cursor: pointer;
     display: flex; align-items: center; justify-content: center; transition: transform 0.15s;
   }
-  .type-speak:active { transform: scale(0.9); background: #f7e3d8; }
+  .type-speak:active { transform: scale(0.9); background: var(--soft); }
   .type-speak.speaking { background: #d97757; color: #fff; }
 
   .type-slots {
@@ -702,13 +717,13 @@
     cursor: text;
   }
   .tslot {
-    width: 26px; height: 40px; border-bottom: 3px solid #e0ddd3;
+    width: 26px; height: 40px; border-bottom: 3px solid var(--line2);
     display: flex; align-items: flex-end; justify-content: center;
-    font-size: 26px; font-weight: 600; color: #2c2c2a; line-height: 1.1;
+    font-size: 26px; font-weight: 600; color: var(--ink); line-height: 1.1;
     text-transform: lowercase; transition: border-color 0.12s, background 0.12s;
   }
   .tslot.done { border-bottom-color: #4caf50; color: #2e7d32; }
-  .tslot.cur { border-bottom-color: #d97757; background: #fdf3ef; }
+  .tslot.cur { border-bottom-color: #d97757; background: var(--soft); }
   .tslot.bad { border-bottom-color: #ef5350; background: #ffebee; animation: tshake 0.22s; }
   .tslot.space { width: 14px; border-bottom-color: transparent; }
   @keyframes tshake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
@@ -716,20 +731,76 @@
     position: absolute; opacity: 0; pointer-events: none;
     width: 1px; height: 1px; border: 0; padding: 0;
   }
-  .type-tap-tip { font-size: 12px; color: #b0b0a8; margin: 4px 0 0; }
+  .type-tap-tip { font-size: 12px; color: var(--ink4); margin: 4px 0 0; }
   .type-toolbar { display: flex; gap: 8px; margin-bottom: 10px; }
   .type-toolbar .btn-mini { flex: 1; }
-  .type-sound-row { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: #8a8a85; margin-bottom: 10px; }
+  .type-sound-row { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: var(--ink3); margin-bottom: 10px; }
   .type-feedback { text-align: center; min-height: 20px; font-size: 14px; font-weight: 600; margin-bottom: 8px; }
   .type-feedback.ok { color: #2e7d32; }
+
+  /* ===== 打磨：主题开关 / 目标可调 / 网格 / 动效 ===== */
+  #start-screen { position: relative; }
+  .theme-toggle {
+    position: absolute; top: 0; right: 0;
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--card); border: 1.5px solid var(--line);
+    font-size: 18px; cursor: pointer; line-height: 1;
+    box-shadow: 0 1px 3px var(--shadow); z-index: 5;
+    transition: transform 0.15s, background 0.2s;
+  }
+  .theme-toggle:active { transform: scale(0.9); }
+
+  .pd-goal { cursor: pointer; }
+  .pd-goal-text .goal-edit { font-size: 11px; color: var(--soft-ink); margin-left: 4px; opacity: 0.8; }
+  .goal-picker { display: flex; gap: 6px; justify-content: center; margin-top: 8px; flex-wrap: wrap; }
+  .goal-picker.hidden { display: none; }
+  .goal-opt {
+    padding: 5px 12px; border-radius: 8px; font-size: 12px; font-weight: 600;
+    background: var(--card); color: var(--ink2); border: 1.5px solid var(--line2); cursor: pointer;
+  }
+  .goal-opt.active { background: #d97757; color: #fff; border-color: #d97757; }
+
+  /* 第 5 个模式卡片占满整行，5 卡布局更平衡 */
+  .mode-card.span2 {
+    grid-column: 1 / -1;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    padding: 14px 12px; text-align: left;
+  }
+  .mode-card.span2 .mc-icon { margin-bottom: 0; font-size: 26px; }
+  .mode-card.span2 .mc-body { display: flex; flex-direction: column; }
+
+  /* 生词本管理按钮 */
+  .nb-tools { display: flex; gap: 8px; margin-bottom: 12px; }
+  .nb-tools .btn-mini { flex: 1; }
+  .review-remove {
+    position: absolute; top: 12px; left: 12px;
+    background: none; border: none; color: var(--ink4);
+    font-size: 12px; cursor: pointer; padding: 4px 6px;
+  }
+  .review-remove:active { color: #ef5350; }
+
+  /* 暗色下若干浅底提示框纠正 */
+  body.dark .crisis-box, body.dark .tip { background: var(--soft) !important; color: var(--ink) !important; }
+  body.dark .option.correct, body.dark .tslot.done { background: rgba(76,175,80,0.18); }
+  body.dark .option.wrong, body.dark .tslot.bad { background: rgba(239,83,80,0.18); }
+  body.dark .feedback.ok, body.dark .type-feedback.ok { color: #7ddc8a; }
+
+  /* 入场微动效 */
+  @keyframes cardIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .flashcard, .qcard, .type-card, .flashcard#review-card { animation: cardIn 0.22s ease; }
+  @media (prefers-reduced-motion: reduce) {
+    .flashcard, .qcard, .type-card, .tslot, html, body { animation: none !important; transition: none !important; }
+  }
 </style>
 </head>
 <body>
+<script>try{var _s=JSON.parse(localStorage.getItem('wordAdventure_settings')||'{}');if(_s.dark)document.body.classList.add('dark');}catch(e){}</script>
 
 <div class="app">
 
   <!-- 开始界面 -->
   <div id="start-screen">
+    <button class="theme-toggle" id="theme-toggle" aria-label="切换深浅色">🌙</button>
     <div class="center">
       <div class="emoji">🎈</div>
       <h1>单词大冒险</h1>
@@ -742,9 +813,16 @@
         <div class="pd-stat"><div class="pd-num" id="pd-learned">0</div><div class="pd-label">📚 已学单词</div></div>
         <div class="pd-stat"><div class="pd-num" id="pd-today">0</div><div class="pd-label">✨ 今日学习</div></div>
       </div>
-      <div class="pd-goal">
-        <div class="pd-goal-text">今日目标 <span id="pd-goal-done">0</span>/<span id="pd-goal-total">20</span> 个</div>
+      <div class="pd-goal" id="pd-goal">
+        <div class="pd-goal-text">今日目标 <span id="pd-goal-done">0</span>/<span id="pd-goal-total">20</span> 个<span class="goal-edit">✎ 点击调整</span></div>
         <div class="pd-goal-bar"><div class="pd-goal-fill" id="pd-goal-fill"></div></div>
+        <div class="goal-picker hidden" id="goal-picker">
+          <span class="goal-opt" data-goal="10">10</span>
+          <span class="goal-opt" data-goal="15">15</span>
+          <span class="goal-opt" data-goal="20">20</span>
+          <span class="goal-opt" data-goal="30">30</span>
+          <span class="goal-opt" data-goal="50">50</span>
+        </div>
       </div>
     </div>
 
@@ -788,10 +866,12 @@
         <div class="mc-title">游戏乐园</div>
         <div class="mc-desc">玩中学单词</div>
       </div>
-      <div class="mode-card" data-pagemode="type">
+      <div class="mode-card span2" data-pagemode="type">
         <div class="mc-icon">⌨️</div>
-        <div class="mc-title">拼写默写</div>
-        <div class="mc-desc">听音敲单词</div>
+        <div class="mc-body">
+          <div class="mc-title">拼写默写</div>
+          <div class="mc-desc">听发音 / 看中文，用键盘敲出单词（最练记忆）</div>
+        </div>
       </div>
     </div>
 
@@ -865,7 +945,7 @@
 
     <div class="auto-speak-row">
       <label><input type="checkbox" id="auto-speak" checked> 自动朗读</label>
-      <span style="font-size:11px;color:#b0b0a8;margin-left:10px;">音标供参考，准确发音以 🔊 为准</span>
+      <span style="font-size:11px;color:var(--ink4);margin-left:10px;">音标供参考，准确发音以 🔊 为准</span>
     </div>
 
     <div class="study-actions">
@@ -977,7 +1057,7 @@
     <div id="game-listen" class="game-area hidden">
       <div class="game-hud"><span id="listen-score">得分 0</span><span id="listen-progress">1/10</span></div>
       <button class="speak-btn" id="listen-replay" style="position:static;width:84px;height:84px;border-radius:50%;font-size:40px;margin:18px auto 6px;">🔊</button>
-      <div class="game-feedback" id="listen-tip" style="min-height:18px;color:#8a8a85;font-size:12px;">点喇叭再听一次</div>
+      <div class="game-feedback" id="listen-tip" style="min-height:18px;color:var(--ink3);font-size:12px;">点喇叭再听一次</div>
       <div class="emoji-options" id="listen-options"></div>
       <div class="game-feedback" id="listen-feedback"></div>
       <button class="btn-secondary game-quit">退出游戏</button>
@@ -1095,7 +1175,7 @@
     <div class="center">
       <div class="emoji" id="type-end-emoji">⌨️</div>
       <h1>默写完成！</h1>
-      <p class="subtitle">本次默写了 <span id="type-end-total">0</span> 个单词</p>
+      <p class="subtitle">本次默写了 <span id="type-end-total">0</span> 个单词 · ⌨️ <span id="type-end-wpm">0</span> WPM</p>
     </div>
     <div class="stats">
       <div class="stat"><div class="n" id="type-end-perfect">0</div><div class="l">一次拼对</div></div>
@@ -1120,8 +1200,9 @@
 
     <div class="flashcard" id="review-card">
       <span class="fc-topic-tag" id="review-topic">主题</span>
+      <button class="review-remove" id="review-remove" title="已记牢，移出生词本">✕ 移除</button>
       <button class="fc-speak hidden" id="review-speak" aria-label="朗读">🔊</button>
-      <p class="fc-cn" id="review-cn" style="font-size:30px;color:#2c2c2a;margin-bottom:14px;">中文</p>
+      <p class="fc-cn" id="review-cn" style="font-size:30px;color:var(--ink);margin-bottom:14px;">中文</p>
       <p class="fc-en hidden-cn" id="review-en" style="font-size:34px;">word</p>
       <p class="fc-ipa hidden-cn" id="review-ipa">/.../</p>
       <button class="reveal-hint-btn" id="review-reveal">想好了，翻开看答案</button>
@@ -1156,6 +1237,7 @@
     </div>
     <div id="review-end-list"></div>
     <button class="btn-primary" id="review-end-again">继续复习待办</button>
+    <button class="btn-secondary" id="review-end-all">📚 提前复习全部生词本</button>
     <button class="btn-secondary" id="review-end-home">返回首页</button>
   </div>
 
@@ -1229,6 +1311,12 @@ const LOW_QUALITY_KEYWORDS = [
 ];
 
 (function() {
+  // === 设置持久化（发音/语速/主题/打字偏好） ===
+  const SET_KEY = 'wordAdventure_settings';
+  function loadSettings() { try { return JSON.parse(localStorage.getItem(SET_KEY)) || {}; } catch(e) { return {}; } }
+  function saveSettings() { try { localStorage.setItem(SET_KEY, JSON.stringify(settings)); } catch(e) {} }
+  let settings = loadSettings();
+
   // === 全局状态 ===
   let pageMode = "study"; // "study" | "quiz"
   let selectedTopic = "all";
@@ -1253,7 +1341,7 @@ const LOW_QUALITY_KEYWORDS = [
   // 朗读
   let allVoices = [];
   let selectedVoice = null;
-  let speakRate = 0.85;
+  let speakRate = (typeof settings.speakRate === 'number') ? settings.speakRate : 0.85;
 
   // === 主题渲染 ===
   function renderTopics() {
@@ -1304,7 +1392,9 @@ const LOW_QUALITY_KEYWORDS = [
       .filter(x => x.score >= 0)
       .sort((a, b) => b.score - a.score);
     if (allVoices.length === 0) return;
-    selectedVoice = allVoices[0].voice;
+    // 优先用上次记住的声音
+    let saved = settings.voiceName && allVoices.find(x => x.voice.name === settings.voiceName);
+    selectedVoice = saved ? saved.voice : allVoices[0].voice;
     updateVoiceUI();
   }
 
@@ -1329,7 +1419,7 @@ const LOW_QUALITY_KEYWORDS = [
         '<span class="vi-name">' + v.name + ' <span style="color:#999;font-size:11px">(' + v.lang + ')</span></span>' +
         (isRecommended ? '<span class="vi-tag">推荐</span>' : '') +
         '<button class="vi-play">▶</button>';
-      row.querySelector('.vi-name').onclick = () => { selectedVoice = v; updateVoiceUI(); };
+      row.querySelector('.vi-name').onclick = () => { selectedVoice = v; settings.voiceName = v.name; saveSettings(); updateVoiceUI(); };
       row.querySelector('.vi-play').onclick = (e) => { e.stopPropagation(); previewVoice(v); };
       list.appendChild(row);
     });
@@ -1374,10 +1464,47 @@ const LOW_QUALITY_KEYWORDS = [
   };
 
   const slider = document.getElementById("speed-slider");
+  slider.value = speakRate;
+  document.getElementById("speed-val").textContent = speakRate.toFixed(2) + "×";
   slider.oninput = () => {
     speakRate = parseFloat(slider.value);
     document.getElementById("speed-val").textContent = speakRate.toFixed(2) + "×";
+    settings.speakRate = speakRate; saveSettings();
   };
+
+  // === 主题切换（深/浅色，记忆到设置）===
+  function applyTheme() {
+    document.body.classList.toggle("dark", !!settings.dark);
+    const tt = document.getElementById("theme-toggle");
+    if (tt) tt.textContent = settings.dark ? "☀️" : "🌙";
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", settings.dark ? "#14141a" : "#f7f5f0");
+  }
+  applyTheme();
+  document.getElementById("theme-toggle").onclick = () => {
+    settings.dark = !settings.dark; saveSettings(); applyTheme();
+  };
+
+  // === 每日目标可调 ===
+  const goalPicker = document.getElementById("goal-picker");
+  document.getElementById("pd-goal").onclick = (e) => {
+    if (e.target.closest(".goal-opt")) return;
+    goalPicker.classList.toggle("hidden");
+    syncGoalPicker();
+  };
+  function syncGoalPicker() {
+    const g = window.getProgress ? (window.getProgress().goal || 20) : 20;
+    goalPicker.querySelectorAll(".goal-opt").forEach(o =>
+      o.classList.toggle("active", parseInt(o.dataset.goal) === g));
+  }
+  goalPicker.querySelectorAll(".goal-opt").forEach(opt => {
+    opt.onclick = () => {
+      const g = parseInt(opt.dataset.goal);
+      if (window.setGoal) window.setGoal(g);
+      syncGoalPicker();
+      goalPicker.classList.add("hidden");
+    };
+  });
 
   // === 模式切换 ===
   document.querySelectorAll(".mode-card").forEach(card => {
@@ -1689,7 +1816,7 @@ const LOW_QUALITY_KEYWORDS = [
       const gained = 10 + (combo >= 2 ? (combo - 1) * 5 : 0);
       score += gained;
       btn.classList.add("correct");
-      feedback.innerHTML = '✓ 答对了！+' + gained + ' 分 <span style="color:#6b6b66;font-weight:500">(' + q.item.en + ' ' + (IPA_MAP[q.item.en] || '') + ' = ' + q.item.cn + ')</span> <button class="feedback-speak" type="button" aria-label="朗读">🔊</button>';
+      feedback.innerHTML = '✓ 答对了！+' + gained + ' 分 <span style="color:var(--ink2);font-weight:500">(' + q.item.en + ' ' + (IPA_MAP[q.item.en] || '') + ' = ' + q.item.cn + ')</span> <button class="feedback-speak" type="button" aria-label="朗读">🔊</button>';
       feedback.className = "feedback ok";
       const fbSpeak = feedback.querySelector(".feedback-speak");
       if (fbSpeak) fbSpeak.onclick = () => speak(q.item.en, fbSpeak);
@@ -2278,6 +2405,20 @@ const LOW_QUALITY_KEYWORDS = [
     if (reviewIdx >= reviewWords.length) showReviewEnd();
     else renderReviewCard();
   }
+  // 已记牢：直接移出生词本（不再复习）
+  function removeReview() {
+    const w = reviewWords[reviewIdx];
+    if (!w) return;
+    if (window.removeFromNotebook) window.removeFromNotebook(w.en);
+    reviewWords.splice(reviewIdx, 1);
+    if (reviewWords.length === 0 || reviewIdx >= reviewWords.length) showReviewEnd();
+    else { document.getElementById("review-total").textContent = reviewWords.length; renderReviewCard(); }
+  }
+  // 提前复习整本生词本（无视是否到期）
+  function reviewAll() {
+    const all = window.getNotebook ? window.getNotebook() : [];
+    if (all.length) startReview(all); else showReviewEmpty();
+  }
   function showReviewEnd() {
     showScreen("review-end-screen");
     document.querySelector("#review-end-screen .stats").style.display = "";
@@ -2301,11 +2442,16 @@ const LOW_QUALITY_KEYWORDS = [
     const again = document.getElementById("review-end-again");
     again.style.display = remain > 0 ? "" : "none";
     again.textContent = "继续复习待办 (" + remain + ")";
+    const nbTotal = window.getNotebook ? window.getNotebook().length : 0;
+    const allBtn = document.getElementById("review-end-all");
+    allBtn.style.display = nbTotal > 0 ? "" : "none";
+    allBtn.textContent = "📚 提前复习全部生词本 (" + nbTotal + ")";
   }
   function showReviewEmpty() {
     showScreen("review-end-screen");
     document.querySelector("#review-end-screen .stats").style.display = "none";
     document.getElementById("review-end-again").style.display = "none";
+    document.getElementById("review-end-all").style.display = "none";
     document.getElementById("review-end-emoji").textContent = "🗂️";
     document.getElementById("review-end-title").textContent = "生词本是空的";
     document.getElementById("review-end-sub").textContent = "学习时点「不熟」，或闯关/游戏答错的词，会自动收进这里慢慢复习";
@@ -2319,7 +2465,9 @@ const LOW_QUALITY_KEYWORDS = [
   document.getElementById("review-good-btn").onclick = () => markReview(true);
   document.getElementById("review-bad-btn").onclick = () => markReview(false);
   document.getElementById("review-back").onclick = backHome;
+  document.getElementById("review-remove").onclick = removeReview;
   document.getElementById("review-end-again").onclick = openReview;
+  document.getElementById("review-end-all").onclick = reviewAll;
   document.getElementById("review-end-home").onclick = backHome;
 
   // ============ 我的成就 ============
@@ -2439,7 +2587,8 @@ const LOW_QUALITY_KEYWORDS = [
   // ============ ⌨️ 拼写默写模式（吸收 TypeWords 打字记忆思路，自研单文件版）============
   let typeWords = [], typeIdx = 0, typePerfect = 0, typeGoodKeys = 0, typeWrongKeys = 0;
   let typeTarget = "", typePrevLen = 0, typeWordErr = false, typeLocked = false, typeWrongList = [];
-  let typeSoundOn = true, typeAutoSpeak = true;
+  let typeSoundOn = settings.typeSound !== false, typeAutoSpeak = settings.typeAutoSpeak !== false;
+  let typeStartMs = 0, typeCharCount = 0;
 
   // —— Web Audio 键盘音效（零文件实时合成，离线可用）——
   let typeAC = null;
@@ -2472,6 +2621,7 @@ const LOW_QUALITY_KEYWORDS = [
     const pool = getVocabPool();
     typeWords = shuffle(pool).slice(0, selectedCount);
     typeIdx = 0; typePerfect = 0; typeGoodKeys = 0; typeWrongKeys = 0; typeWrongList = [];
+    typeStartMs = 0; typeCharCount = 0;
     document.getElementById("type-total").textContent = typeWords.length;
     showScreen("type-screen");
     renderTypeWord();
@@ -2529,6 +2679,8 @@ const LOW_QUALITY_KEYWORDS = [
       val = typeTarget.slice(0, p);
       input.value = val;
     } else if (p > typePrevLen) {
+      if (!typeStartMs) typeStartMs = Date.now();   // 从第一个正确按键开始计时
+      typeCharCount += (p - typePrevLen);
       typeGoodKeys += (p - typePrevLen);
       sfxKey();
     }
@@ -2587,6 +2739,11 @@ const LOW_QUALITY_KEYWORDS = [
     document.getElementById("type-end-perfect").textContent = typePerfect;
     document.getElementById("type-end-retry").textContent = typeWords.length - typePerfect;
     document.getElementById("type-end-acc").textContent = typeAcc() + "%";
+    // 打字速度 WPM（标准 5 字符 = 1 词）
+    const mins = typeStartMs ? (Date.now() - typeStartMs) / 60000 : 0;
+    const wpm = mins > 0.01 ? Math.round((typeCharCount / 5) / mins) : 0;
+    const wpmEl = document.getElementById("type-end-wpm");
+    if (wpmEl) wpmEl.textContent = wpm;
     document.getElementById("type-end-emoji").textContent =
       typePerfect === typeWords.length ? "🏆" : (typePerfect >= typeWords.length * 0.6 ? "🎉" : "💪");
     const list = document.getElementById("type-end-list");
@@ -2631,8 +2788,10 @@ const LOW_QUALITY_KEYWORDS = [
   document.getElementById("type-back").onclick = backHome;
   document.getElementById("type-restart").onclick = startTyping;
   document.getElementById("type-home").onclick = backHome;
-  document.getElementById("type-sound").onchange = (e) => { typeSoundOn = e.target.checked; if (typeSoundOn) typeAudio(); };
-  document.getElementById("type-autospeak").onchange = (e) => { typeAutoSpeak = e.target.checked; };
+  document.getElementById("type-sound").checked = typeSoundOn;
+  document.getElementById("type-autospeak").checked = typeAutoSpeak;
+  document.getElementById("type-sound").onchange = (e) => { typeSoundOn = e.target.checked; settings.typeSound = typeSoundOn; saveSettings(); if (typeSoundOn) typeAudio(); };
+  document.getElementById("type-autospeak").onchange = (e) => { typeAutoSpeak = e.target.checked; settings.typeAutoSpeak = typeAutoSpeak; saveSettings(); };
 
   renderTopics();
 })();
@@ -2744,6 +2903,16 @@ const LOW_QUALITY_KEYWORDS = [
     return Object.values(progress.notebook).filter(w => !w.nextReview || w.nextReview <= today);
   };
   window.isDue = function(w) { return !w.nextReview || w.nextReview <= todayStr(); };
+  // 从生词本移除一个词（已记牢/不想再练）
+  window.removeFromNotebook = function(en) {
+    if (progress.notebook[en]) { delete progress.notebook[en]; saveProgress(progress); updateDashboard(); }
+  };
+  // 设置每日目标
+  window.setGoal = function(n) {
+    n = parseInt(n) || 20;
+    progress.goal = n; DAILY_GOAL = n;
+    saveProgress(progress); updateDashboard();
+  };
   // 复习一个词的结果：good=true 升级，false 降级；返回是否出库
   window.reviewResult = function(en, good) {
     const e = progress.notebook[en];
