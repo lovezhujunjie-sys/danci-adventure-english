@@ -2907,14 +2907,22 @@ const LOW_QUALITY_KEYWORDS = [
   let lsLoopAll = settings.lsLoop !== false;
   let lsZhVoice = null;
 
-  // 挑一个最好的中文声音（读释义用）
+  // 挑一个最好的中文声音（读释义用）——必须是普通话！
+  // 注意：只按 'zh' 开头筛会混进 zh-HK 粤语(如 macOS 的 Sinji)、zh-TW，
+  // 严格按 zh-CN(普通话) > zh-TW(国语) > 其他 zh 的顺序选，粤语只做最后兜底。
   function zhVoice() {
     if (lsZhVoice) return lsZhVoice;
-    const vs = window.speechSynthesis ? window.speechSynthesis.getVoices().filter(v => v.lang && v.lang.toLowerCase().startsWith('zh')) : [];
-    if (!vs.length) return null;
-    const pref = ['Tingting', 'Ting-Ting', 'Siri', 'Mei-Jia', 'Xiaoxiao', 'Yu-shu', 'Lili', 'Google'];
-    for (const p of pref) { const f = vs.find(v => v.name.includes(p)); if (f) { lsZhVoice = f; return f; } }
-    lsZhVoice = vs[0]; return lsZhVoice;
+    if (!window.speechSynthesis) return null;
+    const norm = v => (v.lang || '').toLowerCase().replace('_', '-');
+    const all = window.speechSynthesis.getVoices().filter(v => norm(v).startsWith('zh'));
+    if (!all.length) return null;
+    const cn = all.filter(v => norm(v).startsWith('zh-cn'));
+    const tw = all.filter(v => norm(v).startsWith('zh-tw'));
+    const rest = all.filter(v => !norm(v).startsWith('zh-cn') && !norm(v).startsWith('zh-tw'));
+    const pool = cn.length ? cn : (tw.length ? tw : rest);
+    const pref = ['婷婷', 'Tingting', 'Ting-Ting', '小晓', 'Xiaoxiao', 'Yu-shu', 'Lili', 'Yaoyao', 'Huihui', 'Google 普通话', 'Google'];
+    for (const p of pref) { const f = pool.find(v => v.name.includes(p)); if (f) { lsZhVoice = f; return f; } }
+    lsZhVoice = pool[0]; return lsZhVoice;
   }
 
   // 可等待的朗读（带兜底超时，防个别机型 onend 不触发卡死队列）
