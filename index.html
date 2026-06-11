@@ -785,6 +785,53 @@
   body.dark .option.wrong, body.dark .tslot.bad { background: rgba(239,83,80,0.18); }
   body.dark .feedback.ok, body.dark .type-feedback.ok { color: #7ddc8a; }
 
+  /* ===== 听力磨耳朵模式 ===== */
+  .ls-card {
+    background: var(--card); border-radius: 20px;
+    padding: 36px 20px 30px; text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin-bottom: 14px; position: relative; min-height: 220px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .ls-card .ls-topic {
+    position: absolute; top: 14px; left: 14px;
+    font-size: 11px; color: var(--soft-ink); background: var(--soft);
+    border-radius: 8px; padding: 3px 9px;
+  }
+  .ls-card .ls-status {
+    position: absolute; top: 14px; right: 14px;
+    font-size: 11px; color: var(--ink3);
+  }
+  .ls-card .ls-status.playing { color: #2e7d32; }
+  .ls-en { font-size: 38px; font-weight: 600; margin: 0 0 4px; line-height: 1.2; word-break: break-word; }
+  .ls-ipa { font-size: 16px; color: #d97757; font-weight: 500; min-height: 19px; margin: 0 0 8px; }
+  .ls-cn { font-size: 22px; color: var(--ink2); margin: 0; }
+  .ls-wave { font-size: 13px; color: var(--ink4); margin: 12px 0 0; min-height: 16px; letter-spacing: 2px; }
+
+  .ls-controls { display: flex; justify-content: center; align-items: center; gap: 18px; margin-bottom: 14px; }
+  .ls-btn {
+    width: 54px; height: 54px; border-radius: 50%;
+    background: var(--card); border: 1.5px solid var(--line2);
+    font-size: 20px; cursor: pointer; color: var(--ink);
+    box-shadow: 0 1px 3px var(--shadow, rgba(0,0,0,0.06));
+    transition: transform 0.12s;
+  }
+  .ls-btn:active { transform: scale(0.92); }
+  .ls-btn.main {
+    width: 72px; height: 72px; font-size: 28px;
+    background: #d97757; border-color: #d97757; color: #fff;
+  }
+  .ls-opts { background: var(--card); border-radius: 14px; padding: 12px 14px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .ls-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 7px 0; font-size: 13px; color: var(--ink2); flex-wrap: wrap; }
+  .ls-row + .ls-row { border-top: 1px solid var(--line); }
+  .ls-chips { display: flex; gap: 6px; }
+  .ls-chip {
+    padding: 4px 12px; border-radius: 8px; font-size: 12px; font-weight: 600;
+    background: var(--bg); color: var(--ink2); border: 1.5px solid var(--line2); cursor: pointer;
+  }
+  .ls-chip.active { background: #d97757; color: #fff; border-color: #d97757; }
+  .ls-tip { font-size: 11px; color: var(--ink4); text-align: center; line-height: 1.6; margin: 0 0 10px; }
+
   /* 入场微动效 */
   @keyframes cardIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   .flashcard, .qcard, .type-card, .flashcard#review-card { animation: cardIn 0.22s ease; }
@@ -871,6 +918,13 @@
         <div class="mc-body">
           <div class="mc-title">拼写默写</div>
           <div class="mc-desc">听发音 / 看中文，用键盘敲出单词（最练记忆）</div>
+        </div>
+      </div>
+      <div class="mode-card span2" data-pagemode="listen">
+        <div class="mc-icon">🎧</div>
+        <div class="mc-body">
+          <div class="mc-title">听力磨耳朵</div>
+          <div class="mc-desc">开车 / 跑步 / 做家务，戴上耳机自动循环听（免提学习）</div>
         </div>
       </div>
     </div>
@@ -1133,6 +1187,55 @@
 
     <button class="btn-primary" id="restart-btn">再玩一次</button>
     <button class="btn-secondary" id="home-btn">返回首页</button>
+  </div>
+
+  <!-- ===== 听力磨耳朵模式 ===== -->
+  <div id="listen-screen" class="hidden">
+    <div class="study-hud">
+      <span class="progress-text">第 <span id="ls-idx">1</span> / <span id="ls-total">20</span> 个</span>
+      <span class="stats-mini"><span class="known">已听 <span id="ls-count">0</span> 词</span></span>
+    </div>
+    <div class="progress"><div class="progress-bar" id="ls-progress"></div></div>
+
+    <div class="ls-card">
+      <span class="ls-topic" id="ls-topic">主题</span>
+      <span class="ls-status" id="ls-status">准备中</span>
+      <p class="ls-en" id="ls-en">ready</p>
+      <p class="ls-ipa" id="ls-ipa"></p>
+      <p class="ls-cn" id="ls-cn">准备好了就按播放</p>
+      <p class="ls-wave" id="ls-wave"></p>
+    </div>
+
+    <div class="ls-controls">
+      <button class="ls-btn" id="ls-prev" aria-label="上一个">⏮</button>
+      <button class="ls-btn main" id="ls-play" aria-label="播放/暂停">▶</button>
+      <button class="ls-btn" id="ls-next" aria-label="下一个">⏭</button>
+    </div>
+
+    <div class="ls-opts">
+      <div class="ls-row"><span>英文读几遍</span>
+        <span class="ls-chips" id="ls-rep-chips">
+          <span class="ls-chip" data-rep="1">1 遍</span>
+          <span class="ls-chip active" data-rep="2">2 遍</span>
+          <span class="ls-chip" data-rep="3">3 遍</span>
+        </span>
+      </div>
+      <div class="ls-row"><span>词间停顿</span>
+        <span class="ls-chips" id="ls-gap-chips">
+          <span class="ls-chip" data-gap="600">短</span>
+          <span class="ls-chip active" data-gap="1200">中</span>
+          <span class="ls-chip" data-gap="2500">长（跟读）</span>
+        </span>
+      </div>
+      <div class="ls-row">
+        <label><input type="checkbox" id="ls-saycn" checked> 朗读中文意思</label>
+        <label><input type="checkbox" id="ls-loop" checked> 循环播放（听完洗牌再来）</label>
+      </div>
+    </div>
+
+    <p class="ls-tip">🎧 戴上耳机即可免提学习 · 播放中已自动防熄屏<br>开车请用车架固定手机，安全第一；锁屏可能会被系统暂停朗读</p>
+
+    <button class="btn-secondary" id="ls-back">结束聆听</button>
   </div>
 
   <!-- ===== 拼写默写模式 ===== -->
@@ -1522,12 +1625,13 @@ const LOW_QUALITY_KEYWORDS = [
       document.querySelector(".count-grid").style.display = hideOpts ? "none" : "";
 
       document.getElementById("count-label").textContent =
-        pageMode === "study" ? "每次学习数量" : (pageMode === "type" ? "每次默写数量" : "题目数量");
+        pageMode === "study" ? "每次学习数量" : (pageMode === "type" ? "每次默写数量" : (pageMode === "listen" ? "每轮听多少个" : "题目数量"));
       let btnText = "开始游戏";
       if (pageMode === "study") btnText = "开始学习";
       else if (pageMode === "phonics") btnText = "进入字母拼读";
       else if (pageMode === "games") btnText = "进入游戏乐园";
       else if (pageMode === "type") btnText = "开始默写";
+      else if (pageMode === "listen") btnText = "🎧 开始磨耳朵";
       document.getElementById("start-btn").textContent = btnText;
     };
   });
@@ -2019,6 +2123,7 @@ const LOW_QUALITY_KEYWORDS = [
     else if (pageMode === "phonics") startPhonics();
     else if (pageMode === "games") openGamesMenu();
     else if (pageMode === "type") startTyping();
+    else if (pageMode === "listen") startListening();
     else startGame();
   };
   document.getElementById("restart-btn").onclick = startGame;
@@ -2341,7 +2446,7 @@ const LOW_QUALITY_KEYWORDS = [
   // ============ 屏幕切换辅助 ============
   const TOP_SCREENS = ["start-screen","study-screen","study-end-screen","phonics-screen",
     "games-screen","game-screen","end-screen","review-screen","review-end-screen","achv-screen",
-    "type-screen","type-end-screen"];
+    "type-screen","type-end-screen","listen-screen"];
   function showScreen(id) {
     window.speechSynthesis && window.speechSynthesis.cancel();
     TOP_SCREENS.forEach(s => { const el = document.getElementById(s); if (el) el.classList.toggle("hidden", s !== id); });
@@ -2792,6 +2897,147 @@ const LOW_QUALITY_KEYWORDS = [
   document.getElementById("type-autospeak").checked = typeAutoSpeak;
   document.getElementById("type-sound").onchange = (e) => { typeSoundOn = e.target.checked; settings.typeSound = typeSoundOn; saveSettings(); if (typeSoundOn) typeAudio(); };
   document.getElementById("type-autospeak").onchange = (e) => { typeAutoSpeak = e.target.checked; settings.typeAutoSpeak = typeAutoSpeak; saveSettings(); };
+
+  // ============ 🎧 听力磨耳朵模式（免提自动连播：英文×N → 中文 → 下一个）============
+  let lsWords = [], lsIdx = 0, lsListened = 0;
+  let lsPlaying = false, lsToken = 0;
+  let lsRepeat = settings.lsRepeat || 2;
+  let lsGapMs = settings.lsGap || 1200;
+  let lsSayCn = settings.lsSayCn !== false;
+  let lsLoopAll = settings.lsLoop !== false;
+  let lsZhVoice = null;
+
+  // 挑一个最好的中文声音（读释义用）
+  function zhVoice() {
+    if (lsZhVoice) return lsZhVoice;
+    const vs = window.speechSynthesis ? window.speechSynthesis.getVoices().filter(v => v.lang && v.lang.toLowerCase().startsWith('zh')) : [];
+    if (!vs.length) return null;
+    const pref = ['Tingting', 'Ting-Ting', 'Siri', 'Mei-Jia', 'Xiaoxiao', 'Yu-shu', 'Lili', 'Google'];
+    for (const p of pref) { const f = vs.find(v => v.name.includes(p)); if (f) { lsZhVoice = f; return f; } }
+    lsZhVoice = vs[0]; return lsZhVoice;
+  }
+
+  // 可等待的朗读（带兜底超时，防个别机型 onend 不触发卡死队列）
+  function lsSpeak(text, voice, rate) {
+    return new Promise(resolve => {
+      if (!('speechSynthesis' in window) || !text) return resolve();
+      const u = new SpeechSynthesisUtterance(text);
+      if (voice) { u.voice = voice; u.lang = voice.lang; }
+      u.rate = rate || speakRate; u.pitch = 1; u.volume = 1;
+      const t = setTimeout(resolve, Math.max(5000, text.length * 400));
+      const done = () => { clearTimeout(t); resolve(); };
+      u.onend = done; u.onerror = done;
+      window.speechSynthesis.speak(u);
+    });
+  }
+  function lsDelay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  // 防熄屏（播放中保持亮屏，TTS 才不会被系统掐断）
+  let lsWake = null;
+  async function lsWakeOn() { try { if ('wakeLock' in navigator) lsWake = await navigator.wakeLock.request('screen'); } catch (e) {} }
+  function lsWakeOff() { try { if (lsWake) lsWake.release(); } catch (e) {} lsWake = null; }
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && lsPlaying) lsWakeOn(); });
+
+  function lsRenderWord() {
+    const w = lsWords[lsIdx];
+    if (!w) return;
+    document.getElementById('ls-idx').textContent = lsIdx + 1;
+    document.getElementById('ls-total').textContent = lsWords.length;
+    document.getElementById('ls-progress').style.width = ((lsIdx + 1) / lsWords.length * 100) + '%';
+    document.getElementById('ls-count').textContent = lsListened;
+    document.getElementById('ls-topic').textContent = (w._icon || '') + ' ' + (w._topic || '');
+    document.getElementById('ls-en').textContent = w.en;
+    document.getElementById('ls-ipa').textContent = IPA_MAP[w.en] || '';
+    document.getElementById('ls-cn').textContent = w.cn;
+  }
+  function lsSetStatus(txt, playing) {
+    const el = document.getElementById('ls-status');
+    el.textContent = txt; el.classList.toggle('playing', !!playing);
+    document.getElementById('ls-play').textContent = lsPlaying ? '⏸' : '▶';
+  }
+
+  async function lsRun(token) {
+    while (lsPlaying && token === lsToken && lsIdx < lsWords.length) {
+      const w = lsWords[lsIdx];
+      lsRenderWord();
+      const wave = document.getElementById('ls-wave');
+      for (let i = 0; i < lsRepeat; i++) {
+        if (!lsPlaying || token !== lsToken) return;
+        wave.textContent = '🔊 ' + '· '.repeat(i + 1);
+        await lsSpeak(w.en.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase(), selectedVoice, speakRate);
+        await lsDelay(350);
+      }
+      if (!lsPlaying || token !== lsToken) return;
+      if (lsSayCn && zhVoice()) { wave.textContent = '🀄'; await lsSpeak(w.cn, zhVoice(), 1.0); }
+      wave.textContent = '';
+      await lsDelay(lsGapMs);
+      if (!lsPlaying || token !== lsToken) return;
+      lsListened++;
+      if (window.recordStudied) window.recordStudied();   // 听完一个词 = 一次学习互动
+      lsIdx++;
+      if (lsIdx >= lsWords.length && lsLoopAll) { lsWords = shuffle(lsWords); lsIdx = 0; }
+    }
+    if (lsPlaying && token === lsToken) { lsPlaying = false; lsSetStatus('本轮播完 ✅', false); lsWakeOff(); }
+  }
+
+  function lsPlay() {
+    if (lsPlaying) return;
+    lsPlaying = true; lsToken++;
+    lsSetStatus('播放中', true);
+    lsWakeOn();
+    lsRun(lsToken);
+  }
+  function lsPause(statusTxt) {
+    lsPlaying = false; lsToken++;
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+    lsSetStatus(statusTxt || '已暂停', false);
+    document.getElementById('ls-wave').textContent = '';
+    lsWakeOff();
+  }
+  function lsJump(delta) {
+    const wasPlaying = lsPlaying;
+    lsPause();
+    lsIdx = Math.min(Math.max(0, lsIdx + delta), lsWords.length - 1);
+    lsRenderWord();
+    if (wasPlaying) lsPlay();
+  }
+
+  function startListening() {
+    const pool = getVocabPool();
+    lsWords = shuffle(pool).slice(0, selectedCount);
+    lsIdx = 0; lsListened = 0; lsZhVoice = null;
+    showScreen('listen-screen');
+    lsRenderWord();
+    lsSetStatus('准备中', false);
+    lsPlay();   // 在用户点击手势内启动，TTS 可直接发声
+  }
+
+  // 控件
+  document.getElementById('ls-play').onclick = () => { lsPlaying ? lsPause() : lsPlay(); };
+  document.getElementById('ls-prev').onclick = () => lsJump(-1);
+  document.getElementById('ls-next').onclick = () => lsJump(1);
+  document.getElementById('ls-back').onclick = () => { lsPause(); backHome(); };
+  document.querySelectorAll('#ls-rep-chips .ls-chip').forEach(c => {
+    c.onclick = () => {
+      document.querySelectorAll('#ls-rep-chips .ls-chip').forEach(x => x.classList.remove('active'));
+      c.classList.add('active');
+      lsRepeat = parseInt(c.dataset.rep); settings.lsRepeat = lsRepeat; saveSettings();
+    };
+  });
+  document.querySelectorAll('#ls-gap-chips .ls-chip').forEach(c => {
+    c.onclick = () => {
+      document.querySelectorAll('#ls-gap-chips .ls-chip').forEach(x => x.classList.remove('active'));
+      c.classList.add('active');
+      lsGapMs = parseInt(c.dataset.gap); settings.lsGap = lsGapMs; saveSettings();
+    };
+  });
+  document.getElementById('ls-saycn').checked = lsSayCn;
+  document.getElementById('ls-loop').checked = lsLoopAll;
+  document.getElementById('ls-saycn').onchange = (e) => { lsSayCn = e.target.checked; settings.lsSayCn = lsSayCn; saveSettings(); };
+  document.getElementById('ls-loop').onchange = (e) => { lsLoopAll = e.target.checked; settings.lsLoop = lsLoopAll; saveSettings(); };
+  // 恢复记忆的遍数/停顿选中态
+  document.querySelectorAll('#ls-rep-chips .ls-chip').forEach(c => c.classList.toggle('active', parseInt(c.dataset.rep) === lsRepeat));
+  document.querySelectorAll('#ls-gap-chips .ls-chip').forEach(c => c.classList.toggle('active', parseInt(c.dataset.gap) === lsGapMs));
 
   renderTopics();
 })();
