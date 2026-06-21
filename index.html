@@ -955,12 +955,6 @@
         <button class="mode-btn-mini active" data-quizmode="cn2en">看中文 → 选英文</button>
         <button class="mode-btn-mini" data-quizmode="en2cn">看英文 → 选中文</button>
       </div>
-
-      <div class="section-label">答题节奏</div>
-      <div class="mode-mini-grid">
-        <button class="mode-btn-mini active" data-quizpace="auto">⚡ 自动模式<br><span style="font-size:10px;opacity:0.7;font-weight:400">答对自动跳转</span></button>
-        <button class="mode-btn-mini" data-quizpace="manual">📝 练习模式<br><span style="font-size:10px;opacity:0.7;font-weight:400">每题手动确认</span></button>
-      </div>
     </div>
 
     <div class="section-label" id="topic-section">选择主题</div>
@@ -1929,24 +1923,15 @@ const LOW_QUALITY_KEYWORDS = [
       buttons.forEach(b => b.disabled = true);
       document.getElementById("score").textContent = score;
 
-      if (selectedQuizPace === "auto") {
-        // 自动模式：1.5 秒后跳转
-        setTimeout(() => {
-          currentIdx++;
-          if (currentIdx >= questions.length) showEnd();
-          else renderQuestion();
-        }, 1500);
-      } else {
-        // 练习模式：等用户点"下一题"
-        const nextBtn = document.getElementById("next-question-btn");
-        nextBtn.classList.remove("hidden");
-        nextBtn.onclick = () => {
-          nextBtn.classList.add("hidden");
-          currentIdx++;
-          if (currentIdx >= questions.length) showEnd();
-          else renderQuestion();
-        };
-      }
+      // 答对也不自动跳：停下显示"下一题"，由用户主动点击前进（蒙对时可多看几眼加强记忆）
+      const nextBtn = document.getElementById("next-question-btn");
+      nextBtn.classList.remove("hidden");
+      nextBtn.onclick = () => {
+        nextBtn.classList.add("hidden");
+        currentIdx++;
+        if (currentIdx >= questions.length) showEnd();
+        else renderQuestion();
+      };
     } else {
       combo = 0; wrongAnswers.push(q.item);
       if (window.addToNotebook) window.addToNotebook(q.item);
