@@ -1072,6 +1072,7 @@
       <div class="emoji-big" id="emoji-display">🍎</div>
       <div class="emoji-options" id="emoji-options"></div>
       <div class="game-feedback" id="emoji-feedback"></div>
+      <button class="btn-primary hidden" id="emoji-next" style="margin-top:12px;">下一题 →</button>
       <button class="btn-secondary game-quit">退出游戏</button>
     </div>
 
@@ -2234,6 +2235,7 @@ const LOW_QUALITY_KEYWORDS = [
     const box = document.getElementById("emoji-options");
     box.innerHTML = "";
     document.getElementById("emoji-feedback").textContent = "";
+    document.getElementById("emoji-next").classList.add("hidden");
     opts.forEach(o => {
       const b = document.createElement("button");
       b.className = "eo-btn";
@@ -2253,7 +2255,10 @@ const LOW_QUALITY_KEYWORDS = [
         }
         box.querySelectorAll(".eo-btn").forEach(bb => bb.disabled = true);
         emojiIdx++;
-        setTimeout(renderEmojiQ, 1200);
+        const nextBtn = document.getElementById("emoji-next");
+        nextBtn.textContent = emojiIdx >= emojiWords.length ? "看结果 →" : "下一题 →";
+        nextBtn.classList.remove("hidden");
+        nextBtn.onclick = renderEmojiQ;
       };
       box.appendChild(b);
     });
