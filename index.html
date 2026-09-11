@@ -1615,7 +1615,7 @@
     <div id="rd-shelf-view">
       <div class="rd-hud">
         <div class="rd-hud-t">📖 分级阅读</div>
-        <div class="rd-hud-s">从最简单的开始，一本一本往上走 —— 点单词就查意思</div>
+        <div class="rd-hud-s">共 20 本：入门 4 · 进阶 8 · 挑战 8 —— 按顺序读，点单词就查意思</div>
       </div>
       <div class="rd-shelf" id="rd-shelf"></div>
       <div class="rd-foot"><button class="btn-secondary" id="rd-home">返回首页</button></div>
@@ -1975,6 +1975,376 @@ const IPA_MAP = {"person":"/ˈpɜːsn/","people":"/ˈpiːpl/","man":"/mæn/","wo
 
 // ===== 日常高频句数据(2026-09-11 新增) =====
 const SENTENCES = {"greeting":{"name":"问候寒暄","icon":"👋","items":[{"en":"How are you doing?","cn":"你最近怎么样?","g":{"How":"怎么","are":"是","you":"你","doing":"过得"}},{"en":"Long time no see!","cn":"好久不见!","g":{"Long":"久","time":"时间","no":"没","see":"见"}},{"en":"How's it going?","cn":"最近怎么样?","g":{"How's":"怎么样","it":"事情","going":"进展"}},{"en":"Nice to meet you.","cn":"很高兴认识你。","g":{"Nice":"高兴","to":"不定式","meet":"认识","you":"你"}},{"en":"Nice to see you again.","cn":"很高兴又见到你。","g":{"Nice":"高兴","to":"不定式","see":"见到","you":"你","again":"又"}},{"en":"Good to see you.","cn":"见到你真好。","g":{"Good":"好","to":"不定式","see":"见到","you":"你"}},{"en":"It's been a while.","cn":"有一阵子没见了。","g":{"It's":"已经","been":"有","a":"一段","while":"时间"}},{"en":"How have you been?","cn":"你最近过得好吗?","g":{"How":"怎么","have":"助动词","you":"你","been":"过得"}},{"en":"Hey, what's up?","cn":"嘿,最近咋样?","g":{"Hey":"嘿","what's":"什么","up":"事"}},{"en":"What's new with you?","cn":"你最近有什么新鲜事?","g":{"What's":"有什么","new":"新鲜事","with":"关于","you":"你"}},{"en":"Morning! Sleep well?","cn":"早!睡得好吗?","g":{"Morning":"早上好","Sleep":"睡","well":"好"}},{"en":"How was your day?","cn":"你今天过得怎么样?","g":{"How":"怎么","was":"是","your":"你的","day":"一天"}},{"en":"How was your weekend?","cn":"你周末过得怎么样?","g":{"How":"怎么","was":"是","your":"你的","weekend":"周末"}},{"en":"Have a good day!","cn":"祝你今天过得愉快!","g":{"Have":"度过","a":"一个","good":"好的","day":"一天"}},{"en":"Have a nice weekend!","cn":"周末愉快!","g":{"Have":"度过","a":"一个","nice":"愉快的","weekend":"周末"}},{"en":"Take care of yourself!","cn":"照顾好自己!","g":{"Take":"照顾","care":"好","of":"你","yourself":"自己"}},{"en":"See you later!","cn":"待会儿见!","g":{"See":"见","you":"你","later":"待会儿"}},{"en":"See you tomorrow.","cn":"明天见。","g":{"See":"见","you":"你","tomorrow":"明天"}},{"en":"See you around.","cn":"回头见。","g":{"See":"见","you":"你","around":"回头"}},{"en":"Talk to you later.","cn":"晚点再跟你聊。","g":{"Talk":"聊","to":"和","you":"你","later":"晚点"}},{"en":"I gotta go.","cn":"我得走了。","g":{"I":"我","gotta":"得","go":"走"}},{"en":"I have to go now.","cn":"我现在得走了。","g":{"I":"我","have":"得","to":"不定式","go":"走","now":"现在"}},{"en":"Catch you later!","cn":"回头见!","g":{"Catch":"找","you":"你","later":"回头"}},{"en":"Say hi to your family.","cn":"代我向你家人问好。","g":{"Say":"说","hi":"问好","to":"向","your":"你的","family":"家人"}},{"en":"Say hello to your mom for me.","cn":"代我向你妈妈问好。","g":{"Say":"说","hello":"问好","to":"向","your":"你的","mom":"妈妈","for":"替","me":"我"}},{"en":"Give my best to your wife.","cn":"代我向你太太问好。","g":{"Give":"带给","my":"我的","best":"问候","to":"向","your":"你的","wife":"太太"}},{"en":"Welcome back, my friend!","cn":"欢迎回来,我的朋友!","g":{"Welcome":"欢迎","back":"回来","my":"我的","friend":"朋友"}},{"en":"Thanks for coming.","cn":"谢谢你能来。","g":{"Thanks":"谢谢","for":"因为","coming":"来"}},{"en":"I'm so glad you came.","cn":"你能来我太高兴了。","g":{"I'm":"我","so":"太","glad":"高兴","you":"你","came":"来了"}},{"en":"Sorry I'm late.","cn":"抱歉我迟到了。","g":{"Sorry":"抱歉","I'm":"我","late":"迟到"}},{"en":"Sorry to keep you waiting.","cn":"抱歉让你久等了。","g":{"Sorry":"抱歉","to":"不定式","keep":"让","you":"你","waiting":"等着"}},{"en":"No worries, it's fine.","cn":"没关系,这没什么。","g":{"No":"没有","worries":"关系","it's":"这","fine":"没什么"}},{"en":"It's okay, don't worry.","cn":"没事,别担心。","g":{"It's":"这","okay":"没事","don't":"别","worry":"担心"}},{"en":"Excuse me for a second.","cn":"抱歉,失陪一下。","g":{"Excuse":"原谅","me":"我","for":"占用","a":"一","second":"秒"}},{"en":"I didn't catch your name.","cn":"我没听清你的名字。","g":{"I":"我","didn't":"没有","catch":"听清","your":"你的","name":"名字"}},{"en":"What's your name again?","cn":"你叫什么名字来着?","g":{"What's":"是什么","your":"你的","name":"名字","again":"来着"}},{"en":"I'm terrible with names.","cn":"我记人名特别差。","g":{"I'm":"我","terrible":"很差","with":"对于","names":"名字"}},{"en":"Nice talking to you.","cn":"跟你聊天很开心。","g":{"Nice":"开心","talking":"聊天","to":"和","you":"你"}},{"en":"Let's catch up soon.","cn":"我们快点找个时间聚聚。","g":{"Let's":"让我们","catch":"叙","up":"旧","soon":"尽快"}},{"en":"We should hang out sometime.","cn":"我们改天该一起出去玩玩。","g":{"We":"我们","should":"应该","hang":"出去","out":"玩","sometime":"改天"}},{"en":"Drop by anytime.","cn":"随时来坐坐。","g":{"Drop":"来","by":"顺便","anytime":"随时"}},{"en":"Come over for dinner sometime.","cn":"改天来家里吃个饭。","g":{"Come":"来","over":"过来","for":"吃","dinner":"晚饭","sometime":"改天"}},{"en":"Say hello to your parents for me.","cn":"代我向你父母问好。","g":{"Say":"说","hello":"问好","to":"向","your":"你的","parents":"父母","for":"替","me":"我"}},{"en":"I've heard so much about you.","cn":"我早就听说过你很多事了。","g":{"I've":"我已经","heard":"听说","so":"这么","much":"多","about":"关于","you":"你"}},{"en":"It's nice to finally meet you.","cn":"终于见到你了,真好。","g":{"It's":"这","nice":"好","to":"不定式","finally":"终于","meet":"见到","you":"你"}},{"en":"How's your family doing?","cn":"你家里人还好吗?","g":{"How's":"怎么样","your":"你的","family":"家人","doing":"过得"}},{"en":"Let's grab coffee sometime.","cn":"改天一起喝杯咖啡吧。","g":{"Let's":"让我们","grab":"喝","coffee":"咖啡","sometime":"改天"}},{"en":"Give me a call when you're free.","cn":"你有空给我打个电话。","g":{"Give":"给","me":"我","a":"一个","call":"电话","when":"当","you're":"你","free":"有空"}},{"en":"Have a safe trip!","cn":"一路平安!","g":{"Have":"度过","a":"一个","safe":"平安的","trip":"旅程"}},{"en":"Good luck with your interview!","cn":"祝你面试顺利!","g":{"Good":"好的","luck":"运气","with":"在","your":"你的","interview":"面试"}}]},"smalltalk":{"name":"闲聊家常","icon":"💬","items":[{"en":"Nice weather today, isn't it?","cn":"今天天气不错,是吧?","g":{"Nice":"好","weather":"天气","today":"今天","isn't":"不是","it":"它"}},{"en":"It's really hot today.","cn":"今天真热。","g":{"It's":"天气","really":"真","hot":"热","today":"今天"}},{"en":"It's so cold today.","cn":"今天太冷了。","g":{"It's":"天气","so":"太","cold":"冷","today":"今天"}},{"en":"Looks like it's going to rain.","cn":"看样子要下雨了。","g":{"Looks":"看起来","like":"像","it's":"天","going":"要","to":"不定式","rain":"下雨"}},{"en":"It's a beautiful day.","cn":"今天天气真好。","g":{"It's":"今天","a":"一个","beautiful":"美丽的","day":"日子"}},{"en":"How's the weather there?","cn":"你那边天气怎么样?","g":{"How's":"怎么样","the":"那","weather":"天气","there":"那儿"}},{"en":"It's raining pretty hard.","cn":"雨下得挺大的。","g":{"It's":"雨","raining":"下","pretty":"相当","hard":"大"}},{"en":"The sun is finally out.","cn":"太阳终于出来了。","g":{"The":"这","sun":"太阳","is":"是","finally":"终于","out":"出来了"}},{"en":"What's your job?","cn":"你做什么工作?","g":{"What's":"是什么","your":"你的","job":"工作"}},{"en":"I work at a bank.","cn":"我在银行上班。","g":{"I":"我","work":"工作","at":"在","a":"一家","bank":"银行"}},{"en":"How long have you worked there?","cn":"你在那儿工作多久了?","g":{"How":"多","long":"久","have":"助动词","you":"你","worked":"工作","there":"在那儿"}},{"en":"Do you like your job?","cn":"你喜欢你的工作吗?","g":{"Do":"助动词","you":"你","like":"喜欢","your":"你的","job":"工作"}},{"en":"I'm busy with work lately.","cn":"我最近工作挺忙的。","g":{"I'm":"我","busy":"忙","with":"于","work":"工作","lately":"最近"}},{"en":"Work has been crazy lately.","cn":"最近工作忙疯了。","g":{"Work":"工作","has":"一直","been":"是","crazy":"忙疯了","lately":"最近"}},{"en":"I need a break.","cn":"我需要歇一歇。","g":{"I":"我","need":"需要","a":"一下","break":"休息"}},{"en":"Did you sleep well last night?","cn":"你昨晚睡得好吗?","g":{"Did":"助动词","you":"你","sleep":"睡","well":"好","last":"昨天","night":"晚上"}},{"en":"I stayed up too late.","cn":"我昨晚熬夜太晚了。","g":{"I":"我","stayed":"待着","up":"不睡","too":"太","late":"晚"}},{"en":"What did you have for lunch?","cn":"你午饭吃了什么?","g":{"What":"什么","did":"助动词","you":"你","have":"吃","for":"作为","lunch":"午饭"}},{"en":"I had noodles for lunch.","cn":"我午饭吃的面条。","g":{"I":"我","had":"吃了","noodles":"面条","for":"作为","lunch":"午饭"}},{"en":"Let's grab something to eat.","cn":"我们去找点吃的吧。","g":{"Let's":"让我们","grab":"弄点","something":"东西","to":"不定式","eat":"吃"}},{"en":"I'm starving. Let's eat.","cn":"我饿死了,我们吃吧。","g":{"I'm":"我","starving":"饿死了","Let's":"我们","eat":"吃吧"}},{"en":"This food is amazing.","cn":"这个太好吃了。","g":{"This":"这","food":"食物","is":"是","amazing":"太好吃了"}},{"en":"I love spicy food.","cn":"我爱吃辣的。","g":{"I":"我","love":"爱","spicy":"辣的","food":"食物"}},{"en":"Do you cook at home?","cn":"你在家做饭吗?","g":{"Do":"助动词","you":"你","cook":"做饭","at":"在","home":"家"}},{"en":"I can't cook at all.","cn":"我完全不会做饭。","g":{"I":"我","can't":"不会","cook":"做饭","at":"一点","all":"也"}},{"en":"What did you do this weekend?","cn":"你周末干什么了?","g":{"What":"什么","did":"助动词","you":"你","do":"做","this":"这个","weekend":"周末"}},{"en":"I just stayed home.","cn":"我就待在家里。","g":{"I":"我","just":"就","stayed":"待","home":"家"}},{"en":"We went hiking on Sunday.","cn":"我们周日去爬山了。","g":{"We":"我们","went":"去","hiking":"爬山","on":"在","Sunday":"星期天"}},{"en":"Any plans for the weekend?","cn":"周末有什么安排吗?","g":{"Any":"有什么","plans":"计划","for":"对于","the":"这个","weekend":"周末"}},{"en":"Do you have kids?","cn":"你有孩子吗?","g":{"Do":"助动词","you":"你","have":"有","kids":"孩子"}},{"en":"I have two kids.","cn":"我有两个孩子。","g":{"I":"我","have":"有","two":"两个","kids":"孩子"}},{"en":"My son just started school.","cn":"我儿子刚上学。","g":{"My":"我的","son":"儿子","just":"刚","started":"开始","school":"上学"}},{"en":"How old is your daughter?","cn":"你女儿多大了?","g":{"How":"多","old":"大","is":"是","your":"你的","daughter":"女儿"}},{"en":"She looks just like you.","cn":"她长得真像你。","g":{"She":"她","looks":"长得","just":"就","like":"像","you":"你"}},{"en":"My wife loves shopping.","cn":"我太太喜欢逛街。","g":{"My":"我的","wife":"太太","loves":"喜欢","shopping":"逛街"}},{"en":"We've been married for ten years.","cn":"我们结婚十年了。","g":{"We've":"我们已经","been":"是","married":"结婚","for":"有","ten":"十","years":"年"}},{"en":"Where are you from?","cn":"你是哪里人?","g":{"Where":"哪里","are":"是","you":"你","from":"来自"}},{"en":"I'm from Shanghai.","cn":"我是上海的。","g":{"I'm":"我","from":"来自","Shanghai":"上海"}},{"en":"Have you lived here long?","cn":"你在这儿住很久了吗?","g":{"Have":"助动词","you":"你","lived":"住","here":"这儿","long":"久"}},{"en":"How do you get to work?","cn":"你怎么去上班?","g":{"How":"怎么","do":"助动词","you":"你","get":"去","to":"到","work":"上班"}},{"en":"I take the subway every day.","cn":"我每天坐地铁。","g":{"I":"我","take":"坐","the":"这","subway":"地铁","every":"每","day":"天"}},{"en":"The traffic is terrible today.","cn":"今天路上堵得厉害。","g":{"The":"这","traffic":"交通","is":"是","terrible":"太糟了","today":"今天"}},{"en":"I'm stuck in traffic.","cn":"我堵在路上了。","g":{"I'm":"我","stuck":"堵","in":"在","traffic":"车流里"}},{"en":"What are your hobbies?","cn":"你有什么爱好?","g":{"What":"什么","are":"是","your":"你的","hobbies":"爱好"}},{"en":"I like watching movies.","cn":"我喜欢看电影。","g":{"I":"我","like":"喜欢","watching":"看","movies":"电影"}},{"en":"Do you play any sports?","cn":"你做什么运动吗?","g":{"Do":"助动词","you":"你","play":"打","any":"什么","sports":"运动"}},{"en":"I go running every morning.","cn":"我每天早上跑步。","g":{"I":"我","go":"去","running":"跑步","every":"每","morning":"早上"}},{"en":"Have you seen that new movie?","cn":"那部新电影你看了吗?","g":{"Have":"助动词","you":"你","seen":"看过","that":"那","new":"新的","movie":"电影"}},{"en":"It's a really good show.","cn":"这剧真不错。","g":{"It's":"这","a":"一部","really":"真","good":"好的","show":"剧"}},{"en":"Let's hang out this weekend.","cn":"我们这周末一起出去玩玩吧。","g":{"Let's":"我们","hang":"出去","out":"玩","this":"这个","weekend":"周末"}}]},"dining":{"name":"点餐吃饭","icon":"🍽️","items":[{"en":"Can I see the menu?","cn":"我能看下菜单吗?","g":{"Can":"能","I":"我","see":"看","the":"这个","menu":"菜单"}},{"en":"I'd like a coffee.","cn":"我要一杯咖啡。","g":{"I'd":"我想要","like":"要","a":"一","coffee":"咖啡"}},{"en":"A table for two, please.","cn":"要一张两人桌,谢谢。","g":{"A":"一张","table":"桌子","for":"给","two":"两人","please":"谢谢"}},{"en":"Do you have a reservation?","cn":"您有预订吗?","g":{"Do":"助动词","you":"您","have":"有","a":"一个","reservation":"预订"}},{"en":"Could we sit by the window?","cn":"我们能坐窗边吗?","g":{"Could":"能","we":"我们","sit":"坐","by":"靠","the":"这个","window":"窗户"}},{"en":"What do you recommend?","cn":"你推荐点什么?","g":{"What":"什么","do":"助动词","you":"你","recommend":"推荐"}},{"en":"I'm ready to order.","cn":"我准备好点餐了。","g":{"I'm":"我","ready":"准备好","to":"去","order":"点餐"}},{"en":"Are you ready to order?","cn":"您准备好点餐了吗?","g":{"Are":"是否","you":"您","ready":"准备好","to":"去","order":"点餐"}},{"en":"What's good here?","cn":"这儿什么好吃?","g":{"What's":"什么是","good":"好吃","here":"这里"}},{"en":"I'll have the steak.","cn":"我要这个牛排。","g":{"I'll":"我要","have":"点","the":"这个","steak":"牛排"}},{"en":"Give me a minute, please.","cn":"请稍等一下。","g":{"Give":"给","me":"我","a":"一","minute":"分钟","please":"请"}},{"en":"Can I get some water?","cn":"能给我点水吗?","g":{"Can":"能","I":"我","get":"拿","some":"一些","water":"水"}},{"en":"Could I have the bill?","cn":"可以买单吗?","g":{"Could":"可以","I":"我","have":"拿","the":"这个","bill":"账单"}},{"en":"Is this seat taken?","cn":"这个位子有人吗?","g":{"Is":"是","this":"这个","seat":"位子","taken":"被占"}},{"en":"We need one more chair.","cn":"我们还需要一把椅子。","g":{"We":"我们","need":"需要","one":"一","more":"再","chair":"椅子"}},{"en":"This is not what I ordered.","cn":"这不是我点的。","g":{"This":"这","is":"是","not":"不","what":"什么","I":"我","ordered":"点的"}},{"en":"It's a bit too salty.","cn":"有点太咸了。","g":{"It's":"它","a":"一","bit":"点","too":"太","salty":"咸"}},{"en":"Not too spicy, please.","cn":"不要太辣,谢谢。","g":{"Not":"不要","too":"太","spicy":"辣","please":"谢谢"}},{"en":"I'm allergic to peanuts.","cn":"我对花生过敏。","g":{"I'm":"我","allergic":"过敏","to":"对","peanuts":"花生"}},{"en":"Do you have a vegetarian dish?","cn":"有素菜吗?","g":{"Do":"助动词","you":"你们","have":"有","a":"一道","vegetarian":"素的","dish":"菜"}},{"en":"What's in this soup?","cn":"这汤里有什么?","g":{"What's":"什么","in":"在","this":"这个","soup":"汤"}},{"en":"Can I have it to go?","cn":"可以打包带走吗?","g":{"Can":"可以","I":"我","have":"要","it":"它","to":"去","go":"走"}},{"en":"That was delicious, thank you.","cn":"太好吃了,谢谢。","g":{"That":"那","was":"是","delicious":"好吃","thank":"谢谢","you":"你"}},{"en":"I'll pay by card.","cn":"我刷卡。","g":{"I'll":"我","pay":"付","by":"用","card":"卡"}},{"en":"Let's split the bill.","cn":"我们分开付吧。","g":{"Let's":"我们","split":"分开","the":"这个","bill":"账单"}},{"en":"Keep the change.","cn":"不用找零了。","g":{"Keep":"留着","the":"这个","change":"零钱"}},{"en":"Is service included?","cn":"含服务费吗?","g":{"Is":"是否","service":"服务费","included":"包含"}},{"en":"We'd like a table outside.","cn":"我们想坐外面。","g":{"We'd":"我们想","like":"要","a":"一个","table":"桌子","outside":"外面"}},{"en":"How long is the wait?","cn":"要等多久?","g":{"How":"多","long":"久","is":"是","the":"这个","wait":"等待"}},{"en":"Two coffees and one tea, please.","cn":"两杯咖啡一杯茶,谢谢。","g":{"Two":"两杯","coffees":"咖啡","and":"和","one":"一杯","tea":"茶","please":"谢谢"}},{"en":"I don't eat meat.","cn":"我不吃肉。","g":{"I":"我","don't":"不","eat":"吃","meat":"肉"}},{"en":"Could I get a refill?","cn":"能再续一杯吗?","g":{"Could":"能","I":"我","get":"要","a":"一","refill":"续杯"}},{"en":"Excuse me, we're ready.","cn":"你好,我们可以点餐了。","g":{"Excuse":"打扰","me":"我","we're":"我们","ready":"准备好"}},{"en":"What's the special today?","cn":"今天有什么特价?","g":{"What's":"什么","the":"这个","special":"特价","today":"今天"}},{"en":"I'll take the set menu.","cn":"我要这个套餐。","g":{"I'll":"我要","take":"要","the":"这个","set":"套餐","menu":"菜单"}},{"en":"Can we get separate bills?","cn":"可以分开结账吗?","g":{"Can":"可以","we":"我们","get":"要","separate":"分开的","bills":"账单"}},{"en":"My food is cold.","cn":"我的菜凉了。","g":{"My":"我的","food":"菜","is":"是","cold":"凉的"}},{"en":"Could you warm it up?","cn":"能热一下吗?","g":{"Could":"能","you":"你","warm":"加热","it":"它","up":"一下"}},{"en":"I'm still waiting for my drink.","cn":"我的饮料还没来。","g":{"I'm":"我","still":"还","waiting":"等","for":"要","my":"我的","drink":"饮料"}},{"en":"The steak is too tough.","cn":"这牛排太硬了。","g":{"The":"这","steak":"牛排","is":"是","too":"太","tough":"硬"}},{"en":"Can I have the receipt?","cn":"能给我小票吗?","g":{"Can":"能","I":"我","have":"拿","the":"这个","receipt":"小票"}},{"en":"We'll come back again.","cn":"我们还会再来的。","g":{"We'll":"我们会","come":"来","back":"回来","again":"再"}},{"en":"It's on me today.","cn":"今天我请客。","g":{"It's":"它","on":"由","me":"我","today":"今天"}},{"en":"Do you take cash?","cn":"你们收现金吗?","g":{"Do":"助动词","you":"你们","take":"收","cash":"现金"}},{"en":"Could I get another fork?","cn":"能再给我一把叉子吗?","g":{"Could":"能","I":"我","get":"拿","another":"另一把","fork":"叉子"}},{"en":"This table is dirty.","cn":"这桌子不干净。","g":{"This":"这","table":"桌子","is":"是","dirty":"脏的"}}]},"shopping":{"name":"购物买东西","icon":"🛒","items":[{"en":"How much is this?","cn":"这个多少钱?","g":{"How":"多","much":"少","is":"是","this":"这个"}},{"en":"Can I try it on?","cn":"我能试穿吗?","g":{"Can":"能","I":"我","try":"试","it":"它","on":"上"}},{"en":"Do you have this in small?","cn":"这个有小号的吗?","g":{"Do":"助动词","you":"你们","have":"有","this":"这个","in":"在","small":"小号"}},{"en":"I'm just looking, thanks.","cn":"我随便看看,谢谢。","g":{"I'm":"我","just":"只是","looking":"看看","thanks":"谢谢"}},{"en":"Where is the fitting room?","cn":"试衣间在哪儿?","g":{"Where":"哪里","is":"是","the":"这个","fitting":"试衣","room":"房间"}},{"en":"Do you have a bigger size?","cn":"有大一号的吗?","g":{"Do":"助动词","you":"你们","have":"有","a":"一个","bigger":"更大的","size":"尺码"}},{"en":"How much for two?","cn":"两个多少钱?","g":{"How":"多","much":"少","for":"要","two":"两个"}},{"en":"It's too expensive for me.","cn":"对我来说太贵了。","g":{"It's":"它","too":"太","expensive":"贵","for":"对","me":"我"}},{"en":"Can you give me a discount?","cn":"能便宜点吗?","g":{"Can":"能","you":"你","give":"给","me":"我","a":"一个","discount":"折扣"}},{"en":"Is there any cheaper one?","cn":"有便宜点的吗?","g":{"Is":"是否","there":"有","any":"任何","cheaper":"更便宜的","one":"一个"}},{"en":"I'll take this one.","cn":"我要这个。","g":{"I'll":"我要","take":"要","this":"这个","one":"一个"}},{"en":"Do you accept credit cards?","cn":"可以刷信用卡吗?","g":{"Do":"助动词","you":"你们","accept":"接受","credit":"信用","cards":"卡"}},{"en":"Can I get a receipt?","cn":"能给我小票吗?","g":{"Can":"能","I":"我","get":"拿","a":"一张","receipt":"小票"}},{"en":"I'd like to return this.","cn":"我想退这个。","g":{"I'd":"我想","like":"要","to":"去","return":"退","this":"这个"}},{"en":"It doesn't fit me.","cn":"我穿不合身。","g":{"It":"它","doesn't":"不","fit":"合身","me":"我"}},{"en":"Can I exchange it?","cn":"能换吗?","g":{"Can":"能","I":"我","exchange":"换","it":"它"}},{"en":"Where do I pay?","cn":"在哪儿付款?","g":{"Where":"哪里","do":"助动词","I":"我","pay":"付款"}},{"en":"I need a gift for my mom.","cn":"我要给我妈买个礼物。","g":{"I":"我","need":"需要","a":"一个","gift":"礼物","for":"给","my":"我的","mom":"妈妈"}},{"en":"Do you have it in black?","cn":"有黑色的吗?","g":{"Do":"助动词","you":"你们","have":"有","it":"它","in":"在","black":"黑色"}},{"en":"This one is on sale.","cn":"这个是打折的。","g":{"This":"这","one":"个","is":"是","on":"在","sale":"促销"}},{"en":"Is this the final price?","cn":"这是最终价吗?","g":{"Is":"是","this":"这","the":"这个","final":"最终","price":"价格"}},{"en":"Can you wrap it for me?","cn":"能帮我包装一下吗?","g":{"Can":"能","you":"你","wrap":"包装","it":"它","for":"帮","me":"我"}},{"en":"I'll think about it.","cn":"我再考虑一下。","g":{"I'll":"我","think":"想想","about":"考虑","it":"它"}},{"en":"That's a little pricey.","cn":"有点小贵。","g":{"That's":"这个","a":"一","little":"点","pricey":"贵"}},{"en":"Let me check the price.","cn":"我看看价格。","g":{"Let":"让","me":"我","check":"看看","the":"这个","price":"价格"}},{"en":"Can I have a bag?","cn":"能给我个袋子吗?","g":{"Can":"能","I":"我","have":"拿","a":"一个","bag":"袋子"}},{"en":"Where is the checkout?","cn":"收银台在哪儿?","g":{"Where":"哪里","is":"是","the":"这个","checkout":"收银台"}},{"en":"Is shipping free?","cn":"包邮吗?","g":{"Is":"是否","shipping":"运费","free":"免费"}},{"en":"I'll pay in cash.","cn":"我付现金。","g":{"I'll":"我","pay":"付","in":"用","cash":"现金"}},{"en":"Please keep the receipt.","cn":"小票请留着。","g":{"Please":"请","keep":"留着","the":"这个","receipt":"小票"}},{"en":"What colors do you have?","cn":"你们有哪些颜色?","g":{"What":"哪些","colors":"颜色","do":"助动词","you":"你们","have":"有"}},{"en":"My size is medium.","cn":"我穿中号。","g":{"My":"我的","size":"尺码","is":"是","medium":"中号"}},{"en":"Can I get a refund?","cn":"能退款吗?","g":{"Can":"能","I":"我","get":"拿","a":"一个","refund":"退款"}},{"en":"The zipper is broken.","cn":"拉链坏了。","g":{"The":"这个","zipper":"拉链","is":"是","broken":"坏的"}},{"en":"I bought this yesterday.","cn":"我昨天买的。","g":{"I":"我","bought":"买了","this":"这个","yesterday":"昨天"}},{"en":"Do you have this in stock?","cn":"这款有货吗?","g":{"Do":"助动词","you":"你们","have":"有","this":"这款","in":"在","stock":"库存"}},{"en":"It's a little too tight.","cn":"有点太紧了。","g":{"It's":"它","a":"一","little":"点","too":"太","tight":"紧"}},{"en":"Let me compare prices.","cn":"我比较一下价格。","g":{"Let":"让","me":"我","compare":"比较","prices":"价格"}},{"en":"Are these the same price?","cn":"这些价格一样吗?","g":{"Are":"是否","these":"这些","the":"这个","same":"一样","price":"价格"}},{"en":"I'll take two of these.","cn":"这些我要两个。","g":{"I'll":"我要","take":"要","two":"两个","of":"的","these":"这些"}},{"en":"Can I pay by phone?","cn":"能用手机支付吗?","g":{"Can":"能","I":"我","pay":"付款","by":"用","phone":"手机"}},{"en":"Is there a warranty?","cn":"有保修吗?","g":{"Is":"是否","there":"有","a":"一个","warranty":"保修"}},{"en":"This is exactly what I wanted.","cn":"这正是我想要的。","g":{"This":"这","is":"是","exactly":"正是","what":"什么","I":"我","wanted":"想要的"}},{"en":"Thanks, I'll come back.","cn":"谢谢,我下次再来。","g":{"Thanks":"谢谢","I'll":"我会","come":"来","back":"回来"}},{"en":"Do you have a smaller one?","cn":"有小一点的吗?","g":{"Do":"助动词","you":"你们","have":"有","a":"一个","smaller":"更小的","one":"一个"}},{"en":"Where are the shoes?","cn":"鞋子在哪儿?","g":{"Where":"哪里","are":"是","the":"这个","shoes":"鞋子"}},{"en":"It's cheaper online.","cn":"网上更便宜。","g":{"It's":"它","cheaper":"更便宜","online":"网上"}},{"en":"What's your return policy?","cn":"怎么退货?","g":{"What's":"什么是","your":"你们的","return":"退货","policy":"政策"}},{"en":"Do you sell phone cases?","cn":"你们卖手机壳吗?","g":{"Do":"助动词","you":"你们","sell":"卖","phone":"手机","cases":"壳"}},{"en":"I'm not sure about the size.","cn":"我不确定尺码。","g":{"I'm":"我","not":"不","sure":"确定","about":"关于","the":"这个","size":"尺码"}}]},"travel":{"name":"出行问路","icon":"🚕","items":[{"en":"How do I get there?","cn":"我怎么去那儿?","g":{"How":"怎么","do":"(助动词)","I":"我","get":"到","there":"那儿"}},{"en":"Is it far from here?","cn":"离这儿远吗?","g":{"Is":"是","it":"它","far":"远","from":"离","here":"这儿"}},{"en":"Where is the subway station?","cn":"地铁站在哪儿?","g":{"Where":"哪儿","is":"是","the":"(定冠词)","subway":"地铁","station":"站"}},{"en":"Can you show me on the map?","cn":"你能在地图上指给我看吗?","g":{"Can":"能","you":"你","show":"指给","me":"我","on":"在","the":"(定冠词)","map":"地图"}},{"en":"I'm looking for this address.","cn":"我在找这个地址。","g":{"I'm":"我在","looking":"找","for":"(介词)","this":"这个","address":"地址"}},{"en":"Turn left at the corner.","cn":"在路口左转。","g":{"Turn":"转","left":"左","at":"在","the":"(定冠词)","corner":"路口"}},{"en":"Go straight for two blocks.","cn":"直着走两个街区。","g":{"Go":"走","straight":"直","for":"持续","two":"两","blocks":"街区"}},{"en":"Is this the right way downtown?","cn":"这是去市中心的正确方向吗?","g":{"Is":"是","this":"这","the":"(定冠词)","right":"正确的","way":"路","downtown":"市中心"}},{"en":"How long does it take by taxi?","cn":"打车过去要多久?","g":{"How":"多","long":"久","does":"(助动词)","it":"它","take":"花","by":"坐","taxi":"出租车"}},{"en":"Please take me to this hotel.","cn":"请送我到这家酒店。","g":{"Please":"请","take":"送","me":"我","to":"到","this":"这家","hotel":"酒店"}},{"en":"Stop here, please.","cn":"请在这儿停。","g":{"Stop":"停","here":"这儿","please":"请"}},{"en":"How much is the fare?","cn":"车费多少钱?","g":{"How":"多","much":"少","is":"是","the":"(定冠词)","fare":"车费"}},{"en":"Does this bus go to the airport?","cn":"这趟公交去机场吗?","g":{"Does":"(助动词)","this":"这","bus":"公交","go":"去","to":"到","the":"(定冠词)","airport":"机场"}},{"en":"Where can I catch a taxi?","cn":"我在哪儿能拦到出租车?","g":{"Where":"哪儿","can":"能","I":"我","catch":"拦(车)","a":"(不定冠词)","taxi":"出租车"}},{"en":"I think I'm lost.","cn":"我好像迷路了。","g":{"I":"我","think":"觉得","I'm":"我","lost":"迷路了"}},{"en":"Could you say that again slowly?","cn":"你能慢点再说一遍吗?","g":{"Could":"能","you":"你","say":"说","that":"那个","again":"再一遍","slowly":"慢一点"}},{"en":"Which exit should I take?","cn":"我该走哪个出口?","g":{"Which":"哪个","exit":"出口","should":"应该","I":"我","take":"走"}},{"en":"Is there a bus stop near here?","cn":"这附近有公交站吗?","g":{"Is":"是","there":"有","a":"(不定冠词)","bus":"公交","stop":"站","near":"靠近","here":"这儿"}},{"en":"I need to get off at the next stop.","cn":"我下一站要下车。","g":{"I":"我","need":"要","to":"去","get":"下","off":"离开","at":"在","the":"(定冠词)","next":"下一个","stop":"站"}},{"en":"Can I pay by card?","cn":"我能刷卡吗?","g":{"Can":"能","I":"我","pay":"付钱","by":"用","card":"卡"}},{"en":"Keep going straight ahead.","cn":"一直往前走。","g":{"Keep":"保持","going":"走","straight":"直","ahead":"向前"}},{"en":"The traffic is really bad today.","cn":"今天路上真堵。","g":{"The":"(定冠词)","traffic":"交通","is":"是","really":"真","bad":"糟","today":"今天"}},{"en":"How far is the beach from here?","cn":"海滩离这儿多远?","g":{"How":"多","far":"远","is":"是","the":"(定冠词)","beach":"海滩","from":"离","here":"这儿"}},{"en":"Let's take the subway instead.","cn":"我们改坐地铁吧。","g":{"Let's":"我们…吧","take":"坐","the":"(定冠词)","subway":"地铁","instead":"改为"}},{"en":"I missed my train.","cn":"我错过火车了。","g":{"I":"我","missed":"错过了","my":"我的","train":"火车"}},{"en":"What time does the next train leave?","cn":"下一班火车几点开?","g":{"What":"什么","time":"时间","does":"(助动词)","the":"(定冠词)","next":"下一","train":"火车","leave":"出发"}},{"en":"Excuse me, is this seat taken?","cn":"打扰一下,这个位子有人吗?","g":{"Excuse":"原谅","me":"我","is":"是","this":"这个","seat":"座位","taken":"被占了"}},{"en":"I'd like a window seat, please.","cn":"我想要个靠窗的位子。","g":{"I'd":"我想要","like":"要","a":"(不定冠词)","window":"窗","seat":"座位","please":"请"}},{"en":"Where do I pick up my luggage?","cn":"我在哪儿取行李?","g":{"Where":"哪儿","do":"(助动词)","I":"我","pick":"取","up":"(副词)","my":"我的","luggage":"行李"}},{"en":"My flight is delayed.","cn":"我的航班延误了。","g":{"My":"我的","flight":"航班","is":"是","delayed":"延误了"}},{"en":"Can you take a shortcut?","cn":"能走条近路吗?","g":{"Can":"能","you":"你","take":"走","a":"(不定冠词)","shortcut":"近路"}},{"en":"Is it within walking distance?","cn":"走路能到吗?","g":{"Is":"是","it":"它","within":"在…之内","walking":"步行","distance":"距离"}},{"en":"I'll get off here.","cn":"我在这儿下。","g":{"I'll":"我将","get":"下","off":"离开","here":"这儿"}},{"en":"Please drive a bit slower.","cn":"请开慢一点。","g":{"Please":"请","drive":"开(车)","a":"一","bit":"点","slower":"慢一点"}},{"en":"Which platform is it?","cn":"是几号站台?","g":{"Which":"哪个","platform":"站台","is":"是","it":"它"}},{"en":"Do I need to transfer?","cn":"我需要换乘吗?","g":{"Do":"(助动词)","I":"我","need":"需要","to":"去","transfer":"换乘"}},{"en":"The line is closed for repairs.","cn":"这条线在维修,停运了。","g":{"The":"(定冠词)","line":"线路","is":"是","closed":"关闭的","for":"为了","repairs":"维修"}},{"en":"Can you drop me off at the corner?","cn":"能把我放在路口吗?","g":{"Can":"能","you":"你","drop":"放","me":"我","off":"下车","at":"在","the":"(定冠词)","corner":"路口"}},{"en":"I'm heading to the city center.","cn":"我去市中心。","g":{"I'm":"我正","heading":"前往","to":"去","the":"(定冠词)","city":"城市","center":"中心"}},{"en":"Is there Wi-Fi on this bus?","cn":"这车上有无线网吗?","g":{"Is":"是","there":"有","Wi-Fi":"无线网","on":"在","this":"这","bus":"公交"}},{"en":"Let me check the map.","cn":"我看一下地图。","g":{"Let":"让","me":"我","check":"看一下","the":"(定冠词)","map":"地图"}},{"en":"You can turn right after the light.","cn":"过了红绿灯右转。","g":{"You":"你","can":"可以","turn":"转","right":"右","after":"在…之后","the":"(定冠词)","light":"红绿灯"}},{"en":"Sorry, I don't know the way.","cn":"抱歉,我不认识路。","g":{"Sorry":"抱歉","I":"我","don't":"不","know":"认识","the":"(定冠词)","way":"路"}},{"en":"That's too expensive for me.","cn":"那对我来说太贵了。","g":{"That's":"那","too":"太","expensive":"贵","for":"对","me":"我"}},{"en":"Can we share a ride?","cn":"我们能拼车吗?","g":{"Can":"能","we":"我们","share":"拼","a":"(不定冠词)","ride":"车"}},{"en":"How many stops until downtown?","cn":"到市中心还有几站?","g":{"How":"几","many":"多","stops":"站","until":"直到","downtown":"市中心"}},{"en":"Watch out for the cars.","cn":"小心车。","g":{"Watch":"注意","out":"(副词)","for":"当心","the":"(定冠词)","cars":"车"}},{"en":"I'd rather walk, thanks.","cn":"我宁愿走路,谢谢。","g":{"I'd":"我","rather":"宁愿","walk":"走路","thanks":"谢谢"}}]},"health":{"name":"看病求助","icon":"🏥","items":[{"en":"I don't feel well today.","cn":"我今天不太舒服。","g":{"I":"我","don't":"不","feel":"感觉","well":"好","today":"今天"}},{"en":"I have a bad headache.","cn":"我头疼得厉害。","g":{"I":"我","have":"有","a":"(不定冠词)","bad":"厉害的","headache":"头疼"}},{"en":"I need to see a doctor.","cn":"我需要看医生。","g":{"I":"我","need":"需要","to":"去","see":"看","a":"(不定冠词)","doctor":"医生"}},{"en":"Where is the nearest hospital?","cn":"最近的医院在哪儿?","g":{"Where":"哪儿","is":"是","the":"(定冠词)","nearest":"最近的","hospital":"医院"}},{"en":"I think I have a fever.","cn":"我好像发烧了。","g":{"I":"我","think":"觉得","have":"有","a":"(不定冠词)","fever":"发烧"}},{"en":"My stomach hurts a lot.","cn":"我肚子很疼。","g":{"My":"我的","stomach":"肚子","hurts":"疼","a":"一","lot":"很多"}},{"en":"Can I make an appointment?","cn":"我能预约吗?","g":{"Can":"能","I":"我","make":"做","an":"(不定冠词)","appointment":"预约"}},{"en":"I'm allergic to penicillin.","cn":"我对青霉素过敏。","g":{"I'm":"我","allergic":"过敏","to":"对","penicillin":"青霉素"}},{"en":"It hurts right here.","cn":"就是这儿疼。","g":{"It":"它","hurts":"疼","right":"就","here":"这儿"}},{"en":"I've had this cough for a week.","cn":"我咳嗽一星期了。","g":{"I've":"我已经","had":"有","this":"这个","cough":"咳嗽","for":"持续","a":"一","week":"星期"}},{"en":"Do I need a prescription?","cn":"我需要处方吗?","g":{"Do":"(助动词)","I":"我","need":"需要","a":"(不定冠词)","prescription":"处方"}},{"en":"How often should I take this?","cn":"这个我该多久吃一次?","g":{"How":"多","often":"经常","should":"应该","I":"我","take":"吃","this":"这个"}},{"en":"I feel dizzy and weak.","cn":"我头晕,还没力气。","g":{"I":"我","feel":"感觉","dizzy":"头晕","and":"和","weak":"没力气"}},{"en":"Is the doctor available now?","cn":"医生现在有空吗?","g":{"Is":"是","the":"(定冠词)","doctor":"医生","available":"有空","now":"现在"}},{"en":"I can't sleep at night.","cn":"我晚上睡不着。","g":{"I":"我","can't":"不能","sleep":"睡觉","at":"在","night":"晚上"}},{"en":"My back has been hurting.","cn":"我背一直疼。","g":{"My":"我的","back":"背","has":"一直","been":"(助动词)","hurting":"疼"}},{"en":"Please call an ambulance.","cn":"请叫救护车。","g":{"Please":"请","call":"叫","an":"(不定冠词)","ambulance":"救护车"}},{"en":"I have a sore throat.","cn":"我嗓子疼。","g":{"I":"我","have":"有","a":"(不定冠词)","sore":"疼的","throat":"嗓子"}},{"en":"Does it hurt when I press here?","cn":"我按这儿疼吗?","g":{"Does":"(助动词)","it":"它","hurt":"疼","when":"当…时","I":"我","press":"按","here":"这儿"}},{"en":"Take this medicine twice a day.","cn":"这药一天吃两次。","g":{"Take":"吃","this":"这个","medicine":"药","twice":"两次","a":"一","day":"天"}},{"en":"I'm feeling much better now.","cn":"我现在好多了。","g":{"I'm":"我","feeling":"感觉","much":"…得多","better":"好些","now":"现在"}},{"en":"You should get some rest.","cn":"你该休息一下。","g":{"You":"你","should":"应该","get":"得到","some":"一些","rest":"休息"}},{"en":"My son has a rash.","cn":"我儿子起疹子了。","g":{"My":"我的","son":"儿子","has":"有","a":"(不定冠词)","rash":"疹子"}},{"en":"I'm three months pregnant.","cn":"我怀孕三个月了。","g":{"I'm":"我","three":"三","months":"个月","pregnant":"怀孕了"}},{"en":"Is this covered by insurance?","cn":"这个保险能报吗?","g":{"Is":"是","this":"这个","covered":"被覆盖","by":"由","insurance":"保险"}},{"en":"I have a toothache.","cn":"我牙疼。","g":{"I":"我","have":"有","a":"(不定冠词)","toothache":"牙疼"}},{"en":"How long will it take to recover?","cn":"要多久才能好?","g":{"How":"多","long":"久","will":"将","it":"它","take":"需要","to":"去","recover":"恢复"}},{"en":"I'm not feeling well at all.","cn":"我一点都不舒服。","g":{"I'm":"我","not":"不","feeling":"感觉","well":"好","at":"在","all":"完全"}},{"en":"Do you have anything for a cold?","cn":"有治感冒的药吗?","g":{"Do":"(助动词)","you":"你","have":"有","anything":"什么东西","for":"治","a":"(不定冠词)","cold":"感冒"}},{"en":"I need something for the pain.","cn":"我需要点止痛的药。","g":{"I":"我","need":"需要","something":"某种东西","for":"治","the":"(定冠词)","pain":"疼痛"}},{"en":"My blood pressure is high.","cn":"我血压高。","g":{"My":"我的","blood":"血","pressure":"压力","is":"是","high":"高"}},{"en":"Please roll up your sleeve.","cn":"请把袖子卷起来。","g":{"Please":"请","roll":"卷","up":"(副词)","your":"你的","sleeve":"袖子"}},{"en":"The doctor will be right with you.","cn":"医生马上就来。","g":{"The":"(定冠词)","doctor":"医生","will":"将","be":"是","right":"马上","with":"和","you":"你"}},{"en":"Do I need to fast before the test?","cn":"检查前我需要空腹吗?","g":{"Do":"(助动词)","I":"我","need":"需要","to":"去","fast":"禁食","before":"在…之前","the":"(定冠词)","test":"检查"}},{"en":"I got hurt while playing soccer.","cn":"我踢球的时候受伤了。","g":{"I":"我","got":"变得","hurt":"受伤","while":"当…时","playing":"踢","soccer":"足球"}},{"en":"My eyes are really dry.","cn":"我眼睛特别干。","g":{"My":"我的","eyes":"眼睛","are":"是","really":"特别","dry":"干"}},{"en":"Can I lie down for a bit?","cn":"我能躺一会儿吗?","g":{"Can":"能","I":"我","lie":"躺","down":"(副词)","for":"…的时间","a":"一","bit":"会儿"}},{"en":"I'm running a little fever.","cn":"我有点低烧。","g":{"I'm":"我","running":"发","a":"一","little":"点","fever":"烧"}},{"en":"You should drink more water.","cn":"你该多喝水。","g":{"You":"你","should":"应该","drink":"喝","more":"更多","water":"水"}},{"en":"Where does it hurt the most?","cn":"哪儿最疼?","g":{"Where":"哪儿","does":"(助动词)","it":"它","hurt":"疼","the":"(定冠词)","most":"最"}},{"en":"I have trouble breathing.","cn":"我呼吸有困难。","g":{"I":"我","have":"有","trouble":"困难","breathing":"呼吸"}},{"en":"Take a deep breath, please.","cn":"请深吸一口气。","g":{"Take":"吸","a":"(不定冠词)","deep":"深的","breath":"一口气","please":"请"}},{"en":"I feel sick to my stomach.","cn":"我恶心想吐。","g":{"I":"我","feel":"感觉","sick":"恶心","to":"对","my":"我的","stomach":"胃"}},{"en":"Do I need any shots?","cn":"我需要打针吗?","g":{"Do":"(助动词)","I":"我","need":"需要","any":"任何","shots":"针"}},{"en":"My whole body aches.","cn":"我浑身酸痛。","g":{"My":"我的","whole":"整个","body":"身体","aches":"酸痛"}},{"en":"Can you give me something stronger?","cn":"能给我开点更管用的药吗?","g":{"Can":"能","you":"你","give":"给","me":"我","something":"某种药","stronger":"更管用的"}},{"en":"I've been coughing all night.","cn":"我咳了一整晚。","g":{"I've":"我一直","been":"(助动词)","coughing":"咳嗽","all":"整个","night":"晚上"}},{"en":"The pain comes and goes.","cn":"这疼一阵一阵的。","g":{"The":"(定冠词)","pain":"疼痛","comes":"来","and":"和","goes":"去"}},{"en":"Please fill this prescription for me.","cn":"请帮我配这个药。","g":{"Please":"请","fill":"配","this":"这个","prescription":"处方","for":"给","me":"我"}},{"en":"I hope you feel better soon.","cn":"希望你早点好起来。","g":{"I":"我","hope":"希望","you":"你","feel":"感觉","better":"好些","soon":"很快"}}]},"requests":{"name":"礼貌请求","icon":"🙏","items":[{"en":"Could you help me?","cn":"你能帮我一下吗?","g":{"Could":"能","you":"你","help":"帮","me":"我"}},{"en":"Sorry to bother you.","cn":"不好意思,打扰你了。","g":{"Sorry":"抱歉","to":"(不定式)","bother":"打扰","you":"你"}},{"en":"Can I ask you something?","cn":"我能问你件事吗?","g":{"Can":"能","I":"我","ask":"问","you":"你","something":"件事"}},{"en":"Thanks a lot.","cn":"太谢谢你了。","g":{"Thanks":"谢谢","a":"(量词)","lot":"多"}},{"en":"I really appreciate it.","cn":"我真的很感激。","g":{"I":"我","really":"真的","appreciate":"感激","it":"这件事"}},{"en":"Could I have a word with you?","cn":"能跟你说句话吗?","g":{"Could":"能","I":"我","have":"说","a":"句","word":"话","with":"和","you":"你"}},{"en":"Would you mind waiting?","cn":"你介意等一下吗?","g":{"Would":"(意愿)","you":"你","mind":"介意","waiting":"等一会儿"}},{"en":"Do you have a minute?","cn":"你有空吗?","g":{"Do":"(助动词)","you":"你","have":"有","a":"一","minute":"分钟"}},{"en":"Could you do me a favor?","cn":"能帮我个忙吗?","g":{"Could":"能","you":"你","do":"帮","me":"我","a":"个","favor":"忙"}},{"en":"Thank you so much.","cn":"太感谢你了。","g":{"Thank":"谢","you":"你","so":"这么","much":"多"}},{"en":"That's very kind of you.","cn":"你人真好。","g":{"That's":"那(是)","very":"非常","kind":"好心","of":"的","you":"你"}},{"en":"Can you give me a hand?","cn":"你能搭把手吗?","g":{"Can":"能","you":"你","give":"给","me":"我","a":"个","hand":"手(帮忙)"}},{"en":"Please wait a moment.","cn":"请稍等一下。","g":{"Please":"请","wait":"等","a":"一","moment":"会儿"}},{"en":"Could I borrow your pen?","cn":"能借你的笔用一下吗?","g":{"Could":"能","I":"我","borrow":"借","your":"你的","pen":"笔"}},{"en":"Would you speak slower, please?","cn":"你能说慢一点吗?","g":{"Would":"能","you":"你","speak":"说","slower":"慢一点","please":"请"}},{"en":"I need your help.","cn":"我需要你帮忙。","g":{"I":"我","need":"需要","your":"你的","help":"帮助"}},{"en":"Can you repeat that?","cn":"你能再说一遍吗?","g":{"Can":"能","you":"你","repeat":"重复","that":"刚才那句"}},{"en":"Sorry, I didn't catch that.","cn":"抱歉,我没听清。","g":{"Sorry":"抱歉","I":"我","didn't":"没","catch":"听清","that":"那个"}},{"en":"Could you say that again?","cn":"你能再说一次吗?","g":{"Could":"能","you":"你","say":"说","that":"那个","again":"再一次"}},{"en":"Do you mind if I sit here?","cn":"我坐这儿可以吗?","g":{"Do":"(助动词)","you":"你","mind":"介意","if":"如果","I":"我","sit":"坐","here":"这儿"}},{"en":"Is it okay if I leave early?","cn":"我可以早点走吗?","g":{"Is":"是","it":"这","okay":"可以","if":"如果","I":"我","leave":"走","early":"早点"}},{"en":"May I come in?","cn":"我可以进来吗?","g":{"May":"可以","I":"我","come":"来","in":"进来"}},{"en":"Let me know if you need anything.","cn":"需要什么就告诉我。","g":{"Let":"让","me":"我","know":"知道","if":"如果","you":"你","need":"需要","anything":"什么东西"}},{"en":"Thanks for your help.","cn":"谢谢你的帮忙。","g":{"Thanks":"谢谢","for":"因为","your":"你的","help":"帮助"}},{"en":"I owe you one.","cn":"我欠你个人情。","g":{"I":"我","owe":"欠","you":"你","one":"人情"}},{"en":"Thank you for waiting.","cn":"谢谢你等我。","g":{"Thank":"谢","you":"你","for":"因为","waiting":"等着"}},{"en":"Could you turn it down?","cn":"你能把它调小点吗?","g":{"Could":"能","you":"你","turn":"调","it":"它","down":"小一点"}},{"en":"Would you mind closing the door?","cn":"你介意把门关上吗?","g":{"Would":"(意愿)","you":"你","mind":"介意","closing":"关","the":"(定冠词)","door":"门"}},{"en":"Please don't be mad.","cn":"请别生气。","g":{"Please":"请","don't":"别","be":"(是)","mad":"生气"}},{"en":"I'm really sorry about that.","cn":"那件事我真的很抱歉。","g":{"I'm":"我(是)","really":"真的","sorry":"抱歉","about":"关于","that":"那件事"}},{"en":"Can I ask a quick question?","cn":"我能问个小问题吗?","g":{"Can":"能","I":"我","ask":"问","a":"个","quick":"快的","question":"问题"}},{"en":"Could you write it down?","cn":"你能写下来吗?","g":{"Could":"能","you":"你","write":"写","it":"它","down":"下来"}},{"en":"Sorry, my mistake.","cn":"抱歉,是我的错。","g":{"Sorry":"抱歉","my":"我的","mistake":"错"}},{"en":"Do you have time tomorrow?","cn":"你明天有空吗?","g":{"Do":"(助动词)","you":"你","have":"有","time":"时间","tomorrow":"明天"}},{"en":"Would that be okay?","cn":"那样行吗?","g":{"Would":"(会)","that":"那样","be":"(是)","okay":"行"}},{"en":"I'd appreciate your help.","cn":"我会很感激你的帮忙。","g":{"I'd":"我(会)","appreciate":"感激","your":"你的","help":"帮助"}},{"en":"Please forgive me.","cn":"请原谅我。","g":{"Please":"请","forgive":"原谅","me":"我"}},{"en":"Can you help me carry this?","cn":"你能帮我搬这个吗?","g":{"Can":"能","you":"你","help":"帮","me":"我","carry":"搬","this":"这个"}},{"en":"Sorry, I can't come.","cn":"抱歉,我来不了。","g":{"Sorry":"抱歉","I":"我","can't":"不能","come":"来"}},{"en":"Could you give me a minute?","cn":"能给我一分钟吗?","g":{"Could":"能","you":"你","give":"给","me":"我","a":"一","minute":"分钟"}},{"en":"Would you like some help?","cn":"你需要帮忙吗?","g":{"Would":"要","you":"你","like":"想","some":"一些","help":"帮助"}},{"en":"I'm sorry to hear that.","cn":"听到这个我很难过。","g":{"I'm":"我(是)","sorry":"难过","to":"(不定式)","hear":"听到","that":"这个"}},{"en":"Please let me pass.","cn":"请让我过去。","g":{"Please":"请","let":"让","me":"我","pass":"过去"}},{"en":"Sorry for the trouble.","cn":"麻烦你了,不好意思。","g":{"Sorry":"抱歉","for":"因为","the":"(定冠词)","trouble":"麻烦"}},{"en":"Can I have a receipt?","cn":"能给我一张收据吗?","g":{"Can":"能","I":"我","have":"要","a":"张","receipt":"收据"}},{"en":"Sorry to interrupt.","cn":"抱歉,打断一下。","g":{"Sorry":"抱歉","to":"(不定式)","interrupt":"打断"}},{"en":"Could you speak up, please?","cn":"你能说大声点吗?","g":{"Could":"能","you":"你","speak":"说","up":"大声点","please":"请"}},{"en":"I'm sorry for the mess.","cn":"抱歉,弄得这么乱。","g":{"I'm":"我(是)","sorry":"抱歉","for":"因为","the":"(定冠词)","mess":"乱"}}]},"daily":{"name":"日常生活","icon":"🏠","items":[{"en":"I'm going to bed.","cn":"我要去睡觉了。","g":{"I'm":"我(要)","going":"去","to":"(不定式)","bed":"睡觉"}},{"en":"Time to get up.","cn":"该起床了。","g":{"Time":"时间","to":"(不定式)","get":"起","up":"来"}},{"en":"I'm making breakfast.","cn":"我在做早饭。","g":{"I'm":"我(在)","making":"做","breakfast":"早饭"}},{"en":"What's for dinner?","cn":"晚饭吃什么?","g":{"What's":"什么(是)","for":"作为","dinner":"晚饭"}},{"en":"I need to do the laundry.","cn":"我得洗衣服了。","g":{"I":"我","need":"得","to":"(不定式)","do":"做","the":"(定冠词)","laundry":"洗衣服"}},{"en":"The dishes are dirty.","cn":"碗还没洗。","g":{"The":"(定冠词)","dishes":"碗","are":"是","dirty":"脏的"}},{"en":"Let's clean the house.","cn":"我们把家里打扫一下吧。","g":{"Let's":"我们(来)","clean":"打扫","the":"(定冠词)","house":"房子"}},{"en":"I have to walk the dog.","cn":"我得去遛狗。","g":{"I":"我","have":"得","to":"(不定式)","walk":"遛","the":"(定冠词)","dog":"狗"}},{"en":"It's raining outside.","cn":"外面在下雨。","g":{"It's":"天(在)","raining":"下雨","outside":"外面"}},{"en":"The weather is nice today.","cn":"今天天气不错。","g":{"The":"(定冠词)","weather":"天气","is":"是","nice":"好","today":"今天"}},{"en":"It's so hot today.","cn":"今天太热了。","g":{"It's":"天(气)","so":"这么","hot":"热","today":"今天"}},{"en":"It's getting cold.","cn":"天变冷了。","g":{"It's":"天(气)","getting":"变","cold":"冷"}},{"en":"Take an umbrella with you.","cn":"带把伞。","g":{"Take":"带","an":"把","umbrella":"伞","with":"随身","you":"你"}},{"en":"I'm cooking dinner.","cn":"我在做晚饭。","g":{"I'm":"我(在)","cooking":"做","dinner":"晚饭"}},{"en":"The fridge is empty.","cn":"冰箱空了。","g":{"The":"(定冠词)","fridge":"冰箱","is":"是","empty":"空的"}},{"en":"We're out of milk.","cn":"牛奶喝完了。","g":{"We're":"我们(是)","out":"用完","of":"的","milk":"牛奶"}},{"en":"I need to go shopping.","cn":"我得去买点东西。","g":{"I":"我","need":"得","to":"(不定式)","go":"去","shopping":"买东西"}},{"en":"Let's watch TV tonight.","cn":"今晚看电视吧。","g":{"Let's":"我们(来)","watch":"看","TV":"电视","tonight":"今晚"}},{"en":"I'm too tired today.","cn":"我今天太累了。","g":{"I'm":"我(是)","too":"太","tired":"累","today":"今天"}},{"en":"I stayed up late last night.","cn":"我昨晚熬夜了。","g":{"I":"我","stayed":"熬","up":"夜","late":"晚","last":"上个","night":"晚上"}},{"en":"I'm taking a shower.","cn":"我在洗澡。","g":{"I'm":"我(在)","taking":"洗","a":"个","shower":"澡"}},{"en":"Turn off the light, please.","cn":"请把灯关了。","g":{"Turn":"关","off":"掉","the":"(定冠词)","light":"灯","please":"请"}},{"en":"Turn on the TV.","cn":"把电视打开。","g":{"Turn":"开","on":"开","the":"(定冠词)","TV":"电视"}},{"en":"Dinner is ready.","cn":"晚饭好了。","g":{"Dinner":"晚饭","is":"(是)","ready":"好了"}},{"en":"I'm doing the dishes.","cn":"我在洗碗。","g":{"I'm":"我(在)","doing":"洗","the":"(定冠词)","dishes":"碗"}},{"en":"The sink is dirty.","cn":"水槽脏了。","g":{"The":"(定冠词)","sink":"水槽","is":"是","dirty":"脏的"}},{"en":"I have a day off tomorrow.","cn":"我明天休息。","g":{"I":"我","have":"有","a":"一","day":"天","off":"休息","tomorrow":"明天"}},{"en":"What time do you get up?","cn":"你几点起床?","g":{"What":"什么","time":"时间","do":"(助动词)","you":"你","get":"起","up":"床"}},{"en":"I wake up at seven.","cn":"我七点醒。","g":{"I":"我","wake":"醒","up":"来","at":"在","seven":"七点"}},{"en":"I go to bed at eleven.","cn":"我十一点睡。","g":{"I":"我","go":"去","to":"(不定式)","bed":"睡觉","at":"在","eleven":"十一点"}},{"en":"She's sleeping now.","cn":"她在睡觉。","g":{"She's":"她(在)","sleeping":"睡觉","now":"现在"}},{"en":"Close the window, please.","cn":"请把窗户关上。","g":{"Close":"关","the":"(定冠词)","window":"窗户","please":"请"}},{"en":"It's snowing outside.","cn":"外面在下雪。","g":{"It's":"天(在)","snowing":"下雪","outside":"外面"}},{"en":"The floor needs cleaning.","cn":"地板该拖了。","g":{"The":"(定冠词)","floor":"地板","needs":"需要","cleaning":"打扫"}},{"en":"I'll do it later.","cn":"我待会儿再做。","g":{"I'll":"我(会)","do":"做","it":"这件事","later":"待会儿"}},{"en":"Let's go for a walk.","cn":"我们去散步吧。","g":{"Let's":"我们","go":"去","for":"去","a":"一","walk":"散步"}},{"en":"I'm home now.","cn":"我到家了。","g":{"I'm":"我(在)","home":"家","now":"现在"}},{"en":"Are you free this weekend?","cn":"你这周末有空吗?","g":{"Are":"(是)","you":"你","free":"有空","this":"这个","weekend":"周末"}},{"en":"Let's meet at six.","cn":"我们六点见吧。","g":{"Let's":"我们","meet":"见面","at":"在","six":"六点"}},{"en":"I'm running late.","cn":"我要迟到了。","g":{"I'm":"我(快)","running":"要","late":"迟到"}},{"en":"The bus is always late.","cn":"公交车总是晚点。","g":{"The":"(定冠词)","bus":"公交车","is":"是","always":"总是","late":"晚点"}},{"en":"I need to charge my phone.","cn":"我得给手机充电。","g":{"I":"我","need":"得","to":"(不定式)","charge":"充电","my":"我的","phone":"手机"}},{"en":"Where are my keys?","cn":"我钥匙呢?","g":{"Where":"哪儿","are":"(在)","my":"我的","keys":"钥匙"}},{"en":"I forgot my umbrella.","cn":"我忘带伞了。","g":{"I":"我","forgot":"忘了","my":"我的","umbrella":"伞"}},{"en":"The laundry is still wet.","cn":"衣服还是湿的。","g":{"The":"(定冠词)","laundry":"衣服","is":"是","still":"还","wet":"湿的"}},{"en":"Wash your hands first.","cn":"先去洗手。","g":{"Wash":"洗","your":"你的","hands":"手","first":"先"}},{"en":"It's time for lunch.","cn":"该吃午饭了。","g":{"It's":"到","time":"时间","for":"该","lunch":"午饭"}},{"en":"I'll take a nap.","cn":"我去眯一会儿。","g":{"I'll":"我(要)","take":"睡","a":"个","nap":"午觉"}},{"en":"Don't forget to lock the door.","cn":"别忘了锁门。","g":{"Don't":"别","forget":"忘","to":"(不定式)","lock":"锁","the":"(定冠词)","door":"门"}},{"en":"Please take out the trash.","cn":"请把垃圾拿出去。","g":{"Please":"请","take":"拿","out":"出去","the":"(定冠词)","trash":"垃圾"}}]}};
+// ===== 基础词表(2026-09-11 新增) =====
+// 主词库 VOCAB 是「内容词」库,代词/be动词/不规则过去式/数词/人名为空白(实测 20 篇短文
+// 有 90+ 处点词无释义)。这里作**查词兜底**(glossOf/ipaOf 的最后一级),不并入 VOCAB,
+// 所以不影响 41 座岛、单词卡和词库计数。
+const BASE_CN = {
+ "he": "他",
+ "him": "他（宾格）",
+ "his": "他的",
+ "her": "她；她的",
+ "she": "她",
+ "they": "他们",
+ "them": "他们（宾格）",
+ "their": "他们的",
+ "us": "我们（宾格）",
+ "our": "我们的",
+ "its": "它的",
+ "myself": "我自己",
+ "am": "是（用在 I 后面）",
+ "were": "是（are 的过去式）",
+ "cannot": "不能",
+ "can't": "不能",
+ "must": "必须",
+ "used": "过去常常（used to do = 过去常做）",
+ "who": "谁",
+ "why": "为什么",
+ "into": "到……里面",
+ "through": "穿过",
+ "than": "比",
+ "without": "没有",
+ "together": "一起",
+ "other": "其他的",
+ "anymore": "（不）再",
+ "nothing": "没什么",
+ "everything": "一切",
+ "somebody": "某人",
+ "everybody": "每个人",
+ "oh": "哦",
+ "part": "部分",
+ "thing": "东西；事情",
+ "life": "生活；生命",
+ "point": "点；地点",
+ "ago": "以前",
+ "suddenly": "突然",
+ "downstairs": "楼下",
+ "steadily": "稳稳地",
+ "smoke": "烟",
+ "sip": "一小口",
+ "shout": "喊",
+ "shouts": "喊（shout）",
+ "box": "盒子",
+ "letter": "信",
+ "flag": "旗子",
+ "alarm": "闹钟",
+ "daddy": "爸爸（儿语）",
+ "smell": "闻",
+ "smells": "闻起来（smell）",
+ "counting": "数（count）",
+ "saw": "看见（see 的过去式）",
+ "ate": "吃（eat 的过去式）",
+ "sat": "坐（sit 的过去式）",
+ "stood": "站（stand 的过去式）",
+ "took": "拿；带（take 的过去式）",
+ "made": "做（make 的过去式）",
+ "said": "说（say 的过去式）",
+ "knew": "知道（know 的过去式）",
+ "held": "握住（hold 的过去式）",
+ "told": "告诉（tell 的过去式）",
+ "found": "找到（find 的过去式）",
+ "spoke": "说话（speak 的过去式）",
+ "wrote": "写（write 的过去式）",
+ "sold": "卖（sell 的过去式）",
+ "woke": "醒来（wake 的过去式）",
+ "gone": "不见了（go 的过去分词）",
+ "teach": "教",
+ "those": "那些",
+ "dollar": "美元",
+ "dollars": "美元（dollar 的复数）",
+ "twenty": "二十",
+ "twenty-two": "二十二",
+ "twenty-five": "二十五",
+ "twenty-eight": "二十八",
+ "thirty": "三十",
+ "thirty-five": "三十五",
+ "forty": "四十",
+ "forty-two": "四十二",
+ "forty-five": "四十五",
+ "forty-six": "四十六",
+ "seventy": "七十",
+ "seventy-two": "七十二",
+ "ninth": "第九",
+ "eighth": "第八",
+ "mr": "先生（Mr.）",
+ "chen": "陈（姓）",
+ "huang": "黄（姓）",
+ "li": "李（姓）",
+ "wei": "伟（名）",
+ "wang": "王（姓）",
+ "ming": "明（名）",
+ "david": "大卫（名）",
+ "dumpling": "饺子（也是狗名）"
+};
+const BASE_IPA = {
+ "he": "hiː",
+ "him": "hɪm",
+ "his": "hɪz",
+ "her": "hɜː(r)",
+ "she": "ʃiː",
+ "they": "ðeɪ",
+ "them": "ðem",
+ "their": "ðeə(r)",
+ "us": "ʌs",
+ "our": "ˈaʊə(r)",
+ "its": "ɪts",
+ "myself": "maɪˈself",
+ "am": "æm",
+ "were": "wɜː(r)",
+ "cannot": "ˈkænɒt",
+ "can't": "kɑːnt",
+ "must": "mʌst",
+ "used": "juːst",
+ "who": "huː",
+ "why": "waɪ",
+ "into": "ˈɪntə",
+ "through": "θruː",
+ "than": "ðæn",
+ "without": "wɪˈðaʊt",
+ "together": "təˈɡeðə(r)",
+ "other": "ˈʌðə(r)",
+ "anymore": "ˌeniˈmɔː(r)",
+ "nothing": "ˈnʌθɪŋ",
+ "everything": "ˈevriθɪŋ",
+ "somebody": "ˈsʌmbədi",
+ "everybody": "ˈevribɒdi",
+ "oh": "əʊ",
+ "part": "pɑːt",
+ "thing": "θɪŋ",
+ "life": "laɪf",
+ "point": "pɔɪnt",
+ "ago": "əˈɡəʊ",
+ "suddenly": "ˈsʌdənli",
+ "downstairs": "ˌdaʊnˈsteəz",
+ "steadily": "ˈstedɪli",
+ "smoke": "sməʊk",
+ "sip": "sɪp",
+ "shout": "ʃaʊt",
+ "shouts": "ʃaʊts",
+ "box": "bɒks",
+ "letter": "ˈletə(r)",
+ "flag": "flæɡ",
+ "alarm": "əˈlɑːm",
+ "daddy": "ˈdædi",
+ "smell": "smel",
+ "smells": "smelz",
+ "counting": "ˈkaʊntɪŋ",
+ "saw": "sɔː",
+ "ate": "eɪt",
+ "sat": "sæt",
+ "stood": "stʊd",
+ "took": "tʊk",
+ "made": "meɪd",
+ "said": "sed",
+ "knew": "njuː",
+ "held": "held",
+ "told": "təʊld",
+ "found": "faʊnd",
+ "spoke": "spəʊk",
+ "wrote": "rəʊt",
+ "sold": "səʊld",
+ "woke": "wəʊk",
+ "gone": "ɡɒn",
+ "teach": "tiːtʃ",
+ "those": "ðəʊz",
+ "dollar": "ˈdɒlə(r)",
+ "dollars": "ˈdɒləz",
+ "twenty": "ˈtwenti",
+ "twenty-two": "ˌtwenti ˈtuː",
+ "twenty-five": "ˌtwenti ˈfaɪv",
+ "twenty-eight": "ˌtwenti ˈeɪt",
+ "thirty": "ˈθɜːti",
+ "thirty-five": "ˌθɜːti ˈfaɪv",
+ "forty": "ˈfɔːti",
+ "forty-two": "ˌfɔːti ˈtuː",
+ "forty-five": "ˌfɔːti ˈfaɪv",
+ "forty-six": "ˌfɔːti ˈsɪks",
+ "seventy": "ˈsevənti",
+ "seventy-two": "ˌsevənti ˈtuː",
+ "ninth": "naɪnθ",
+ "eighth": "eɪtθ",
+ "mr": "ˈmɪstə(r)",
+ "chen": "tʃen",
+ "huang": "hwɒŋ",
+ "li": "liː",
+ "wei": "weɪ",
+ "wang": "wɒŋ",
+ "ming": "mɪŋ",
+ "david": "ˈdeɪvɪd",
+ "dumpling": "ˈdʌmplɪŋ",
+ "i": "aɪ",
+ "the": "ðə",
+ "a": "ə",
+ "was": "wɒz",
+ "is": "ɪz",
+ "you": "juː",
+ "my": "maɪ",
+ "in": "ɪn",
+ "it": "ɪt",
+ "to": "tuː",
+ "for": "fɔː(r)",
+ "at": "æt",
+ "not": "nɒt",
+ "that": "ðæt",
+ "me": "miː",
+ "on": "ɒn",
+ "are": "ɑː(r)",
+ "of": "əv",
+ "with": "wɪð",
+ "this": "ðɪs",
+ "we": "wiː",
+ "had": "hæd",
+ "don't": "dəʊnt",
+ "did": "dɪd",
+ "last": "lɑːst",
+ "get": "ɡet",
+ "what": "wɒt",
+ "much": "mʌtʃ",
+ "came": "keɪm",
+ "page": "peɪdʒ",
+ "can": "kæn",
+ "your": "jɔː(r)",
+ "an": "ən",
+ "from": "frɒm",
+ "died": "daɪd",
+ "by": "baɪ",
+ "something": "ˈsʌmθɪŋ",
+ "will": "wɪl",
+ "how": "haʊ",
+ "words": "wɜːdz",
+ "makes": "meɪks",
+ "has": "hæz",
+ "doesn't": "ˈdʌznt",
+ "tonight": "təˈnaɪt",
+ "didn't": "ˈdɪdnt",
+ "went": "went",
+ "could": "kʊd",
+ "children": "ˈtʃɪldrən",
+ "meet": "miːt",
+ "doing": "ˈduːɪŋ",
+ "i'm": "aɪm",
+ "got": "ɡɒt",
+ "where": "weə(r)",
+ "best": "best",
+ "bought": "bɔːt",
+ "little": "ˈlɪtl",
+ "barks": "bɑːks",
+ "been": "biːn",
+ "paper": "ˈpeɪpə(r)",
+ "path": "pɑːθ",
+ "okay": "ˌəʊˈkeɪ",
+ "busy": "ˈbɪzi",
+ "sits": "sɪts",
+ "friends": "frendz",
+ "moment": "ˈməʊmənt",
+ "listened": "ˈlɪsnd",
+ "client": "ˈklaɪənt",
+ "worth": "wɜːθ",
+ "friend": "frend",
+ "crazy": "ˈkreɪzi",
+ "word": "wɜːd",
+ "instead": "ɪnˈsted",
+ "whole": "həʊl",
+ "later": "ˈleɪtə(r)",
+ "out": "aʊt",
+ "standing": "ˈstændɪŋ",
+ "twice": "twaɪs",
+ "taught": "tɔːt",
+ "grammar": "ˈɡræmə(r)",
+ "wash": "wɒʃ",
+ "teeth": "tiːθ",
+ "hurry": "ˈhʌri",
+ "nice": "naɪs",
+ "shake": "ʃeɪk",
+ "carry": "ˈkæri",
+ "sit": "sɪt",
+ "that's": "ðæts",
+ "deep": "diːp",
+ "breath": "breθ",
+ "hey": "heɪ",
+ "alive": "əˈlaɪv",
+ "funeral": "ˈfjuːnərəl",
+ "across": "əˈkrɒs",
+ "jokes": "dʒəʊks",
+ "shaking": "ˈʃeɪkɪŋ",
+ "what's": "wɒts",
+ "well": "wel",
+ "it's": "ɪts",
+ "dead": "ded",
+ "sunset": "ˈsʌnset",
+ "i'll": "aɪl",
+ "around": "əˈraʊnd",
+ "any": "ˈeni",
+ "kilos": "ˈkiːləʊz",
+ "lot": "lɒt",
+ "stall": "stɔːl",
+ "off": "ɒf",
+ "wooden": "ˈwʊdn",
+ "gave": "ɡeɪv",
+ "bicycles": "ˈbaɪsɪklz",
+ "rid": "rɪd",
+ "mind": "maɪnd",
+ "carpenter": "ˈkɑːpəntə(r)",
+ "workshop": "ˈwɜːkʃɒp",
+ "trouble": "ˈtrʌbl",
+ "stay": "steɪ",
+ "shook": "ʃʊk",
+ "fed": "fed",
+ "these": "ðiːz",
+ "cried": "kraɪd",
+ "built": "bɪlt",
+ "grey": "ɡreɪ",
+ "lying": "ˈlaɪɪŋ",
+ "ready": "ˈredi",
+ "challenge": "ˈtʃælɪndʒ",
+ "forgotten": "fəˈɡɒtn",
+ "felt": "felt",
+ "should": "ʃʊd",
+ "noise": "nɔɪz",
+ "steady": "ˈstedi",
+ "ran": "ræn",
+ "care": "keə(r)",
+ "listen": "ˈlɪsn",
+ "heard": "hɜːd",
+ "cupboard": "ˈkʌbəd",
+ "tied": "taɪd",
+ "string": "strɪŋ",
+ "married": "ˈmærid",
+ "another": "əˈnʌðə(r)",
+ "kept": "kept",
+ "quietly": "ˈkwaɪətli",
+ "better": "ˈbetə(r)",
+ "speak": "spiːk",
+ "meters": "ˈmiːtəz",
+ "lift": "lɪft",
+ "air": "eə(r)",
+ "became": "bɪˈkeɪm",
+ "steep": "stiːp",
+ "hurt": "hɜːt",
+ "halfway": "ˌhɑːfˈweɪ",
+ "further": "ˈfɜːðə(r)",
+ "easier": "ˈiːziə(r)",
+ "seriously": "ˈsɪəriəsli",
+ "understood": "ˌʌndəˈstʊd",
+ "met": "met",
+ "perfect": "ˈpɜːfɪkt",
+ "magic": "ˈmædʒɪk",
+ "retired": "rɪˈtaɪəd",
+ "knocked": "nɒkt",
+ "row": "rəʊ",
+ "worst": "wɜːst",
+ "bring": "brɪŋ",
+ "lesson": "ˈlesn",
+ "tried": "traɪd",
+ "counted": "ˈkaʊntɪd",
+ "toward": "təˈwɔːd",
+ "whether": "ˈweðə(r)",
+ "list": "lɪst",
+ "language": "ˈlæŋɡwɪdʒ",
+ "lists": "lɪsts",
+ "yours": "jɔːz"
+};
+
 // ===== 分级阅读短文(2026-09-11 新增) =====
 // 每篇: paras=[{en,cn}];gloss=本篇通用补充词表(代词/复数等词库未收的基础词),
 // 渲染时与本句合并后传给 showWordPop,保证点词零死区。
@@ -1987,80 +2357,102 @@ const READINGS = {
   "gloss": {
    "our": "我们的",
    "teeth": "牙齿（tooth 的复数）",
-   "together": "一起"
+   "together": "一起",
+   "alarm": "闹钟",
+   "rings": "响（ring 的第三人称）",
+   "awake": "醒着的",
+   "shouts": "喊（shout）",
+   "runs": "跑（run）",
+   "cold": "冷的",
+   "hurry": "赶快",
+   "almost": "几乎",
+   "sits": "坐（sit）",
+   "tired": "累的"
   },
   "paras": [
    {
-    "en": "I get up at six.",
-    "cn": "我六点起床。"
+    "en": "My alarm rings at six. I don't want to get up.",
+    "cn": "闹钟六点响。我不想起床。"
    },
    {
-    "en": "I wash my face.",
-    "cn": "我洗脸。"
+    "en": "My son is already awake. He runs into my room.",
+    "cn": "我儿子已经醒了。他跑进我的房间。"
    },
    {
-    "en": "I brush my teeth.",
-    "cn": "我刷牙。"
+    "en": "\"Daddy! The sun is up!\" he shouts.",
+    "cn": "“爸爸！太阳出来了！”他喊。"
    },
    {
-    "en": "Then I eat breakfast.",
-    "cn": "然后我吃早饭。"
+    "en": "Okay. Now I am awake.",
+    "cn": "好吧。现在我醒了。"
    },
    {
-    "en": "I eat eggs and bread.",
-    "cn": "我吃鸡蛋和面包。"
+    "en": "I wash my face. The water is cold.",
+    "cn": "我洗脸。水是凉的。"
    },
    {
-    "en": "I drink milk.",
-    "cn": "我喝牛奶。"
+    "en": "I brush my teeth and get dressed.",
+    "cn": "我刷牙，穿好衣服。"
    },
    {
-    "en": "My son eats with me.",
-    "cn": "我儿子和我一起吃。"
+    "en": "Downstairs, my wife makes breakfast.",
+    "cn": "楼下，我妻子在做早饭。"
+   },
+   {
+    "en": "Eggs, bread, and hot milk. It smells wonderful.",
+    "cn": "鸡蛋、面包和热牛奶。闻起来真香。"
+   },
+   {
+    "en": "\"Eat fast,\" my wife says. \"You are always late.\"",
+    "cn": "“快点吃，”我妻子说。“你总是迟到。”"
+   },
+   {
+    "en": "She is right. I am always late.",
+    "cn": "她说得对。我总是迟到。"
    },
    {
     "en": "At seven, I drive to work.",
     "cn": "七点，我开车去上班。"
    },
    {
-    "en": "My office is in the city.",
-    "cn": "我的办公室在城里。"
+    "en": "The city is busy. Everyone is in a hurry.",
+    "cn": "城市很忙。每个人都在赶时间。"
    },
    {
-    "en": "I work for eight hours.",
-    "cn": "我工作八个小时。"
+    "en": "I work for eight hours. I read, write, and talk.",
+    "cn": "我工作八个小时。我读、写、交谈。"
    },
    {
-    "en": "I read and write.",
-    "cn": "我读书、写字。"
-   },
-   {
-    "en": "I talk with many people.",
-    "cn": "我和很多人交谈。"
+    "en": "Some days are good. Some days are hard.",
+    "cn": "有些日子很好。有些日子很难。"
    },
    {
     "en": "At six, I go home.",
     "cn": "六点，我回家。"
    },
    {
-    "en": "We eat dinner together.",
-    "cn": "我们一起吃晚饭。"
+    "en": "We eat dinner together. Nobody looks at a phone.",
+    "cn": "我们一起吃晚饭。没人看手机。"
    },
    {
-    "en": "We talk about our day.",
-    "cn": "我们聊各自的一天。"
+    "en": "That is my favorite hour of the day.",
+    "cn": "那是我一天中最喜欢的一小时。"
    },
    {
-    "en": "After dinner, I read a book.",
-    "cn": "晚饭后，我读一本书。"
+    "en": "After dinner, I read a book. My son sits next to me.",
+    "cn": "晚饭后，我读一本书。我儿子坐在我旁边。"
    },
    {
-    "en": "I learn English every day.",
-    "cn": "我每天学英语。"
+    "en": "I learn English every day. Even when I am tired.",
+    "cn": "我每天学英语。即使累的时候也学。"
    },
    {
     "en": "At ten, I go to bed.",
     "cn": "十点，我上床睡觉。"
+   },
+   {
+    "en": "Tomorrow, it starts again. And that is okay.",
+    "cn": "明天，一切重新开始。这样挺好。"
    }
   ]
  },
@@ -2154,8 +2546,1948 @@ const READINGS = {
     "cn": "现在我们成了好朋友。"
    }
   ]
+ },
+ "r03": {
+  "title": "The Coffee Shop",
+  "titleCn": "咖啡店",
+  "level": "入门",
+  "icon": "☕",
+  "gloss": {},
+  "paras": [
+   {
+    "en": "I walk into a coffee shop. It is eight in the morning.",
+    "cn": "我走进一家咖啡店。早上八点。"
+   },
+   {
+    "en": "\"Good morning! What can I get for you?\" the girl asks.",
+    "cn": "“早上好！您要点什么？”女孩问。"
+   },
+   {
+    "en": "\"One coffee, please,\" I say.",
+    "cn": "“一杯咖啡，谢谢，”我说。"
+   },
+   {
+    "en": "\"Small, medium, or large?\"",
+    "cn": "“小杯、中杯还是大杯？”"
+   },
+   {
+    "en": "\"Large. I need it today,\" I say.",
+    "cn": "“大杯。我今天就需要它，”我说。"
+   },
+   {
+    "en": "She laughs. \"Rough morning?\"",
+    "cn": "她笑了。“早上不顺？”"
+   },
+   {
+    "en": "\"You can say that. My son woke me up at five.\"",
+    "cn": "“可以这么说。我儿子五点把我叫醒了。”"
+   },
+   {
+    "en": "\"Then you need two coffees,\" she says.",
+    "cn": "“那你需要两杯咖啡，”她说。"
+   },
+   {
+    "en": "\"Maybe you are right.\"",
+    "cn": "“也许你说得对。”"
+   },
+   {
+    "en": "She makes my coffee. It smells wonderful.",
+    "cn": "她做我的咖啡。闻起来真香。"
+   },
+   {
+    "en": "\"Here you go. That's four dollars.\"",
+    "cn": "“给您。四美元。”"
+   },
+   {
+    "en": "I give her five. \"Keep the change.\"",
+    "cn": "我给她五美元。“不用找了。”"
+   },
+   {
+    "en": "\"Thank you! Have a good day.\"",
+    "cn": "“谢谢！祝你今天愉快。”"
+   },
+   {
+    "en": "I take a sip. It is hot and strong.",
+    "cn": "我喝了一口。又热又浓。"
+   },
+   {
+    "en": "Suddenly, the morning doesn't feel so bad.",
+    "cn": "突然，这个早晨感觉没那么糟了。"
+   }
+  ]
+ },
+ "r04": {
+  "title": "A Difficult Customer",
+  "titleCn": "难缠的客户",
+  "level": "入门",
+  "icon": "🤝",
+  "gloss": {
+   "customer": "客户",
+   "difficult": "难对付的",
+   "online": "网上",
+   "price": "价格",
+   "high": "高",
+   "deep": "深的",
+   "breath": "呼吸",
+   "quiet": "安静的",
+   "moment": "片刻",
+   "daughter": "女儿",
+   "street": "街道",
+   "understood": "明白了（understand 的过去式）",
+   "hour": "小时",
+   "listened": "听了（listen 的过去式）",
+   "paid": "付了（pay 的过去式）",
+   "smiled": "笑了（smile 的过去式）",
+   "first": "第一次",
+   "towards": "朝向"
+  },
+  "paras": [
+   {
+    "en": "The man walks into my office and sits down.",
+    "cn": "这个男人走进我的办公室，坐下。"
+   },
+   {
+    "en": "He doesn't smile. He doesn't say hello.",
+    "cn": "他不笑，也不问好。"
+   },
+   {
+    "en": "\"I saw your house online,\" he says. \"The price is too high.\"",
+    "cn": "“我在网上看到了你的房子，”他说。“价格太高了。”"
+   },
+   {
+    "en": "\"Thank you for coming,\" I say. \"Let's talk about it.\"",
+    "cn": "“谢谢您过来，”我说。“我们聊聊。”"
+   },
+   {
+    "en": "\"Two million,\" he says. \"Not one dollar more.\"",
+    "cn": "“两百万，”他说。“一分钱都不多。”"
+   },
+   {
+    "en": "The house is three million.",
+    "cn": "那房子要三百万。"
+   },
+   {
+    "en": "I take a deep breath.",
+    "cn": "我深吸一口气。"
+   },
+   {
+    "en": "\"Can I ask you something?\" I say. \"Why this house?\"",
+    "cn": "“我能问您一件事吗？”我说。“为什么是这套房子？”"
+   },
+   {
+    "en": "He is quiet for a moment.",
+    "cn": "他沉默了一会儿。"
+   },
+   {
+    "en": "\"My daughter lives on that street,\" he says. \"She has a baby now.\"",
+    "cn": "“我女儿住在那条街上，”他说。“她现在有孩子了。”"
+   },
+   {
+    "en": "Now I understand.",
+    "cn": "现在我明白了。"
+   },
+   {
+    "en": "We talk for an hour. Not about money. About his daughter.",
+    "cn": "我们聊了一个小时。不是聊钱，是聊他的女儿。"
+   },
+   {
+    "en": "In the end, he pays almost three million.",
+    "cn": "最后，他付了将近三百万。"
+   },
+   {
+    "en": "He smiles for the first time.",
+    "cn": "他第一次笑了。"
+   },
+   {
+    "en": "\"Thank you,\" he says. \"You listened.\"",
+    "cn": "“谢谢你，”他说。“你听了我说的话。”"
+   }
+  ]
+ },
+ "r05": {
+  "title": "The Old Garden",
+  "titleCn": "老人的花园",
+  "level": "进阶",
+  "icon": "🌻",
+  "gloss": {
+   "garden": "花园",
+   "grows": "种（grow）",
+   "tomatoes": "西红柿",
+   "lemon": "柠檬",
+   "tree": "树",
+   "died": "去世了（die 的过去式）",
+   "wife": "妻子",
+   "idea": "主意",
+   "climbs": "爬（climb）",
+   "wall": "墙",
+   "afraid": "害怕的",
+   "drops": "掉落（drop）",
+   "hungry": "饿的",
+   "bread": "面包",
+   "alive": "有生气的"
+  },
+  "paras": [
+   {
+    "en": "Mr. Chen is seventy years old.",
+    "cn": "陈先生七十岁了。"
+   },
+   {
+    "en": "Every morning, he works in his garden.",
+    "cn": "每天早上，他都在花园里干活。"
+   },
+   {
+    "en": "He grows tomatoes, flowers, and one small lemon tree.",
+    "cn": "他种西红柿、花，还有一棵小柠檬树。"
+   },
+   {
+    "en": "His wife died three years ago.",
+    "cn": "他的妻子三年前去世了。"
+   },
+   {
+    "en": "The garden was her idea.",
+    "cn": "这个花园是她的主意。"
+   },
+   {
+    "en": "\"She loved this garden,\" he says.",
+    "cn": "“她爱这个花园，”他说。"
+   },
+   {
+    "en": "One day, a young boy climbs over the wall.",
+    "cn": "有一天，一个小男孩翻过了墙。"
+   },
+   {
+    "en": "\"Hey! What are you doing?\" Mr. Chen shouts.",
+    "cn": "“嘿！你在干什么？”陈先生喊。"
+   },
+   {
+    "en": "The boy is afraid. He drops a tomato.",
+    "cn": "男孩害怕了。他掉了一个西红柿。"
+   },
+   {
+    "en": "\"I'm sorry,\" the boy says. \"I'm hungry.\"",
+    "cn": "“对不起，”男孩说。“我饿了。”"
+   },
+   {
+    "en": "Mr. Chen looks at him for a long time.",
+    "cn": "陈先生看了他很久。"
+   },
+   {
+    "en": "\"Come here,\" he says.",
+    "cn": "“过来，”他说。"
+   },
+   {
+    "en": "He gives the boy three tomatoes and some bread.",
+    "cn": "他给了男孩三个西红柿和一些面包。"
+   },
+   {
+    "en": "\"Next time,\" he says, \"use the door.\"",
+    "cn": "“下次，”他说，“走门。”"
+   },
+   {
+    "en": "The boy comes back every week.",
+    "cn": "男孩每个星期都回来。"
+   },
+   {
+    "en": "Now he helps Mr. Chen in the garden.",
+    "cn": "现在他在花园里帮陈先生。"
+   },
+   {
+    "en": "The garden is alive again.",
+    "cn": "花园又活过来了。"
+   }
+  ]
+ },
+ "r06": {
+  "title": "Late Again",
+  "titleCn": "又迟到了",
+  "level": "进阶",
+  "icon": "⏰",
+  "gloss": {
+   "late": "迟到的",
+   "dinner": "晚饭",
+   "own": "自己的",
+   "birthday": "生日",
+   "party": "聚会",
+   "funeral": "葬礼",
+   "laughs": "笑（laugh）",
+   "important": "重要的",
+   "client": "客户",
+   "arrives": "到达（arrive）",
+   "boss": "老板",
+   "worth": "价值",
+   "alarm clock": "闹钟",
+   "across": "穿过",
+   "stop": "停止",
+   "surprised": "惊讶的",
+   "jokes": "开玩笑（joke）",
+   "never": "从不"
+  },
+  "paras": [
+   {
+    "en": "David is always late.",
+    "cn": "大卫总是迟到。"
+   },
+   {
+    "en": "He is late for work. He is late for dinner.",
+    "cn": "他上班迟到。吃晚饭迟到。"
+   },
+   {
+    "en": "He is even late for his own birthday party.",
+    "cn": "他甚至自己的生日聚会都迟到。"
+   },
+   {
+    "en": "His wife says, \"You will be late for your own funeral.\"",
+    "cn": "他妻子说：“你连自己的葬礼都会迟到。”"
+   },
+   {
+    "en": "He laughs. But she doesn't.",
+    "cn": "他笑了。但她没有。"
+   },
+   {
+    "en": "One Monday, something important happens.",
+    "cn": "一个周一，发生了重要的事。"
+   },
+   {
+    "en": "A big client comes to his office at nine.",
+    "cn": "一个大客户九点来到他的办公室。"
+   },
+   {
+    "en": "David arrives at nine thirty.",
+    "cn": "大卫九点半才到。"
+   },
+   {
+    "en": "The client is gone.",
+    "cn": "客户已经走了。"
+   },
+   {
+    "en": "His boss calls him into her room.",
+    "cn": "他的老板把他叫进办公室。"
+   },
+   {
+    "en": "\"Do you know how much that meeting was worth?\" she asks.",
+    "cn": "“你知道那次会面值多少钱吗？”她问。"
+   },
+   {
+    "en": "\"No,\" David says.",
+    "cn": "“不知道，”大卫说。"
+   },
+   {
+    "en": "\"Two million dollars.\"",
+    "cn": "“两百万美元。”"
+   },
+   {
+    "en": "David says nothing.",
+    "cn": "大卫什么也没说。"
+   },
+   {
+    "en": "That night, he buys an alarm clock.",
+    "cn": "那天晚上，他买了一个闹钟。"
+   },
+   {
+    "en": "He puts it across the room, so he must get up to stop it.",
+    "cn": "他把它放在房间另一头，这样他必须起床才能关掉它。"
+   },
+   {
+    "en": "The next morning, he arrives at eight forty-five.",
+    "cn": "第二天早上，他八点四十五就到了。"
+   },
+   {
+    "en": "His boss looks surprised.",
+    "cn": "他的老板看起来很惊讶。"
+   },
+   {
+    "en": "\"Who are you,\" she jokes, \"and what did you do with David?\"",
+    "cn": "“你是谁，”她开玩笑说，“你把大卫怎么了？”"
+   },
+   {
+    "en": "He is never late again.",
+    "cn": "他再也不迟到了。"
+   }
+  ]
+ },
+ "r07": {
+  "title": "The Phone Call",
+  "titleCn": "深夜来电",
+  "level": "进阶",
+  "icon": "📞",
+  "gloss": {
+   "rings": "响（ring）",
+   "number": "号码",
+   "usually": "通常",
+   "answer": "接（电话）",
+   "voice": "声音",
+   "shaking": "发抖的（shake）",
+   "wrong": "出问题的",
+   "sick": "生病的",
+   "quickly": "很快地",
+   "tired": "累的",
+   "busy": "忙的",
+   "address": "地址",
+   "twenty": "二十",
+   "sleep": "睡觉",
+   "morning": "早上"
+  },
+  "paras": [
+   {
+    "en": "The phone rings at eleven at night.",
+    "cn": "电话在晚上十一点响了。"
+   },
+   {
+    "en": "I look at the number. I don't know it.",
+    "cn": "我看了看号码。我不认识。"
+   },
+   {
+    "en": "Usually I don't answer. But tonight I do.",
+    "cn": "通常我不接。但今晚我接了。"
+   },
+   {
+    "en": "\"Hello?\"",
+    "cn": "“喂？”"
+   },
+   {
+    "en": "\"Is this Mr. Wang?\" a woman asks. Her voice is shaking.",
+    "cn": "“是王先生吗？”一个女人问。她的声音在发抖。"
+   },
+   {
+    "en": "\"Yes. Who is this?\"",
+    "cn": "“是我。您是哪位？”"
+   },
+   {
+    "en": "\"I'm sorry to call so late. I got your number from a friend.\"",
+    "cn": "“很抱歉这么晚打来。我从朋友那里拿到您的号码。”"
+   },
+   {
+    "en": "\"What's wrong?\"",
+    "cn": "“出什么事了？”"
+   },
+   {
+    "en": "\"My mother is sick. We need to sell her house quickly. Can you help us?\"",
+    "cn": "“我母亲病了。我们需要尽快卖掉她的房子。您能帮我们吗？”"
+   },
+   {
+    "en": "I am tired. Tomorrow is a busy day.",
+    "cn": "我很累。明天很忙。"
+   },
+   {
+    "en": "But something in her voice makes me say yes.",
+    "cn": "但她声音里的某种东西让我说了好。"
+   },
+   {
+    "en": "\"Where is the house?\" I ask.",
+    "cn": "“房子在哪里？”我问。"
+   },
+   {
+    "en": "\"On Green Street. Number forty-two.\"",
+    "cn": "“绿街。四十二号。”"
+   },
+   {
+    "en": "Green Street. I know that street.",
+    "cn": "绿街。我知道那条街。"
+   },
+   {
+    "en": "My first office was there, twenty years ago.",
+    "cn": "二十年前，我的第一个办公室就在那里。"
+   },
+   {
+    "en": "\"Send me the address,\" I say. \"I will come tomorrow morning.\"",
+    "cn": "“把地址发给我，”我说。“我明天早上去。”"
+   },
+   {
+    "en": "\"Thank you,\" she says. \"Thank you so much.\"",
+    "cn": "“谢谢您，”她说。“太感谢了。”"
+   },
+   {
+    "en": "I don't sleep well that night.",
+    "cn": "那天晚上我没睡好。"
+   },
+   {
+    "en": "But in the morning, I go.",
+    "cn": "但早上，我去了。"
+   }
+  ]
+ },
+ "r08": {
+  "title": "The First Sale",
+  "titleCn": "第一单",
+  "level": "进阶",
+  "icon": "🔑",
+  "gloss": {
+   "sold": "卖了（sell 的过去式）",
+   "remember": "记得",
+   "small": "小的",
+   "nobody": "没有人",
+   "called": "打电话（call 的过去式）",
+   "boss": "老板",
+   "dead": "死的",
+   "weekend": "周末",
+   "cleaned": "擦了（clean 的过去式）",
+   "windows": "窗户",
+   "cut": "修剪（cut 的过去式）",
+   "grass": "草",
+   "photos": "照片",
+   "light": "光",
+   "couple": "夫妻",
+   "walked": "走过（walk 的过去式）",
+   "slowly": "慢慢地",
+   "kitchen": "厨房",
+   "sunset": "日落",
+   "nodded": "点头了（nod 的过去式）",
+   "bought": "买了（buy 的过去式）",
+   "learned": "学到了（learn 的过去式）",
+   "feeling": "感觉"
+  },
+  "paras": [
+   {
+    "en": "When I was twenty-two, I sold my first house.",
+    "cn": "我二十二岁的时候，卖出了我的第一套房子。"
+   },
+   {
+    "en": "I still remember everything about it.",
+    "cn": "我至今记得关于它的一切。"
+   },
+   {
+    "en": "The house was small and old. Nobody wanted it.",
+    "cn": "那房子又小又旧。没人想要。"
+   },
+   {
+    "en": "For six months, no one called.",
+    "cn": "六个月里，没有一个人打电话来。"
+   },
+   {
+    "en": "My boss said, \"Forget it. It's a dead house.\"",
+    "cn": "我的老板说：“算了吧。这是套死房子。”"
+   },
+   {
+    "en": "But I didn't forget it.",
+    "cn": "但我没忘。"
+   },
+   {
+    "en": "Every weekend, I went there. I cleaned the windows. I cut the grass.",
+    "cn": "每个周末，我都去那里。我擦窗户，剪草坪。"
+   },
+   {
+    "en": "I took photos in the morning light, when the house looked its best.",
+    "cn": "我在晨光里拍照，那时房子最好看。"
+   },
+   {
+    "en": "One day, a young couple came.",
+    "cn": "有一天，一对年轻夫妻来了。"
+   },
+   {
+    "en": "They walked through the rooms slowly.",
+    "cn": "他们慢慢地走过一个个房间。"
+   },
+   {
+    "en": "The woman stopped at the kitchen window.",
+    "cn": "女人在厨房的窗前停下了。"
+   },
+   {
+    "en": "\"You can see the sunset from here,\" she said.",
+    "cn": "“从这里能看到日落，”她说。"
+   },
+   {
+    "en": "Her husband smiled. \"You love it, don't you?\"",
+    "cn": "她丈夫笑了。“你喜欢它，对吧？”"
+   },
+   {
+    "en": "She nodded.",
+    "cn": "她点了点头。"
+   },
+   {
+    "en": "They bought it the next week.",
+    "cn": "他们第二周就买下了。"
+   },
+   {
+    "en": "I made very little money that day.",
+    "cn": "那天我赚得很少。"
+   },
+   {
+    "en": "But I learned something important:",
+    "cn": "但我学到了重要的一课："
+   },
+   {
+    "en": "People don't buy a house. They buy a feeling.",
+    "cn": "人们买的不是房子，是一种感觉。"
+   }
+  ]
+ },
+ "r09": {
+  "title": "The Man Who Sold His Car",
+  "titleCn": "卖掉车的人",
+  "level": "进阶",
+  "icon": "🚌",
+  "gloss": {
+   "sold": "卖了（sell 的过去式）",
+   "crazy": "疯的",
+   "terrible": "糟糕的",
+   "kilos": "公斤（kilo 的复数）",
+   "parking": "停车",
+   "lot": "场地（parking lot = 停车场）",
+   "students": "学生（student 的复数）",
+   "laughing": "在笑（laugh）",
+   "sleeping": "在睡觉（sleep）",
+   "reading": "在读书（read）",
+   "minutes": "分钟（minute 的复数）",
+   "month": "月",
+   "bank": "银行",
+   "wife": "妻子",
+   "fast": "快的"
+  },
+  "paras": [
+   {
+    "en": "Last month, my friend Li Wei sold his car.",
+    "cn": "上个月，我朋友李伟把他的车卖了。"
+   },
+   {
+    "en": "Everybody thought he was crazy. It was black, fast, and only three years old.",
+    "cn": "所有人都觉得他疯了。那车是黑色的、很快，才开了三年。"
+   },
+   {
+    "en": "\"Why?\" I asked him.",
+    "cn": "“为什么？”我问他。"
+   },
+   {
+    "en": "He smiled. \"Come with me tomorrow. I'll show you.\"",
+    "cn": "他笑了。“明天跟我来。我让你看看。”"
+   },
+   {
+    "en": "The next morning, we took the bus.",
+    "cn": "第二天早上，我们去坐公交。"
+   },
+   {
+    "en": "The bus was slow. It stopped every two minutes.",
+    "cn": "公交车很慢。每两分钟就停一次。"
+   },
+   {
+    "en": "\"This is terrible,\" I said. \"Why are we doing this?\"",
+    "cn": "“这太糟了，”我说。“我们为什么要这样？”"
+   },
+   {
+    "en": "\"Look around,\" he said.",
+    "cn": "“看看周围，”他说。"
+   },
+   {
+    "en": "I looked. An old woman was reading. Two students were laughing.",
+    "cn": "我看了看。一位老太太在看书。两个学生在笑。"
+   },
+   {
+    "en": "A man was sleeping with his mouth open.",
+    "cn": "一个男人张着嘴在睡觉。"
+   },
+   {
+    "en": "\"In my car,\" Li Wei said, \"I never saw any of this.\"",
+    "cn": "“在我的车里，”李伟说，“我从来看不到这些。”"
+   },
+   {
+    "en": "He walks forty minutes every day now.",
+    "cn": "他现在每天走四十分钟。"
+   },
+   {
+    "en": "He lost eight kilos. He reads two books a month on the bus.",
+    "cn": "他瘦了八公斤。他在公交车上一个月读两本书。"
+   },
+   {
+    "en": "\"And the money?\" I asked.",
+    "cn": "“那钱呢？”我问。"
+   },
+   {
+    "en": "\"In the bank. Not in the parking lot.\"",
+    "cn": "“在银行里。不是在停车场里。”"
+   },
+   {
+    "en": "Last week, I sold my car too.",
+    "cn": "上个星期，我也把我的车卖了。"
+   },
+   {
+    "en": "My wife thought I was crazy.",
+    "cn": "我妻子觉得我疯了。"
+   },
+   {
+    "en": "Now she takes the bus with me. We talk.",
+    "cn": "现在她和我一起坐公交。我们聊天。"
+   },
+   {
+    "en": "That is the best part.",
+    "cn": "那才是最好的部分。"
+   }
+  ]
+ },
+ "r10": {
+  "title": "The Night Market",
+  "titleCn": "夜市",
+  "level": "进阶",
+  "icon": "🏮",
+  "gloss": {
+   "market": "市场；夜市",
+   "grills": "烤架（grill 的复数）",
+   "radios": "收音机（radio 的复数）",
+   "stall": "摊位",
+   "bowls": "碗（bowl 的复数）",
+   "soup": "汤",
+   "salty": "咸的",
+   "ginger": "姜",
+   "thin": "瘦的",
+   "red light": "红光／红灯",
+   "memory": "记忆",
+   "remember": "记得",
+   "opened": "开了（open 的过去式）",
+   "stopped": "停了（stop 的过去式）",
+   "shoes": "鞋（shoe 的复数）",
+   "fish": "鱼",
+   "corner": "街角",
+   "enough": "足够的",
+   "died": "去世了（die 的过去式）"
+  },
+  "paras": [
+   {
+    "en": "When I was a boy, my father took me to the night market every Friday.",
+    "cn": "我小时候，每个星期五父亲都带我去夜市。"
+   },
+   {
+    "en": "The market opened at seven. By eight, you could not move.",
+    "cn": "夜市七点开。到了八点，你根本走不动。"
+   },
+   {
+    "en": "Smoke from the grills. Music from three different radios.",
+    "cn": "烤架的烟。三台不同收音机放的音乐。"
+   },
+   {
+    "en": "Somebody selling shoes, somebody selling fish.",
+    "cn": "有人卖鞋，有人卖鱼。"
+   },
+   {
+    "en": "My father always stopped at the same place — a small stall with a red light.",
+    "cn": "父亲总是在同一个地方停下——一个挂着红灯的小摊。"
+   },
+   {
+    "en": "The old woman there knew him. She never asked what he wanted.",
+    "cn": "那里的老太太认识他。她从不问他要什么。"
+   },
+   {
+    "en": "She just put two bowls on the table.",
+    "cn": "她只是把两个碗放在桌上。"
+   },
+   {
+    "en": "\"Eat,\" she said. \"You are too thin.\"",
+    "cn": "“吃，”她说。“你太瘦了。”"
+   },
+   {
+    "en": "He laughed every time. He was not thin at all.",
+    "cn": "他每次都笑。他一点都不瘦。"
+   },
+   {
+    "en": "I remember the soup. Hot, salty, with a little ginger.",
+    "cn": "我记得那碗汤。热、咸，带一点姜。"
+   },
+   {
+    "en": "I remember my father's face in the red light.",
+    "cn": "我记得红灯下父亲的脸。"
+   },
+   {
+    "en": "He died when I was sixteen.",
+    "cn": "我十六岁那年他去世了。"
+   },
+   {
+    "en": "Last week, I went back to that street.",
+    "cn": "上个星期，我回到那条街。"
+   },
+   {
+    "en": "The market is gone. There is a bank there now.",
+    "cn": "夜市没了。现在那里是一家银行。"
+   },
+   {
+    "en": "But I stood on the corner for a long time.",
+    "cn": "但我在那个街角站了很久。"
+   },
+   {
+    "en": "Some places live only in your memory.",
+    "cn": "有些地方只活在记忆里。"
+   },
+   {
+    "en": "And that is enough.",
+    "cn": "而这就够了。"
+   }
+  ]
+ },
+ "r11": {
+  "title": "The Wrong Train",
+  "titleCn": "坐错的火车",
+  "level": "进阶",
+  "icon": "🚆",
+  "gloss": {
+   "wrong": "错的",
+   "train": "火车",
+   "ticket": "票",
+   "south": "南方",
+   "north": "北方",
+   "station": "车站",
+   "stop": "站；停",
+   "river": "河",
+   "bridge": "桥",
+   "oranges": "橙子（orange 的复数）",
+   "wooden": "木头的",
+   "box": "箱子",
+   "ducks": "鸭子（duck 的复数）",
+   "bank": "河岸；银行",
+   "meeting": "会议",
+   "almost": "几乎",
+   "angry": "生气的",
+   "sad": "难过的",
+   "shouted": "喊了（shout 的过去式）",
+   "bought": "买了（buy 的过去式）",
+   "gave": "给了（give 的过去式）",
+   "took": "带（take 的过去式）",
+   "went": "去了（go 的过去式）",
+   "came": "来了（come 的过去式）",
+   "got": "上了（get 的过去式）",
+   "looked": "看了（look）",
+   "walked": "走了（walk）",
+   "asked": "问了（ask）",
+   "said": "说了（say 的过去式）",
+   "told": "告诉（tell 的过去式）"
+  },
+  "paras": [
+   {
+    "en": "I got on the wrong train last Tuesday.",
+    "cn": "上个星期二，我上错了火车。"
+   },
+   {
+    "en": "I didn't know until the ticket man looked at my ticket and laughed.",
+    "cn": "直到查票员看了我的票笑起来，我才知道。"
+   },
+   {
+    "en": "\"This train goes south,\" he said. \"You want north.\"",
+    "cn": "“这趟车往南走，”他说。“你要往北。”"
+   },
+   {
+    "en": "\"What do I do?\"",
+    "cn": "“那我怎么办？”"
+   },
+   {
+    "en": "\"Get off at the next stop. Wait forty minutes. Go back.\"",
+    "cn": "“下一站下车。等四十分钟。再坐回去。”"
+   },
+   {
+    "en": "I was tired and angry. I almost shouted.",
+    "cn": "我又累又气。我差点喊出来。"
+   },
+   {
+    "en": "But the next stop was a small town by a river.",
+    "cn": "但下一站是一个河边的小镇。"
+   },
+   {
+    "en": "I had forty minutes.",
+    "cn": "我有四十分钟。"
+   },
+   {
+    "en": "So I walked.",
+    "cn": "于是我就走了走。"
+   },
+   {
+    "en": "There was one street, one tea shop, and a very old bridge.",
+    "cn": "那里有一条街、一家茶馆，还有一座很旧的桥。"
+   },
+   {
+    "en": "A girl was selling oranges from a wooden box.",
+    "cn": "一个女孩在用一个木箱卖橙子。"
+   },
+   {
+    "en": "I bought three. She gave me four.",
+    "cn": "我买了三个。她给了我四个。"
+   },
+   {
+    "en": "\"You look sad,\" she said. \"Take one more.\"",
+    "cn": "“你看起来很难过，”她说。“再拿一个。”"
+   },
+   {
+    "en": "I sat by the river and ate oranges.",
+    "cn": "我坐在河边吃橙子。"
+   },
+   {
+    "en": "The water was green. Some ducks were sleeping on the bank.",
+    "cn": "水是绿的。几只鸭子在岸边睡觉。"
+   },
+   {
+    "en": "When the next train came, I almost didn't want to get on.",
+    "cn": "下一班车来的时候，我几乎不想上车了。"
+   },
+   {
+    "en": "I was two hours late for my meeting.",
+    "cn": "我开会迟到了两个小时。"
+   },
+   {
+    "en": "But I still remember that river.",
+    "cn": "但我至今记得那条河。"
+   },
+   {
+    "en": "Sometimes the wrong train takes you to the right place.",
+    "cn": "有时候，坐错的火车会把你带到对的地方。"
+   }
+  ]
+ },
+ "r12": {
+  "title": "The Dog Next Door",
+  "titleCn": "隔壁的狗",
+  "level": "进阶",
+  "icon": "🐕",
+  "gloss": {
+   "neighbor": "邻居",
+   "dog": "狗",
+   "barks": "叫（bark 的第三人称）",
+   "birds": "鸟（bird 的复数）",
+   "bicycles": "自行车（bicycle 的复数）",
+   "moon": "月亮",
+   "sleep": "睡觉",
+   "mind": "介意",
+   "rid": "摆脱（get rid of = 摆脱）",
+   "dark": "暗的",
+   "quiet": "安静的",
+   "photos": "照片（photo 的复数）",
+   "died": "去世了（die 的过去式）",
+   "hers": "她的",
+   "voice": "声音",
+   "wet": "湿的",
+   "tea": "茶",
+   "visited": "拜访了（visit 的过去式）",
+   "Sunday": "星期天",
+   "used to": "过去常常",
+   "opened": "开了（open 的过去式）",
+   "looked": "看了（look）",
+   "smiled": "笑了（smile 的过去式）",
+   "know": "知道",
+   "sat": "坐（sit 的过去式）",
+   "had": "喝了／有（have 的过去式）",
+   "went": "去了（go 的过去式）",
+   "came": "来了（come 的过去式）",
+   "said": "说了（say 的过去式）"
+  },
+  "paras": [
+   {
+    "en": "Our neighbor has a dog. Its name is Dumpling.",
+    "cn": "我们邻居养了一条狗。它叫饺子。"
+   },
+   {
+    "en": "Dumpling barks at everything. Birds. Bicycles. The moon.",
+    "cn": "饺子见什么都要叫。鸟。自行车。月亮。"
+   },
+   {
+    "en": "My wife cannot sleep. So last month, I went to talk to the neighbor.",
+    "cn": "我妻子睡不着。所以上个月，我去找邻居谈。"
+   },
+   {
+    "en": "The neighbor is an old man. He opened the door and said, \"You want me to get rid of the dog.\"",
+    "cn": "邻居是个老人。他开了门就说：“你想让我把狗弄走。”"
+   },
+   {
+    "en": "\"I want to sleep,\" I said.",
+    "cn": "“我想睡觉，”我说。"
+   },
+   {
+    "en": "He looked at me for a moment. Then he said, \"Come in.\"",
+    "cn": "他看了我一会儿。然后说：“进来吧。”"
+   },
+   {
+    "en": "The house was dark and quiet. There were photos everywhere.",
+    "cn": "屋子里又暗又静。到处都是照片。"
+   },
+   {
+    "en": "\"My wife died in March,\" he said. \"The dog was hers.\"",
+    "cn": "“我妻子三月走的，”他说。“狗是她的。”"
+   },
+   {
+    "en": "\"Every time it barks, I hear her voice.\"",
+    "cn": "“它每叫一次，我就听见她的声音。”"
+   },
+   {
+    "en": "\"She used to say, 'Dumpling, be quiet!'\"",
+    "cn": "“她以前总说：‘饺子，安静！’”"
+   },
+   {
+    "en": "He smiled. His eyes were wet.",
+    "cn": "他笑了。眼睛是湿的。"
+   },
+   {
+    "en": "I didn't know what to say.",
+    "cn": "我不知道该说什么。"
+   },
+   {
+    "en": "So I sat down and had tea with him.",
+    "cn": "于是我坐下来，和他喝了杯茶。"
+   },
+   {
+    "en": "After that, I visited him every Sunday.",
+    "cn": "从那以后，我每个星期天都去看他。"
+   },
+   {
+    "en": "Now Dumpling barks at me too. I don't mind.",
+    "cn": "现在饺子也对着我叫。我不介意了。"
+   },
+   {
+    "en": "It means he is still there.",
+    "cn": "那说明他还在。"
+   }
+  ]
+ },
+ "r13": {
+  "title": "My Father's Hands",
+  "titleCn": "父亲的手",
+  "level": "挑战",
+  "icon": "🪵",
+  "gloss": {
+   "carpenter": "木匠",
+   "tables": "桌子（table 的复数）",
+   "chairs": "椅子（chair 的复数）",
+   "doors": "门（door 的复数）",
+   "noticed": "注意到（notice 的过去式）",
+   "cuts": "伤口（cut 的复数）",
+   "ashamed": "羞愧的",
+   "soft": "软的",
+   "explained": "解释（explain 的过去式）",
+   "workshop": "作坊",
+   "dinner": "晚饭",
+   "trouble": "困难",
+   "homework": "作业",
+   "instead": "相反；代替",
+   "waited": "等了（wait 的过去式）",
+   "midnight": "午夜",
+   "understand": "理解",
+   "stay": "留下",
+   "ago": "以前",
+   "hold": "握住",
+   "cup": "杯子",
+   "shook": "发抖（shake 的过去式）",
+   "fed": "喂（feed 的过去式）",
+   "soup": "汤",
+   "sorry": "抱歉",
+   "built": "建造了（build 的过去式）",
+   "whole": "整个的",
+   "closed": "闭上了（close 的过去式）",
+   "eyes": "眼睛（eye 的复数）",
+   "cried": "哭了（cry 的过去式）",
+   "died": "去世了（die 的过去式）",
+   "summer": "夏天",
+   "looked": "看了（look）",
+   "said": "说了（say 的过去式）",
+   "asked": "问了（ask）",
+   "came": "来了（come 的过去式）",
+   "was": "是（is 的过去式）",
+   "were": "是（are 的过去式）",
+   "one": "一个",
+   "never": "从不",
+   "always": "总是",
+   "much": "很多"
+  },
+  "paras": [
+   {
+    "en": "My father was a carpenter. He made tables, chairs, and doors for forty years.",
+    "cn": "我父亲是个木匠。他做了四十年的桌子、椅子和门。"
+   },
+   {
+    "en": "His hands were the first thing you noticed. Big, hard, and always full of small cuts.",
+    "cn": "他的手是你最先注意到的东西。又大又硬，总是布满小伤口。"
+   },
+   {
+    "en": "When I was young, I was ashamed of them. Other fathers had soft hands.",
+    "cn": "我小的时候，为那双手感到难为情。别人的父亲手是软的。"
+   },
+   {
+    "en": "My father never explained. He just worked.",
+    "cn": "父亲从不解释。他只是干活。"
+   },
+   {
+    "en": "Every morning at five, he was in the workshop. Every night at nine, he came in for dinner.",
+    "cn": "每天早上五点，他就在作坊里。每天晚上九点，他才进来吃晚饭。"
+   },
+   {
+    "en": "He never spoke much. But when I had trouble with my homework, he always found time.",
+    "cn": "他话一直不多。但我作业遇到困难时，他总能找出时间。"
+   },
+   {
+    "en": "He could not help with English. He did not know one word.",
+    "cn": "他帮不了我的英语。他一个词都不认识。"
+   },
+   {
+    "en": "Instead, he sat next to me and waited. Sometimes until midnight.",
+    "cn": "但他会坐在我旁边等。有时等到半夜。"
+   },
+   {
+    "en": "\"I don't understand it,\" he said once. \"But I can stay.\"",
+    "cn": "“我看不懂，”有一次他说。“但我可以陪着。”"
+   },
+   {
+    "en": "That was thirty years ago.",
+    "cn": "那是三十年前的事了。"
+   },
+   {
+    "en": "Last summer, he could not hold a cup anymore. His hands shook.",
+    "cn": "去年夏天，他连杯子都拿不住了。他的手在抖。"
+   },
+   {
+    "en": "I held them and fed him soup.",
+    "cn": "我握住他的手，喂他喝汤。"
+   },
+   {
+    "en": "He looked at me and said, \"Sorry.\"",
+    "cn": "他看着我，说：“对不起。”"
+   },
+   {
+    "en": "For what, I asked.",
+    "cn": "为什么，我问。"
+   },
+   {
+    "en": "\"For these hands,\" he said. \"They were never good for you.\"",
+    "cn": "“为这双手，”他说。“它们从来没给你带来什么好处。”"
+   },
+   {
+    "en": "I cried in front of him for the first time.",
+    "cn": "我第一次在他面前哭了。"
+   },
+   {
+    "en": "They built my whole life.",
+    "cn": "它们撑起了我的一辈子。"
+   },
+   {
+    "en": "I told him that. He closed his eyes and smiled.",
+    "cn": "我这么告诉了他。他闭上眼睛，笑了。"
+   },
+   {
+    "en": "He died two weeks later.",
+    "cn": "两个星期后，他走了。"
+   }
+  ]
+ },
+ "r14": {
+  "title": "The Interview",
+  "titleCn": "面试",
+  "level": "挑战",
+  "icon": "💼",
+  "gloss": {
+   "waiting room": "等候室",
+   "borrowed": "借了（borrow 的过去式）",
+   "tie": "领带",
+   "shirt": "衬衫",
+   "grey": "灰白的",
+   "lying": "撒谎（lie）",
+   "truth": "真话",
+   "challenge": "挑战",
+   "manager": "经理",
+   "paper": "纸；材料",
+   "stood": "站起来（stand 的过去式）",
+   "walked": "走了（walk 的过去式）",
+   "forgotten": "忘了（forget 的过去分词）",
+   "believed": "被信任（believe 的过去分词）",
+   "felt": "感觉（feel 的过去式）",
+   "start": "开始",
+   "money": "钱",
+   "week": "星期",
+   "month": "月",
+   "somebody": "某人",
+   "nobody": "没有人",
+   "everybody": "每个人",
+   "thought": "想（think 的过去式）",
+   "ready": "准备好的",
+   "opened": "打开了（open 的过去式）",
+   "looked": "看了（look）",
+   "said": "说了（say 的过去式）",
+   "told": "告诉（tell 的过去式）",
+   "sat": "坐（sit 的过去式）",
+   "out of work": "失业"
+  },
+  "paras": [
+   {
+    "en": "There were twelve people in the waiting room. I was number nine.",
+    "cn": "等候室里有十二个人。我是九号。"
+   },
+   {
+    "en": "I had been out of work for seven months.",
+    "cn": "我已经失业七个月了。"
+   },
+   {
+    "en": "My shirt was old. I had borrowed a tie from my brother.",
+    "cn": "我的衬衫旧了。领带是跟弟弟借的。"
+   },
+   {
+    "en": "At eleven, a woman opened the door. \"Number nine?\"",
+    "cn": "十一点，一个女人开了门。“九号？”"
+   },
+   {
+    "en": "I stood up and my hands were wet.",
+    "cn": "我站起来，手心全是汗。"
+   },
+   {
+    "en": "The manager was a small woman with grey hair. She did not smile.",
+    "cn": "经理是个灰白头发的小个子女人。她没笑。"
+   },
+   {
+    "en": "She looked at my paper for a long time.",
+    "cn": "她看了我的材料很久。"
+   },
+   {
+    "en": "\"You are forty-six,\" she said. \"You have been a manager for ten years.\"",
+    "cn": "“你四十六岁，”她说。“你当了十年经理。”"
+   },
+   {
+    "en": "\"Yes.\"",
+    "cn": "“是的。”"
+   },
+   {
+    "en": "\"Why do you want this job? It is much smaller.\"",
+    "cn": "“你为什么想要这份工作？它比之前小得多。”"
+   },
+   {
+    "en": "I thought about lying. I had a good answer ready.",
+    "cn": "我考虑过撒谎。我准备好了一个漂亮的答案。"
+   },
+   {
+    "en": "Instead I said the truth.",
+    "cn": "但我还是说了实话。"
+   },
+   {
+    "en": "\"Because I need to work. And because I am good at it.\"",
+    "cn": "“因为我需要工作。也因为这件事我做得很好。”"
+   },
+   {
+    "en": "She looked up.",
+    "cn": "她抬起头。"
+   },
+   {
+    "en": "\"Everybody today told me they want a challenge,\" she said. \"Nobody said they need money.\"",
+    "cn": "“今天所有人都告诉我他们想要挑战，”她说。“没有一个人说他需要钱。”"
+   },
+   {
+    "en": "She put down my paper.",
+    "cn": "她放下我的材料。"
+   },
+   {
+    "en": "\"You start on Monday.\"",
+    "cn": "“你星期一上班。”"
+   },
+   {
+    "en": "I walked out and sat in my car for ten minutes.",
+    "cn": "我走出去，在车里坐了十分钟。"
+   },
+   {
+    "en": "Not because I was sad.",
+    "cn": "不是因为难过。"
+   },
+   {
+    "en": "Because I had forgotten how it felt to be believed.",
+    "cn": "而是因为我忘了被人相信是什么感觉。"
+   }
+  ]
+ },
+ "r15": {
+  "title": "Rain",
+  "titleCn": "雨",
+  "level": "挑战",
+  "icon": "🌧️",
+  "gloss": {
+   "rain": "雨",
+   "rice": "稻子；米",
+   "farmers": "农民（farmer 的复数）",
+   "fields": "田地（field 的复数）",
+   "sky": "天空",
+   "uncle": "叔叔／舅舅",
+   "land": "土地",
+   "noise": "声音；响动",
+   "dream": "梦",
+   "heavy": "大的；沉重的",
+   "steady": "持续的",
+   "everywhere": "到处",
+   "dancing": "跳舞（dance）",
+   "shouting": "喊（shout）",
+   "standing": "站着（stand）",
+   "still": "静止的",
+   "sick": "生病的",
+   "listen": "听",
+   "dark": "黑暗",
+   "beautiful": "美的",
+   "heard": "听到（hear 的过去式）",
+   "woke up": "醒了（wake up 的过去式）",
+   "ran": "跑（run 的过去式）",
+   "came": "来了（come 的过去式）",
+   "should": "应该",
+   "late": "晚的",
+   "year": "年",
+   "May": "五月",
+   "August": "八月",
+   "already": "已经",
+   "thin": "瘦的",
+   "Nobody": "没有人"
+  },
+  "paras": [
+   {
+    "en": "The rain came late that year. It should have come in May. It came in August.",
+    "cn": "那年的雨来晚了。本该五月来。它八月才来。"
+   },
+   {
+    "en": "By then, the rice was already yellow and thin.",
+    "cn": "到那时候，稻子已经又黄又瘦了。"
+   },
+   {
+    "en": "The farmers stood in their fields and looked at the sky.",
+    "cn": "农民们站在田里，看着天。"
+   },
+   {
+    "en": "Nobody talked much that summer.",
+    "cn": "那个夏天，大家话都不多。"
+   },
+   {
+    "en": "My uncle is seventy-two. He has worked this land since he was nine.",
+    "cn": "我叔叔七十二岁。他从九岁起就在这块地上干活。"
+   },
+   {
+    "en": "Every evening, he walked to the end of the field and stood there.",
+    "cn": "每天傍晚，他都走到田的尽头，站在那里。"
+   },
+   {
+    "en": "\"What are you doing?\" I asked.",
+    "cn": "“你在干什么？”我问。"
+   },
+   {
+    "en": "\"Waiting,\" he said.",
+    "cn": "“等，”他说。"
+   },
+   {
+    "en": "\"For how long?\"",
+    "cn": "“等多久？”"
+   },
+   {
+    "en": "\"As long as it takes.\"",
+    "cn": "“该等多久就等多久。”"
+   },
+   {
+    "en": "On the ninth of August, I woke up at night because of the noise.",
+    "cn": "八月九号那天，我半夜被响声吵醒了。"
+   },
+   {
+    "en": "It was not a dream. It was rain — heavy, steady, everywhere.",
+    "cn": "那不是梦。那是雨——又大又密，到处都是。"
+   },
+   {
+    "en": "I ran outside. My uncle was already standing in it.",
+    "cn": "我跑到外面。叔叔已经站在雨里了。"
+   },
+   {
+    "en": "He was not dancing or shouting. He was just standing still, with his face up.",
+    "cn": "他没有跳舞，也没有喊。他只是静静地站着，脸朝着天。"
+   },
+   {
+    "en": "\"You will get sick,\" I said.",
+    "cn": "“你会生病的，”我说。"
+   },
+   {
+    "en": "\"I don't care,\" he said. \"Listen.\"",
+    "cn": "“我不在乎，”他说。“你听。”"
+   },
+   {
+    "en": "So I stood there with him in the dark.",
+    "cn": "于是我就在黑暗里和他一起站着。"
+   },
+   {
+    "en": "And we listened to the rain for a long time.",
+    "cn": "我们听了很久的雨声。"
+   },
+   {
+    "en": "That is the most beautiful thing I have ever heard.",
+    "cn": "那是我听过最美的东西。"
+   }
+  ]
+ },
+ "r16": {
+  "title": "The Old Letter",
+  "titleCn": "旧信",
+  "level": "挑战",
+  "icon": "✉️",
+  "gloss": {
+   "cupboard": "柜子",
+   "letters": "信（letter 的复数）",
+   "tied": "捆着（tie 的过去分词）",
+   "string": "绳子",
+   "paper": "纸",
+   "yellow": "发黄的",
+   "married": "结婚（marry 的过去分词）",
+   "weather": "天气",
+   "cat": "猫",
+   "window": "窗户",
+   "followed": "跟着（follow 的过去式）",
+   "whole": "整个的",
+   "saving": "攒（save）",
+   "tired": "累的",
+   "answer": "回信；回答",
+   "dark": "天黑",
+   "afternoon": "下午",
+   "learned": "了解到（learn 的过去式）",
+   "better": "更好",
+   "speak": "说话",
+   "write": "写",
+   "pack": "打包",
+   "found": "找到了（find 的过去式）",
+   "kept": "留着（keep 的过去分词）",
+   "came in": "进来了",
+   "quietly": "轻声地",
+   "sat down": "坐下",
+   "until": "直到",
+   "than": "比",
+   "before": "在……之前",
+   "another": "另一个",
+   "then": "那时"
+  },
+  "paras": [
+   {
+    "en": "My mother sold our old house last year. I went back to help her pack.",
+    "cn": "去年我妈把老房子卖了。我回去帮她打包。"
+   },
+   {
+    "en": "In the back of a cupboard, I found a box of letters.",
+    "cn": "在柜子深处，我找到一盒信。"
+   },
+   {
+    "en": "They were tied with a red string. The paper was yellow and soft.",
+    "cn": "信上用一根红绳捆着。纸又黄又软。"
+   },
+   {
+    "en": "They were from my father. He wrote them before they were married.",
+    "cn": "是父亲写的。写在他们结婚之前。"
+   },
+   {
+    "en": "He was working in another city then. He wrote one letter every week for two years.",
+    "cn": "那时他在另一个城市工作。两年里他每周写一封。"
+   },
+   {
+    "en": "My father was not a talking man. When I was a child, I thought he had nothing to say.",
+    "cn": "父亲不是个爱说话的人。我小时候以为他没什么可说的。"
+   },
+   {
+    "en": "But in those letters, he wrote about the weather, about his room, about a cat that came to his window.",
+    "cn": "但在那些信里，他写天气、写他的房间、写一只来到他窗前的猫。"
+   },
+   {
+    "en": "He wrote, \"Today I saw a girl who looked like you. I followed her for a whole street before I knew it was not you.\"",
+    "cn": "他写道：“今天我看见一个女孩，很像你。我跟了她一整条街，才发现那不是你。”"
+   },
+   {
+    "en": "He wrote, \"I am saving money. Not much. But every week it is a little more.\"",
+    "cn": "他写道：“我在攒钱。不多。但每个星期都多一点。”"
+   },
+   {
+    "en": "He wrote, \"If you are tired, do not answer tonight. I will write again on Sunday.\"",
+    "cn": "他写道：“如果你累了，今晚不用回信。我星期天再写。”"
+   },
+   {
+    "en": "There were more than a hundred letters, and she had kept every one.",
+    "cn": "有一百多封信，她一封都没丢。"
+   },
+   {
+    "en": "My mother came in and saw me holding them.",
+    "cn": "我妈进来，看见我拿着那些信。"
+   },
+   {
+    "en": "\"Oh,\" she said quietly. \"Those.\"",
+    "cn": "“哦，”她轻声说。“那些啊。”"
+   },
+   {
+    "en": "She sat down next to me, and we read them together until it got dark.",
+    "cn": "她在我旁边坐下，我们一起读到天黑。"
+   },
+   {
+    "en": "I learned more about my father that afternoon than in thirty years.",
+    "cn": "那个下午，我了解到的父亲，比过去三十年都多。"
+   },
+   {
+    "en": "Some people write better than they speak.",
+    "cn": "有些人，写得比说得好。"
+   }
+  ]
+ },
+ "r17": {
+  "title": "The Mountain",
+  "titleCn": "那座山",
+  "level": "挑战",
+  "icon": "⛰️",
+  "gloss": {
+   "climb": "爬",
+   "mountain": "山",
+   "meters": "米（meter 的复数）",
+   "lift": "电梯",
+   "floor": "楼层",
+   "path": "小路",
+   "wide": "宽的",
+   "cool": "凉的",
+   "narrow": "窄的",
+   "steep": "陡的",
+   "legs": "腿（leg 的复数）",
+   "hurt": "疼（hurt 的过去式）",
+   "heart": "心脏",
+   "halfway": "半路",
+   "rock": "石头",
+   "further": "更远",
+   "easier": "更容易",
+   "worth": "值得",
+   "view": "风景",
+   "seriously": "认真地",
+   "understood": "明白了（understand 的过去式）",
+   "remember": "记得",
+   "decided": "决定了（decide 的过去式）",
+   "laughed": "笑了（laugh 的过去式）",
+   "wanted": "想要（want 的过去式）",
+   "tried": "尝试了（try 的过去式）",
+   "asked": "问了（ask）",
+   "stopped": "停下（stop 的过去式）",
+   "thought": "想（think 的过去式）",
+   "came": "来了（come 的过去式）",
+   "stood": "站（stand 的过去式）",
+   "became": "变得（become 的过去式）",
+   "spring": "春天",
+   "famous": "著名的",
+   "air": "空气",
+   "wind": "风"
+  },
+  "paras": [
+   {
+    "en": "Last spring, I decided to climb a mountain. It was not a famous one, only 1,200 meters.",
+    "cn": "去年春天，我决定去爬一座山。不是什么名山，只有一千二百米。"
+   },
+   {
+    "en": "I told my friends. One of them laughed. \"You? You take the lift to the third floor.\"",
+    "cn": "我告诉了朋友。其中一个笑了。“你？你上三楼都要坐电梯。”"
+   },
+   {
+    "en": "He was not wrong. But I wanted to try.",
+    "cn": "他说得没错。但我想试一试。"
+   },
+   {
+    "en": "The first thirty minutes were easy. The path was wide and the air was cool.",
+    "cn": "前半个小时很轻松。路很宽，空气很凉。"
+   },
+   {
+    "en": "After an hour, the path became narrow and steep. My legs hurt. My heart was loud.",
+    "cn": "一个小时后，路变窄变陡了。腿疼。心跳得厉害。"
+   },
+   {
+    "en": "At the halfway point, I sat on a rock and wanted to go down.",
+    "cn": "走到一半，我坐在一块石头上，想下山。"
+   },
+   {
+    "en": "An old man came down the path. He was walking slowly but steadily.",
+    "cn": "一个老人从上面走下来。他走得很慢，但很稳。"
+   },
+   {
+    "en": "\"How much further?\" I asked.",
+    "cn": "“还有多远？”我问。"
+   },
+   {
+    "en": "\"Two hours,\" he said. \"But it is easier than this part.\"",
+    "cn": "“两个小时，”他说。“但比这段好走。”"
+   },
+   {
+    "en": "\"Is it worth it?\"",
+    "cn": "“值得吗？”"
+   },
+   {
+    "en": "He stopped and thought about my question seriously.",
+    "cn": "他停下来，认真地想了想我这个问题。"
+   },
+   {
+    "en": "\"The view is good,\" he said. \"But that is not why I come.\"",
+    "cn": "“风景是不错，”他说。“但我不是为了风景来的。”"
+   },
+   {
+    "en": "\"Then why?\"",
+    "cn": "“那是为什么？”"
+   },
+   {
+    "en": "\"Because at the top, I remember who I am.\"",
+    "cn": "“因为在山顶上，我会想起我是谁。”"
+   },
+   {
+    "en": "I did not understand him then.",
+    "cn": "那时我没听懂。"
+   },
+   {
+    "en": "Three hours later, I stood at the top.",
+    "cn": "三个小时后，我站在了山顶。"
+   },
+   {
+    "en": "There was nothing there. No shop, no flag, no other people.",
+    "cn": "上面什么都没有。没有商店，没有旗子，没有别人。"
+   },
+   {
+    "en": "Just wind, and a very long way down.",
+    "cn": "只有风，和一条很长的下山路。"
+   },
+   {
+    "en": "And I understood.",
+    "cn": "而我明白了。"
+   }
+  ]
+ },
+ "r18": {
+  "title": "Ten Years",
+  "titleCn": "十年",
+  "level": "挑战",
+  "icon": "📅",
+  "gloss": {
+   "classmate": "同学",
+   "simple": "简单的",
+   "still": "仍然",
+   "laughed": "笑了（laugh 的过去式）",
+   "lazy": "懒的",
+   "method": "方法",
+   "perfect": "完美的",
+   "rule": "规则",
+   "magic": "神奇的",
+   "almost": "几乎",
+   "feeling": "感觉",
+   "finished": "读完了（finish 的过去式）",
+   "famous": "著名的",
+   "textbooks": "课本（textbook 的复数）",
+   "opened": "打开（open 的过去式）",
+   "waiting": "等待（wait）",
+   "begin": "开始",
+   "enough": "足够的",
+   "January": "一月",
+   "March": "三月",
+   "because": "因为",
+   "without": "没有",
+   "same": "同样的",
+   "week": "星期",
+   "month": "月",
+   "year": "年",
+   "ago": "以前",
+   "met": "遇见（meet 的过去式）",
+   "asked": "问了（ask）",
+   "said": "说了（say 的过去式）",
+   "stopped": "停了（stop 的过去式）",
+   "started": "开始了（start 的过去式）",
+   "bought": "买了（buy 的过去式）",
+   "right": "对的",
+   "way": "路；方式",
+   "home": "家",
+   "made": "定了（make 的过去式）",
+   "thirty": "三十",
+   "minutes": "分钟（minute 的复数）"
+  },
+  "paras": [
+   {
+    "en": "Ten years ago, I met an old classmate in the street. He asked me a simple question.",
+    "cn": "十年前，我在街上遇到一个老同学。他问了我一个很简单的问题。"
+   },
+   {
+    "en": "\"Are you still learning English?\"",
+    "cn": "“你还在学英语吗？”"
+   },
+   {
+    "en": "I said yes.",
+    "cn": "我说是。"
+   },
+   {
+    "en": "He laughed. \"You said that ten years ago.\"",
+    "cn": "他笑了。“你十年前就这么说。”"
+   },
+   {
+    "en": "I laughed too. But on the way home, I stopped laughing.",
+    "cn": "我也笑了。但在回家的路上，我笑不出来了。"
+   },
+   {
+    "en": "He was right. I had been \"learning English\" for ten years, and I could not read a book.",
+    "cn": "他说得对。我“学英语”学了十年，却读不了一本书。"
+   },
+   {
+    "en": "I started every January and stopped every March.",
+    "cn": "我每年一月开始，每年三月停下。"
+   },
+   {
+    "en": "I bought textbooks and never opened them twice.",
+    "cn": "我买课本，但从来没翻开第二次。"
+   },
+   {
+    "en": "I was not lazy. I was waiting for a good method.",
+    "cn": "我不是懒。我是在等一个好方法。"
+   },
+   {
+    "en": "I was waiting for the perfect day to begin.",
+    "cn": "我是在等一个完美的开始的日子。"
+   },
+   {
+    "en": "That night, I made one rule: thirty minutes a day. No more, no less.",
+    "cn": "那天晚上，我定了一条规矩：每天三十分钟。不多，不少。"
+   },
+   {
+    "en": "Not because thirty minutes is magic. Because it is small enough that I cannot say no.",
+    "cn": "不是因为三十分钟有什么神奇。而是因为它小到我无法拒绝。"
+   },
+   {
+    "en": "The first month was easy. The third month was hard. The eighth month, I almost stopped.",
+    "cn": "第一个月很轻松。第三个月很难。第八个月，我差点停下。"
+   },
+   {
+    "en": "But a rule is not a feeling. A rule is a rule.",
+    "cn": "但规矩不是感觉。规矩就是规矩。"
+   },
+   {
+    "en": "Last week, I finished my first English book. It was not a famous one. It took me five months.",
+    "cn": "上个星期，我读完了我的第一本英文书。不是什么名著。我读了五个月。"
+   },
+   {
+    "en": "But I finished it.",
+    "cn": "但我读完了。"
+   },
+   {
+    "en": "If you are reading this, you can do the same.",
+    "cn": "如果你正在读这篇，你也能做到。"
+   },
+   {
+    "en": "Not in ten years. In one year, thirty minutes at a time.",
+    "cn": "不用十年。一年就够，一次三十分钟。"
+   }
+  ]
+ },
+ "r19": {
+  "title": "The Teacher",
+  "titleCn": "老师",
+  "level": "挑战",
+  "icon": "🍎",
+  "gloss": {
+   "taught": "教（teach 的过去式）",
+   "grammar": "语法",
+   "rule": "规则",
+   "heart": "心（by heart = 背下来）",
+   "retired": "退休了（retire 的过去式）",
+   "wife": "妻子",
+   "died": "去世了（die 的过去式）",
+   "knocked": "敲（knock 的过去式）",
+   "row": "排",
+   "worst": "最差的",
+   "homework": "作业",
+   "failed": "不及格（fail 的过去式）",
+   "passed": "通过了（pass 的过去式）",
+   "village": "村子",
+   "ground": "地面",
+   "explain": "解释",
+   "preparing": "准备（prepare）",
+   "lesson": "课",
+   "weeks": "星期（week 的复数）",
+   "remember": "记得",
+   "beside": "在……旁边",
+   "twenty-five": "二十五",
+   "children": "孩子们（child 的复数）",
+   "enough": "足够的",
+   "best": "最好的",
+   "stood up": "站起来",
+   "bring": "带来",
+   "tonight": "今晚",
+   "until": "直到",
+   "June": "六月",
+   "July": "七月",
+   "October": "十月",
+   "school": "学校",
+   "town": "镇",
+   "everybody": "每个人",
+   "every": "每个"
+  },
+  "paras": [
+   {
+    "en": "Mr. Huang taught English for thirty-five years. He was famous in our town.",
+    "cn": "黄老师教了三十五年英语。他在我们镇上很有名。"
+   },
+   {
+    "en": "Everybody said he knew every grammar rule by heart.",
+    "cn": "大家都说他把每条语法规则都背下来了。"
+   },
+   {
+    "en": "He retired in June. In July, his wife died.",
+    "cn": "他六月退休。七月，他妻子走了。"
+   },
+   {
+    "en": "After that, he stopped leaving the house. His son called him every day, but he did not answer much.",
+    "cn": "那以后，他不再出门。他儿子每天打电话，但他话很少。"
+   },
+   {
+    "en": "One morning in October, a young woman knocked on his door.",
+    "cn": "十月的一个早上，一个年轻女人敲了他的门。"
+   },
+   {
+    "en": "She was maybe twenty-five, with a small boy beside her.",
+    "cn": "她大概二十五岁，身边带着一个小男孩。"
+   },
+   {
+    "en": "\"Mr. Huang,\" she said. \"Do you remember me? I sat in the back row. I was the worst student you ever had.\"",
+    "cn": "“黄老师，”她说。“您记得我吗？我坐在最后一排。我是您教过最差的学生。”"
+   },
+   {
+    "en": "He looked at her for a long time.",
+    "cn": "他看了她很久。"
+   },
+   {
+    "en": "\"I remember,\" he said. \"You never did your homework.\"",
+    "cn": "“我记得，”他说。“你从来不做作业。”"
+   },
+   {
+    "en": "She laughed. \"I failed your class twice.\"",
+    "cn": "她笑了。“您的课我挂过两次。”"
+   },
+   {
+    "en": "\"Three times,\" he said.",
+    "cn": "“三次，”他说。"
+   },
+   {
+    "en": "\"I passed in the end. And now I teach English too.\"",
+    "cn": "“我最后过了。现在我也教英语。”"
+   },
+   {
+    "en": "His face changed.",
+    "cn": "他的表情变了。"
+   },
+   {
+    "en": "\"Where?\"",
+    "cn": "“在哪里？”"
+   },
+   {
+    "en": "\"At the village school. Twenty-eight children. And I am not good enough.\"",
+    "cn": "“在村小。二十八个孩子。可我教得不够好。”"
+   },
+   {
+    "en": "She looked at the ground. \"I can't explain grammar the way you did.\"",
+    "cn": "她看着地面。“我没法像您那样讲语法。”"
+   },
+   {
+    "en": "Mr. Huang stood up for the first time in weeks.",
+    "cn": "黄老师几个星期以来第一次站了起来。"
+   },
+   {
+    "en": "\"Bring your book,\" he said. \"We will start tonight.\"",
+    "cn": "“把书带来，”他说。“我们今晚就开始。”"
+   },
+   {
+    "en": "He taught her for two years. She is the best teacher in that school now.",
+    "cn": "他教了她两年。现在她是那所学校最好的老师。"
+   },
+   {
+    "en": "And on the day he died, he was still preparing her lesson.",
+    "cn": "而他去世那天，还在给她备课。"
+   }
+  ]
+ },
+ "r20": {
+  "title": "The First Page",
+  "titleCn": "第一页",
+  "level": "挑战",
+  "icon": "📘",
+  "gloss": {
+   "difficult": "难的",
+   "hard way": "艰难的方式（the hard way = 吃了苦头才学会）",
+   "counted": "数了（count 的过去式）",
+   "circled": "圈了（circle 的过去式）",
+   "however": "然而",
+   "toward": "朝向",
+   "whether": "是否",
+   "although": "虽然",
+   "special": "特别的",
+   "nobody": "没有人",
+   "list": "清单",
+   "lists": "清单（list 的复数）",
+   "stories": "故事（story 的复数）",
+   "enters": "进入（enter）",
+   "language": "语言",
+   "really": "真正地",
+   "slow": "慢的",
+   "reader": "读者",
+   "meet": "遇到",
+   "book": "书",
+   "begins": "开始（begin）",
+   "open": "打开",
+   "yours": "你的",
+   "tonight": "今晚",
+   "tomorrow": "明天",
+   "again": "再一次",
+   "every": "每个",
+   "page": "页",
+   "thinking": "思考（think）",
+   "look up": "查（字典）",
+   "told": "告诉（tell 的过去式）",
+   "stopped": "停下（stop 的过去式）",
+   "tried": "尝试（try 的过去式）",
+   "knew": "认识（know 的过去式）",
+   "closed": "合上了（close 的过去式）",
+   "changed": "改变了（change 的过去式）",
+   "learned": "学会了（learn 的过去式）",
+   "uses": "使用（use）",
+   "teaches": "教（teach）",
+   "came back": "回来了"
+  },
+  "paras": [
+   {
+    "en": "Every book is difficult on page one.",
+    "cn": "每本书的第一页都很难。"
+   },
+   {
+    "en": "I learned this the hard way. The first English book I tried to read took me three days to finish one page.",
+    "cn": "这一点我是吃了苦头才明白的。我试着读的第一本英文书，一页读了我三天。"
+   },
+   {
+    "en": "I counted the words I did not know. There were forty-two.",
+    "cn": "我数了数不认识的词。有四十二个。"
+   },
+   {
+    "en": "I closed the book and did not open it for a week.",
+    "cn": "我合上书，一个星期没再打开。"
+   },
+   {
+    "en": "Then I changed something. I stopped counting.",
+    "cn": "后来我改了一件事。我不数了。"
+   },
+   {
+    "en": "I told myself one rule: read to the end of the page, and do not look up every word.",
+    "cn": "我给自己定了一条规矩：读到这一页读完，不要每个词都查。"
+   },
+   {
+    "en": "Only circle the words that come back again and again.",
+    "cn": "只圈那些反复出现的词。"
+   },
+   {
+    "en": "On page one, I circled twelve. By page ten, I knew eight of them without thinking.",
+    "cn": "第一页我圈了十二个。到第十页，其中八个我已经不用想就认识了。"
+   },
+   {
+    "en": "They were not special words. They were \"however\", \"toward\", \"whether\", \"although\".",
+    "cn": "它们不是什么特别的词。它们是 however、toward、whether、although。"
+   },
+   {
+    "en": "Small words. Every book uses them. Nobody teaches them in a list.",
+    "cn": "小词。每本书都在用。却没人在单词表里教它们。"
+   },
+   {
+    "en": "That is how a language really enters you — not in lists, but again and again, in stories.",
+    "cn": "语言就是这样真正进入你身体的——不是靠单词表，而是靠故事里一次又一次的相遇。"
+   },
+   {
+    "en": "I am still a slow reader. I still meet words I do not know.",
+    "cn": "我读得还是很慢。我还是会遇到不认识的词。"
+   },
+   {
+    "en": "But page one is no longer difficult.",
+    "cn": "但第一页已经不难了。"
+   },
+   {
+    "en": "It is just where every book begins.",
+    "cn": "它只是每本书开始的地方。"
+   },
+   {
+    "en": "So open yours tonight.",
+    "cn": "所以今晚就打开你的那本吧。"
+   },
+   {
+    "en": "Thirty minutes. One page.",
+    "cn": "三十分钟。一页。"
+   },
+   {
+    "en": "Then tomorrow, page two.",
+    "cn": "然后明天，第二页。"
+   }
+  ]
  }
-};
+};;
 
 const FORMS_MAP = {"bills":"bill","blocks":"block","breathing":"breathe","cards":"card","cars":"car","cleaning":"clean","closing":"close","coffees":"coffee","colors":"color","comes":"come","coming":"come","cooking":"cook","coughing":"cough","dishes":"dish","does":"do","eyes":"eye","fitting":"fit","goes":"go","hands":"hand","heading":"head","hobbies":"hobby","keys":"key","lately":"late","let's":"let","lived":"live","looking":"look","loves":"love","missed":"miss","months":"month","movies":"movie","names":"name","nearest":"near","needs":"need","ordered":"order","plans":"plan","playing":"play","prices":"price","raining":"rain","really":"real","repairs":"repair","shipping":"ship","sleeping":"sleep","slower":"slow","smaller":"small","snowing":"snow","sports":"sport","started":"start","stops":"stop","stronger":"strong","taking":"take","talking":"talk","waiting":"wait","wanted":"want","watching":"watch","worked":"work","years":"year"};
 const IPA_EXTRA = {
@@ -3936,6 +6268,9 @@ const LOW_QUALITY_KEYWORDS = [
   })();
 
   function normKey(s) { return String(s || '').toLowerCase().replace(/[’]/g, "'").replace(/[^a-z']/g, ''); }
+  // 基础词表索引(键做 normKey 归一,连字符/大小写都能命中)
+  const BASE_MAP = (function () { const m = {}; for (const k in (typeof BASE_CN !== 'undefined' ? BASE_CN : {})) m[normKey(k)] = BASE_CN[k]; return m; })();
+  const BASE_IPA_MAP = (function () { const m = {}; for (const k in (typeof BASE_IPA !== 'undefined' ? BASE_IPA : {})) m[normKey(k)] = BASE_IPA[k]; return m; })();
 
   // ---- 词形还原候选(规则推导,命中即用) ----
   function lemmaCandidates(w) {
@@ -3965,6 +6300,7 @@ const LOW_QUALITY_KEYWORDS = [
     for (const c of pool) {
       if (IPA_MAP[c]) return IPA_MAP[c];
       if (typeof IPA_EXTRA !== 'undefined' && IPA_EXTRA[c]) return IPA_EXTRA[c];
+      if (BASE_IPA_MAP[c]) return BASE_IPA_MAP[c];
     }
     return '';
   }
@@ -3980,8 +6316,10 @@ const LOW_QUALITY_KEYWORDS = [
       if (sentG) for (const k in sentG) if (normKey(k) === c) return { cn: sentG[k], via: 'form', lemma: c };
       if (GLOSS_MAP[c] !== undefined) return { cn: GLOSS_MAP[c], via: 'form', lemma: c };
       if (EN2CN[c]) return { cn: EN2CN[c], via: 'form', lemma: c };
+      if (BASE_MAP[c]) return { cn: BASE_MAP[c], via: 'base', lemma: c };
     }
     if (EN2CN[w]) return { cn: EN2CN[w], via: 'vocab' };
+    if (BASE_MAP[w]) return { cn: BASE_MAP[w], via: 'base' };
     return null;
   }
 
