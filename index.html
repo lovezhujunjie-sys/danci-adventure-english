@@ -62,6 +62,18 @@
   .pd-goal-bar { height: 8px; background: var(--card); border-radius: 4px; overflow: hidden; }
   .pd-goal-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #d97757, #e89878); border-radius: 4px; transition: width 0.5s; }
 
+  /* ---- ⏱️ 今日 30 分钟打卡(2026-09-11 新增) ---- */
+  .m30 { background: linear-gradient(135deg, var(--soft), var(--soft2)); border-radius: 24px; padding: 14px 16px; margin-bottom: 18px; }
+  .m30-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+  .m30-t { font-size: 14px; font-weight: 700; color: var(--soft-ink); }
+  .m30-v { font-size: 13px; font-weight: 700; color: #d97757; font-variant-numeric: tabular-nums; }
+  .m30-bar { height: 8px; background: var(--card); border-radius: 4px; overflow: hidden; }
+  .m30-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #d97757, #e89878); border-radius: 4px; transition: width 0.5s; }
+  .m30-sub { font-size: 11px; color: var(--soft-ink); margin-top: 7px; line-height: 1.5; }
+  .m30.done { background: linear-gradient(135deg, #e8f8ef, #d6f2e3); }
+  .m30.done .m30-t, .m30.done .m30-sub { color: #2f8f5f; }
+  .m30.done .m30-fill { background: linear-gradient(90deg, #34ab74, #5fd39a); }
+
   /* 模式大卡片 */
   .mode-cards {
     display: grid; grid-template-columns: 1fr 1fr;
@@ -1299,6 +1311,16 @@
           <span class="goal-opt" data-goal="50">50</span>
         </div>
       </div>
+    </div>
+
+    <!-- ⏱️ 今日 30 分钟打卡(2026-09-11 新增) -->
+    <div class="m30" id="m30">
+      <div class="m30-top">
+        <span class="m30-t">⏱️ 今日 30 分钟</span>
+        <span class="m30-v" id="m30-val">0 / 30 分钟</span>
+      </div>
+      <div class="m30-bar"><div class="m30-fill" id="m30-fill"></div></div>
+      <div class="m30-sub" id="m30-sub">今天还没开始 —— 打开任意一个模式，时间自动开始算</div>
     </div>
 
     <div class="home-entries">
@@ -6659,6 +6681,8 @@ const LOW_QUALITY_KEYWORDS = [
   function showScreen(id) {
     window.speechSynthesis && window.speechSynthesis.cancel();
     TOP_SCREENS.forEach(s => { const el = document.getElementById(s); if (el) el.classList.toggle("hidden", s !== id); });
+    window.__curScreen = id;                       // 供「今日30分钟」计时判断是否在学习界面
+    if (id === "start-screen" && window.renderM30) window.renderM30();
     window.scrollTo(0, 0);
   }
   function backHome() { showScreen("start-screen"); if (window.updateDashboard) window.updateDashboard(); }
@@ -7271,7 +7295,7 @@ const LOW_QUALITY_KEYWORDS = [
   }
 
   function defaults() {
-    return { learned: {}, streak: 0, lastDay: '', todayCount: 0, todayDay: '', goal: 20,
+    return { learned: {}, streak: 0, lastDay: '', todayCount: 0, todayDay: '', goal: 20, todaySec: 0,
              notebook: {}, history: {}, totalStudied: 0, gamesPlayed: 0, perfectQuiz: 0,
              notebookGraduated: 0 };
   }
@@ -7297,6 +7321,8 @@ const LOW_QUALITY_KEYWORDS = [
     if (progress.todayDay !== today) {
       // 新的一天
       progress.todayCount = 0;
+      progress.todaySec = 0;        // 学习时长也归零(跨天自动重置)
+      progress._unsavedSec = 0;
       progress.todayDay = today;
     }
     saveProgress(progress);
@@ -7334,6 +7360,63 @@ const LOW_QUALITY_KEYWORDS = [
     bumpEngagement();
     saveProgress(progress);
     updateDashboard();
+  };
+
+  // ===== ⏱️ 今日学习时长(2026-09-11 新增:「今日30分钟」打卡) =====
+  // 设计原则:**只算人真的在学的时长** —— 三个条件同时满足才走表:
+  //   ① 当前在学习界面(非首页/成就页) ② 页面可见(切走/锁屏不算) ③ 2 分钟内有操作(挂机不算)
+  const DAILY_MIN_TARGET = 30;      // 分钟
+  const IDLE_LIMIT_MS = 120000;     // 2 分钟无操作即停表
+  let _lastAct = Date.now(), _lastTick = Date.now();
+  ["click","keydown","touchstart","input","scroll","pointerdown"].forEach(ev =>
+    document.addEventListener(ev, () => { _lastAct = Date.now(); }, { passive: true, capture: true }));
+
+  function _isStudying() {
+    const s = window.__curScreen;
+    if (!s || s === "start-screen" || s === "achv-screen") return false;
+    return document.visibilityState === "visible";
+  }
+  window.getTodaySec = function () { checkDay(); return progress.todaySec || 0; };
+
+  function _tickTime() {
+    const now = Date.now();
+    // 单次最多记 30 秒:防笔记本合盖/休眠后时间跳变,凭空灌进去一堆分钟
+    const dt = Math.min(Math.round((now - _lastTick) / 1000), 30);
+    _lastTick = now;
+    if (dt <= 0 || !_isStudying()) return;
+    if (now - _lastAct > IDLE_LIMIT_MS) return;
+    checkDay();
+    progress.todaySec = (progress.todaySec || 0) + dt;
+    progress._unsavedSec = (progress._unsavedSec || 0) + dt;
+    if (progress._unsavedSec >= 30) { progress._unsavedSec = 0; saveProgress(progress); }
+    if (window.renderM30) window.renderM30();
+  }
+  setInterval(_tickTime, 5000);
+
+  // 切走/关页时立刻结算一次,别丢最后那几十秒
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") { _tickTime(); saveProgress(progress); }
+    else { _lastTick = Date.now(); }
+  });
+  window.addEventListener("pagehide", () => { _tickTime(); saveProgress(progress); });
+
+  window.renderM30 = function () {
+    const card = document.getElementById("m30");
+    if (!card) return;
+    const sec = window.getTodaySec();
+    const total = DAILY_MIN_TARGET * 60;
+    const done = sec >= total;
+    const v = document.getElementById("m30-val");
+    if (v) v.textContent = Math.floor(sec / 60) + " / " + DAILY_MIN_TARGET + " 分钟";
+    const f = document.getElementById("m30-fill");
+    if (f) f.style.width = Math.min(100, Math.round(sec / total * 100)) + "%";
+    const sub = document.getElementById("m30-sub");
+    if (sub) {
+      if (done) sub.textContent = "✅ 今天达标了，保持住 —— 习惯比强度重要";
+      else if (sec < 60) sub.textContent = "今天还没开始 —— 打开任意一个模式，时间自动开始算";
+      else sub.textContent = "还差 " + Math.ceil((total - sec) / 60) + " 分钟 · 只算真在学的时长（切走页面 / 挂机不计）";
+    }
+    card.classList.toggle("done", done);
   };
 
   // ===== 生词本 + 间隔复习 (SRS) =====
@@ -7439,9 +7522,10 @@ const LOW_QUALITY_KEYWORDS = [
 
   // 页面加载后更新一次
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', window.updateDashboard);
+    document.addEventListener('DOMContentLoaded', function () { window.updateDashboard(); window.renderM30(); });
   } else {
     window.updateDashboard();
+    window.renderM30();
   }
 })();
 </script>
