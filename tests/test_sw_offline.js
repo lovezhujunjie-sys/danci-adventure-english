@@ -18,6 +18,14 @@
 //    ② 模式卡只有 map/pattern/reading/sentence 四个，**没有 vocab**。
 //    ③ 点了某个模块后首页被隐藏（.mode-card 不可见），必须先 reload 回首页再点下一个。
 //    ④ 选择器别凭印象：词库没有 .word-card，阅读的卡片真名是 .rd-book。
+// 🔴 2026-09-11 补：这一行原来**漏了** —— 文件里第 33 行直接用 chromium，
+//    却从没 require 过 playwright-core。也就是说这个测试从提交起就没跑起来过，
+//    一执行就 `ReferenceError: chromium is not defined`。
+//    而 `run_expansion.sh` 第 ⑧ 段末尾有个 `true` 兜底，把失败吞成了"全链 ✅ 完成"——
+//    于是"离线缓存有回归保护"这句话一直是**没有依据的**。
+//    ⚠️ 教训：**测试没真跑过，就等于没有测试**；看到"✅ 完成"要去看里面每个测试的
+//       实际输出，不能只看退出码（退出码会被人为兜平）。
+const { chromium } = require('playwright-core');
 const path=require('path'), os=require('os');
 const CHROME = path.join(os.homedir(),'Library/Caches/ms-playwright/chromium-1228/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing');
 const URL='http://127.0.0.1:8899/index.html';

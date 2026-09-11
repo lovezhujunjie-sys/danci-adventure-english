@@ -11,7 +11,7 @@ function lit(name){
 }
 const VOCAB=lit('VOCAB'),READINGS=lit('READINGS'),SENTENCES=lit('SENTENCES'),
       FORMS_MAP=lit('FORMS_MAP'),IPA_MAP=lit('IPA_MAP'),IPA_EXTRA=lit('IPA_EXTRA'),
-      BASE_CN=lit('BASE_CN'),BASE_IPA=lit('BASE_IPA');
+      BASE_CN=lit('BASE_CN'),BASE_IPA=lit('BASE_IPA'),PATTERNS=lit('PATTERNS');
 const normKey=s=>String(s||'').toLowerCase().replace(/[’]/g,"'").replace(/[^a-z']/g,'');
 const EN2CN={};Object.keys(VOCAB).forEach(k=>(VOCAB[k].words||[]).forEach(w=>{if(EN2CN[w.en]===undefined)EN2CN[w.en]=w.cn;}));
 const GLOSS_MAP={};
@@ -41,6 +41,14 @@ function scan(txt,src,extraGloss){
 console.log('=== 用真身链核对 ===');
 Object.keys(SENTENCES).forEach(k=>(SENTENCES[k].items||[]).forEach(it=>scan(it.en,'句库',it.g)));
 Object.keys(READINGS).forEach(k=>READINGS[k].paras.forEach(p=>scan(p.en,k,Object.assign({},READINGS[k].gloss,p.g||{}))));
+// 🔴 句型骨架 2026-09-11 起**也能点词了**（老曾提的需求）：
+//    它从「不可点的纯文本」变成了真的点词区（.pat-frame .w / .pat-sentence .w），
+//    所以死区必须一起查 —— 否则「加了点词功能」等于「开了新的死区口子」而没人知道。
+//    骨架和槽位分开标，是因为它们渲染路径不同（骨架走 sentHTML，槽位走 .hl 高亮段）。
+Object.keys(PATTERNS).forEach(k=>(PATTERNS[k].items||[]).forEach(p=>{
+  scan(p.frame,'句型骨架·骨架');
+  (p.slots||[]).forEach(s=>scan(s.en,'句型骨架·槽位'));
+}));
 console.log('  缺音标 '+mI.size+' 个: '+[...mI].join(', '));
 console.log('  缺释义 '+mG.size+' 个: '+[...mG].join(', '));
 console.log('\n=== separate 走真身链的结果 ===');

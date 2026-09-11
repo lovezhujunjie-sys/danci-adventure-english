@@ -4,3 +4,5 @@
 tools/.*cache*.json
 tools/*.bak
 /tmp_probe*.log
+# 跑 py_compile 会掉这个，是生成物不是源码
+__pycache__/

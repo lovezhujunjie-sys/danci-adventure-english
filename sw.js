@@ -17,7 +17,10 @@
 //
 // 🔴 整个 App 只有一个文件：index.html 里**零外部引用**（实测无 <link>、无 CDN 外链），
 //    所以缓存清单就一条，不存在「缓存了 HTML 却没缓存 CSS」那种半吊子状态。
-const VERSION = 'danci-2026-09-11';
+// 🔴 每次改 index.html **都要顶这个版本号**：不顶的话老缓存不会被清，
+//    SWR 又只保证"再打开一次才更新"，用户会以为新版没生效。
+//    2026-09-11 v2：词库 3143→5000、主题 41→51，顺带修掉界面 4 处写死的旧数字。
+const VERSION = 'danci-2026-09-11b';
 const INDEX = new URL('./index.html', self.location.href).href;
 
 self.addEventListener('install', e => {

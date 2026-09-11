@@ -18,10 +18,37 @@ src = open(TOOLS + '/fetch_ipa.py', encoding='utf-8').read()
 ns = {'re': re, 'json': json, 'time': time, 'urllib': urllib, 'os': os, 'HOME': HOME,
       'API': 'https://en.wiktionary.org/w/api.php',
       'UA': 'zixue-english-study-app/1.0 (personal offline study tool; python-urllib)'}
-for fn in ('fetch', 'english_section', 'pick_ipa', 'spelling_target'):
-    i = src.index('def %s(' % fn)
-    j = src.index('\ndef ', i + 1) if '\ndef ' in src[i + 1:] else len(src)
-    exec(src[i:j], ns)
+# 🔴 切真身要切**全部**函数，绝不用手维护的白名单（2026-09-11 血案）：
+#    这里原来写死 ('fetch','english_section','pick_ipa','spelling_target') 四个，
+#    而 pick_ipa 内部调用了第五个 parse_ipa_templates —— 于是**每一个词**都抛
+#    NameError，而下面那层 `except Exception` 把它当网络抖动重试 6 次，
+#    最后 `got` 停在空字典被当成「成功但没音标」，1300 条音标全成了 null。
+#    **失败完美伪装成了结论。** 白名单的错在于：加函数的人不会记得回来改这里。
+#
+# 🔴 但「自动切」也不能靠找下一个 `^def`（我第一版就这么写，当场被打脸）：
+#    最后一个函数后面**没有** `^def` 了，切片会一路吃到文件尾，把主程序体
+#    （第 236 行起 `WORDS`/`todo`/`for`/`print`）全带进来 —— 一 exec 就开抓。
+#    必须用 AST 按节点切：函数/类/import 全要，纯常量赋值要（ACC_ANNOT 那类
+#    正则是 pick_ipa 的依赖，漏了照样 NameError），**读文件的赋值和主程序体不要**。
+import ast
+_body = ast.parse(src).body
+# 主程序体一定排在**所有 def 之后**（第 236 行起：todo/batches/for/print）——用它当上界，
+# 光靠「含不含 open(」不够：`todo = [w for w in WORDS ...]` 就不含 open(，照样被误切。
+_lastdef = max((n.lineno for n in _body if isinstance(n, (ast.FunctionDef, ast.ClassDef))),
+               default=0)
+for node in _body:
+    if node.lineno > _lastdef:
+        continue                    # 主程序体：只定义、不执行
+    if isinstance(node, (ast.FunctionDef, ast.ClassDef, ast.Import, ast.ImportFrom)):
+        exec(ast.get_source_segment(src, node), ns)
+    elif isinstance(node, ast.Assign):
+        seg = ast.get_source_segment(src, node)
+        if 'open(' in seg:          # WORDS=json.load(open(..)) / cache=.. → 由本脚本自己提供
+            continue
+        exec(seg, ns)
+for need in ('fetch', 'english_section', 'pick_ipa', 'spelling_target'):
+    if need not in ns:
+        raise RuntimeError('切真身失败，缺 %s —— 提取器改了结构，先修这里再跑' % need)
 fetch, pick_ipa, spelling_target = ns['fetch'], ns['pick_ipa'], ns['spelling_target']
 new = {}
 
@@ -73,7 +100,10 @@ for n in range(0, len(WORDS), BATCH):
     for attempt in range(6):
         try:
             d = fetch(batch)
-            got = {}
+            # 🔴 攒在 acc 里，**整批走完才交给 got**：原来直接 got = {} 再逐条填，
+            #    中途抛异常时 got 停在「非 None 的空字典」，下面那句 `if got is None`
+            #    就成了死代码 —— 整批被当成「成功但没音标」。空字典是失败，不是结果。
+            acc = {}
             for p in d['query']['pages']:
                 t = p.get('title', '').lower()
                 # 🔴 2026-09-11 修的坑：这里原来是
@@ -108,7 +138,8 @@ for n in range(0, len(WORDS), BATCH):
                         txt3 = get_text(cap)
                         if txt3 and txt3 != txt:
                             v = pick_ipa(txt3)
-                got[t] = v
+                acc[t] = v
+            got = acc                     # 整批走完才算数，中途炸就不算成功
             break
         except FetchFailed as e:
             err = str(e); break
@@ -117,6 +148,11 @@ for n in range(0, len(WORDS), BATCH):
                 w = int(e.headers.get('Retry-After') or 5)
                 print('  429 限流，等 %ds' % w, flush=True); time.sleep(w); continue
             err = 'HTTP %s' % e.code; break
+        except (NameError, SyntaxError, AttributeError, TypeError) as e:
+            # 🔴 这四类是**代码自己的 bug**，不是网络抖动。重试 6 次只会把 bug 埋更深，
+            #    最后伪装成「这些词没音标」。立刻炸出来 —— 代码错绝不能变成数据。
+            raise RuntimeError('提取器自身出错（不是网络，别当缺音标）：%s: %s'
+                               % (type(e).__name__, e))
         except Exception as e:
             err = str(e); time.sleep(3)
     if got is None:

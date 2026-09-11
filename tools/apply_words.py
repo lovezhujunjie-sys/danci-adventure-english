@@ -18,7 +18,13 @@ WORDS  = json.load(open(os.environ.get('WORDS', '/tmp/final_words.json')))
 GLOSS  = json.load(open(os.environ.get('GLOSS', '/tmp/gloss.json')))
 IPAF   = os.environ.get('IPAF', '/tmp/ipa_final.json')
 IPA    = json.load(open(IPAF)) if os.path.exists(IPAF) else {}
-NT     = int(os.environ.get('TOPICS', 6))
+# 🔴 默认是 10，不是 6（2026-09-11 睡前抓出来的不一致）：
+#    index.html 里那段「主题太多（词库扩到 5000 后是 51 个）→ 默认只露 9 个」
+#    的 UI 判断，是按 **41 + 10 = 51** 写的。
+#    这里若默认 6，跑出来是 47 个主题 —— 跟那段注释对不上，
+#    而且每个主题要装 310 个词（10 个时只装 186 个）。
+#    对一个「每天 30 分钟」的学习 App，一屏 310 词太长；186 也更贴近老主题的量级。
+NT     = int(os.environ.get('TOPICS', 10))
 
 src = open(HTML, encoding='utf-8').read()
 

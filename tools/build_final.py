@@ -166,7 +166,10 @@ json.dump({w: normalize(ipa_cache[w]['ipa'], w) for w in final if (ipa_cache.get
 
 print('\n→ 可注入 %d 个（释义齐全），其中带音标 %d 个'
       % (len(final), sum(1 for w in final if (ipa_cache.get(w) or {}).get('ipa'))))
-print('  最终词库将达 %d 条' % (3143 + len(final)))
+# 🔴 3143 是**本次扩容的基数**（扩容前词库容量），不是实时读出来的。
+#    这一轮跑完词库已经是 5000 了，再跑这个脚本这句就会误导人 —— 它描述的是
+#    "从 3143 出发的这次扩容"，不是"当前词库"。要实时值请看 index.html 里 VOCAB 的实际计数。
+print('  最终词库将达 %d 条（按扩容基数 3143 计算）' % (3143 + len(final)))
 
 # ── 溢出词：写了释义但没挤进前 TARGET 名，留着备用不浪费 ──
 spare = [w for w in kept[TARGET:] if w in gloss]
