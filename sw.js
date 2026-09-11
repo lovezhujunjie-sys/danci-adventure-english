@@ -20,7 +20,8 @@
 // 🔴 每次改 index.html **都要顶这个版本号**：不顶的话老缓存不会被清，
 //    SWR 又只保证"再打开一次才更新"，用户会以为新版没生效。
 //    2026-09-11 v2：词库 3143→5000、主题 41→51，顺带修掉界面 4 处写死的旧数字。
-const VERSION = 'danci-2026-09-11b';
+//    2026-09-11 v3：主题重构 51→82，10 个「高频补充①~⑩」拆成 41 个按词义命名的主题。
+const VERSION = 'danci-2026-09-11c';
 const INDEX = new URL('./index.html', self.location.href).href;
 
 self.addEventListener('install', e => {

@@ -1,0 +1,194 @@
+{
+  "手部拿放": {
+    "icon": "🖐",
+    "words": [
+      "bring",
+      "set",
+      "touch",
+      "carry",
+      "grab",
+      "reach",
+      "deliver",
+      "dump",
+      "gather",
+      "fetch",
+      "mount",
+      "toss",
+      "shove",
+      "grip",
+      "reserve"
+    ]
+  },
+  "敲打与损毁": {
+    "icon": "🔨",
+    "words": [
+      "rid",
+      "knock",
+      "press",
+      "split",
+      "dig",
+      "ruin",
+      "separate",
+      "rip",
+      "crush",
+      "scratch",
+      "strip",
+      "slap",
+      "drill",
+      "prick",
+      "squeeze",
+      "abandon",
+      "rub",
+      "polish",
+      "smash",
+      "burst",
+      "spoil",
+      "explode",
+      "wreck",
+      "stink",
+      "bump",
+      "rot",
+      "eliminate",
+      "smack"
+    ]
+  },
+  "移动与摇晃": {
+    "icon": "🏃",
+    "words": [
+      "sit",
+      "stand",
+      "hurry",
+      "fall",
+      "wake",
+      "roll",
+      "settle",
+      "shake",
+      "approach",
+      "slip",
+      "advance",
+      "swing",
+      "proceed",
+      "spin",
+      "escort",
+      "hop",
+      "sneak",
+      "bend",
+      "flip",
+      "twist",
+      "reverse",
+      "lean",
+      "crawl",
+      "pace",
+      "creep",
+      "float",
+      "leap",
+      "bounce",
+      "pursue"
+    ]
+  },
+  "流动与喷洒": {
+    "icon": "💧",
+    "words": [
+      "blow",
+      "fill",
+      "suck",
+      "seal",
+      "spit",
+      "flow",
+      "leak",
+      "spray",
+      "drain",
+      "spill",
+      "dip",
+      "flush"
+    ]
+  },
+  "看与表现": {
+    "icon": "👀",
+    "words": [
+      "pretend",
+      "spell",
+      "seek",
+      "behave",
+      "shine",
+      "represent",
+      "snap",
+      "react",
+      "display",
+      "encounter",
+      "pose",
+      "behold"
+    ]
+  },
+  "相处与配合": {
+    "icon": "🤝",
+    "words": [
+      "dare",
+      "treat",
+      "foster",
+      "obey",
+      "rely",
+      "embrace",
+      "rear",
+      "cooperate",
+      "depend",
+      "accompany",
+      "assist",
+      "engage"
+    ]
+  },
+  "阻挡与停止": {
+    "icon": "🚧",
+    "words": [
+      "shut",
+      "cover",
+      "hide",
+      "bother",
+      "struggle",
+      "prevent",
+      "resist",
+      "disturb",
+      "interfere",
+      "halt",
+      "contain",
+      "cease"
+    ]
+  },
+  "存在与归属": {
+    "icon": "🧩",
+    "words": [
+      "deserve",
+      "belong",
+      "remain",
+      "exist",
+      "tend",
+      "maintain",
+      "require",
+      "achieve",
+      "include",
+      "ensure",
+      "involve",
+      "occur"
+    ]
+  },
+  "操作与办理": {
+    "icon": "🔧",
+    "words": [
+      "add",
+      "spread",
+      "switch",
+      "provide",
+      "trigger",
+      "replace",
+      "produce",
+      "measure",
+      "operate",
+      "permit",
+      "approve",
+      "dial",
+      "locate",
+      "establish",
+      "weigh"
+    ]
+  }
+}
