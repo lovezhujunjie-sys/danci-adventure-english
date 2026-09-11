@@ -838,6 +838,44 @@
   @media (prefers-reduced-motion: reduce) {
     .flashcard, .qcard, .type-card, .tslot, html, body { animation: none !important; transition: none !important; }
   }
+
+  /* ===== 日常高频句 + 句型骨架(2026-09-11 新增) ===== */
+  .sent-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 8px; }
+  .sent-toggle { font-size: 12.5px; color: var(--ink3); cursor: pointer; display: flex; align-items: center; gap: 6px; user-select: none; }
+  .sent-toggle input { accent-color: #d97757; width: 15px; height: 15px; margin: 0; }
+  .sent-card { background: var(--card); border-radius: 14px; padding: 15px 14px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .sent-en { font-size: 19px; line-height: 1.85; color: var(--ink); font-weight: 500; }
+  .sent-en .w { cursor: pointer; border-radius: 5px; padding: 1px 1px; transition: background 0.12s, color 0.12s; }
+  .sent-en .w.on { background: var(--soft); color: var(--soft-ink); }
+  .sent-cn { font-size: 14px; color: var(--ink2); margin-top: 7px; transition: filter .2s, opacity .2s; }
+  .sent-card.hide-cn .sent-cn { filter: blur(7px); opacity: .5; }
+  .sent-foot { display: flex; justify-content: flex-end; margin-top: 9px; }
+  .sent-speak-btn { border: 1.5px solid var(--line2); background: var(--card); border-radius: 999px; padding: 5px 12px; font-size: 13px; cursor: pointer; color: var(--ink2); transition: all .15s; }
+  .sent-speak-btn:active, .sent-speak-btn.speaking { background: var(--soft); border-color: #d97757; color: var(--soft-ink); }
+
+  .word-pop { position: fixed; z-index: 999; max-width: min(270px, 84vw); background: var(--card); border: 1px solid var(--line2); border-radius: 12px; padding: 11px 13px; box-shadow: 0 8px 28px rgba(0,0,0,0.22); }
+  .word-pop .wp-top { display: flex; align-items: baseline; gap: 7px; flex-wrap: wrap; }
+  .word-pop .wp-w { font-size: 18px; font-weight: 700; color: var(--ink); }
+  .word-pop .wp-ipa { font-size: 12.5px; color: var(--ink3); }
+  .word-pop .wp-cn { font-size: 15px; font-weight: 600; color: #d97757; margin-top: 4px; }
+  .word-pop .wp-miss { font-size: 12.5px; color: var(--ink3); margin-top: 4px; }
+  .word-pop .wp-lemma { font-size: 11.5px; color: var(--ink3); margin-top: 3px; }
+  .word-pop .wp-btns { margin-top: 9px; display: flex; gap: 7px; flex-wrap: wrap; }
+
+  .pat-card { background: var(--card); border-radius: 14px; padding: 16px 14px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .pat-frame { font-size: 21px; font-weight: 700; color: var(--ink); line-height: 1.5; }
+  .pat-frame .blank { color: #d97757; border-bottom: 2px dashed #d97757; padding: 0 12px; margin: 0 2px; }
+  .pat-cn { font-size: 13px; color: var(--ink2); margin-top: 5px; }
+  .pat-tip { font-size: 12px; color: var(--soft-ink); background: var(--soft); border-radius: 8px; padding: 7px 10px; margin-top: 9px; line-height: 1.6; }
+  .pat-slots { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
+  .slot-btn { padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--line2); background: var(--card); color: var(--ink2); font-size: 13px; cursor: pointer; transition: all .15s; }
+  .slot-btn.on { border-color: #d97757; background: var(--soft); color: var(--soft-ink); font-weight: 600; }
+  .pat-result { margin-top: 13px; padding-top: 12px; border-top: 1px dashed var(--line2); }
+  .pat-sentence { font-size: 18.5px; font-weight: 600; color: var(--ink); line-height: 1.5; }
+  .pat-sentence .hl { color: #d97757; }
+  .pat-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; gap: 8px; }
+  .pat-slot-cn { font-size: 12.5px; color: var(--ink3); }
+  .new-badge { display: inline-block; font-size: 10px; font-weight: 700; color: #fff; background: #d97757; border-radius: 5px; padding: 1px 5px; margin-left: 6px; vertical-align: 2px; }
 </style>
 </head>
 <body>
@@ -887,6 +925,24 @@
         <div>
           <div class="he-title">我的成就</div>
           <div class="he-sub" id="achv-entry-sub">看学习数据</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">开口说 <span class="new-badge">NEW</span></div>
+    <div class="mode-cards mode-cards-4">
+      <div class="mode-card span2" data-goto="sentence">
+        <div class="mc-icon">💬</div>
+        <div class="mc-body">
+          <div class="mc-title">日常高频句</div>
+          <div class="mc-desc">点单词就查意思 · 整句可朗读（真人天天说的话）</div>
+        </div>
+      </div>
+      <div class="mode-card span2" data-goto="pattern">
+        <div class="mc-icon">🏗️</div>
+        <div class="mc-body">
+          <div class="mc-title">句型骨架</div>
+          <div class="mc-desc">一个骨架换词，就能说出好多句（开口就能用）</div>
         </div>
       </div>
     </div>
@@ -1380,6 +1436,56 @@
     <button class="btn-secondary" id="achv-home">返回首页</button>
   </div>
 
+  <!-- ===== 日常高频句(2026-09-11 新增) ===== -->
+  <div id="sentence-screen" class="hidden">
+    <div id="sent-scene-view">
+      <div class="center" style="margin-bottom:12px;">
+        <div class="emoji">💬</div>
+        <h1>日常高频句</h1>
+        <p class="subtitle">点句子里的任意单词，就能看它什么意思</p>
+      </div>
+      <div class="topic-grid" id="sent-scene-grid"></div>
+      <button class="btn-secondary" id="sent-home">返回首页</button>
+    </div>
+
+    <div id="sent-list-view" class="hidden">
+      <div class="study-hud">
+        <span class="progress-text" id="sent-list-title">场景</span>
+        <span class="stats-mini"><span id="sent-list-count">0 句</span></span>
+      </div>
+      <div class="sent-toolbar">
+        <label class="sent-toggle"><input type="checkbox" id="sent-hide-cn"> 遮住中文（自我测试）</label>
+        <button class="sent-speak-btn" id="sent-play-all">▶ 从头连播</button>
+      </div>
+      <div id="sent-list"></div>
+      <button class="btn-secondary" id="sent-list-back">← 换个场景</button>
+      <button class="btn-secondary" id="sent-list-home">返回首页</button>
+    </div>
+  </div>
+
+  <!-- ===== 英语句型骨架(2026-09-11 新增) ===== -->
+  <div id="pattern-screen" class="hidden">
+    <div id="pat-group-view">
+      <div class="center" style="margin-bottom:12px;">
+        <div class="emoji">🏗️</div>
+        <h1>句型骨架</h1>
+        <p class="subtitle">一个骨架，换词就能说出好多句</p>
+      </div>
+      <div class="topic-grid" id="pat-group-grid"></div>
+      <button class="btn-secondary" id="pat-home">返回首页</button>
+    </div>
+
+    <div id="pat-practice-view" class="hidden">
+      <div class="study-hud">
+        <span class="progress-text" id="pat-title">句型</span>
+        <span class="stats-mini"><span id="pat-count">0 个骨架</span></span>
+      </div>
+      <div id="pat-list"></div>
+      <button class="btn-secondary" id="pat-back">← 换一组</button>
+      <button class="btn-secondary" id="pat-home2">返回首页</button>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -1387,6 +1493,412 @@ const VOCAB = {"people":{"name":"人物身份","icon":"👤","words":[{"cn":"人
 const PHONICS = {"letters":[{"l":"A a","name":"/eɪ/","sound":"/æ/","say_name":"ay","say_sound":"aa","tip":"短音 a","ex":"apple","ipa":"/ˈæpəl/","excn":"苹果"},{"l":"B b","name":"/biː/","sound":"/b/","say_name":"bee","say_sound":"buh","tip":"","ex":"ball","ipa":"/bɔːl/","excn":"球"},{"l":"C c","name":"/siː/","sound":"/k/","say_name":"see","say_sound":"kuh","tip":"通常发 k 音","ex":"cat","ipa":"/kæt/","excn":"猫"},{"l":"D d","name":"/diː/","sound":"/d/","say_name":"dee","say_sound":"duh","tip":"","ex":"dog","ipa":"/dɒɡ/","excn":"狗"},{"l":"E e","name":"/iː/","sound":"/e/","say_name":"ee","say_sound":"eh","tip":"短音 e","ex":"egg","ipa":"/eɡ/","excn":"鸡蛋"},{"l":"F f","name":"/ef/","sound":"/f/","say_name":"eff","say_sound":"fuh","tip":"","ex":"fish","ipa":"/fɪʃ/","excn":"鱼"},{"l":"G g","name":"/dʒiː/","sound":"/g/","say_name":"jee","say_sound":"guh","tip":"通常发 g 音","ex":"goat","ipa":"/ɡəʊt/","excn":"山羊"},{"l":"H h","name":"/eɪtʃ/","sound":"/h/","say_name":"aitch","say_sound":"huh","tip":"","ex":"hat","ipa":"/hæt/","excn":"帽子"},{"l":"I i","name":"/aɪ/","sound":"/ɪ/","say_name":"eye","say_sound":"ih","tip":"短音 i","ex":"ink","ipa":"/ɪŋk/","excn":"墨水"},{"l":"J j","name":"/dʒeɪ/","sound":"/dʒ/","say_name":"jay","say_sound":"juh","tip":"","ex":"jam","ipa":"/dʒæm/","excn":"果酱"},{"l":"K k","name":"/keɪ/","sound":"/k/","say_name":"kay","say_sound":"kuh","tip":"","ex":"kite","ipa":"/kaɪt/","excn":"风筝"},{"l":"L l","name":"/el/","sound":"/l/","say_name":"ell","say_sound":"luh","tip":"","ex":"lion","ipa":"/ˈlaɪən/","excn":"狮子"},{"l":"M m","name":"/em/","sound":"/m/","say_name":"emm","say_sound":"muh","tip":"","ex":"moon","ipa":"/muːn/","excn":"月亮"},{"l":"N n","name":"/en/","sound":"/n/","say_name":"enn","say_sound":"nuh","tip":"","ex":"nose","ipa":"/nəʊz/","excn":"鼻子"},{"l":"O o","name":"/əʊ/","sound":"/ɒ/","say_name":"oh","say_sound":"ah","tip":"短音 o","ex":"orange","ipa":"/ˈɒrɪndʒ/","excn":"橙子"},{"l":"P p","name":"/piː/","sound":"/p/","say_name":"pee","say_sound":"puh","tip":"","ex":"pig","ipa":"/pɪɡ/","excn":"猪"},{"l":"Q q","name":"/kjuː/","sound":"/kw/","say_name":"cue","say_sound":"kwuh","tip":"常和 u 连用","ex":"queen","ipa":"/kwiːn/","excn":"女王"},{"l":"R r","name":"/ɑː/","sound":"/r/","say_name":"are","say_sound":"ruh","tip":"","ex":"rabbit","ipa":"/ˈræbɪt/","excn":"兔子"},{"l":"S s","name":"/es/","sound":"/s/","say_name":"ess","say_sound":"suh","tip":"","ex":"sun","ipa":"/sʌn/","excn":"太阳"},{"l":"T t","name":"/tiː/","sound":"/t/","say_name":"tee","say_sound":"tuh","tip":"","ex":"tiger","ipa":"/ˈtaɪɡə/","excn":"老虎"},{"l":"U u","name":"/juː/","sound":"/ʌ/","say_name":"you","say_sound":"uh","tip":"短音 u","ex":"umbrella","ipa":"/ʌmˈbrelə/","excn":"雨伞"},{"l":"V v","name":"/viː/","sound":"/v/","say_name":"vee","say_sound":"vuh","tip":"","ex":"van","ipa":"/væn/","excn":"面包车"},{"l":"W w","name":"/ˈdʌbljuː/","sound":"/w/","say_name":"double you","say_sound":"wuh","tip":"","ex":"water","ipa":"/ˈwɔːtə/","excn":"水"},{"l":"X x","name":"/eks/","sound":"/ks/","say_name":"ex","say_sound":"ehks","tip":"在词尾发 ks","ex":"box","ipa":"/bɒks/","excn":"盒子"},{"l":"Y y","name":"/waɪ/","sound":"/j/","say_name":"why","say_sound":"yuh","tip":"辅音时发 y 音","ex":"yes","ipa":"/jes/","excn":"是的"},{"l":"Z z","name":"/ziː/","sound":"/z/","say_name":"zee","say_sound":"zuh","tip":"","ex":"zoo","ipa":"/zuː/","excn":"动物园"}],"consonants":[{"combo":"sh","sound":"/ʃ/","say":"shuh","tip":"嘘声","ex":"ship","ipa":"/ʃɪp/","excn":"船"},{"combo":"ch","sound":"/tʃ/","say":"chuh","tip":"","ex":"chair","ipa":"/tʃeə/","excn":"椅子"},{"combo":"th","sound":"/θ/ 或 /ð/","say":"thuh","tip":"咬舌音","ex":"think","ipa":"/θɪŋk/","excn":"想"},{"combo":"ph","sound":"/f/","say":"fuh","tip":"发 f 音","ex":"phone","ipa":"/fəʊn/","excn":"电话"},{"combo":"wh","sound":"/w/","say":"wuh","tip":"","ex":"what","ipa":"/wɒt/","excn":"什么"},{"combo":"ng","sound":"/ŋ/","say":"nng","tip":"鼻音","ex":"sing","ipa":"/sɪŋ/","excn":"唱"},{"combo":"ck","sound":"/k/","say":"kuh","tip":"发 k 音","ex":"duck","ipa":"/dʌk/","excn":"鸭子"},{"combo":"kn","sound":"/n/","say":"nuh","tip":"k 不发音","ex":"knife","ipa":"/naɪf/","excn":"刀"},{"combo":"wr","sound":"/r/","say":"ruh","tip":"w 不发音","ex":"write","ipa":"/raɪt/","excn":"写"},{"combo":"tch","sound":"/tʃ/","say":"chuh","tip":"","ex":"watch","ipa":"/wɒtʃ/","excn":"手表"},{"combo":"dge","sound":"/dʒ/","say":"juh","tip":"","ex":"bridge","ipa":"/brɪdʒ/","excn":"桥"},{"combo":"qu","sound":"/kw/","say":"kwuh","tip":"","ex":"queen","ipa":"/kwiːn/","excn":"女王"},{"combo":"bl","sound":"/bl/","say":"bluh","tip":"连读","ex":"blue","ipa":"/bluː/","excn":"蓝色"},{"combo":"br","sound":"/br/","say":"bruh","tip":"连读","ex":"bread","ipa":"/bred/","excn":"面包"},{"combo":"cl","sound":"/kl/","say":"kluh","tip":"连读","ex":"clock","ipa":"/klɒk/","excn":"时钟"},{"combo":"cr","sound":"/kr/","say":"kruh","tip":"连读","ex":"crab","ipa":"/kræb/","excn":"螃蟹"},{"combo":"dr","sound":"/dr/","say":"druh","tip":"连读","ex":"dream","ipa":"/driːm/","excn":"梦"},{"combo":"fl","sound":"/fl/","say":"fluh","tip":"连读","ex":"flag","ipa":"/flæɡ/","excn":"旗"},{"combo":"fr","sound":"/fr/","say":"fruh","tip":"连读","ex":"frog","ipa":"/frɒɡ/","excn":"青蛙"},{"combo":"gl","sound":"/gl/","say":"gluh","tip":"连读","ex":"glass","ipa":"/ɡlɑːs/","excn":"玻璃"},{"combo":"gr","sound":"/gr/","say":"gruh","tip":"连读","ex":"green","ipa":"/ɡriːn/","excn":"绿色"},{"combo":"pl","sound":"/pl/","say":"pluh","tip":"连读","ex":"plane","ipa":"/pleɪn/","excn":"飞机"},{"combo":"pr","sound":"/pr/","say":"pruh","tip":"连读","ex":"prize","ipa":"/praɪz/","excn":"奖品"},{"combo":"sl","sound":"/sl/","say":"sluh","tip":"连读","ex":"sleep","ipa":"/sliːp/","excn":"睡觉"},{"combo":"sm","sound":"/sm/","say":"smuh","tip":"连读","ex":"smile","ipa":"/smaɪl/","excn":"微笑"},{"combo":"sn","sound":"/sn/","say":"snuh","tip":"连读","ex":"snake","ipa":"/sneɪk/","excn":"蛇"},{"combo":"sp","sound":"/sp/","say":"spuh","tip":"连读","ex":"spoon","ipa":"/spuːn/","excn":"勺子"},{"combo":"st","sound":"/st/","say":"stuh","tip":"连读","ex":"star","ipa":"/stɑː/","excn":"星星"},{"combo":"sw","sound":"/sw/","say":"swuh","tip":"连读","ex":"swim","ipa":"/swɪm/","excn":"游泳"},{"combo":"tr","sound":"/tr/","say":"truh","tip":"连读","ex":"tree","ipa":"/triː/","excn":"树"}],"vowels":[{"combo":"a-e","sound":"/eɪ/","say":"ay","tip":"魔法e，a读字母音","ex":"cake","ipa":"/keɪk/","excn":"蛋糕"},{"combo":"i-e","sound":"/aɪ/","say":"eye","tip":"魔法e，i读字母音","ex":"bike","ipa":"/baɪk/","excn":"自行车"},{"combo":"o-e","sound":"/əʊ/","say":"oh","tip":"魔法e，o读字母音","ex":"home","ipa":"/həʊm/","excn":"家"},{"combo":"u-e","sound":"/juː/","say":"you","tip":"魔法e，u读字母音","ex":"cute","ipa":"/kjuːt/","excn":"可爱"},{"combo":"ee","sound":"/iː/","say":"ee","tip":"长音 e","ex":"tree","ipa":"/triː/","excn":"树"},{"combo":"ea","sound":"/iː/","say":"ee","tip":"多数读长音 e","ex":"tea","ipa":"/tiː/","excn":"茶"},{"combo":"ai","sound":"/eɪ/","say":"ay","tip":"","ex":"rain","ipa":"/reɪn/","excn":"雨"},{"combo":"ay","sound":"/eɪ/","say":"ay","tip":"词尾常见","ex":"day","ipa":"/deɪ/","excn":"天"},{"combo":"oa","sound":"/əʊ/","say":"oh","tip":"","ex":"boat","ipa":"/bəʊt/","excn":"船"},{"combo":"ow","sound":"/əʊ/ 或 /aʊ/","say":"oh","tip":"两种读法","ex":"snow","ipa":"/snəʊ/","excn":"雪"},{"combo":"oo","sound":"/uː/ 或 /ʊ/","say":"oo","tip":"长短两种","ex":"moon","ipa":"/muːn/","excn":"月亮"},{"combo":"ou","sound":"/aʊ/","say":"ow","tip":"","ex":"house","ipa":"/haʊs/","excn":"房子"},{"combo":"oi","sound":"/ɔɪ/","say":"oy","tip":"","ex":"coin","ipa":"/kɔɪn/","excn":"硬币"},{"combo":"oy","sound":"/ɔɪ/","say":"oy","tip":"词尾常见","ex":"boy","ipa":"/bɔɪ/","excn":"男孩"},{"combo":"igh","sound":"/aɪ/","say":"eye","tip":"gh不发音","ex":"night","ipa":"/naɪt/","excn":"夜晚"},{"combo":"ar","sound":"/ɑː/","say":"ar","tip":"","ex":"car","ipa":"/kɑː/","excn":"汽车"},{"combo":"or","sound":"/ɔː/","say":"or","tip":"","ex":"fork","ipa":"/fɔːk/","excn":"叉子"},{"combo":"er","sound":"/ə/","say":"er","tip":"弱读","ex":"tiger","ipa":"/ˈtaɪɡə/","excn":"老虎"},{"combo":"ir","sound":"/ɜː/","say":"er","tip":"","ex":"bird","ipa":"/bɜːd/","excn":"鸟"},{"combo":"ur","sound":"/ɜː/","say":"er","tip":"","ex":"nurse","ipa":"/nɜːs/","excn":"护士"},{"combo":"air","sound":"/eə/","say":"air","tip":"","ex":"hair","ipa":"/heə/","excn":"头发"},{"combo":"ear","sound":"/ɪə/","say":"eer","tip":"","ex":"ear","ipa":"/ɪə/","excn":"耳朵"},{"combo":"aw","sound":"/ɔː/","say":"aw","tip":"","ex":"saw","ipa":"/sɔː/","excn":"锯"},{"combo":"au","sound":"/ɔː/","say":"aw","tip":"","ex":"autumn","ipa":"/ˈɔːtəm/","excn":"秋天"}],"endings":[{"combo":"-tion","sound":"/ʃən/","say":"shun","tip":"读「申」音","ex":"nation","ipa":"/ˈneɪʃən/","excn":"国家"},{"combo":"-sion","sound":"/ʒən/","say":"zhun","tip":"","ex":"vision","ipa":"/ˈvɪʒən/","excn":"视力"},{"combo":"-ssion","sound":"/ʃən/","say":"shun","tip":"","ex":"mission","ipa":"/ˈmɪʃən/","excn":"任务"},{"combo":"-cian","sound":"/ʃən/","say":"shun","tip":"","ex":"musician","ipa":"/mjuˈzɪʃən/","excn":"音乐家"},{"combo":"-cious","sound":"/ʃəs/","say":"shus","tip":"","ex":"delicious","ipa":"/dɪˈlɪʃəs/","excn":"美味的"},{"combo":"-tious","sound":"/ʃəs/","say":"shus","tip":"","ex":"ambitious","ipa":"/æmˈbɪʃəs/","excn":"有抱负的"},{"combo":"-ture","sound":"/tʃə/","say":"cher","tip":"","ex":"picture","ipa":"/ˈpɪktʃə/","excn":"图片"},{"combo":"-sure","sound":"/ʒə/","say":"zher","tip":"","ex":"measure","ipa":"/ˈmeʒə/","excn":"测量"},{"combo":"-ous","sound":"/əs/","say":"us","tip":"","ex":"famous","ipa":"/ˈfeɪməs/","excn":"著名的"},{"combo":"-ious","sound":"/iəs/","say":"ee-us","tip":"","ex":"serious","ipa":"/ˈsɪəriəs/","excn":"严肃的"},{"combo":"-able","sound":"/əbl/","say":"uh-bul","tip":"","ex":"table","ipa":"/ˈteɪbl/","excn":"桌子"},{"combo":"-ible","sound":"/əbl/","say":"uh-bul","tip":"","ex":"possible","ipa":"/ˈpɒsəbl/","excn":"可能的"},{"combo":"-ment","sound":"/mənt/","say":"ment","tip":"","ex":"moment","ipa":"/ˈməʊmənt/","excn":"时刻"},{"combo":"-ness","sound":"/nəs/","say":"ness","tip":"","ex":"happiness","ipa":"/ˈhæpinəs/","excn":"幸福"},{"combo":"-less","sound":"/ləs/","say":"less","tip":"","ex":"hopeless","ipa":"/ˈhəʊpləs/","excn":"绝望的"},{"combo":"-ful","sound":"/fʊl/","say":"full","tip":"","ex":"helpful","ipa":"/ˈhelpfʊl/","excn":"有帮助的"},{"combo":"-ly","sound":"/li/","say":"lee","tip":"","ex":"quickly","ipa":"/ˈkwɪkli/","excn":"快速地"},{"combo":"-er","sound":"/ə/","say":"er","tip":"","ex":"teacher","ipa":"/ˈtiːtʃə/","excn":"老师"},{"combo":"-or","sound":"/ə/","say":"er","tip":"","ex":"doctor","ipa":"/ˈdɒktə/","excn":"医生"},{"combo":"-ar","sound":"/ə/","say":"er","tip":"","ex":"dollar","ipa":"/ˈdɒlə/","excn":"美元"},{"combo":"-est","sound":"/ɪst/","say":"ist","tip":"最高级","ex":"biggest","ipa":"/ˈbɪɡɪst/","excn":"最大的"},{"combo":"-ed","sound":"/d/ /t/ /ɪd/","say":"ed","tip":"过去式，三种读法","ex":"wanted","ipa":"/ˈwɒntɪd/","excn":"想要(过去)"},{"combo":"-ing","sound":"/ɪŋ/","say":"ing","tip":"进行时","ex":"running","ipa":"/ˈrʌnɪŋ/","excn":"跑(进行)"},{"combo":"-age","sound":"/ɪdʒ/","say":"ij","tip":"","ex":"village","ipa":"/ˈvɪlɪdʒ/","excn":"村庄"},{"combo":"-ie","sound":"/i/","say":"ee","tip":"","ex":"cookie","ipa":"/ˈkʊki/","excn":"饼干"},{"combo":"-y","sound":"/i/","say":"ee","tip":"词尾","ex":"happy","ipa":"/ˈhæpi/","excn":"高兴的"},{"combo":"-ey","sound":"/i/","say":"ee","tip":"","ex":"money","ipa":"/ˈmʌni/","excn":"钱"},{"combo":"-le","sound":"/əl/","say":"ul","tip":"","ex":"little","ipa":"/ˈlɪtl/","excn":"小的"},{"combo":"-al","sound":"/əl/","say":"ul","tip":"","ex":"animal","ipa":"/ˈænɪml/","excn":"动物"},{"combo":"-el","sound":"/əl/","say":"ul","tip":"","ex":"model","ipa":"/ˈmɒdl/","excn":"模型"},{"combo":"-en","sound":"/ən/","say":"un","tip":"","ex":"listen","ipa":"/ˈlɪsn/","excn":"听"},{"combo":"-on","sound":"/ən/","say":"un","tip":"","ex":"lesson","ipa":"/ˈlesn/","excn":"课"},{"combo":"-ate","sound":"/eɪt/","say":"ayt","tip":"动词读法","ex":"create","ipa":"/kriˈeɪt/","excn":"创造"},{"combo":"-ize","sound":"/aɪz/","say":"ize","tip":"","ex":"realize","ipa":"/ˈrɪəlaɪz/","excn":"意识到"},{"combo":"-ive","sound":"/ɪv/","say":"iv","tip":"","ex":"active","ipa":"/ˈæktɪv/","excn":"积极的"},{"combo":"-ic","sound":"/ɪk/","say":"ik","tip":"","ex":"music","ipa":"/ˈmjuːzɪk/","excn":"音乐"},{"combo":"-ity","sound":"/əti/","say":"uh-tee","tip":"","ex":"city","ipa":"/ˈsɪti/","excn":"城市"},{"combo":"-ology","sound":"/ɒlədʒi/","say":"ol-uh-jee","tip":"","ex":"biology","ipa":"/baɪˈɒlədʒi/","excn":"生物学"},{"combo":"-ic","sound":"/ɪk/","say":"ik","tip":"","ex":"magic","ipa":"/ˈmædʒɪk/","excn":"魔法"},{"combo":"-ant","sound":"/ənt/","say":"unt","tip":"","ex":"important","ipa":"/ɪmˈpɔːtənt/","excn":"重要的"}],"more":[{"combo":"gh","sound":"不发音 或 /f/","say":"f","tip":"light不发/laugh发f","ex":"laugh","ipa":"/lɑːf/","excn":"笑"},{"combo":"mb","sound":"/m/","say":"muh","tip":"b不发音","ex":"climb","ipa":"/klaɪm/","excn":"爬"},{"combo":"mn","sound":"/m/","say":"muh","tip":"n不发音","ex":"autumn","ipa":"/ˈɔːtəm/","excn":"秋天"},{"combo":"lk","sound":"/k/","say":"kuh","tip":"l不发音","ex":"walk","ipa":"/wɔːk/","excn":"走"},{"combo":"lf","sound":"/f/","say":"fuh","tip":"l不发音","ex":"half","ipa":"/hɑːf/","excn":"一半"},{"combo":"stle","sound":"/səl/","say":"sul","tip":"t不发音","ex":"castle","ipa":"/ˈkɑːsl/","excn":"城堡"},{"combo":"ce","sound":"/s/","say":"suh","tip":"","ex":"face","ipa":"/feɪs/","excn":"脸"},{"combo":"ci","sound":"/s/","say":"suh","tip":"","ex":"city","ipa":"/ˈsɪti/","excn":"城市"},{"combo":"ge","sound":"/dʒ/","say":"juh","tip":"","ex":"page","ipa":"/peɪdʒ/","excn":"页"},{"combo":"gi","sound":"/dʒ/","say":"juh","tip":"","ex":"giant","ipa":"/ˈdʒaɪənt/","excn":"巨人"},{"combo":"ew","sound":"/uː/","say":"oo","tip":"","ex":"new","ipa":"/njuː/","excn":"新的"},{"combo":"ui","sound":"/uː/","say":"oo","tip":"","ex":"fruit","ipa":"/fruːt/","excn":"水果"},{"combo":"ue","sound":"/uː/","say":"oo","tip":"","ex":"blue","ipa":"/bluː/","excn":"蓝色"},{"combo":"augh","sound":"/ɔː/","say":"aw","tip":"","ex":"caught","ipa":"/kɔːt/","excn":"抓住(过去)"},{"combo":"ough","sound":"多种读法","say":"off","tip":"though/through不同","ex":"enough","ipa":"/ɪˈnʌf/","excn":"足够"},{"combo":"ould","sound":"/ʊd/","say":"ood","tip":"l不发音","ex":"could","ipa":"/kʊd/","excn":"能够"},{"combo":"all","sound":"/ɔːl/","say":"all","tip":"","ex":"ball","ipa":"/bɔːl/","excn":"球"},{"combo":"alk","sound":"/ɔːk/","say":"awk","tip":"l不发音","ex":"talk","ipa":"/tɔːk/","excn":"说话"},{"combo":"are","sound":"/eə/","say":"air","tip":"","ex":"care","ipa":"/keə/","excn":"关心"},{"combo":"war","sound":"/wɔː/","say":"wor","tip":"","ex":"warm","ipa":"/wɔːm/","excn":"温暖"},{"combo":"wor","sound":"/wɜː/","say":"wur","tip":"","ex":"work","ipa":"/wɜːk/","excn":"工作"},{"combo":"tch","sound":"/tʃ/","say":"chuh","tip":"","ex":"match","ipa":"/mætʃ/","excn":"比赛"}]};
 const IPA_MAP = {"person":"/ˈpɜːsn/","people":"/ˈpiːpl/","man":"/mæn/","woman":"/ˈwʊmən/","boy":"/bɔɪ/","girl":"/ɡɜːl/","child":"/tʃaɪld/","baby":"/ˈbeɪbi/","teenager":"/ˈtiːneɪdʒə/","adult":"/ˈædʌlt/","sir":"/sɜː/","lady":"/ˈleɪdi/","name":"/neɪm/","surname":"/ˈsɜːneɪm/","self":"/self/","someone":"/ˈsʌmwʌn/","anyone":"/ˈeniwʌn/","everyone":"/ˈevriwʌn/","nobody":"/ˈnəʊbədi/","stranger":"/ˈstreɪndʒə/","neighbor":"/ˈneɪbə/","elder":"/ˈeldə/","youth":"/juːθ/","king":"/kɪŋ/","queen":"/kwiːn/","prince":"/prɪns/","princess":"/ˌprɪnˈses/","hero":"/ˈhɪərəʊ/","member":"/ˈmembə/","leader":"/ˈliːdə/","boss":"/bɒs/","guest":"/ɡest/","host":"/həʊst/","enemy":"/ˈenəmi/","partner":"/ˈpɑːtnə/","teammate":"/ˈtiːmeɪt/","fan":"/fæn/","audience":"/ˈɔːdiəns/","tourist":"/ˈtʊərɪst/","foreigner":"/ˈfɒrənə/","citizen":"/ˈsɪtɪzn/","passenger":"/ˈpæsɪndʒə/","customer":"/ˈkʌstəmə/","user":"/ˈjuːzə/","volunteer":"/ˌvɒlənˈtɪə/","family":"/ˈfæmɪli/","home":"/həʊm/","parents":"/ˈpeərənts/","father":"/ˈfɑːðə/","mother":"/ˈmʌðə/","dad":"/dæd/","mom":"/mɒm/","son":"/sʌn/","daughter":"/ˈdɔːtə/","brother":"/ˈbrʌðə/","sister":"/ˈsɪstə/","husband":"/ˈhʌzbənd/","wife":"/waɪf/","grandfather":"/ˈɡrænfɑːðə/","grandmother":"/ˈɡrænmʌðə/","grandson":"/ˈɡrænsʌn/","granddaughter":"/ˈɡrændɔːtə/","uncle":"/ˈʌŋkl/","aunt":"/ɑːnt/","cousin":"/ˈkʌzn/","nephew":"/ˈnefjuː/","niece":"/niːs/","relative":"/ˈrelətɪv/","ancestor":"/ˈænsestə/","descendant":"/dɪˈsendənt/","twins":"/twɪnz/","stepfather":"/ˈstepfɑːðə/","stepmother":"/ˈstepmʌðə/","adopted":"/əˈdɒptɪd/","relatives":"/ˈrelətɪvz/","couple":"/ˈkʌpl/","fiance":"/fiˈɒnseɪ/","fiancee":"/fiˈɒnseɪ/","boyfriend":"/ˈbɔɪfrend/","girlfriend":"/ˈɡɜːlfrend/","marriage":"/ˈmærɪdʒ/","wedding":"/ˈwedɪŋ/","divorce":"/dɪˈvɔːs/","housework":"/ˈhaʊswɜːk/","body":"/ˈbɒdi/","head":"/hed/","face":"/feɪs/","hair":"/heə/","eye":"/aɪ/","nose":"/nəʊz/","mouth":"/maʊθ/","ear":"/ɪə/","tooth":"/tuːθ/","tongue":"/tʌŋ/","lip":"/lɪp/","chin":"/tʃɪn/","forehead":"/ˈfɔːhed/","eyebrow":"/ˈaɪbraʊ/","cheek":"/tʃiːk/","neck":"/nek/","throat":"/θrəʊt/","shoulder":"/ˈʃəʊldə/","arm":"/ɑːm/","elbow":"/ˈelbəʊ/","wrist":"/rɪst/","hand":"/hænd/","finger":"/ˈfɪŋɡə/","thumb":"/θʌm/","nail":"/neɪl/","chest":"/tʃest/","back":"/bæk/","waist":"/weɪst/","stomach":"/ˈstʌmək/","hip":"/hɪp/","leg":"/leɡ/","knee":"/niː/","ankle":"/ˈæŋkl/","foot":"/fʊt/","toe":"/təʊ/","skin":"/skɪn/","bone":"/bəʊn/","blood":"/blʌd/","heart":"/hɑːt/","brain":"/breɪn/","lung":"/lʌŋ/","liver":"/ˈlɪvə/","muscle":"/ˈmʌsl/","nerve":"/nɜːv/","happy":"/ˈhæpi/","sad":"/sæd/","angry":"/ˈæŋɡri/","afraid":"/əˈfreɪd/","surprised":"/səˈpraɪzd/","excited":"/ɪkˈsaɪtɪd/","nervous":"/ˈnɜːvəs/","relaxed":"/rɪˈlækst/","bored":"/bɔːd/","tired":"/ˈtaɪəd/","sleepy":"/ˈsliːpi/","hungry":"/ˈhʌŋɡri/","thirsty":"/ˈθɜːsti/","full":"/fʊl/","comfortable":"/ˈkʌmftəbl/","uncomfortable":"/ʌnˈkʌmftəbl/","healthy":"/ˈhelθi/","sick":"/sɪk/","pain":"/peɪn/","weary":"/ˈwɪəri/","satisfied":"/ˈsætɪsfaɪd/","disappointed":"/ˌdɪsəˈpɔɪntɪd/","proud":"/praʊd/","ashamed":"/əˈʃeɪmd/","lonely":"/ˈləʊnli/","jealous":"/ˈdʒeləs/","grateful":"/ˈɡreɪtfl/","sorry":"/ˈsɒri/","confident":"/ˈkɒnfɪdənt/","brave":"/breɪv/","shy":"/ʃaɪ/","curious":"/ˈkjʊəriəs/","confused":"/kənˈfjuːzd/","patient":"/ˈpeɪʃnt/","impatient":"/ɪmˈpeɪʃnt/","optimistic":"/ˌɒptɪˈmɪstɪk/","pessimistic":"/ˌpesɪˈmɪstɪk/","mood":"/muːd/","feeling":"/ˈfiːlɪŋ/","emotion":"/ɪˈməʊʃn/","love":"/lʌv/","hate":"/heɪt/","like":"/laɪk/","dislike":"/dɪsˈlaɪk/","hope":"/həʊp/","dream":"/driːm/","worried":"/ˈwʌrid/","scared":"/skeəd/","pleased":"/pliːzd/","beautiful":"/ˈbjuːtɪfl/","pretty":"/ˈprɪti/","handsome":"/ˈhænsəm/","cute":"/kjuːt/","ugly":"/ˈʌɡli/","tall":"/tɔːl/","short":"/ʃɔːt/","fat":"/fæt/","thin":"/θɪn/","slim":"/slɪm/","strong":"/strɒŋ/","weak":"/wiːk/","young":"/jʌŋ/","old":"/əʊld/","middleaged":"/ˌmɪdlˈeɪdʒd/","age":"/eɪdʒ/","appearance":"/əˈpɪərəns/","looks":"/lʊks/","smile":"/smaɪl/","grin":"/ɡrɪn/","wrinkle":"/ˈrɪŋkl/","beard":"/bɪəd/","mustache":"/məˈstɑːʃ/","bald":"/bɔːld/","curly":"/ˈkɜːli/","straight":"/streɪt/","longhair":"/ˈlɒŋheə/","shorthair":"/ˈʃɔːtheə/","blond":"/blɒnd/","darkhair":"/ˈdɑːkheə/","food":"/fuːd/","drink":"/drɪŋk/","water":"/ˈwɔːtə/","milk":"/mɪlk/","tea":"/tiː/","coffee":"/ˈkɒfi/","juice":"/dʒuːs/","cola":"/ˈkəʊlə/","beer":"/bɪə/","wine":"/waɪn/","rice":"/raɪs/","noodles":"/ˈnuːdlz/","bread":"/bred/","sandwich":"/ˈsænwɪdʒ/","hamburger":"/ˈhæmbɜːɡə/","pizza":"/ˈpiːtsə/","pasta":"/ˈpæstə/","soup":"/suːp/","salad":"/ˈsæləd/","meat":"/miːt/","beef":"/biːf/","pork":"/pɔːk/","chicken":"/ˈtʃɪkɪn/","fish":"/fɪʃ/","egg":"/eɡ/","cheese":"/tʃiːz/","butter":"/ˈbʌtə/","yogurt":"/ˈjɒɡət/","sugar":"/ˈʃʊɡə/","salt":"/sɔːlt/","pepper":"/ˈpepə/","soy":"/sɔɪ/","vinegar":"/ˈvɪnɪɡə/","oil":"/ɔɪl/","honey":"/ˈhʌni/","jam":"/dʒæm/","cookie":"/ˈkʊki/","cake":"/keɪk/","chocolate":"/ˈtʃɒklət/","candy":"/ˈkændi/","icecream":"/ˈaɪskriːm/","pudding":"/ˈpʊdɪŋ/","pie":"/paɪ/","donut":"/ˈdəʊnʌt/","fries":"/fraɪz/","chips":"/tʃɪps/","popcorn":"/ˈpɒpkɔːn/","hotdog":"/ˈhɒtdɒɡ/","breakfast":"/ˈbrekfəst/","lunch":"/lʌntʃ/","dinner":"/ˈdɪnə/","snack":"/snæk/","dessert":"/dɪˈzɜːt/","menu":"/ˈmenjuː/","taste":"/teɪst/","recipe":"/ˈresəpi/","fruit":"/fruːt/","apple":"/ˈæpl/","banana":"/bəˈnɑːnə/","orange":"/ˈɒrɪndʒ/","pear":"/peə/","peach":"/piːtʃ/","grape":"/ɡreɪp/","strawberry":"/ˈstrɔːbəri/","cherry":"/ˈtʃeri/","watermelon":"/ˈwɔːtəmelən/","pineapple":"/ˈpaɪnæpl/","mango":"/ˈmæŋɡəʊ/","lemon":"/ˈlemən/","kiwi":"/ˈkiːwiː/","coconut":"/ˈkəʊkənʌt/","blueberry":"/ˈbluːbəri/","raspberry":"/ˈrɑːzbəri/","plum":"/plʌm/","apricot":"/ˈeɪprɪkɒt/","pomegranate":"/ˈpɒmɪɡrænɪt/","vegetable":"/ˈvedʒtəbl/","tomato":"/təˈmɑːtəʊ/","potato":"/pəˈteɪtəʊ/","carrot":"/ˈkærət/","onion":"/ˈʌnjən/","garlic":"/ˈɡɑːlɪk/","chili":"/ˈtʃɪli/","cucumber":"/ˈkjuːkʌmbə/","eggplant":"/ˈeɡplɑːnt/","cabbage":"/ˈkæbɪdʒ/","lettuce":"/ˈletɪs/","spinach":"/ˈspɪnɪtʃ/","broccoli":"/ˈbrɒkəli/","corn":"/kɔːn/","peas":"/piːz/","bean":"/biːn/","mushroom":"/ˈmʌʃruːm/","pumpkin":"/ˈpʌmpkɪn/","zucchini":"/zuːˈkiːni/","celery":"/ˈseləri/","ginger":"/ˈdʒɪndʒə/","radish":"/ˈrædɪʃ/","tofu":"/ˈtəʊfuː/","nut":"/nʌt/","animal":"/ˈænɪml/","pet":"/pet/","cat":"/kæt/","dog":"/dɒɡ/","bird":"/bɜːd/","rabbit":"/ˈræbɪt/","hamster":"/ˈhæmstə/","horse":"/hɔːs/","cow":"/kaʊ/","pig":"/pɪɡ/","sheep":"/ʃiːp/","goat":"/ɡəʊt/","duck":"/dʌk/","goose":"/ɡuːs/","rooster":"/ˈruːstə/","tiger":"/ˈtaɪɡə/","lion":"/ˈlaɪən/","leopard":"/ˈlepəd/","bear":"/beə/","panda":"/ˈpændə/","monkey":"/ˈmʌŋki/","gorilla":"/ɡəˈrɪlə/","elephant":"/ˈelɪfənt/","giraffe":"/dʒəˈrɑːf/","zebra":"/ˈzebrə/","rhino":"/ˈraɪnəʊ/","hippo":"/ˈhɪpəʊ/","camel":"/ˈkæml/","kangaroo":"/ˌkæŋɡəˈruː/","koala":"/kəʊˈɑːlə/","wolf":"/wʊlf/","fox":"/fɒks/","deer":"/dɪə/","squirrel":"/ˈskwɪrəl/","mouse":"/maʊs/","bat":"/bæt/","hedgehog":"/ˈhedʒhɒɡ/","raccoon":"/rəˈkuːn/","snake":"/sneɪk/","frog":"/frɒɡ/","turtle":"/ˈtɜːtl/","lizard":"/ˈlɪzəd/","crocodile":"/ˈkrɒkədaɪl/","dolphin":"/ˈdɒlfɪn/","whale":"/weɪl/","shark":"/ʃɑːk/","octopus":"/ˈɒktəpəs/","crab":"/kræb/","shrimp":"/ʃrɪmp/","lobster":"/ˈlɒbstə/","jellyfish":"/ˈdʒelifɪʃ/","starfish":"/ˈstɑːfɪʃ/","seaturtle":"/ˈsiːtɜːtl/","butterfly":"/ˈbʌtəflaɪ/","bee":"/biː/","ant":"/ænt/","spider":"/ˈspaɪdə/","fly":"/flaɪ/","mosquito":"/məˈskiːtəʊ/","cockroach":"/ˈkɒkrəʊtʃ/","snail":"/sneɪl/","worm":"/wɜːm/","caterpillar":"/ˈkætəpɪlə/","ladybug":"/ˈleɪdibʌɡ/","owl":"/aʊl/","eagle":"/ˈiːɡl/","penguin":"/ˈpeŋɡwɪn/","peacock":"/ˈpiːkɒk/","swan":"/swɒn/","sparrow":"/ˈspærəʊ/","parrot":"/ˈpærət/","nature":"/ˈneɪtʃə/","sky":"/skaɪ/","sun":"/sʌn/","moon":"/muːn/","star":"/stɑː/","cloud":"/klaʊd/","earth":"/ɜːθ/","world":"/wɜːld/","land":"/lænd/","ocean":"/ˈəʊʃn/","sea":"/siː/","river":"/ˈrɪvə/","lake":"/leɪk/","pond":"/pɒnd/","stream":"/striːm/","waterfall":"/ˈwɔːtəfɔːl/","mountain":"/ˈmaʊntɪn/","hill":"/hɪl/","valley":"/ˈvæli/","plain":"/pleɪn/","desert":"/ˈdezət/","forest":"/ˈfɒrɪst/","woods":"/wʊdz/","grassland":"/ˈɡrɑːslænd/","prairie":"/ˈpreəri/","field":"/fiːld/","garden":"/ˈɡɑːdn/","park":"/pɑːk/","island":"/ˈaɪlənd/","coast":"/kəʊst/","beach":"/biːtʃ/","seaside":"/ˈsiːsaɪd/","cave":"/keɪv/","cliff":"/klɪf/","rock":"/rɒk/","stone":"/stəʊn/","sand":"/sænd/","soil":"/sɔɪl/","ground":"/ɡraʊnd/","tree":"/triː/","flower":"/ˈflaʊə/","grass":"/ɡrɑːs/","leaf":"/liːf/","branch":"/brɑːntʃ/","root":"/ruːt/","seed":"/siːd/","rose":"/rəʊz/","tulip":"/ˈtjuːlɪp/","sunflower":"/ˈsʌnflaʊə/","lily":"/ˈlɪli/","bamboo":"/ˌbæmˈbuː/","pine":"/paɪn/","oak":"/əʊk/","willow":"/ˈwɪləʊ/","cactus":"/ˈkæktəs/","environment":"/ɪnˈvaɪrənmənt/","ecology":"/iˈkɒlədʒi/","pollution":"/pəˈluːʃn/","weather":"/ˈweðə/","climate":"/ˈklaɪmət/","temperature":"/ˈtemprətʃə/","hot":"/hɒt/","cold":"/kəʊld/","warm":"/wɔːm/","cool":"/kuːl/","sunny":"/ˈsʌni/","cloudy":"/ˈklaʊdi/","overcast":"/ˈəʊvəkɑːst/","rainy":"/ˈreɪni/","snowy":"/ˈsnəʊi/","windy":"/ˈwɪndi/","foggy":"/ˈfɒɡi/","humid":"/ˈhjuːmɪd/","dry":"/draɪ/","rain":"/reɪn/","snow":"/snəʊ/","wind":"/wɪnd/","fog":"/fɒɡ/","ice":"/aɪs/","hail":"/heɪl/","frost":"/frɒst/","dew":"/djuː/","rainbow":"/ˈreɪnbəʊ/","lightning":"/ˈlaɪtnɪŋ/","thunder":"/ˈθʌndə/","storm":"/stɔːm/","typhoon":"/taɪˈfuːn/","hurricane":"/ˈhʌrɪkən/","tornado":"/tɔːˈneɪdəʊ/","earthquake":"/ˈɜːθkweɪk/","flood":"/flʌd/","drought":"/draʊt/","tsunami":"/tsuːˈnɑːmi/","volcano":"/vɒlˈkeɪnəʊ/","season":"/ˈsiːzn/","spring":"/sprɪŋ/","summer":"/ˈsʌmə/","autumn":"/ˈɔːtəm/","winter":"/ˈwɪntə/","sunshine":"/ˈsʌnʃaɪn/","shadow":"/ˈʃædəʊ/","breeze":"/briːz/","clothes":"/kləʊðz/","clothing":"/ˈkləʊðɪŋ/","shirt":"/ʃɜːt/","tshirt":"/ˈtiːʃɜːt/","pants":"/pænts/","jeans":"/dʒiːnz/","shorts":"/ʃɔːts/","skirt":"/skɜːt/","dress":"/dres/","coat":"/kəʊt/","jacket":"/ˈdʒækɪt/","sweater":"/ˈswetə/","hoodie":"/ˈhʊdi/","suit":"/suːt/","uniform":"/ˈjuːnɪfɔːm/","pajamas":"/pəˈdʒɑːməz/","underwear":"/ˈʌndəweə/","socks":"/sɒks/","stockings":"/ˈstɒkɪŋz/","shoes":"/ʃuːz/","sneakers":"/ˈsniːkəz/","boots":"/buːts/","sandals":"/ˈsændlz/","slippers":"/ˈslɪpəz/","heels":"/hiːlz/","hat":"/hæt/","cap":"/kæp/","scarf":"/skɑːf/","gloves":"/ɡlʌvz/","tie":"/taɪ/","belt":"/belt/","wallet":"/ˈwɒlɪt/","backpack":"/ˈbækpæk/","handbag":"/ˈhændbæɡ/","suitcase":"/ˈsuːtkeɪs/","jewelry":"/ˈdʒuːəlri/","necklace":"/ˈnekləs/","earring":"/ˈɪərɪŋ/","ring":"/rɪŋ/","bracelet":"/ˈbreɪslət/","watch":"/wɒtʃ/","glasses":"/ˈɡlɑːsɪz/","sunglasses":"/ˈsʌnɡlɑːsɪz/","mask":"/mɑːsk/","button":"/ˈbʌtn/","zipper":"/ˈzɪpə/","pocket":"/ˈpɒkɪt/","size":"/saɪz/","fashion":"/ˈfæʃn/","style":"/staɪl/","design":"/dɪˈzaɪn/","house":"/haʊs/","apartment":"/əˈpɑːtmənt/","room":"/ruːm/","bedroom":"/ˈbedruːm/","livingroom":"/ˈlɪvɪŋ ruːm/","kitchen":"/ˈkɪtʃɪn/","bathroom":"/ˈbɑːθruːm/","study":"/ˈstʌdi/","diningroom":"/ˈdaɪnɪŋ ruːm/","balcony":"/ˈbælkəni/","garage":"/ˈɡærɑːʒ/","basement":"/ˈbeɪsmənt/","attic":"/ˈætɪk/","door":"/dɔː/","window":"/ˈwɪndəʊ/","wall":"/wɔːl/","floor":"/flɔː/","ceiling":"/ˈsiːlɪŋ/","roof":"/ruːf/","stairs":"/steəz/","hallway":"/ˈhɔːlweɪ/","elevator":"/ˈelɪveɪtə/","furniture":"/ˈfɜːnɪtʃə/","table":"/ˈteɪbl/","chair":"/tʃeə/","sofa":"/ˈsəʊfə/","bed":"/bed/","pillow":"/ˈpɪləʊ/","blanket":"/ˈblæŋkɪt/","sheet":"/ʃiːt/","bookshelf":"/ˈbʊkʃelf/","wardrobe":"/ˈwɔːdrəʊb/","cabinet":"/ˈkæbɪnət/","drawer":"/drɔː/","mirror":"/ˈmɪrə/","curtain":"/ˈkɜːtn/","carpet":"/ˈkɑːpɪt/","clock":"/klɒk/","lamp":"/læmp/","light":"/laɪt/","key":"/kiː/","lock":"/lɒk/","fridge":"/frɪdʒ/","microwave":"/ˈmaɪkrəweɪv/","oven":"/ˈʌvn/","stove":"/stəʊv/","sink":"/sɪŋk/","bathtub":"/ˈbɑːθtʌb/","toilet":"/ˈtɔɪlət/","shower":"/ˈʃaʊə/","washer":"/ˈwɒʃə/","vacuum":"/ˈvækjuːm/","airconditioner":"/ˈeə kənˌdɪʃənə/","television":"/ˈtelɪvɪʒn/","remote":"/rɪˈməʊt/","pot":"/pɒt/","pan":"/pæn/","bowl":"/bəʊl/","plate":"/pleɪt/","cup":"/kʌp/","glass":"/ɡlɑːs/","bottle":"/ˈbɒtl/","spoon":"/spuːn/","fork":"/fɔːk/","knife":"/naɪf/","chopsticks":"/ˈtʃɒpstɪks/","napkin":"/ˈnæpkɪn/","towel":"/ˈtaʊəl/","soap":"/səʊp/","shampoo":"/ʃæmˈpuː/","toothbrush":"/ˈtuːθbrʌʃ/","toothpaste":"/ˈtuːθpeɪst/","comb":"/kəʊm/","razor":"/ˈreɪzə/","traffic":"/ˈtræfɪk/","transport":"/ˈtrænspɔːt/","car":"/kɑː/","automobile":"/ˈɔːtəməbiːl/","taxi":"/ˈtæksi/","bus":"/bʌs/","train":"/treɪn/","subway":"/ˈsʌbweɪ/","plane":"/pleɪn/","helicopter":"/ˈhelɪkɒptə/","boat":"/bəʊt/","ship":"/ʃɪp/","bike":"/baɪk/","motorcycle":"/ˈməʊtəsaɪkl/","scooter":"/ˈskuːtə/","truck":"/trʌk/","van":"/væn/","ambulance":"/ˈæmbjələns/","firetruck":"/ˈfaɪə trʌk/","policecar":"/pəˈliːs kɑː/","schoolbus":"/ˈskuːl bʌs/","sportscar":"/ˈspɔːts kɑː/","ev":"/ˌiːˈviː/","wheel":"/wiːl/","tire":"/ˈtaɪə/","engine":"/ˈendʒɪn/","fuel":"/ˈfjuːəl/","gasoline":"/ˈɡæsəliːn/","brake":"/breɪk/","seat":"/siːt/","seatbelt":"/ˈsiːtbelt/","license":"/ˈlaɪsns/","driver":"/ˈdraɪvə/","road":"/rəʊd/","street":"/striːt/","highway":"/ˈhaɪweɪ/","bridge":"/brɪdʒ/","tunnel":"/ˈtʌnl/","intersection":"/ˌɪntəˈsekʃn/","cross the road":"/krɒs ðə rəʊd/","sidewalk":"/ˈsaɪdwɔːk/","crosswalk":"/ˈkrɒswɔːk/","trafficlight":"/ˈtræfɪk laɪt/","parking":"/ˈpɑːkɪŋ/","gasstation":"/ˈɡæs steɪʃn/","station":"/ˈsteɪʃn/","airport":"/ˈeəpɔːt/","port":"/pɔːt/","dock":"/dɒk/","map":"/mæp/","route":"/ruːt/","direction":"/dəˈrekʃn/","distance":"/ˈdɪstəns/","speed":"/spiːd/","ticket":"/ˈtɪkɪt/","luggage":"/ˈlʌɡɪdʒ/","flight":"/flaɪt/","rider":"/ˈraɪdə/","wakeup":"/ˈweɪkʌp/","sleep":"/sliːp/","nap":"/næp/","lie in bed":"/laɪ ɪn bed/","snore":"/snɔː/","awake":"/əˈweɪk/","stay up":"/steɪ ʌp/","bath":"/bɑːθ/","brush teeth":"/brʌʃ tiːθ/","wash face":"/wɒʃ feɪs/","wash hair":"/wɒʃ heə/","blow-dry":"/ˈbləʊdraɪ/","shave":"/ʃeɪv/","makeup":"/ˈmeɪkʌp/","remove makeup":"/rɪˈmuːv ˈmeɪkʌp/","skincare":"/ˈskɪnkeə/","apply cream":"/əˈplaɪ kriːm/","trim nails":"/trɪm neɪlz/","restroom":"/ˈrestruːm/","wash hands":"/wɒʃ hændz/","undress":"/ʌnˈdres/","change clothes":"/tʃeɪndʒ kləʊðz/","tie shoes":"/taɪ ʃuːz/","button up":"/ˈbʌtn ʌp/","zip up":"/zɪp ʌp/","wear a hat":"/weər ə hæt/","wear glasses":"/weə ˈɡlɑːsɪz/","wear a mask":"/weər ə mɑːsk/","groom":"/ɡruːm/","eat":"/iːt/","eat breakfast":"/iːt ˈbrekfəst/","eat lunch":"/iːt lʌntʃ/","eat dinner":"/iːt ˈdɪnə/","order takeout":"/ˈɔːdə ˈteɪkaʊt/","delivery":"/dɪˈlɪvəri/","takeout":"/ˈteɪkaʊt/","eat out":"/iːt aʊt/","dine out":"/daɪn aʊt/","eat together":"/iːt təˈɡeðə/","drink water":"/drɪŋk ˈwɔːtə/","drink coffee":"/drɪŋk ˈkɒfi/","drink alcohol":"/drɪŋk ˈælkəhɒl/","savor":"/ˈseɪvə/","chew":"/tʃuː/","swallow":"/ˈswɒləʊ/","bite":"/baɪt/","lick":"/lɪk/","stuffed":"/stʌft/","cook":"/kʊk/","boil":"/bɔɪl/","stir-fry":"/ˈstɜːfraɪ/","fry":"/fraɪ/","bake":"/beɪk/","grill":"/ɡrɪl/","steam":"/stiːm/","stew":"/stjuː/","chop":"/tʃɒp/","slice":"/slaɪs/","dice":"/daɪs/","peel":"/piːl/","stir":"/stɜː/","mix":"/mɪks/","serve":"/sɜːv/","scoop rice":"/skuːp raɪs/","wash dishes":"/wɒʃ ˈdɪʃɪz/","wipe the table":"/waɪp ðə ˈteɪbl/","sweep":"/swiːp/","mop the floor":"/mɒp ðə flɔː/","clean":"/kliːn/","tidy":"/ˈtaɪdi/","putaway":"/ˌpʊt əˈweɪ/","makebed":"/ˈmeɪk bed/","make the bed":"/meɪk ðə bed/","laundry":"/ˈlɔːndri/","hang clothes":"/hæŋ kləʊðz/","iron":"/ˈaɪən/","fold clothes":"/fəʊld kləʊðz/","hangup":"/ˈhæŋ ʌp/","take out trash":"/teɪk aʊt træʃ/","recycle":"/ˌriːˈsaɪkl/","sort":"/sɔːt/","discard":"/dɪˈskɑːd/","wipe the window":"/waɪp ðə ˈwɪndəʊ/","dust":"/dʌst/","rinse":"/rɪns/","disinfect":"/ˌdɪsɪnˈfekt/","shopping":"/ˈʃɒpɪŋ/","window shopping":"/ˈwɪndəʊ ˌʃɒpɪŋ/","buy":"/baɪ/","sell":"/sel/","pay":"/peɪ/","change":"/tʃeɪndʒ/","discount":"/ˈdɪskaʊnt/","cheap":"/tʃiːp/","expensive":"/ɪkˈspensɪv/","free":"/friː/","price":"/praɪs/","receipt":"/rɪˈsiːt/","coin":"/kɔɪn/","cash":"/kæʃ/","credit card":"/ˈkredɪt kɑːd/","scancode":"/ˈskæn kəʊd/","money":"/ˈmʌni/","bank":"/bæŋk/","account":"/əˈkaʊnt/","save":"/seɪv/","withdraw":"/wɪðˈdrɔː/","transfer":"/trænsˈfɜː/","borrow":"/ˈbɒrəʊ/","return":"/rɪˈtɜːn/","repay":"/rɪˈpeɪ/","indebt":"/ɪnˈdet/","financial":"/faɪˈnænʃl/","bookkeep":"/ˈbʊkkiːp/","save money":"/seɪv ˈmʌni/","spend":"/spend/","earn":"/ɜːn/","make money":"/meɪk ˈmʌni/","bargain":"/ˈbɑːɡɪn/","return goods":"/rɪˈtɜːn ɡʊdz/","refund":"/ˈriːfʌnd/","exchange":"/ɪksˈtʃeɪndʒ/","tryon":"/ˈtraɪ ɒn/","tryit":"/ˈtraɪ ɪt/","compare prices":"/kəmˈpeə ˈpraɪsɪz/","shop online":"/ʃɒp ˌɒnˈlaɪn/","cod":"/kɒd/","home delivery":"/həʊm dɪˈlɪvəri/","pickup":"/ˈpɪkʌp/","work":"/wɜːk/","work overtime":"/wɜːk ˈəʊvətaɪm/","go to work":"/ɡəʊ tə wɜːk/","get off work":"/ɡet ɒf wɜːk/","go to school":"/ɡəʊ tə skuːl/","after school":"/ˈɑːftə skuːl/","rest":"/rest/","vacation":"/vəˈkeɪʃn/","ask for leave":"/ɑːsk fə liːv/","business trip":"/ˈbɪznəs trɪp/","have a meeting":"/hæv ə ˈmiːtɪŋ/","homework":"/ˈhəʊmwɜːk/","submit homework":"/səbˈmɪt ˈhəʊmwɜːk/","review":"/rɪˈvjuː/","preview":"/ˈpriːvjuː/","memorize":"/ˈmeməraɪz/","readbook":"/riːd bʊk/","takenote":"/teɪk nəʊt/","research":"/rɪˈsɜːtʃ/","write an article":"/raɪt ən ˈɑːtɪkl/","draft":"/drɑːft/","revise":"/rɪˈvaɪz/","proofread":"/ˈpruːfriːd/","print":"/prɪnt/","photocopy":"/ˈfəʊtəʊkɒpi/","scan":"/skæn/","sign":"/saɪn/","send email":"/send ˈiːmeɪl/","reply email":"/rɪˈplaɪ ˈiːmeɪl/","answer the phone":"/ˈɑːnsə ðə fəʊn/","make a call":"/meɪk ə kɔːl/","hang up":"/hæŋ ʌp/","schedule a meeting":"/ˈʃedjuːl ə ˈmiːtɪŋ/","discuss":"/dɪˈskʌs/","report":"/rɪˈpɔːt/","exercise":"/ˈeksəsaɪz/","workout":"/ˈwɜːkaʊt/","warmup":"/ˈwɔːmʌp/","stretch":"/stretʃ/","walk":"/wɔːk/","run":"/rʌn/","jog":"/dʒɒɡ/","brisk walk":"/brɪsk wɔːk/","swim":"/swɪm/","cycle":"/ˈsaɪkl/","biking":"/ˈbaɪkɪŋ/","hike":"/haɪk/","trek":"/trek/","climb":"/klaɪm/","skip rope":"/skɪp rəʊp/","yoga":"/ˈjəʊɡə/","play ball":"/pleɪ bɔːl/","dance":"/dɑːns/","skate":"/skeɪt/","ski":"/skiː/","lift weights":"/lɪft weɪts/","push-up":"/ˈpʊʃʌp/","sit-up":"/ˈsɪtʌp/","squat":"/skwɒt/","sweat":"/swet/","out of breath":"/aʊt əv breθ/","relax":"/rɪˈlæks/","chat":"/tʃæt/","call":"/kɔːl/","video call":"/ˈvɪdiəʊ kɔːl/","text":"/tekst/","email":"/ˈiːmeɪl/","send message":"/send ˈmesɪdʒ/","reply message":"/rɪˈplaɪ ˈmesɪdʒ/","get message":"/ɡet ˈmesɪdʒ/","voice message":"/vɔɪs ˈmesɪdʒ/","greet":"/ɡriːt/","say hi":"/seɪ haɪ/","say bye":"/seɪ baɪ/","introduce":"/ˌɪntrəˈdjuːs/","meet someone":"/miːt ˈsʌmwʌn/","make friends":"/meɪk frendz/","arrange a meeting":"/əˈreɪndʒ ə ˈmiːtɪŋ/","date":"/deɪt/","party":"/ˈpɑːti/","visit":"/ˈvɪzɪt/","see off":"/siː ɒf/","pick up and drop off":"/pɪk ʌp ənd drɒp ɒf/","welcome":"/ˈwelkəm/","give a gift":"/ɡɪv ə ɡɪft/","get a gift":"/ɡet ə ɡɪft/","congratulate":"/kənˈɡrætʃʊleɪt/","bless":"/bles/","thank":"/θæŋk/","apologize":"/əˈpɒlədʒaɪz/","farewell":"/ˌfeəˈwel/","toast":"/təʊst/","hug":"/hʌɡ/","handshake":"/ˈhændʃeɪk/","wave":"/weɪv/","nod":"/nɒd/","shakehead":"/ˈʃeɪkhed/","salute":"/səˈluːt/","watch TV":"/wɒtʃ ˌtiːˈviː/","watch a movie":"/wɒtʃ ə ˈmuːvi/","binge-watch":"/ˈbɪndʒ wɒtʃ/","watch a game":"/wɒtʃ ə ɡeɪm/","watch live":"/wɒtʃ laɪv/","watch videos":"/wɒtʃ ˈvɪdiəʊz/","short video":"/ʃɔːt ˈvɪdiəʊ/","listen to music":"/ˈlɪsn tə ˈmjuːzɪk/","podcast":"/ˈpɒdkɑːst/","radio":"/ˈreɪdiəʊ/","read":"/riːd/","read novels":"/riːd ˈnɒvlz/","read comics":"/riːd ˈkɒmɪks/","magazine":"/ˌmæɡəˈziːn/","play games":"/pleɪ ɡeɪmz/","play on phone":"/pleɪ ɒn fəʊn/","scroll videos":"/skrəʊl ˈvɪdiəʊz/","scroll feed":"/skrəʊl fiːd/","videogame":"/ˈvɪdiəʊɡeɪm/","play cards":"/pleɪ kɑːdz/","chess":"/tʃes/","take a photo":"/teɪk ə ˈfəʊtəʊ/","selfie":"/ˈselfi/","record video":"/rɪˈkɔːd ˈvɪdiəʊ/","edit photo":"/ˈedɪt ˈfəʊtəʊ/","sing":"/sɪŋ/","draw":"/drɔː/","diary":"/ˈdaɪəri/","collect":"/kəˈlekt/","gardening":"/ˈɡɑːdnɪŋ/","diy":"/ˌdiːaɪˈwaɪ/","go out":"/ɡəʊ aʊt/","go home":"/ɡəʊ həʊm/","leave":"/liːv/","come back":"/kʌm bæk/","wait for the light":"/weɪt fə ðə laɪt/","call a taxi":"/kɔːl ə ˈtæksi/","ride in a car":"/raɪd ɪn ə kɑː/","take bus":"/teɪk bʌs/","take subway":"/teɪk ˈsʌbweɪ/","take train":"/teɪk treɪn/","take a flight":"/teɪk ə flaɪt/","drive":"/draɪv/","ride a motorcycle":"/raɪd ə ˈməʊtəsaɪkl/","refuel":"/ˌriːˈfjuːəl/","find the way":"/faɪnd ðə weɪ/","lost":"/lɒst/","ask for directions":"/ɑːsk fə dəˈrekʃnz/","rush":"/rʌʃ/","catch the bus":"/kætʃ ðə bʌs/","delayed":"/dɪˈleɪd/","belate":"/bɪˈleɪt/","ontime":"/ɒn taɪm/","early":"/ˈɜːli/","travel":"/ˈtrævl/","tourism":"/ˈtʊərɪzəm/","outing":"/ˈaʊtɪŋ/","picnic":"/ˈpɪknɪk/","barbecue":"/ˈbɑːbɪkjuː/","camping":"/ˈkæmpɪŋ/","climb a mountain":"/klaɪm ə ˈmaʊntɪn/","watch sunrise":"/wɒtʃ ˈsʌnraɪz/","watch sunset":"/wɒtʃ ˈsʌnset/","stargaze":"/ˈstɑːɡeɪz/","pack":"/pæk/","pack luggage":"/pæk ˈlʌɡɪdʒ/","book a flight":"/bʊk ə flaɪt/","book a hotel":"/bʊk ə həʊˈtel/","checkout":"/ˈtʃekaʊt/","checkin":"/ˈtʃekɪn/","tour":"/tʊə/","check in":"/tʃek ɪn/","souvenir":"/ˌsuːvəˈnɪə/","group photo":"/ɡruːp ˈfəʊtəʊ/","water plants":"/ˈwɔːtə plɑːnts/","plant":"/plɑːnt/","trim":"/trɪm/","feed pet":"/fiːd pet/","walk the dog":"/wɔːk ðə dɒɡ/","wash pet":"/wɒʃ pet/","repair":"/rɪˈpeə/","install":"/ɪnˈstɔːl/","assemble":"/əˈsembl/","disassemble":"/ˌdɪsəˈsembl/","receive package":"/rɪˈsiːv ˈpækɪdʒ/","send package":"/send ˈpækɪdʒ/","pick up package":"/pɪk ʌp ˈpækɪdʒ/","pay bills":"/peɪ bɪlz/","take a break":"/teɪk ə breɪk/","daydream":"/ˈdeɪdriːm/","breathe":"/briːð/","sigh":"/saɪ/","get angry":"/ɡet ˈæŋɡri/","throw a tantrum":"/θrəʊ ə ˈtæntrəm/","calm down":"/kɑːm daʊn/","cry":"/kraɪ/","laugh":"/lɑːf/","laugh out loud":"/lɑːf aʊt laʊd/","see a doctor":"/siː ə ˈdɒktə/","register":"/ˈredʒɪstə/","queue":"/kjuː/","wait":"/weɪt/","checkup":"/ˈtʃekʌp/","get a shot":"/ɡet ə ʃɒt/","vaccinate":"/ˈvæksɪneɪt/","take medicine":"/teɪk ˈmedsn/","take temperature":"/teɪk ˈtemprətʃə/","check blood pressure":"/tʃek blʌd ˈpreʃə/","hospitalize":"/ˈhɒspɪtəlaɪz/","discharge":"/dɪsˈtʃɑːdʒ/","recover":"/rɪˈkʌvə/","raise flag":"/reɪz flæɡ/","have class":"/hæv klɑːs/","end class":"/end klɑːs/","raise hand":"/reɪz hænd/","speak up":"/spiːk ʌp/","ask":"/ɑːsk/","answer":"/ˈɑːnsə/","examine":"/ɪɡˈzæmɪn/","pass":"/pɑːs/","fail":"/feɪl/","graduate":"/ˈɡrædʒueɪt/","school":"/skuːl/","kindergarten":"/ˈkɪndəɡɑːtn/","primary":"/ˈpraɪməri/","middleschool":"/ˈmɪdl skuːl/","highschool":"/ˈhaɪ skuːl/","university":"/ˌjuːnɪˈvɜːsəti/","college":"/ˈkɒlɪdʒ/","student":"/ˈstjuːdnt/","teacher":"/ˈtiːtʃə/","professor":"/prəˈfesə/","principal":"/ˈprɪnsəpl/","classmate":"/ˈklɑːsmeɪt/","classroom":"/ˈklɑːsruːm/","playground":"/ˈpleɪɡraʊnd/","library":"/ˈlaɪbrəri/","cafeteria":"/ˌkæfəˈtɪəriə/","lab":"/læb/","dormitory":"/ˈdɔːmɪtri/","course":"/kɔːs/","class":"/klɑːs/","schedule":"/ˈʃedjuːl/","semester":"/sɪˈmestə/","grade":"/ɡreɪd/","degree":"/dɪˈɡriː/","subject":"/ˈsʌbdʒɪkt/","chinese":"/ˌtʃaɪˈniːz/","math":"/mæθ/","english":"/ˈɪŋɡlɪʃ/","physics":"/ˈfɪzɪks/","chemistry":"/ˈkemɪstri/","biology":"/baɪˈɒlədʒi/","history":"/ˈhɪstri/","geography":"/dʒiˈɒɡrəfi/","politics":"/ˈpɒlətɪks/","music":"/ˈmjuːzɪk/","art":"/ɑːt/","pe":"/ˌpiːˈiː/","science":"/ˈsaɪəns/","literature":"/ˈlɪtrətʃə/","textbook":"/ˈtekstbʊk/","book":"/bʊk/","exam":"/ɪɡˈzæm/","test":"/test/","score":"/skɔː/","question":"/ˈkwestʃən/","result":"/rɪˈzʌlt/","diploma":"/dɪˈpləʊmə/","scholarship":"/ˈskɒləʃɪp/","tuition":"/tjuˈɪʃn/","pencil":"/ˈpensl/","pen":"/pen/","eraser":"/ɪˈreɪzə/","ruler":"/ˈruːlə/","schoolbag":"/ˈskuːlbæɡ/","notebook":"/ˈnəʊtbʊk/","folder":"/ˈfəʊldə/","scissors":"/ˈsɪzəz/","glue":"/ɡluː/","stapler":"/ˈsteɪplə/","clip":"/klɪp/","stickynote":"/ˈstɪki nəʊt/","blackboard":"/ˈblækbɔːd/","whiteboard":"/ˈwaɪtbɔːd/","chalk":"/tʃɔːk/","podium":"/ˈpəʊdiəm/","desk":"/desk/","slide":"/slaɪd/","lecture":"/ˈlektʃə/","tutoring":"/ˈtjuːtərɪŋ/","knowledge":"/ˈnɒlɪdʒ/","skill":"/skɪl/","education":"/ˌedjuˈkeɪʃn/","job":"/dʒɒb/","career":"/kəˈrɪə/","company":"/ˈkʌmpəni/","office":"/ˈɒfɪs/","business":"/ˈbɪznɪs/","factory":"/ˈfæktri/","industry":"/ˈɪndəstri/","department":"/dɪˈpɑːtmənt/","team":"/tiːm/","project":"/ˈprɒdʒekt/","meeting":"/ˈmiːtɪŋ/","document":"/ˈdɒkjumənt/","contract":"/ˈkɒntrækt/","agreement":"/əˈɡriːmənt/","plan":"/plæn/","strategy":"/ˈstrætədʒi/","goal":"/ɡəʊl/","task":"/tɑːsk/","duty":"/ˈdjuːti/","position":"/pəˈzɪʃn/","title":"/ˈtaɪtl/","employee":"/ɪmˈplɔɪiː/","employer":"/ɪmˈplɔɪə/","colleague":"/ˈkɒliːɡ/","manager":"/ˈmænɪdʒə/","supervisor":"/ˈsuːpəvaɪzə/","assistant":"/əˈsɪstənt/","secretary":"/ˈsekrətri/","intern":"/ˈɪntɜːn/","ceo":"/ˌsiːiːˈəʊ/","doctor":"/ˈdɒktə/","nurse":"/nɜːs/","lawyer":"/ˈlɔːjə/","judge":"/dʒʌdʒ/","police":"/pəˈliːs/","firefighter":"/ˈfaɪəfaɪtə/","soldier":"/ˈsəʊldʒə/","engineer":"/ˌendʒɪˈnɪə/","programmer":"/ˈprəʊɡræmə/","designer":"/dɪˈzaɪnə/","architect":"/ˈɑːkɪtekt/","accountant":"/əˈkaʊntənt/","banker":"/ˈbæŋkə/","businessman":"/ˈbɪznɪsmæn/","farmer":"/ˈfɑːmə/","worker":"/ˈwɜːkə/","chef":"/ʃef/","waiter":"/ˈweɪtə/","pilot":"/ˈpaɪlət/","captain":"/ˈkæptɪn/","musician":"/mjuˈzɪʃn/","artist":"/ˈɑːtɪst/","actor":"/ˈæktə/","singer":"/ˈsɪŋə/","dancer":"/ˈdɑːnsə/","writer":"/ˈraɪtə/","journalist":"/ˈdʒɜːnəlɪst/","photographer":"/fəˈtɒɡrəfə/","barber":"/ˈbɑːbə/","scientist":"/ˈsaɪəntɪst/","researcher":"/rɪˈsɜːtʃə/","inventor":"/ɪnˈventə/","salary":"/ˈsæləri/","bonus":"/ˈbəʊnəs/","overtime":"/ˈəʊvətaɪm/","promotion":"/prəˈməʊʃn/","resign":"/rɪˈzaɪn/","unemployed":"/ˌʌnɪmˈplɔɪd/","resume":"/ˈrezjumeɪ/","interview":"/ˈɪntəvjuː/","recruitment":"/rɪˈkruːtmənt/","city":"/ˈsɪti/","countryside":"/ˈkʌntrisaɪd/","town":"/taʊn/","village":"/ˈvɪlɪdʒ/","country":"/ˈkʌntri/","capital":"/ˈkæpɪtl/","province":"/ˈprɒvɪns/","state":"/steɪt/","district":"/ˈdɪstrɪkt/","community":"/kəˈmjuːnəti/","block":"/blɒk/","square":"/skweə/","downtown":"/ˌdaʊnˈtaʊn/","suburb":"/ˈsʌbɜːb/","residential":"/ˌrezɪˈdenʃl/","shop":"/ʃɒp/","supermarket":"/ˈsuːpəmɑːkɪt/","mall":"/mɔːl/","convenience":"/kənˈviːniəns/","bookstore":"/ˈbʊkstɔː/","pharmacy":"/ˈfɑːməsi/","florist":"/ˈflɒrɪst/","bakery":"/ˈbeɪkəri/","restaurant":"/ˈrestrɒnt/","cafe":"/ˈkæfeɪ/","bar":"/bɑː/","hotel":"/həʊˈtel/","inn":"/ɪn/","postoffice":"/ˈpəʊst ɒfɪs/","hospital":"/ˈhɒspɪtl/","clinic":"/ˈklɪnɪk/","museum":"/mjuˈziːəm/","gallery":"/ˈɡæləri/","theater":"/ˈθɪətə/","cinema":"/ˈsɪnəmə/","concerthall":"/ˈkɒnsət hɔːl/","church":"/tʃɜːtʃ/","temple":"/ˈtempl/","mosque":"/mɒsk/","zoo":"/zuː/","aquarium":"/əˈkweəriəm/","amusementpark":"/əˈmjuːzmənt pɑːk/","stadium":"/ˈsteɪdiəm/","gym":"/dʒɪm/","pool":"/puːl/","market":"/ˈmɑːkɪt/","farmersmarket":"/ˈfɑːməz ˈmɑːkɪt/","fleamarket":"/ˈfliː ˈmɑːkɪt/","carwash":"/ˈkɑː wɒʃ/","barbershop":"/ˈbɑːbəʃɒp/","salon":"/ˈsælɒn/","laundromat":"/ˈlɔːndrəmæt/","policestation":"/pəˈliːs ˈsteɪʃn/","firestation":"/ˈfaɪə ˈsteɪʃn/","court":"/kɔːt/","prison":"/ˈprɪzn/","government":"/ˈɡʌvənmənt/","embassy":"/ˈembəsi/","building":"/ˈbɪldɪŋ/","skyscraper":"/ˈskaɪskreɪpə/","tower":"/ˈtaʊə/","monument":"/ˈmɒnjumənt/","statue":"/ˈstætʃuː/","fountain":"/ˈfaʊntɪn/","landmark":"/ˈlændmɑːk/","health":"/helθ/","illness":"/ˈɪlnəs/","disease":"/dɪˈziːz/","flu":"/fluː/","fever":"/ˈfiːvə/","cough":"/kɒf/","sneeze":"/sniːz/","headache":"/ˈhedeɪk/","stomachache":"/ˈstʌməkeɪk/","toothache":"/ˈtuːθeɪk/","backache":"/ˈbækeɪk/","allergy":"/ˈælədʒi/","asthma":"/ˈæsmə/","cancer":"/ˈkænsə/","diabetes":"/ˌdaɪəˈbiːtiːz/","obesity":"/əʊˈbiːsəti/","infection":"/ɪnˈfekʃn/","injury":"/ˈɪndʒəri/","wound":"/wuːnd/","fracture":"/ˈfræktʃə/","burn":"/bɜːn/","cut":"/kʌt/","bruise":"/bruːz/","scar":"/skɑː/","bandage":"/ˈbændɪdʒ/","medicine":"/ˈmedsn/","pill":"/pɪl/","tablet":"/ˈtæblət/","capsule":"/ˈkæpsjuːl/","syrup":"/ˈsɪrəp/","injection":"/ɪnˈdʒekʃn/","vaccine":"/ˈvæksiːn/","prescription":"/prɪˈskrɪpʃn/","dentist":"/ˈdentɪst/","surgeon":"/ˈsɜːdʒən/","pharmacist":"/ˈfɑːməsɪst/","surgery":"/ˈsɜːdʒəri/","emergency":"/ɪˈmɜːdʒənsi/","treatment":"/ˈtriːtmənt/","recovery":"/rɪˈkʌvəri/","fitness":"/ˈfɪtnəs/","nutrition":"/njuˈtrɪʃn/","diet":"/ˈdaɪət/","vitamin":"/ˈvɪtəmɪn/","protein":"/ˈprəʊtiːn/","stress":"/stres/","mental":"/ˈmentl/","physical":"/ˈfɪzɪkl/","time":"/taɪm/","year":"/jɪə/","month":"/mʌnθ/","week":"/wiːk/","day":"/deɪ/","hour":"/ˈaʊə/","minute":"/ˈmɪnɪt/","second":"/ˈsekənd/","century":"/ˈsentʃəri/","decade":"/ˈdekeɪd/","today":"/təˈdeɪ/","yesterday":"/ˈjestədeɪ/","tomorrow":"/təˈmɒrəʊ/","day before yesterday":"/deɪ bɪˈfɔː ˈjestədeɪ/","day after tomorrow":"/deɪ ˈɑːftə təˈmɒrəʊ/","now":"/naʊ/","future":"/ˈfjuːtʃə/","past":"/pɑːst/","morning":"/ˈmɔːnɪŋ/","noon":"/nuːn/","afternoon":"/ˌɑːftəˈnuːn/","evening":"/ˈiːvnɪŋ/","night":"/naɪt/","midnight":"/ˈmɪdnaɪt/","dawn":"/dɔːn/","dusk":"/dʌsk/","monday":"/ˈmʌndeɪ/","tuesday":"/ˈtjuːzdeɪ/","wednesday":"/ˈwenzdeɪ/","thursday":"/ˈθɜːzdeɪ/","friday":"/ˈfraɪdeɪ/","saturday":"/ˈsætədeɪ/","sunday":"/ˈsʌndeɪ/","weekend":"/ˌwiːkˈend/","january":"/ˈdʒænjuəri/","february":"/ˈfebruəri/","march":"/mɑːtʃ/","april":"/ˈeɪprəl/","may":"/meɪ/","june":"/dʒuːn/","july":"/dʒuˈlaɪ/","august":"/ˈɔːɡəst/","september":"/sepˈtembə/","october":"/ɒkˈtəʊbə/","november":"/nəʊˈvembə/","december":"/dɪˈsembə/","holiday":"/ˈhɒlədeɪ/","festival":"/ˈfestɪvl/","birthday":"/ˈbɜːθdeɪ/","anniversary":"/ˌænɪˈvɜːsəri/","late":"/leɪt/","fast":"/fɑːst/","slow":"/sləʊ/","immediately":"/ɪˈmiːdiətli/","soon":"/suːn/","recently":"/ˈriːsntli/","before":"/bɪˈfɔː/","after":"/ˈɑːftə/","during":"/ˈdjʊərɪŋ/","forever":"/fərˈevə/","never":"/ˈnevə/","always":"/ˈɔːlweɪz/","often":"/ˈɒfn/","sometimes":"/ˈsʌmtaɪmz/","rarely":"/ˈreəli/","ever":"/ˈevə/","already":"/ɔːlˈredi/","zero":"/ˈzɪərəʊ/","one":"/wʌn/","two":"/tuː/","three":"/θriː/","four":"/fɔː/","five":"/faɪv/","six":"/sɪks/","seven":"/ˈsevn/","eight":"/eɪt/","nine":"/naɪn/","ten":"/ten/","eleven":"/ɪˈlevn/","twelve":"/twelv/","thirteen":"/ˌθɜːˈtiːn/","fourteen":"/ˌfɔːˈtiːn/","fifteen":"/ˌfɪfˈtiːn/","sixteen":"/ˌsɪksˈtiːn/","seventeen":"/ˌsevnˈtiːn/","eighteen":"/ˌeɪˈtiːn/","nineteen":"/ˌnaɪnˈtiːn/","twenty":"/ˈtwenti/","thirty":"/ˈθɜːti/","forty":"/ˈfɔːti/","fifty":"/ˈfɪfti/","sixty":"/ˈsɪksti/","seventy":"/ˈsevnti/","eighty":"/ˈeɪti/","ninety":"/ˈnaɪnti/","hundred":"/ˈhʌndrəd/","thousand":"/ˈθaʊznd/","million":"/ˈmɪljən/","billion":"/ˈbɪljən/","first":"/fɜːst/","third":"/θɜːd/","fourth":"/fɔːθ/","fifth":"/fɪfθ/","tenth":"/tenθ/","half":"/hɑːf/","quarter":"/ˈkwɔːtə/","double":"/ˈdʌbl/","triple":"/ˈtrɪpl/","number":"/ˈnʌmbə/","amount":"/əˈmaʊnt/","many":"/ˈmeni/","some":"/sʌm/","few":"/fjuː/","several":"/ˈsevrəl/","all":"/ɔːl/","every":"/ˈevri/","none":"/nʌn/","more":"/mɔː/","less":"/les/","most":"/məʊst/","least":"/liːst/","total":"/ˈtəʊtl/","quantity":"/ˈkwɒntəti/","pair":"/peə/","dozen":"/ˈdʌzn/","percent":"/pəˈsent/","plus":"/plʌs/","minus":"/ˈmaɪnəs/","times":"/taɪmz/","divide":"/dɪˈvaɪd/","equal":"/ˈiːkwəl/","color":"/ˈkʌlə/","red":"/red/","yellow":"/ˈjeləʊ/","green":"/ɡriːn/","blue":"/bluː/","purple":"/ˈpɜːpl/","pink":"/pɪŋk/","black":"/blæk/","white":"/waɪt/","gray":"/ɡreɪ/","brown":"/braʊn/","gold":"/ɡəʊld/","silver":"/ˈsɪlvə/","dark":"/dɑːk/","bright":"/braɪt/","dim":"/dɪm/","transparent":"/trænsˈpærənt/","opaque":"/əʊˈpeɪk/","shape":"/ʃeɪp/","circle":"/ˈsɜːkl/","rectangle":"/ˈrektæŋɡl/","triangle":"/ˈtraɪæŋɡl/","oval":"/ˈəʊvl/","diamond":"/ˈdaɪəmənd/","starshape":"/ˈstɑːʃeɪp/","cube":"/kjuːb/","sphere":"/sfɪə/","cone":"/kəʊn/","cylinder":"/ˈsɪlɪndə/","pyramid":"/ˈpɪrəmɪd/","line":"/laɪn/","curve":"/kɜːv/","dot":"/dɒt/","angle":"/ˈæŋɡl/","edge":"/edʒ/","up":"/ʌp/","down":"/daʊn/","left":"/left/","right":"/raɪt/","front":"/frʌnt/","inside":"/ɪnˈsaɪd/","outside":"/ˌaʊtˈsaɪd/","middle":"/ˈmɪdl/","beside":"/bɪˈsaɪd/","near":"/nɪə/","far":"/fɑː/","here":"/hɪə/","there":"/ðeə/","everywhere":"/ˈevriweə/","somewhere":"/ˈsʌmweə/","anywhere":"/ˈeniweə/","nowhere":"/ˈnəʊweə/","north":"/nɔːθ/","south":"/saʊθ/","east":"/iːst/","west":"/west/","northeast":"/ˌnɔːθˈiːst/","southeast":"/ˌsaʊθˈiːst/","northwest":"/ˌnɔːθˈwest/","southwest":"/ˌsaʊθˈwest/","location":"/ləʊˈkeɪʃn/","place":"/pleɪs/","space":"/speɪs/","spot":"/spɒt/","area":"/ˈeəriə/","range":"/reɪndʒ/","border":"/ˈbɔːdə/","height":"/haɪt/","width":"/wɪdθ/","length":"/leŋθ/","depth":"/depθ/","top":"/tɒp/","bottom":"/ˈbɒtəm/","side":"/saɪd/","corner":"/ˈkɔːnə/","center":"/ˈsentə/","horizontal":"/ˌhɒrɪˈzɒntl/","vertical":"/ˈvɜːtɪkl/","good":"/ɡʊd/","bad":"/bæd/","big":"/bɪɡ/","small":"/smɔːl/","long":"/lɒŋ/","high":"/haɪ/","low":"/ləʊ/","wide":"/waɪd/","narrow":"/ˈnærəʊ/","thick":"/θɪk/","heavy":"/ˈhevi/","quick":"/kwɪk/","new":"/njuː/","aged":"/ˈeɪdʒɪd/","wet":"/wet/","hard":"/hɑːd/","soft":"/sɒft/","smooth":"/smuːð/","rough":"/rʌf/","sharp":"/ʃɑːp/","dull":"/dʌl/","empty":"/ˈempti/","open":"/ˈəʊpən/","closed":"/kləʊzd/","dirty":"/ˈdɜːti/","neat":"/niːt/","messy":"/ˈmesi/","quiet":"/ˈkwaɪət/","noisy":"/ˈnɔɪzi/","loud":"/laʊd/","gentle":"/ˈdʒentl/","simple":"/ˈsɪmpl/","complex":"/ˈkɒmpleks/","easy":"/ˈiːzi/","difficult":"/ˈdɪfɪkəlt/","correct":"/kəˈrekt/","wrong":"/rɒŋ/","true":"/truː/","false":"/fɔːls/","real":"/rɪəl/","fake":"/feɪk/","same":"/seɪm/","different":"/ˈdɪfrənt/","similar":"/ˈsɪmɪlə/","ordinary":"/ˈɔːdɪnri/","special":"/ˈspeʃl/","important":"/ɪmˈpɔːtnt/","useful":"/ˈjuːsfl/","interesting":"/ˈɪntrəstɪŋ/","boring":"/ˈbɔːrɪŋ/","strange":"/streɪndʒ/","normal":"/ˈnɔːml/","wonderful":"/ˈwʌndəfl/","terrible":"/ˈterəbl/","amazing":"/əˈmeɪzɪŋ/","lovely":"/ˈlʌvli/","smart":"/smɑːt/","stupid":"/ˈstjuːpɪd/","hardworking":"/ˌhɑːdˈwɜːkɪŋ/","lazy":"/ˈleɪzi/","kind":"/kaɪnd/","cruel":"/ˈkruːəl/","honest":"/ˈɒnɪst/","friendly":"/ˈfrendli/","polite":"/pəˈlaɪt/","rude":"/ruːd/","generous":"/ˈdʒenərəs/","selfish":"/ˈselfɪʃ/","courageous":"/kəˈreɪdʒəs/","timid":"/ˈtɪmɪd/","lucky":"/ˈlʌki/","unlucky":"/ʌnˈlʌki/","rich":"/rɪtʃ/","poor":"/pɔː/","valuable":"/ˈvæljuəbl/","inexpensive":"/ˌɪnɪkˈspensɪv/","costly":"/ˈkɒstli/","popular":"/ˈpɒpjələ/","famous":"/ˈfeɪməs/","be":"/biː/","have":"/hæv/","do":"/duː/","say":"/seɪ/","go":"/ɡəʊ/","come":"/kʌm/","see":"/siː/","know":"/nəʊ/","take":"/teɪk/","think":"/θɪŋk/","look":"/lʊk/","want":"/wɒnt/","give":"/ɡɪv/","use":"/juːz/","find":"/faɪnd/","tell":"/tel/","try":"/traɪ/","need":"/niːd/","feel":"/fiːl/","become":"/bɪˈkʌm/","put":"/pʊt/","mean":"/miːn/","keep":"/kiːp/","let":"/let/","begin":"/bɪˈɡɪn/","help":"/help/","talk":"/tɔːk/","turn":"/tɜːn/","start":"/stɑːt/","show":"/ʃəʊ/","hear":"/hɪə/","play":"/pleɪ/","move":"/muːv/","live":"/lɪv/","believe":"/bɪˈliːv/","own":"/əʊn/","learn":"/lɜːn/","offer":"/ˈɒfə/","decide":"/dɪˈsaɪd/","happen":"/ˈhæpən/","send":"/send/","understand":"/ˌʌndəˈstænd/","pull":"/pʊl/","push":"/pʊʃ/","jump":"/dʒʌmp/","swimming":"/ˈswɪmɪŋ/","ride":"/raɪd/","win":"/wɪn/","lose":"/luːz/","hit":"/hɪt/","catch":"/kætʃ/","throw":"/θrəʊ/","kick":"/kɪk/","hold":"/həʊld/","write":"/raɪt/","close":"/kləʊz/","break":"/breɪk/","fix":"/fɪks/","build":"/bɪld/","destroy":"/dɪˈstrɔɪ/","choose":"/tʃuːz/","waste":"/weɪst/","lend":"/lend/","share":"/ʃeə/","trade":"/treɪd/","receive":"/rɪˈsiːv/","accept":"/əkˈsept/","refuse":"/rɪˈfjuːz/","agree":"/əˈɡriː/","disagree":"/ˌdɪsəˈɡriː/","allow":"/əˈlaʊ/","forbid":"/fəˈbɪd/","invite":"/ɪnˈvaɪt/","forgive":"/fəˈɡɪv/","ignore":"/ɪɡˈnɔː/","notice":"/ˈnəʊtɪs/","solve":"/sɒlv/","cause":"/kɔːz/","avoid":"/əˈvɔɪd/","prepare":"/prɪˈpeə/","finish":"/ˈfɪnɪʃ/","continue":"/kənˈtɪnjuː/","stop":"/stɒp/","end":"/end/","repeat":"/rɪˈpiːt/","practice":"/ˈpræktɪs/","succeed":"/səkˈsiːd/","attempt":"/əˈtempt/","effort":"/ˈefət/","computer":"/kəmˈpjuːtə/","laptop":"/ˈlæptɒp/","desktop":"/ˈdesktɒp/","phone":"/fəʊn/","smartphone":"/ˈsmɑːtfəʊn/","smartwatch":"/ˈsmɑːtwɒtʃ/","screen":"/skriːn/","monitor":"/ˈmɒnɪtə/","keyboard":"/ˈkiːbɔːd/","touchpad":"/ˈtʌtʃpæd/","touchscreen":"/ˈtʌtʃskriːn/","headphone":"/ˈhedfəʊn/","earbuds":"/ˈɪəbʌdz/","speaker":"/ˈspiːkə/","camera":"/ˈkæmrə/","microphone":"/ˈmaɪkrəfəʊn/","printer":"/ˈprɪntə/","scanner":"/ˈskænə/","usb":"/ˌjuːesˈbiː/","harddrive":"/ˈhɑːddraɪv/","ssd":"/ˌesesˈdiː/","memory":"/ˈmeməri/","processor":"/ˈprəʊsesə/","chip":"/tʃɪp/","graphics":"/ˈɡræfɪks/","motherboard":"/ˈmʌðəbɔːd/","battery":"/ˈbætri/","charger":"/ˈtʃɑːdʒə/","charge":"/tʃɑːdʒ/","plug":"/plʌɡ/","cable":"/ˈkeɪbl/","adapter":"/əˈdæptə/","router":"/ˈruːtə/","modem":"/ˈməʊdem/","internet":"/ˈɪntənet/","network":"/ˈnetwɜːk/","web":"/web/","website":"/ˈwebsaɪt/","webpage":"/ˈwebpeɪdʒ/","homepage":"/ˈhəʊmpeɪdʒ/","link":"/lɪŋk/","hyperlink":"/ˈhaɪpəlɪŋk/","address":"/əˈdres/","domain":"/dəˈmeɪn/","url":"/ˌjuː ɑː ˈel/","browser":"/ˈbraʊzə/","search":"/sɜːtʃ/","searchengine":"/ˈsɜːtʃ ˌendʒɪn/","keyword":"/ˈkiːwɜːd/","tag":"/tæɡ/","bookmark":"/ˈbʊkmɑːk/","favorite":"/ˈfeɪvərɪt/","download":"/ˌdaʊnˈləʊd/","upload":"/ˌʌpˈləʊd/","load":"/ləʊd/","refresh":"/rɪˈfreʃ/","reload":"/ˌriːˈləʊd/","redirect":"/ˌriːdɪˈrekt/","go back":"/ɡəʊ ˈbæk/","forward":"/ˈfɔːwəd/","wifi":"/ˈwaɪfaɪ/","hotspot":"/ˈhɒtspɒt/","signal":"/ˈsɪɡnəl/","connect":"/kəˈnekt/","disconnect":"/ˌdɪskəˈnekt/","online":"/ˌɒnˈlaɪn/","offline":"/ˌɒfˈlaɪn/","data":"/ˈdeɪtə/","bandwidth":"/ˈbændwɪdθ/","net speed":"/ˌnet ˈspiːd/","software":"/ˈsɒftweə/","hardware":"/ˈhɑːdweə/","app":"/æp/","application":"/ˌæplɪˈkeɪʃn/","program":"/ˈprəʊɡræm/","plugin":"/ˈplʌɡɪn/","extension":"/ɪkˈstenʃn/","tool":"/tuːl/","feature":"/ˈfiːtʃə/","version":"/ˈvɜːʃn/","update":"/ˈʌpdeɪt/","upgrade":"/ˈʌpɡreɪd/","uninstall":"/ˌʌnɪnˈstɔːl/","launch":"/lɔːntʃ/","quit":"/kwɪt/","restart":"/ˌriːˈstɑːt/","crash":"/kræʃ/","error":"/ˈerə/","bug":"/bʌɡ/","debug":"/ˌdiːˈbʌɡ/","file":"/faɪl/","directory":"/dɪˈrektəri/","picture":"/ˈpɪktʃə/","photo":"/ˈfəʊtəʊ/","image":"/ˈɪmɪdʒ/","icon":"/ˈaɪkɒn/","video":"/ˈvɪdiəʊ/","audio":"/ˈɔːdiəʊ/","zip":"/zɪp/","format":"/ˈfɔːmæt/","filesize":"/ˈfaɪlsaɪz/","filename":"/ˈfaɪlneɪm/","save as":"/ˈseɪv əz/","export":"/ɪkˈspɔːt/","import":"/ɪmˈpɔːt/","copy":"/ˈkɒpi/","paste":"/peɪst/","delete":"/dɪˈliːt/","undo":"/ʌnˈduː/","redo":"/ˌriːˈduː/","select":"/sɪˈlekt/","drag":"/dræɡ/","drop":"/drɒp/","open file":"/ˈəʊpən faɪl/","close file":"/kləʊz faɪl/","mail":"/meɪl/","inbox":"/ˈɪnbɒks/","outbox":"/ˈaʊtbɒks/","spam":"/spæm/","attachment":"/əˈtætʃmənt/","reply":"/rɪˈplaɪ/","forward email":"/ˈfɔːwəd ˈiːmeɪl/","sms":"/ˌesemˈes/","message":"/ˈmesɪdʒ/","conversation":"/ˌkɒnvəˈseɪʃn/","voice":"/vɔɪs/","livestream":"/ˈlaɪvstriːm/","socialmedia":"/ˈsəʊʃl ˈmiːdiə/","feed":"/fiːd/","status":"/ˈsteɪtəs/","post":"/pəʊst/","publish":"/ˈpʌblɪʃ/","repost":"/ˌriːˈpəʊst/","comment":"/ˈkɒment/","follow":"/ˈfɒləʊ/","follower":"/ˈfɒləʊə/","unfollow":"/ʌnˈfɒləʊ/","mute":"/mjuːt/","mention":"/ˈmenʃn/","topic":"/ˈtɒpɪk/","hashtag":"/ˈhæʃtæɡ/","dm":"/ˌdiːˈem/","group":"/ɡruːp/","channel":"/ˈtʃænl/","subscribe":"/səbˈskraɪb/","unsubscribe":"/ˌʌnsəbˈskraɪb/","video meeting":"/ˈvɪdiəʊ ˈmiːtɪŋ/","id":"/ˌaɪˈdiː/","username":"/ˈjuːzəneɪm/","password":"/ˈpɑːswɜːd/","pin":"/pɪn/","verifycode":"/ˈverɪfaɪ kəʊd/","login":"/ˈlɒɡɪn/","logout":"/ˈlɒɡaʊt/","signout":"/ˈsaɪnaʊt/","profile":"/ˈprəʊfaɪl/","avatar":"/ˈævətɑː/","nickname":"/ˈnɪkneɪm/","bio":"/ˈbaɪəʊ/","settings":"/ˈsetɪŋz/","preferences":"/ˈprefrənsɪz/","privacy":"/ˈprɪvəsi/","public":"/ˈpʌblɪk/","private":"/ˈpraɪvət/","permission":"/pəˈmɪʃn/","access":"/ˈækses/","authorize":"/ˈɔːθəraɪz/","security":"/sɪˈkjʊərəti/","encrypt":"/ɪnˈkrɪpt/","decrypt":"/diːˈkrɪpt/","verify":"/ˈverɪfaɪ/","identity":"/aɪˈdentəti/","two-factor":"/ˌtuː ˈfæktə/","fingerprint":"/ˈfɪŋɡəprɪnt/","facialid":"/ˈfeɪʃl ˌaɪˈdiː/","biometric":"/ˌbaɪəʊˈmetrɪk/","content":"/ˈkɒntent/","article":"/ˈɑːtɪkl/","blog":"/blɒɡ/","news":"/njuːz/","recommend":"/ˌrekəˈmend/","trending":"/ˈtrendɪŋ/","hot search":"/ˈhɒt sɜːtʃ/","latest":"/ˈleɪtɪst/","pinned":"/pɪnd/","featured":"/ˈfiːtʃəd/","advertisement":"/ədˈvɜːtɪsmənt/","sponsored":"/ˈspɒnsəd/","notification":"/ˌnəʊtɪfɪˈkeɪʃn/","reminder":"/rɪˈmaɪndə/","popup":"/ˈpɒpʌp/","banner":"/ˈbænə/","cache":"/kæʃ/","clear":"/klɪə/","loading":"/ˈləʊdɪŋ/","interface":"/ˈɪntəfeɪs/","ui":"/ˌjuːˈaɪ/","ux":"/ˌjuːˈeks/","option":"/ˈɒpʃn/","dropdown":"/ˈdrɒpdaʊn/","checkbox":"/ˈtʃekbɒks/","toggle":"/ˈtɒɡl/","slider":"/ˈslaɪdə/","input":"/ˈɪnpʊt/","typetext":"/ˈtaɪptekst/","submit":"/səbˈmɪt/","cancel":"/ˈkænsl/","confirm":"/kənˈfɜːm/","decline":"/dɪˈklaɪn/","skip":"/skɪp/","next":"/nekst/","previous":"/ˈpriːviəs/","done":"/dʌn/","view":"/vjuː/","details":"/ˈdiːteɪlz/","searchbar":"/ˈsɜːtʃbɑː/","sidebar":"/ˈsaɪdbɑː/","browser tab":"/ˈbraʊzə tæb/","modal":"/ˈməʊdl/","dialog":"/ˈdaɪəlɒɡ/","toolbar":"/ˈtuːlbɑː/","statusbar":"/ˈsteɪtəsbɑː/","cloudstorage":"/ˈklaʊdstɔːrɪdʒ/","sync":"/sɪŋk/","backup":"/ˈbækʌp/","restore":"/rɪˈstɔː/","storage":"/ˈstɔːrɪdʒ/","disk space":"/dɪsk speɪs/","remaining":"/rɪˈmeɪnɪŋ/","capacity":"/kəˈpæsəti/","server":"/ˈsɜːvə/","database":"/ˈdeɪtəbeɪs/","ecommerce":"/iːˈkɒmɜːs/","online shopping":"/ˈɒnlaɪn ˈʃɒpɪŋ/","cart":"/kɑːt/","order":"/ˈɔːdə/","logistics":"/ləˈdʒɪstɪks/","tracking":"/ˈtrækɪŋ/","rating":"/ˈreɪtɪŋ/","coupon":"/ˈkuːpɒn/","sale":"/seɪl/","freetrial":"/ˌfriːˈtraɪəl/","membership":"/ˈmembəʃɪp/","paid":"/peɪd/","subscription":"/səbˈskrɪpʃn/","free version":"/friː ˈvɜːʃn/","pro":"/prəʊ/","premium":"/ˈpriːmiəm/","ai":"/ˌeɪˈaɪ/","ml":"/ˌemˈel/","robot":"/ˈrəʊbɒt/","chatbot":"/ˈtʃætbɒt/","algorithm":"/ˈælɡərɪðəm/","automatic":"/ˌɔːtəˈmætɪk/","virtual":"/ˈvɜːtʃuəl/","ar":"/ˌeɪˈɑː/","vr":"/ˌviːˈɑː/","metaverse":"/ˈmetəvɜːs/","digital":"/ˈdɪdʒɪtl/","code":"/kəʊd/","coding":"/ˈkəʊdɪŋ/","develop":"/dɪˈveləp/","developer":"/dɪˈveləpə/","script":"/skrɪpt/","api":"/ˌeɪpiːˈaɪ/","support":"/səˈpɔːt/","customer service":"/ˈkʌstəmə ˈsɜːvɪs/","faq":"/ˌefeɪˈkjuː/","tutorial":"/tjuːˈtɔːriəl/","guide":"/ɡaɪd/","docs":"/dɒks/","feedback":"/ˈfiːdbæk/","suggestion":"/səˈdʒestʃən/","issue":"/ˈɪʃuː/","resolve":"/rɪˈzɒlv/","contact":"/ˈkɒntækt/","virus":"/ˈvaɪrəs/","trojan":"/ˈtrəʊdʒən/","hacker":"/ˈhækə/","attack":"/əˈtæk/","phishing":"/ˈfɪʃɪŋ/","scam":"/skæm/","fraud":"/frɔːd/","protect":"/prəˈtekt/","firewall":"/ˈfaɪəwɔːl/","antivirus":"/ˌæntiˈvaɪrəs/","movie":"/ˈmuːvi/","tv":"/ˌtiːˈviː/","drama":"/ˈdrɑːmə/","documentary":"/ˌdɒkjuˈmentri/","animation":"/ˌænɪˈmeɪʃn/","cartoon":"/kɑːˈtuːn/","variety":"/vəˈraɪəti/","actress":"/ˈæktrəs/","director":"/dəˈrektə/","producer":"/prəˈdjuːsə/","celebrity":"/səˈlebrəti/","song":"/sɒŋ/","band":"/bænd/","instrument":"/ˈɪnstrəmənt/","piano":"/piˈænəʊ/","guitar":"/ɡɪˈtɑː/","violin":"/ˌvaɪəˈlɪn/","drum":"/drʌm/","flute":"/fluːt/","note":"/nəʊt/","rhythm":"/ˈrɪðəm/","melody":"/ˈmelədi/","lyrics":"/ˈlɪrɪks/","album":"/ˈælbəm/","concert":"/ˈkɒnsət/","stage":"/steɪdʒ/","performance":"/pəˈfɔːməns/","painting":"/ˈpeɪntɪŋ/","painter":"/ˈpeɪntə/","sculpture":"/ˈskʌlptʃə/","photography":"/fəˈtɒɡrəfi/","exhibition":"/ˌeksɪˈbɪʃn/","novel":"/ˈnɒvl/","story":"/ˈstɔːri/","poem":"/ˈpəʊɪm/","fairytale":"/ˈfeəriteɪl/","comic":"/ˈkɒmɪk/","newspaper":"/ˈnjuːzpeɪpə/","game":"/ɡeɪm/","puzzle":"/ˈpʌzl/","boardgame":"/ˈbɔːdɡeɪm/","card":"/kɑːd/","toy":"/tɔɪ/","doll":"/dɒl/","lego":"/ˈleɡəʊ/","kite":"/kaɪt/","balloon":"/bəˈluːn/","fireworks":"/ˈfaɪəwɜːks/","ball":"/bɔːl/","celebration":"/ˌselɪˈbreɪʃn/","carnival":"/ˈkɑːnɪvl/","hobby":"/ˈhɒbi/","collection":"/kəˈlekʃn/","interest":"/ˈɪntrəst/","fun":"/fʌn/","sport":"/spɔːt/","football":"/ˈfʊtbɔːl/","soccer":"/ˈsɒkə/","basketball":"/ˈbɑːskɪtbɔːl/","volleyball":"/ˈvɒlibɔːl/","pingpong":"/ˈpɪŋpɒŋ/","badminton":"/ˈbædmɪntən/","tennis":"/ˈtenɪs/","baseball":"/ˈbeɪsbɔːl/","rugby":"/ˈrʌɡbi/","hockey":"/ˈhɒki/","golf":"/ɡɒlf/","running":"/ˈrʌnɪŋ/","jogging":"/ˈdʒɒɡɪŋ/","walking":"/ˈwɔːkɪŋ/","cycling":"/ˈsaɪklɪŋ/","skating":"/ˈskeɪtɪŋ/","skiing":"/ˈskiːɪŋ/","surfing":"/ˈsɜːfɪŋ/","diving":"/ˈdaɪvɪŋ/","climbing":"/ˈklaɪmɪŋ/","hiking":"/ˈhaɪkɪŋ/","fishing":"/ˈfɪʃɪŋ/","hunting":"/ˈhʌntɪŋ/","weightlifting":"/ˈweɪtˌlɪftɪŋ/","boxing":"/ˈbɒksɪŋ/","martialarts":"/ˈmɑːʃl ˈɑːts/","karate":"/kəˈrɑːti/","judo":"/ˈdʒuːdəʊ/","taekwondo":"/ˌtaɪkwɒnˈdəʊ/","gymnastics":"/dʒɪmˈnæstɪks/","athletics":"/æθˈletɪks/","race":"/reɪs/","marathon":"/ˈmærəθən/","relay":"/ˈriːleɪ/","highjump":"/ˈhaɪ dʒʌmp/","longjump":"/ˈlɒŋ dʒʌmp/","shooting":"/ˈʃuːtɪŋ/","archery":"/ˈɑːtʃəri/","fencing":"/ˈfensɪŋ/","racing":"/ˈreɪsɪŋ/","horseback":"/ˈhɔːsbæk/","olympics":"/əˈlɪmpɪks/","worldcup":"/ˈwɜːld kʌp/","championship":"/ˈtʃæmpiənʃɪp/","match":"/mætʃ/","player":"/ˈpleɪə/","coach":"/kəʊtʃ/","referee":"/ˌrefəˈriː/","spectator":"/spekˈteɪtə/","net":"/net/","racket":"/ˈrækɪt/","trophy":"/ˈtrəʊfi/","medal":"/ˈmedl/","champion":"/ˈtʃæmpiən/","victory":"/ˈvɪktəri/","defeat":"/dɪˈfiːt/","idea":"/aɪˈdɪə/","thought":"/θɔːt/","opinion":"/əˈpɪniən/","viewpoint":"/ˈvjuːpɔɪnt/","concept":"/ˈkɒnsept/","truth":"/truːθ/","fact":"/fækt/","reality":"/riˈæləti/","theory":"/ˈθɪəri/","belief":"/bɪˈliːf/","trust":"/trʌst/","doubt":"/daʊt/","reason":"/ˈriːzn/","effect":"/ɪˈfekt/","influence":"/ˈɪnfluəns/","purpose":"/ˈpɜːpəs/","meaning":"/ˈmiːnɪŋ/","value":"/ˈvæljuː/","importance":"/ɪmˈpɔːtns/","opportunity":"/ˌɒpəˈtjuːnəti/","possibility":"/ˌpɒsəˈbɪləti/","choice":"/tʃɔɪs/","decision":"/dɪˈsɪʒn/","problem":"/ˈprɒbləm/","solution":"/səˈluːʃn/","method":"/ˈmeθəd/","way":"/weɪ/","process":"/ˈprəʊses/","step":"/step/","level":"/ˈlevl/","rank":"/ræŋk/","situation":"/ˌsɪtʃuˈeɪʃn/","condition":"/kənˈdɪʃn/","context":"/ˈkɒntekst/","background":"/ˈbækɡraʊnd/","experience":"/ɪkˈspɪəriəns/","habit":"/ˈhæbɪt/","tradition":"/trəˈdɪʃn/","culture":"/ˈkʌltʃə/","freedom":"/ˈfriːdəm/","responsibility":"/rɪˌspɒnsəˈbɪləti/","rule":"/ruːl/","law":"/lɔː/","justice":"/ˈdʒʌstɪs/","peace":"/piːs/","war":"/wɔː/","failure":"/ˈfeɪljə/","success":"/səkˈses/","progress":"/ˈprəʊɡres/","development":"/dɪˈveləpmənt/","difference":"/ˈdɪfrəns/","similarity":"/ˌsɪmɪˈlærəti/","relationship":"/rɪˈleɪʃnʃɪp/","connection":"/kəˈnekʃn/","communication":"/kəˌmjuːnɪˈkeɪʃn/","interaction":"/ˌɪntərˈækʃn/","behavior":"/bɪˈheɪvjə/","attitude":"/ˈætɪtjuːd/","personality":"/ˌpɜːsəˈnæləti/","character":"/ˈkærəktə/","quality":"/ˈkwɒləti/","ability":"/əˈbɪləti/","talent":"/ˈtælənt/","gift":"/ɡɪft/","wisdom":"/ˈwɪzdəm/","intelligence":"/ɪnˈtelɪdʒəns/","commonsense":"/ˌkɒmənˈsens/","logic":"/ˈlɒdʒɪk/","imagination":"/ɪˌmædʒɪˈneɪʃn/","creation":"/kriˈeɪʃn/","innovation":"/ˌɪnəˈveɪʃn/","invention":"/ɪnˈvenʃn/","discovery":"/dɪˈskʌvəri/","courage":"/ˈkʌrɪdʒ/","patience":"/ˈpeɪʃns/","perseverance":"/ˌpɜːsɪˈvɪərəns/","determination":"/dɪˌtɜːmɪˈneɪʃn/","wish":"/wɪʃ/","expectation":"/ˌekspekˈteɪʃn/","ideal":"/aɪˈdɪəl/","desire":"/dɪˈzaɪə/","society":"/səˈsaɪəti/","nation":"/ˈneɪʃn/","president":"/ˈprezɪdənt/","premier":"/ˈpremiə/","mayor":"/ˈmeə/","senator":"/ˈsenətə/","official":"/əˈfɪʃl/","population":"/ˌpɒpjuˈleɪʃn/","ethnic":"/ˈeθnɪk/","religion":"/rɪˈlɪdʒən/","faith":"/feɪθ/","election":"/ɪˈlekʃn/","vote":"/vəʊt/","democracy":"/dɪˈmɒkrəsi/","regulation":"/ˌreɡjuˈleɪʃn/","policy":"/ˈpɒləsi/","system":"/ˈsɪstəm/","economy":"/ɪˈkɒnəmi/","currency":"/ˈkʌrənsi/","finance":"/ˈfaɪnæns/","investment":"/ɪnˈvestmənt/","stock":"/stɒk/","tax":"/tæks/","income":"/ˈɪnkʌm/","expense":"/ɪkˈspens/","budget":"/ˈbʌdʒɪt/","inflation":"/ɪnˈfleɪʃn/","crisis":"/ˈkraɪsɪs/","aid":"/eɪd/","charity":"/ˈtʃærəti/","nonprofit":"/ˌnɒnˈprɒfɪt/","fund":"/fʌnd/","donation":"/dəʊˈneɪʃn/","equality":"/ɪˈkwɒləti/","fairness":"/ˈfeənəs/","human rights":"/ˈhjuːmən raɪts/","liberty":"/ˈlɪbəti/","revolution":"/ˌrevəˈluːʃn/","reform":"/rɪˈfɔːm/","protest":"/ˈprəʊtest/","strike":"/straɪk/","violence":"/ˈvaɪələns/","crime":"/kraɪm/","drug trafficking":"/drʌɡ ˈtræfɪkɪŋ/","terrorism":"/ˈterərɪzəm/","treaty":"/ˈtriːti/","diplomacy":"/dɪˈpləʊməsi/","international":"/ˌɪntəˈnæʃnəl/","global":"/ˈɡləʊbl/","un":"/ˌjuːˈen/","europe":"/ˈjʊərəp/","asia":"/ˈeɪʃə/","africa":"/ˈæfrɪkə/","america":"/əˈmerɪkə/","oceania":"/ˌəʊsiˈɑːniə/","china":"/ˈtʃaɪnə/","usa":"/ˌjuː es ˈeɪ/","uk":"/ˌjuː ˈkeɪ/","france":"/frɑːns/","germany":"/ˈdʒɜːməni/","japan":"/dʒəˈpæn/","korea":"/kəˈrɪə/","india":"/ˈɪndiə/","russia":"/ˈrʌʃə/","canada":"/ˈkænədə/","australia":"/ɒˈstreɪliə/","and":"/ænd/","or":"/ɔː/","but":"/bʌt/","because":"/bɪˈkɒz/","so":"/səʊ/","if":"/ɪf/","although":"/ɔːlˈðəʊ/","when":"/wen/","while":"/waɪl/","until":"/ənˈtɪl/","therefore":"/ˈðeəfɔː/","however":"/haʊˈevə/","moreover":"/mɔːrˈəʊvə/","besides":"/bɪˈsaɪdz/","furthermore":"/ˌfɜːðəˈmɔː/","except":"/ɪkˈsept/","despite":"/dɪˈspaɪt/","due":"/djuː/","as":"/æz/","namely":"/ˈneɪmli/","even":"/ˈiːvn/","not only":"/nɒt ˈəʊnli/","alsо":"/ˈɔːlsəʊ/","since":"/sɪns/","once":"/wʌns/","in case":"/ɪn ˈkeɪs/","so that":"/səʊ ðæt/","otherwise":"/ˈʌðəwaɪz/","anyway":"/ˈeniweɪ/","finally":"/ˈfaɪnəli/","firstly":"/ˈfɜːstli/","secondly":"/ˈsekəndli/","then":"/ðen/","meanwhile":"/ˈmiːnwaɪl/","usually":"/ˈjuːʒuəli/","generally":"/ˈdʒenrəli/","especially":"/ɪˈspeʃəli/","particularly":"/pəˈtɪkjələli/","about":"/əˈbaʊt/","over":"/ˈəʊvə/","under":"/ˈʌndə/","at least":"/ət ˈliːst/","at most":"/ət ˈməʊst/","only":"/ˈəʊnli/","just":"/dʒʌst/","still":"/stɪl/","yet":"/jet/","again":"/əˈɡen/","gradually":"/ˈɡrædʒuəli/","quickly":"/ˈkwɪkli/","slowly":"/ˈsləʊli/","carefully":"/ˈkeəfəli/","maybe":"/ˈmeɪbi/","perhaps":"/pəˈhæps/","certainly":"/ˈsɜːtnli/","absolutely":"/ˌæbsəˈluːtli/","completely":"/kəmˈpliːtli/","very":"/ˈveri/","quite":"/kwaɪt/","a bit":"/ə ˈbɪt/","too":"/tuː/","enough":"/ɪˈnʌf/","almost":"/ˈɔːlməʊst/","nearly":"/ˈnɪəli/","not at all":"/ˌnɒt ət ˈɔːl/","yes":"/jes/","no":"/nəʊ/","ok":"/ˌəʊˈkeɪ/","please":"/pliːz/","thanks":"/θæŋks/","goodbye":"/ˌɡʊdˈbaɪ/","hello":"/həˈləʊ/","goodmorning":"/ˌɡʊd ˈmɔːnɪŋ/","goodnight":"/ˌɡʊdˈnaɪt/","explain":"/ɪkˈspleɪn/","describe":"/dɪˈskraɪb/","suggest":"/səˈdʒest/","warn":"/wɔːn/","notify":"/ˈnəʊtɪfaɪ/","promise":"/ˈprɒmɪs/","prove":"/pruːv/","deny":"/dɪˈnaɪ/","admit":"/ədˈmɪt/","claim":"/kleɪm/","announce":"/əˈnaʊns/","release":"/rɪˈliːs/","analyze":"/ˈænəlaɪz/","investigate":"/ɪnˈvestɪɡeɪt/","observe":"/əbˈzɜːv/","inspect":"/ɪnˈspekt/","evaluate":"/ɪˈvæljueɪt/","rate":"/reɪt/","compare":"/kəmˈpeə/","contrast":"/ˈkɒntrɑːst/","distinguish":"/dɪˈstɪŋɡwɪʃ/","identify":"/aɪˈdentɪfaɪ/","classify":"/ˈklæsɪfaɪ/","organize":"/ˈɔːɡənaɪz/","arrange":"/əˈreɪndʒ/","manage":"/ˈmænɪdʒ/","control":"/kənˈtrəʊl/","lead":"/liːd/","oppose":"/əˈpəʊz/","criticize":"/ˈkrɪtɪsaɪz/","praise":"/preɪz/","encourage":"/ɪnˈkʌrɪdʒ/","discourage":"/dɪsˈkʌrɪdʒ/","persuade":"/pəˈsweɪd/","affect":"/əˈfekt/","improve":"/ɪmˈpruːv/","increase":"/ɪnˈkriːs/","decrease":"/dɪˈkriːs/","expand":"/ɪkˈspænd/","shrink":"/ʃrɪŋk/","grow":"/ɡrəʊ/","enhance":"/ɪnˈhɑːns/","reduce":"/rɪˈdjuːs/","raise":"/reɪz/","rise":"/raɪz/","appear":"/əˈpɪə/","disappear":"/ˌdɪsəˈpɪə/","arrive":"/əˈraɪv/","depart":"/dɪˈpɑːt/","enter":"/ˈentə/","exit":"/ˈeksɪt/","attend":"/əˈtend/","join":"/dʒɔɪn/","explore":"/ɪkˈsplɔː/","discover":"/dɪˈskʌvə/","realize":"/ˈrɪəlaɪz/","recognize":"/ˈrekəɡnaɪz/","remember":"/rɪˈmembə/","forget":"/fəˈɡet/","miss":"/mɪs/","recall":"/rɪˈkɔːl/","reflect":"/rɪˈflekt/","consider":"/kənˈsɪdə/","imagine":"/ɪˈmædʒɪn/","assume":"/əˈsjuːm/","guess":"/ɡes/","predict":"/prɪˈdɪkt/","expect":"/ɪkˈspekt/","enjoy":"/ɪnˈdʒɔɪ/","appreciate":"/əˈpriːʃieɪt/","respect":"/rɪˈspekt/","admire":"/ədˈmaɪə/","detest":"/dɪˈtest/","tolerate":"/ˈtɒləreɪt/","endure":"/ɪnˈdjʊə/","overcome":"/ˌəʊvəˈkʌm/","handle":"/ˈhændl/","cope":"/kəʊp/","deal":"/diːl/","pause":"/pɔːz/","fastforward":"/ˌfɑːstˈfɔːwəd/","rewind":"/ˌriːˈwaɪnd/","replay":"/ˌriːˈpleɪ/","volume":"/ˈvɒljuːm/","fullscreen":"/ˈfʊlskriːn/","resolution":"/ˌrezəˈluːʃn/","hd":"/ˌeɪtʃˈdiː/","ultrahd":"/ˌʌltrə eɪtʃ ˈdiː/","lag":"/læɡ/","buffer":"/ˈbʌfə/","progressbar":"/ˈprəʊɡres bɑː/","subtitle":"/ˈsʌbtaɪtl/","danmaku":"/ˈdænmɑːkuː/","pip":"/ˌpiː aɪ ˈpiː/","playback":"/ˈpleɪbæk/","recording":"/rɪˈkɔːdɪŋ/","segment":"/ˈseɡmənt/","episode":"/ˈepɪsəʊd/","playlist":"/ˈpleɪlɪst/","intro":"/ˈɪntrəʊ/","outro":"/ˈaʊtrəʊ/","trailer":"/ˈtreɪlə/","bts":"/ˌbiː tiː ˈes/","highlight":"/ˈhaɪlaɪt/","thumbnail":"/ˈθʌmneɪl/","description":"/dɪˈskrɪpʃn/","duration":"/djuˈreɪʃn/","watch later":"/wɒtʃ ˈleɪtə/","tip":"/tɪp/","triple action":"/ˈtrɪpl ˈækʃn/","top comment":"/tɒp ˈkɒment/","views":"/vjuːz/","view count":"/vjuː kaʊnt/","blogger":"/ˈblɒɡə/","vlogger":"/ˈvlɒɡə/","streamer":"/ˈstriːmə/","influencer":"/ˈɪnfluənsə/","creator":"/kriˈeɪtə/","viewer":"/ˈvjuːə/","gain fans":"/ɡeɪn fænz/","lose fans":"/luːz fænz/","streaming":"/ˈstriːmɪŋ/","platform":"/ˈplætfɔːm/","vip":"/ˌviː aɪ ˈpiː/","ad":"/æd/","skipad":"/skɪp æd/","adfree":"/æd friː/","autoplay":"/ˈɔːtəʊpleɪ/","recommended":"/ˌrekəˈmendɪd/","click":"/klɪk/","tab":"/tæb/","bookmarks":"/ˈbʊkmɑːks/","addressbar":"/əˈdres bɑː/","scroll":"/skrəʊl/","zoomin":"/zuːm ɪn/","zoomout":"/zuːm aʊt/","nextpage":"/ˈnekst peɪdʒ/","loadmore":"/ˈləʊd mɔː/","incognito":"/ˌɪnkɒɡˈniːtəʊ/","clear cache":"/klɪə kæʃ/","emoji":"/ɪˈməʊdʒi/","meme":"/miːm/","screenshot":"/ˈskriːnʃɒt/","qrcode":"/ˌkjuː ɑː ˈkəʊd/","signup":"/ˈsaɪn ʌp/","how are you":"/haʊ ɑː juː/","i'm fine":"/aɪm faɪn/","thank you":"/θæŋk juː/","you're welcome":"/jɔː ˈwelkəm/","i'm sorry":"/aɪm ˈsɒri/","it's okay":"/ɪts ˌəʊˈkeɪ/","excuse me":"/ɪkˈskjuːz miː/","see you":"/siː juː/","long time no see":"/lɒŋ taɪm nəʊ siː/","my name is":"/maɪ neɪm ɪz/","nice to meet you":"/naɪs tə miːt juː/","what's your name":"/wɒts jɔː neɪm/","where are you from":"/weər ɑː juː frɒm/","i'm from china":"/aɪm frɒm ˈtʃaɪnə/","i don't understand":"/aɪ dəʊnt ˌʌndəˈstænd/","can you say that again":"/kæn juː seɪ ðæt əˈɡen/","please speak slowly":"/pliːz spiːk ˈsləʊli/","do you speak english":"/duː juː spiːk ˈɪŋɡlɪʃ/","my english is not good":"/maɪ ˈɪŋɡlɪʃ ɪz nɒt ɡʊd/","how do you say this in english":"/haʊ duː juː seɪ ðɪs ɪn ˈɪŋɡlɪʃ/","what does this mean":"/wɒt dʌz ðɪs miːn/","can i help you":"/kæn aɪ help juː/","can you help me":"/kæn juː help miː/","of course":"/əv kɔːs/","no problem":"/nəʊ ˈprɒbləm/","i agree":"/aɪ əˈɡriː/","i disagree":"/aɪ ˌdɪsəˈɡriː/","i think":"/aɪ θɪŋk/","i feel":"/aɪ fiːl/","i want":"/aɪ wɒnt/","i need":"/aɪ niːd/","i like":"/aɪ laɪk/","i don't like":"/aɪ dəʊnt laɪk/","just a moment":"/dʒʌst ə ˈməʊmənt/","wait a minute":"/weɪt ə ˈmɪnɪt/","i'm hungry":"/aɪm ˈhʌŋɡri/","i'm thirsty":"/aɪm ˈθɜːsti/","i'm tired":"/aɪm ˈtaɪəd/","i'm lost":"/aɪm lɒst/","how much":"/haʊ mʌtʃ/","what time is it":"/wɒt taɪm ɪz ɪt/","where is the toilet":"/weər ɪz ðə ˈtɔɪlət/","good luck":"/ɡʊd lʌk/","happy birthday":"/ˈhæpi ˈbɜːθdeɪ/","be careful":"/biː ˈkeəfl/","don't worry":"/dəʊnt ˈwʌri/","i'm coming":"/aɪm ˈkʌmɪŋ/","here we are":"/hɪə wiː ɑː/","that's it":"/ðæts ɪt/","you're right":"/jɔː raɪt/","reservation":"/ˌrezəˈveɪʃn/","a table":"/ə ˈteɪbl/","for two":"/fɔː tuː/","specialty":"/ˈspeʃəlti/","appetizer":"/ˈæpɪtaɪzə/","main course":"/meɪn kɔːs/","beverage":"/ˈbevərɪdʒ/","ice water":"/aɪs ˈwɔːtə/","spicy":"/ˈspaɪsi/","sweet":"/swiːt/","salty":"/ˈsɔːlti/","sour":"/ˈsaʊə/","delicious":"/dɪˈlɪʃəs/","takeaway":"/ˈteɪkəweɪ/","dine in":"/daɪn ɪn/","check":"/tʃek/","bill":"/bɪl/","vegetarian":"/ˌvedʒəˈteəriən/","allergic":"/əˈlɜːdʒɪk/","to go":"/tə ɡəʊ/","a serving":"/ə ˈsɜːvɪŋ/","combo":"/ˈkɒmbəʊ/","portion":"/ˈpɔːʃn/","fresh":"/freʃ/","cooked":"/kʊkt/","raw":"/rɔː/","one more":"/wʌn mɔː/","ready to order":"/ˈredi tə ˈɔːdə/","store":"/stɔː/","large":"/lɑːdʒ/","medium":"/ˈmiːdiəm/","try on":"/traɪ ɒn/","fitting room":"/ˈfɪtɪŋ ruːm/","fit":"/fɪt/","too big":"/tuː bɪɡ/","too small":"/tuː smɔːl/","basket":"/ˈbɑːskɪt/","counter":"/ˈkaʊntə/","cashier":"/kæˈʃɪə/","brand":"/brænd/","sold out":"/səʊld aʊt/","in stock":"/ɪn stɒk/","new arrival":"/njuː əˈraɪvl/","best seller":"/best ˈselə/","cheaper":"/ˈtʃiːpə/","lowest price":"/ˈləʊɪst praɪs/","just looking":"/dʒʌst ˈlʊkɪŋ/","i'll take this":"/aɪl teɪk ðɪs/","anything else":"/ˈeniθɪŋ els/","wrap":"/ræp/","shopping bag":"/ˈʃɒpɪŋ bæɡ/","invoice":"/ˈɪnvɔɪs/","warranty":"/ˈwɒrənti/","tap":"/tæp/","double tap":"/ˈdʌbl tæp/","swipe":"/swaɪp/","swipe up":"/swaɪp ʌp/","swipe down":"/swaɪp daʊn/","pull down":"/pʊl daʊn/","scroll up":"/skrəʊl ʌp/","pinch":"/pɪntʃ/","sign in":"/saɪn ɪn/","sign out":"/saɪn aʊt/","sign up":"/saɪn ʌp/","forgot password":"/fəˈɡɒt ˈpɑːswɜːd/","filter":"/ˈfɪltə/","edit":"/ˈedɪt/","record":"/rɪˈkɔːd/","brightness":"/ˈbraɪtnəs/","airplane mode":"/ˈeəpleɪn məʊd/","journey":"/ˈdʒɜːni/","passport":"/ˈpɑːspɔːt/","visa":"/ˈviːzə/","booking":"/ˈbʊkɪŋ/","boarding":"/ˈbɔːdɪŋ/","customs":"/ˈkʌstəmz/","departure":"/dɪˈpɑːtʃə/","arrival":"/əˈraɪvl/","delay":"/dɪˈleɪ/","destination":"/ˌdestɪˈneɪʃn/","sightseeing":"/ˈsaɪtsiːɪŋ/","itinerary":"/aɪˈtɪnərəri/","jet lag":"/ˈdʒet læɡ/","layover":"/ˈleɪəʊvə/","terminal":"/ˈtɜːmɪnl/","resort":"/rɪˈzɔːt/","abroad":"/əˈbrɔːd/","overseas":"/ˌəʊvəˈsiːz/","adventure":"/ədˈventʃə/","lounge":"/laʊndʒ/","traveler":"/ˈtrævələ/","local":"/ˈləʊkl/","scenery":"/ˈsiːnəri/","tent":"/tent/","postcard":"/ˈpəʊstkɑːd/","boarding pass":"/ˈbɔːdɪŋ pɑːs/","plane ticket":"/pleɪn ˈtɪkɪt/","banknote":"/ˈbæŋknəʊt/","wage":"/weɪdʒ/","loan":"/ləʊn/","debt":"/det/","invest":"/ɪnˈvest/","profit":"/ˈprɒfɪt/","loss":"/lɒs/","fee":"/fiː/","deposit":"/dɪˈpɒzɪt/","wealth":"/welθ/","afford":"/əˈfɔːd/","credit":"/ˈkredɪt/","property":"/ˈprɒpəti/","donate":"/dəʊˈneɪt/","fortune":"/ˈfɔːtʃuːn/","thrifty":"/ˈθrɪfti/","savings":"/ˈseɪvɪŋz/","bankrupt":"/ˈbæŋkrʌpt/","celebrate":"/ˈselɪbreɪt/","present":"/ˈpreznt/","candle":"/ˈkændl/","decoration":"/ˌdekəˈreɪʃn/","parade":"/pəˈreɪd/","costume":"/ˈkɒstjuːm/","ceremony":"/ˈserəməni/","greeting":"/ˈɡriːtɪŋ/","invitation":"/ˌɪnvɪˈteɪʃn/","custom":"/ˈkʌstəm/","lantern":"/ˈlæntən/","reunion":"/ˌriːˈjuːniən/","blessing":"/ˈblesɪŋ/","Christmas":"/ˈkrɪsməs/","Halloween":"/ˌhæləʊˈiːn/","Easter":"/ˈiːstə/","Thanksgiving":"/ˌθæŋksˈɡɪvɪŋ/","New Year":"/ˌnjuː ˈjɪə/","Spring Festival":"/ˌsprɪŋ ˈfestɪvl/","Mid-Autumn":"/ˌmɪd ˈɔːtəm/","champagne":"/ʃæmˈpeɪn/","cheers":"/tʃɪəz/","firework show":"/ˈfaɪəwɜːk ʃəʊ/","ribbon":"/ˈrɪbən/","roast":"/rəʊst/","pour":"/pɔː/","ingredient":"/ɪnˈɡriːdiənt/","dish":"/dɪʃ/","flavor":"/ˈfleɪvə/","bitter":"/ˈbɪtə/","ripe":"/raɪp/","dough":"/dəʊ/","sauce":"/sɔːs/","flour":"/ˈflaʊə/","calorie":"/ˈkæləri/","freeze":"/friːz/","heat":"/hiːt/","melt":"/melt/","meal":"/miːl/","beat":"/biːt/","tune":"/tjuːn/","perform":"/pəˈfɔːm/","paint":"/peɪnt/","brush":"/brʌʃ/","canvas":"/ˈkænvəs/","sketch":"/sketʃ/","create":"/kriˈeɪt/","carve":"/kɑːv/","masterpiece":"/ˈmɑːstəpiːs/","inspiration":"/ˌɪnspəˈreɪʃn/","graceful":"/ˈɡreɪsfl/","classical":"/ˈklæsɪkl/","orchestra":"/ˈɔːkɪstrə/"}
 
+// ===== 日常高频句数据(2026-09-11 新增) =====
+const SENTENCES = {"greeting":{"name":"问候寒暄","icon":"👋","items":[{"en":"How are you doing?","cn":"你最近怎么样?","g":{"How":"怎么","are":"是","you":"你","doing":"过得"}},{"en":"Long time no see!","cn":"好久不见!","g":{"Long":"久","time":"时间","no":"没","see":"见"}},{"en":"How's it going?","cn":"最近怎么样?","g":{"How's":"怎么样","it":"事情","going":"进展"}},{"en":"Nice to meet you.","cn":"很高兴认识你。","g":{"Nice":"高兴","to":"不定式","meet":"认识","you":"你"}},{"en":"Nice to see you again.","cn":"很高兴又见到你。","g":{"Nice":"高兴","to":"不定式","see":"见到","you":"你","again":"又"}},{"en":"Good to see you.","cn":"见到你真好。","g":{"Good":"好","to":"不定式","see":"见到","you":"你"}},{"en":"It's been a while.","cn":"有一阵子没见了。","g":{"It's":"已经","been":"有","a":"一段","while":"时间"}},{"en":"How have you been?","cn":"你最近过得好吗?","g":{"How":"怎么","have":"助动词","you":"你","been":"过得"}},{"en":"Hey, what's up?","cn":"嘿,最近咋样?","g":{"Hey":"嘿","what's":"什么","up":"事"}},{"en":"What's new with you?","cn":"你最近有什么新鲜事?","g":{"What's":"有什么","new":"新鲜事","with":"关于","you":"你"}},{"en":"Morning! Sleep well?","cn":"早!睡得好吗?","g":{"Morning":"早上好","Sleep":"睡","well":"好"}},{"en":"How was your day?","cn":"你今天过得怎么样?","g":{"How":"怎么","was":"是","your":"你的","day":"一天"}},{"en":"How was your weekend?","cn":"你周末过得怎么样?","g":{"How":"怎么","was":"是","your":"你的","weekend":"周末"}},{"en":"Have a good day!","cn":"祝你今天过得愉快!","g":{"Have":"度过","a":"一个","good":"好的","day":"一天"}},{"en":"Have a nice weekend!","cn":"周末愉快!","g":{"Have":"度过","a":"一个","nice":"愉快的","weekend":"周末"}},{"en":"Take care of yourself!","cn":"照顾好自己!","g":{"Take":"照顾","care":"好","of":"你","yourself":"自己"}},{"en":"See you later!","cn":"待会儿见!","g":{"See":"见","you":"你","later":"待会儿"}},{"en":"See you tomorrow.","cn":"明天见。","g":{"See":"见","you":"你","tomorrow":"明天"}},{"en":"See you around.","cn":"回头见。","g":{"See":"见","you":"你","around":"回头"}},{"en":"Talk to you later.","cn":"晚点再跟你聊。","g":{"Talk":"聊","to":"和","you":"你","later":"晚点"}},{"en":"I gotta go.","cn":"我得走了。","g":{"I":"我","gotta":"得","go":"走"}},{"en":"I have to go now.","cn":"我现在得走了。","g":{"I":"我","have":"得","to":"不定式","go":"走","now":"现在"}},{"en":"Catch you later!","cn":"回头见!","g":{"Catch":"找","you":"你","later":"回头"}},{"en":"Say hi to your family.","cn":"代我向你家人问好。","g":{"Say":"说","hi":"问好","to":"向","your":"你的","family":"家人"}},{"en":"Say hello to your mom for me.","cn":"代我向你妈妈问好。","g":{"Say":"说","hello":"问好","to":"向","your":"你的","mom":"妈妈","for":"替","me":"我"}},{"en":"Give my best to your wife.","cn":"代我向你太太问好。","g":{"Give":"带给","my":"我的","best":"问候","to":"向","your":"你的","wife":"太太"}},{"en":"Welcome back, my friend!","cn":"欢迎回来,我的朋友!","g":{"Welcome":"欢迎","back":"回来","my":"我的","friend":"朋友"}},{"en":"Thanks for coming.","cn":"谢谢你能来。","g":{"Thanks":"谢谢","for":"因为","coming":"来"}},{"en":"I'm so glad you came.","cn":"你能来我太高兴了。","g":{"I'm":"我","so":"太","glad":"高兴","you":"你","came":"来了"}},{"en":"Sorry I'm late.","cn":"抱歉我迟到了。","g":{"Sorry":"抱歉","I'm":"我","late":"迟到"}},{"en":"Sorry to keep you waiting.","cn":"抱歉让你久等了。","g":{"Sorry":"抱歉","to":"不定式","keep":"让","you":"你","waiting":"等着"}},{"en":"No worries, it's fine.","cn":"没关系,这没什么。","g":{"No":"没有","worries":"关系","it's":"这","fine":"没什么"}},{"en":"It's okay, don't worry.","cn":"没事,别担心。","g":{"It's":"这","okay":"没事","don't":"别","worry":"担心"}},{"en":"Excuse me for a second.","cn":"抱歉,失陪一下。","g":{"Excuse":"原谅","me":"我","for":"占用","a":"一","second":"秒"}},{"en":"I didn't catch your name.","cn":"我没听清你的名字。","g":{"I":"我","didn't":"没有","catch":"听清","your":"你的","name":"名字"}},{"en":"What's your name again?","cn":"你叫什么名字来着?","g":{"What's":"是什么","your":"你的","name":"名字","again":"来着"}},{"en":"I'm terrible with names.","cn":"我记人名特别差。","g":{"I'm":"我","terrible":"很差","with":"对于","names":"名字"}},{"en":"Nice talking to you.","cn":"跟你聊天很开心。","g":{"Nice":"开心","talking":"聊天","to":"和","you":"你"}},{"en":"Let's catch up soon.","cn":"我们快点找个时间聚聚。","g":{"Let's":"让我们","catch":"叙","up":"旧","soon":"尽快"}},{"en":"We should hang out sometime.","cn":"我们改天该一起出去玩玩。","g":{"We":"我们","should":"应该","hang":"出去","out":"玩","sometime":"改天"}},{"en":"Drop by anytime.","cn":"随时来坐坐。","g":{"Drop":"来","by":"顺便","anytime":"随时"}},{"en":"Come over for dinner sometime.","cn":"改天来家里吃个饭。","g":{"Come":"来","over":"过来","for":"吃","dinner":"晚饭","sometime":"改天"}},{"en":"Say hello to your parents for me.","cn":"代我向你父母问好。","g":{"Say":"说","hello":"问好","to":"向","your":"你的","parents":"父母","for":"替","me":"我"}},{"en":"I've heard so much about you.","cn":"我早就听说过你很多事了。","g":{"I've":"我已经","heard":"听说","so":"这么","much":"多","about":"关于","you":"你"}},{"en":"It's nice to finally meet you.","cn":"终于见到你了,真好。","g":{"It's":"这","nice":"好","to":"不定式","finally":"终于","meet":"见到","you":"你"}},{"en":"How's your family doing?","cn":"你家里人还好吗?","g":{"How's":"怎么样","your":"你的","family":"家人","doing":"过得"}},{"en":"Let's grab coffee sometime.","cn":"改天一起喝杯咖啡吧。","g":{"Let's":"让我们","grab":"喝","coffee":"咖啡","sometime":"改天"}},{"en":"Give me a call when you're free.","cn":"你有空给我打个电话。","g":{"Give":"给","me":"我","a":"一个","call":"电话","when":"当","you're":"你","free":"有空"}},{"en":"Have a safe trip!","cn":"一路平安!","g":{"Have":"度过","a":"一个","safe":"平安的","trip":"旅程"}},{"en":"Good luck with your interview!","cn":"祝你面试顺利!","g":{"Good":"好的","luck":"运气","with":"在","your":"你的","interview":"面试"}}]},"smalltalk":{"name":"闲聊家常","icon":"💬","items":[{"en":"Nice weather today, isn't it?","cn":"今天天气不错,是吧?","g":{"Nice":"好","weather":"天气","today":"今天","isn't":"不是","it":"它"}},{"en":"It's really hot today.","cn":"今天真热。","g":{"It's":"天气","really":"真","hot":"热","today":"今天"}},{"en":"It's so cold today.","cn":"今天太冷了。","g":{"It's":"天气","so":"太","cold":"冷","today":"今天"}},{"en":"Looks like it's going to rain.","cn":"看样子要下雨了。","g":{"Looks":"看起来","like":"像","it's":"天","going":"要","to":"不定式","rain":"下雨"}},{"en":"It's a beautiful day.","cn":"今天天气真好。","g":{"It's":"今天","a":"一个","beautiful":"美丽的","day":"日子"}},{"en":"How's the weather there?","cn":"你那边天气怎么样?","g":{"How's":"怎么样","the":"那","weather":"天气","there":"那儿"}},{"en":"It's raining pretty hard.","cn":"雨下得挺大的。","g":{"It's":"雨","raining":"下","pretty":"相当","hard":"大"}},{"en":"The sun is finally out.","cn":"太阳终于出来了。","g":{"The":"这","sun":"太阳","is":"是","finally":"终于","out":"出来了"}},{"en":"What's your job?","cn":"你做什么工作?","g":{"What's":"是什么","your":"你的","job":"工作"}},{"en":"I work at a bank.","cn":"我在银行上班。","g":{"I":"我","work":"工作","at":"在","a":"一家","bank":"银行"}},{"en":"How long have you worked there?","cn":"你在那儿工作多久了?","g":{"How":"多","long":"久","have":"助动词","you":"你","worked":"工作","there":"在那儿"}},{"en":"Do you like your job?","cn":"你喜欢你的工作吗?","g":{"Do":"助动词","you":"你","like":"喜欢","your":"你的","job":"工作"}},{"en":"I'm busy with work lately.","cn":"我最近工作挺忙的。","g":{"I'm":"我","busy":"忙","with":"于","work":"工作","lately":"最近"}},{"en":"Work has been crazy lately.","cn":"最近工作忙疯了。","g":{"Work":"工作","has":"一直","been":"是","crazy":"忙疯了","lately":"最近"}},{"en":"I need a break.","cn":"我需要歇一歇。","g":{"I":"我","need":"需要","a":"一下","break":"休息"}},{"en":"Did you sleep well last night?","cn":"你昨晚睡得好吗?","g":{"Did":"助动词","you":"你","sleep":"睡","well":"好","last":"昨天","night":"晚上"}},{"en":"I stayed up too late.","cn":"我昨晚熬夜太晚了。","g":{"I":"我","stayed":"待着","up":"不睡","too":"太","late":"晚"}},{"en":"What did you have for lunch?","cn":"你午饭吃了什么?","g":{"What":"什么","did":"助动词","you":"你","have":"吃","for":"作为","lunch":"午饭"}},{"en":"I had noodles for lunch.","cn":"我午饭吃的面条。","g":{"I":"我","had":"吃了","noodles":"面条","for":"作为","lunch":"午饭"}},{"en":"Let's grab something to eat.","cn":"我们去找点吃的吧。","g":{"Let's":"让我们","grab":"弄点","something":"东西","to":"不定式","eat":"吃"}},{"en":"I'm starving. Let's eat.","cn":"我饿死了,我们吃吧。","g":{"I'm":"我","starving":"饿死了","Let's":"我们","eat":"吃吧"}},{"en":"This food is amazing.","cn":"这个太好吃了。","g":{"This":"这","food":"食物","is":"是","amazing":"太好吃了"}},{"en":"I love spicy food.","cn":"我爱吃辣的。","g":{"I":"我","love":"爱","spicy":"辣的","food":"食物"}},{"en":"Do you cook at home?","cn":"你在家做饭吗?","g":{"Do":"助动词","you":"你","cook":"做饭","at":"在","home":"家"}},{"en":"I can't cook at all.","cn":"我完全不会做饭。","g":{"I":"我","can't":"不会","cook":"做饭","at":"一点","all":"也"}},{"en":"What did you do this weekend?","cn":"你周末干什么了?","g":{"What":"什么","did":"助动词","you":"你","do":"做","this":"这个","weekend":"周末"}},{"en":"I just stayed home.","cn":"我就待在家里。","g":{"I":"我","just":"就","stayed":"待","home":"家"}},{"en":"We went hiking on Sunday.","cn":"我们周日去爬山了。","g":{"We":"我们","went":"去","hiking":"爬山","on":"在","Sunday":"星期天"}},{"en":"Any plans for the weekend?","cn":"周末有什么安排吗?","g":{"Any":"有什么","plans":"计划","for":"对于","the":"这个","weekend":"周末"}},{"en":"Do you have kids?","cn":"你有孩子吗?","g":{"Do":"助动词","you":"你","have":"有","kids":"孩子"}},{"en":"I have two kids.","cn":"我有两个孩子。","g":{"I":"我","have":"有","two":"两个","kids":"孩子"}},{"en":"My son just started school.","cn":"我儿子刚上学。","g":{"My":"我的","son":"儿子","just":"刚","started":"开始","school":"上学"}},{"en":"How old is your daughter?","cn":"你女儿多大了?","g":{"How":"多","old":"大","is":"是","your":"你的","daughter":"女儿"}},{"en":"She looks just like you.","cn":"她长得真像你。","g":{"She":"她","looks":"长得","just":"就","like":"像","you":"你"}},{"en":"My wife loves shopping.","cn":"我太太喜欢逛街。","g":{"My":"我的","wife":"太太","loves":"喜欢","shopping":"逛街"}},{"en":"We've been married for ten years.","cn":"我们结婚十年了。","g":{"We've":"我们已经","been":"是","married":"结婚","for":"有","ten":"十","years":"年"}},{"en":"Where are you from?","cn":"你是哪里人?","g":{"Where":"哪里","are":"是","you":"你","from":"来自"}},{"en":"I'm from Shanghai.","cn":"我是上海的。","g":{"I'm":"我","from":"来自","Shanghai":"上海"}},{"en":"Have you lived here long?","cn":"你在这儿住很久了吗?","g":{"Have":"助动词","you":"你","lived":"住","here":"这儿","long":"久"}},{"en":"How do you get to work?","cn":"你怎么去上班?","g":{"How":"怎么","do":"助动词","you":"你","get":"去","to":"到","work":"上班"}},{"en":"I take the subway every day.","cn":"我每天坐地铁。","g":{"I":"我","take":"坐","the":"这","subway":"地铁","every":"每","day":"天"}},{"en":"The traffic is terrible today.","cn":"今天路上堵得厉害。","g":{"The":"这","traffic":"交通","is":"是","terrible":"太糟了","today":"今天"}},{"en":"I'm stuck in traffic.","cn":"我堵在路上了。","g":{"I'm":"我","stuck":"堵","in":"在","traffic":"车流里"}},{"en":"What are your hobbies?","cn":"你有什么爱好?","g":{"What":"什么","are":"是","your":"你的","hobbies":"爱好"}},{"en":"I like watching movies.","cn":"我喜欢看电影。","g":{"I":"我","like":"喜欢","watching":"看","movies":"电影"}},{"en":"Do you play any sports?","cn":"你做什么运动吗?","g":{"Do":"助动词","you":"你","play":"打","any":"什么","sports":"运动"}},{"en":"I go running every morning.","cn":"我每天早上跑步。","g":{"I":"我","go":"去","running":"跑步","every":"每","morning":"早上"}},{"en":"Have you seen that new movie?","cn":"那部新电影你看了吗?","g":{"Have":"助动词","you":"你","seen":"看过","that":"那","new":"新的","movie":"电影"}},{"en":"It's a really good show.","cn":"这剧真不错。","g":{"It's":"这","a":"一部","really":"真","good":"好的","show":"剧"}},{"en":"Let's hang out this weekend.","cn":"我们这周末一起出去玩玩吧。","g":{"Let's":"我们","hang":"出去","out":"玩","this":"这个","weekend":"周末"}}]},"dining":{"name":"点餐吃饭","icon":"🍽️","items":[{"en":"Can I see the menu?","cn":"我能看下菜单吗?","g":{"Can":"能","I":"我","see":"看","the":"这个","menu":"菜单"}},{"en":"I'd like a coffee.","cn":"我要一杯咖啡。","g":{"I'd":"我想要","like":"要","a":"一","coffee":"咖啡"}},{"en":"A table for two, please.","cn":"要一张两人桌,谢谢。","g":{"A":"一张","table":"桌子","for":"给","two":"两人","please":"谢谢"}},{"en":"Do you have a reservation?","cn":"您有预订吗?","g":{"Do":"助动词","you":"您","have":"有","a":"一个","reservation":"预订"}},{"en":"Could we sit by the window?","cn":"我们能坐窗边吗?","g":{"Could":"能","we":"我们","sit":"坐","by":"靠","the":"这个","window":"窗户"}},{"en":"What do you recommend?","cn":"你推荐点什么?","g":{"What":"什么","do":"助动词","you":"你","recommend":"推荐"}},{"en":"I'm ready to order.","cn":"我准备好点餐了。","g":{"I'm":"我","ready":"准备好","to":"去","order":"点餐"}},{"en":"Are you ready to order?","cn":"您准备好点餐了吗?","g":{"Are":"是否","you":"您","ready":"准备好","to":"去","order":"点餐"}},{"en":"What's good here?","cn":"这儿什么好吃?","g":{"What's":"什么是","good":"好吃","here":"这里"}},{"en":"I'll have the steak.","cn":"我要这个牛排。","g":{"I'll":"我要","have":"点","the":"这个","steak":"牛排"}},{"en":"Give me a minute, please.","cn":"请稍等一下。","g":{"Give":"给","me":"我","a":"一","minute":"分钟","please":"请"}},{"en":"Can I get some water?","cn":"能给我点水吗?","g":{"Can":"能","I":"我","get":"拿","some":"一些","water":"水"}},{"en":"Could I have the bill?","cn":"可以买单吗?","g":{"Could":"可以","I":"我","have":"拿","the":"这个","bill":"账单"}},{"en":"Is this seat taken?","cn":"这个位子有人吗?","g":{"Is":"是","this":"这个","seat":"位子","taken":"被占"}},{"en":"We need one more chair.","cn":"我们还需要一把椅子。","g":{"We":"我们","need":"需要","one":"一","more":"再","chair":"椅子"}},{"en":"This is not what I ordered.","cn":"这不是我点的。","g":{"This":"这","is":"是","not":"不","what":"什么","I":"我","ordered":"点的"}},{"en":"It's a bit too salty.","cn":"有点太咸了。","g":{"It's":"它","a":"一","bit":"点","too":"太","salty":"咸"}},{"en":"Not too spicy, please.","cn":"不要太辣,谢谢。","g":{"Not":"不要","too":"太","spicy":"辣","please":"谢谢"}},{"en":"I'm allergic to peanuts.","cn":"我对花生过敏。","g":{"I'm":"我","allergic":"过敏","to":"对","peanuts":"花生"}},{"en":"Do you have a vegetarian dish?","cn":"有素菜吗?","g":{"Do":"助动词","you":"你们","have":"有","a":"一道","vegetarian":"素的","dish":"菜"}},{"en":"What's in this soup?","cn":"这汤里有什么?","g":{"What's":"什么","in":"在","this":"这个","soup":"汤"}},{"en":"Can I have it to go?","cn":"可以打包带走吗?","g":{"Can":"可以","I":"我","have":"要","it":"它","to":"去","go":"走"}},{"en":"That was delicious, thank you.","cn":"太好吃了,谢谢。","g":{"That":"那","was":"是","delicious":"好吃","thank":"谢谢","you":"你"}},{"en":"I'll pay by card.","cn":"我刷卡。","g":{"I'll":"我","pay":"付","by":"用","card":"卡"}},{"en":"Let's split the bill.","cn":"我们分开付吧。","g":{"Let's":"我们","split":"分开","the":"这个","bill":"账单"}},{"en":"Keep the change.","cn":"不用找零了。","g":{"Keep":"留着","the":"这个","change":"零钱"}},{"en":"Is service included?","cn":"含服务费吗?","g":{"Is":"是否","service":"服务费","included":"包含"}},{"en":"We'd like a table outside.","cn":"我们想坐外面。","g":{"We'd":"我们想","like":"要","a":"一个","table":"桌子","outside":"外面"}},{"en":"How long is the wait?","cn":"要等多久?","g":{"How":"多","long":"久","is":"是","the":"这个","wait":"等待"}},{"en":"Two coffees and one tea, please.","cn":"两杯咖啡一杯茶,谢谢。","g":{"Two":"两杯","coffees":"咖啡","and":"和","one":"一杯","tea":"茶","please":"谢谢"}},{"en":"I don't eat meat.","cn":"我不吃肉。","g":{"I":"我","don't":"不","eat":"吃","meat":"肉"}},{"en":"Could I get a refill?","cn":"能再续一杯吗?","g":{"Could":"能","I":"我","get":"要","a":"一","refill":"续杯"}},{"en":"Excuse me, we're ready.","cn":"你好,我们可以点餐了。","g":{"Excuse":"打扰","me":"我","we're":"我们","ready":"准备好"}},{"en":"What's the special today?","cn":"今天有什么特价?","g":{"What's":"什么","the":"这个","special":"特价","today":"今天"}},{"en":"I'll take the set menu.","cn":"我要这个套餐。","g":{"I'll":"我要","take":"要","the":"这个","set":"套餐","menu":"菜单"}},{"en":"Can we get separate bills?","cn":"可以分开结账吗?","g":{"Can":"可以","we":"我们","get":"要","separate":"分开的","bills":"账单"}},{"en":"My food is cold.","cn":"我的菜凉了。","g":{"My":"我的","food":"菜","is":"是","cold":"凉的"}},{"en":"Could you warm it up?","cn":"能热一下吗?","g":{"Could":"能","you":"你","warm":"加热","it":"它","up":"一下"}},{"en":"I'm still waiting for my drink.","cn":"我的饮料还没来。","g":{"I'm":"我","still":"还","waiting":"等","for":"要","my":"我的","drink":"饮料"}},{"en":"The steak is too tough.","cn":"这牛排太硬了。","g":{"The":"这","steak":"牛排","is":"是","too":"太","tough":"硬"}},{"en":"Can I have the receipt?","cn":"能给我小票吗?","g":{"Can":"能","I":"我","have":"拿","the":"这个","receipt":"小票"}},{"en":"We'll come back again.","cn":"我们还会再来的。","g":{"We'll":"我们会","come":"来","back":"回来","again":"再"}},{"en":"It's on me today.","cn":"今天我请客。","g":{"It's":"它","on":"由","me":"我","today":"今天"}},{"en":"Do you take cash?","cn":"你们收现金吗?","g":{"Do":"助动词","you":"你们","take":"收","cash":"现金"}},{"en":"Could I get another fork?","cn":"能再给我一把叉子吗?","g":{"Could":"能","I":"我","get":"拿","another":"另一把","fork":"叉子"}},{"en":"This table is dirty.","cn":"这桌子不干净。","g":{"This":"这","table":"桌子","is":"是","dirty":"脏的"}}]},"shopping":{"name":"购物买东西","icon":"🛒","items":[{"en":"How much is this?","cn":"这个多少钱?","g":{"How":"多","much":"少","is":"是","this":"这个"}},{"en":"Can I try it on?","cn":"我能试穿吗?","g":{"Can":"能","I":"我","try":"试","it":"它","on":"上"}},{"en":"Do you have this in small?","cn":"这个有小号的吗?","g":{"Do":"助动词","you":"你们","have":"有","this":"这个","in":"在","small":"小号"}},{"en":"I'm just looking, thanks.","cn":"我随便看看,谢谢。","g":{"I'm":"我","just":"只是","looking":"看看","thanks":"谢谢"}},{"en":"Where is the fitting room?","cn":"试衣间在哪儿?","g":{"Where":"哪里","is":"是","the":"这个","fitting":"试衣","room":"房间"}},{"en":"Do you have a bigger size?","cn":"有大一号的吗?","g":{"Do":"助动词","you":"你们","have":"有","a":"一个","bigger":"更大的","size":"尺码"}},{"en":"How much for two?","cn":"两个多少钱?","g":{"How":"多","much":"少","for":"要","two":"两个"}},{"en":"It's too expensive for me.","cn":"对我来说太贵了。","g":{"It's":"它","too":"太","expensive":"贵","for":"对","me":"我"}},{"en":"Can you give me a discount?","cn":"能便宜点吗?","g":{"Can":"能","you":"你","give":"给","me":"我","a":"一个","discount":"折扣"}},{"en":"Is there any cheaper one?","cn":"有便宜点的吗?","g":{"Is":"是否","there":"有","any":"任何","cheaper":"更便宜的","one":"一个"}},{"en":"I'll take this one.","cn":"我要这个。","g":{"I'll":"我要","take":"要","this":"这个","one":"一个"}},{"en":"Do you accept credit cards?","cn":"可以刷信用卡吗?","g":{"Do":"助动词","you":"你们","accept":"接受","credit":"信用","cards":"卡"}},{"en":"Can I get a receipt?","cn":"能给我小票吗?","g":{"Can":"能","I":"我","get":"拿","a":"一张","receipt":"小票"}},{"en":"I'd like to return this.","cn":"我想退这个。","g":{"I'd":"我想","like":"要","to":"去","return":"退","this":"这个"}},{"en":"It doesn't fit me.","cn":"我穿不合身。","g":{"It":"它","doesn't":"不","fit":"合身","me":"我"}},{"en":"Can I exchange it?","cn":"能换吗?","g":{"Can":"能","I":"我","exchange":"换","it":"它"}},{"en":"Where do I pay?","cn":"在哪儿付款?","g":{"Where":"哪里","do":"助动词","I":"我","pay":"付款"}},{"en":"I need a gift for my mom.","cn":"我要给我妈买个礼物。","g":{"I":"我","need":"需要","a":"一个","gift":"礼物","for":"给","my":"我的","mom":"妈妈"}},{"en":"Do you have it in black?","cn":"有黑色的吗?","g":{"Do":"助动词","you":"你们","have":"有","it":"它","in":"在","black":"黑色"}},{"en":"This one is on sale.","cn":"这个是打折的。","g":{"This":"这","one":"个","is":"是","on":"在","sale":"促销"}},{"en":"Is this the final price?","cn":"这是最终价吗?","g":{"Is":"是","this":"这","the":"这个","final":"最终","price":"价格"}},{"en":"Can you wrap it for me?","cn":"能帮我包装一下吗?","g":{"Can":"能","you":"你","wrap":"包装","it":"它","for":"帮","me":"我"}},{"en":"I'll think about it.","cn":"我再考虑一下。","g":{"I'll":"我","think":"想想","about":"考虑","it":"它"}},{"en":"That's a little pricey.","cn":"有点小贵。","g":{"That's":"这个","a":"一","little":"点","pricey":"贵"}},{"en":"Let me check the price.","cn":"我看看价格。","g":{"Let":"让","me":"我","check":"看看","the":"这个","price":"价格"}},{"en":"Can I have a bag?","cn":"能给我个袋子吗?","g":{"Can":"能","I":"我","have":"拿","a":"一个","bag":"袋子"}},{"en":"Where is the checkout?","cn":"收银台在哪儿?","g":{"Where":"哪里","is":"是","the":"这个","checkout":"收银台"}},{"en":"Is shipping free?","cn":"包邮吗?","g":{"Is":"是否","shipping":"运费","free":"免费"}},{"en":"I'll pay in cash.","cn":"我付现金。","g":{"I'll":"我","pay":"付","in":"用","cash":"现金"}},{"en":"Please keep the receipt.","cn":"小票请留着。","g":{"Please":"请","keep":"留着","the":"这个","receipt":"小票"}},{"en":"What colors do you have?","cn":"你们有哪些颜色?","g":{"What":"哪些","colors":"颜色","do":"助动词","you":"你们","have":"有"}},{"en":"My size is medium.","cn":"我穿中号。","g":{"My":"我的","size":"尺码","is":"是","medium":"中号"}},{"en":"Can I get a refund?","cn":"能退款吗?","g":{"Can":"能","I":"我","get":"拿","a":"一个","refund":"退款"}},{"en":"The zipper is broken.","cn":"拉链坏了。","g":{"The":"这个","zipper":"拉链","is":"是","broken":"坏的"}},{"en":"I bought this yesterday.","cn":"我昨天买的。","g":{"I":"我","bought":"买了","this":"这个","yesterday":"昨天"}},{"en":"Do you have this in stock?","cn":"这款有货吗?","g":{"Do":"助动词","you":"你们","have":"有","this":"这款","in":"在","stock":"库存"}},{"en":"It's a little too tight.","cn":"有点太紧了。","g":{"It's":"它","a":"一","little":"点","too":"太","tight":"紧"}},{"en":"Let me compare prices.","cn":"我比较一下价格。","g":{"Let":"让","me":"我","compare":"比较","prices":"价格"}},{"en":"Are these the same price?","cn":"这些价格一样吗?","g":{"Are":"是否","these":"这些","the":"这个","same":"一样","price":"价格"}},{"en":"I'll take two of these.","cn":"这些我要两个。","g":{"I'll":"我要","take":"要","two":"两个","of":"的","these":"这些"}},{"en":"Can I pay by phone?","cn":"能用手机支付吗?","g":{"Can":"能","I":"我","pay":"付款","by":"用","phone":"手机"}},{"en":"Is there a warranty?","cn":"有保修吗?","g":{"Is":"是否","there":"有","a":"一个","warranty":"保修"}},{"en":"This is exactly what I wanted.","cn":"这正是我想要的。","g":{"This":"这","is":"是","exactly":"正是","what":"什么","I":"我","wanted":"想要的"}},{"en":"Thanks, I'll come back.","cn":"谢谢,我下次再来。","g":{"Thanks":"谢谢","I'll":"我会","come":"来","back":"回来"}},{"en":"Do you have a smaller one?","cn":"有小一点的吗?","g":{"Do":"助动词","you":"你们","have":"有","a":"一个","smaller":"更小的","one":"一个"}},{"en":"Where are the shoes?","cn":"鞋子在哪儿?","g":{"Where":"哪里","are":"是","the":"这个","shoes":"鞋子"}},{"en":"It's cheaper online.","cn":"网上更便宜。","g":{"It's":"它","cheaper":"更便宜","online":"网上"}},{"en":"What's your return policy?","cn":"怎么退货?","g":{"What's":"什么是","your":"你们的","return":"退货","policy":"政策"}},{"en":"Do you sell phone cases?","cn":"你们卖手机壳吗?","g":{"Do":"助动词","you":"你们","sell":"卖","phone":"手机","cases":"壳"}},{"en":"I'm not sure about the size.","cn":"我不确定尺码。","g":{"I'm":"我","not":"不","sure":"确定","about":"关于","the":"这个","size":"尺码"}}]},"travel":{"name":"出行问路","icon":"🚕","items":[{"en":"How do I get there?","cn":"我怎么去那儿?","g":{"How":"怎么","do":"(助动词)","I":"我","get":"到","there":"那儿"}},{"en":"Is it far from here?","cn":"离这儿远吗?","g":{"Is":"是","it":"它","far":"远","from":"离","here":"这儿"}},{"en":"Where is the subway station?","cn":"地铁站在哪儿?","g":{"Where":"哪儿","is":"是","the":"(定冠词)","subway":"地铁","station":"站"}},{"en":"Can you show me on the map?","cn":"你能在地图上指给我看吗?","g":{"Can":"能","you":"你","show":"指给","me":"我","on":"在","the":"(定冠词)","map":"地图"}},{"en":"I'm looking for this address.","cn":"我在找这个地址。","g":{"I'm":"我在","looking":"找","for":"(介词)","this":"这个","address":"地址"}},{"en":"Turn left at the corner.","cn":"在路口左转。","g":{"Turn":"转","left":"左","at":"在","the":"(定冠词)","corner":"路口"}},{"en":"Go straight for two blocks.","cn":"直着走两个街区。","g":{"Go":"走","straight":"直","for":"持续","two":"两","blocks":"街区"}},{"en":"Is this the right way downtown?","cn":"这是去市中心的正确方向吗?","g":{"Is":"是","this":"这","the":"(定冠词)","right":"正确的","way":"路","downtown":"市中心"}},{"en":"How long does it take by taxi?","cn":"打车过去要多久?","g":{"How":"多","long":"久","does":"(助动词)","it":"它","take":"花","by":"坐","taxi":"出租车"}},{"en":"Please take me to this hotel.","cn":"请送我到这家酒店。","g":{"Please":"请","take":"送","me":"我","to":"到","this":"这家","hotel":"酒店"}},{"en":"Stop here, please.","cn":"请在这儿停。","g":{"Stop":"停","here":"这儿","please":"请"}},{"en":"How much is the fare?","cn":"车费多少钱?","g":{"How":"多","much":"少","is":"是","the":"(定冠词)","fare":"车费"}},{"en":"Does this bus go to the airport?","cn":"这趟公交去机场吗?","g":{"Does":"(助动词)","this":"这","bus":"公交","go":"去","to":"到","the":"(定冠词)","airport":"机场"}},{"en":"Where can I catch a taxi?","cn":"我在哪儿能拦到出租车?","g":{"Where":"哪儿","can":"能","I":"我","catch":"拦(车)","a":"(不定冠词)","taxi":"出租车"}},{"en":"I think I'm lost.","cn":"我好像迷路了。","g":{"I":"我","think":"觉得","I'm":"我","lost":"迷路了"}},{"en":"Could you say that again slowly?","cn":"你能慢点再说一遍吗?","g":{"Could":"能","you":"你","say":"说","that":"那个","again":"再一遍","slowly":"慢一点"}},{"en":"Which exit should I take?","cn":"我该走哪个出口?","g":{"Which":"哪个","exit":"出口","should":"应该","I":"我","take":"走"}},{"en":"Is there a bus stop near here?","cn":"这附近有公交站吗?","g":{"Is":"是","there":"有","a":"(不定冠词)","bus":"公交","stop":"站","near":"靠近","here":"这儿"}},{"en":"I need to get off at the next stop.","cn":"我下一站要下车。","g":{"I":"我","need":"要","to":"去","get":"下","off":"离开","at":"在","the":"(定冠词)","next":"下一个","stop":"站"}},{"en":"Can I pay by card?","cn":"我能刷卡吗?","g":{"Can":"能","I":"我","pay":"付钱","by":"用","card":"卡"}},{"en":"Keep going straight ahead.","cn":"一直往前走。","g":{"Keep":"保持","going":"走","straight":"直","ahead":"向前"}},{"en":"The traffic is really bad today.","cn":"今天路上真堵。","g":{"The":"(定冠词)","traffic":"交通","is":"是","really":"真","bad":"糟","today":"今天"}},{"en":"How far is the beach from here?","cn":"海滩离这儿多远?","g":{"How":"多","far":"远","is":"是","the":"(定冠词)","beach":"海滩","from":"离","here":"这儿"}},{"en":"Let's take the subway instead.","cn":"我们改坐地铁吧。","g":{"Let's":"我们…吧","take":"坐","the":"(定冠词)","subway":"地铁","instead":"改为"}},{"en":"I missed my train.","cn":"我错过火车了。","g":{"I":"我","missed":"错过了","my":"我的","train":"火车"}},{"en":"What time does the next train leave?","cn":"下一班火车几点开?","g":{"What":"什么","time":"时间","does":"(助动词)","the":"(定冠词)","next":"下一","train":"火车","leave":"出发"}},{"en":"Excuse me, is this seat taken?","cn":"打扰一下,这个位子有人吗?","g":{"Excuse":"原谅","me":"我","is":"是","this":"这个","seat":"座位","taken":"被占了"}},{"en":"I'd like a window seat, please.","cn":"我想要个靠窗的位子。","g":{"I'd":"我想要","like":"要","a":"(不定冠词)","window":"窗","seat":"座位","please":"请"}},{"en":"Where do I pick up my luggage?","cn":"我在哪儿取行李?","g":{"Where":"哪儿","do":"(助动词)","I":"我","pick":"取","up":"(副词)","my":"我的","luggage":"行李"}},{"en":"My flight is delayed.","cn":"我的航班延误了。","g":{"My":"我的","flight":"航班","is":"是","delayed":"延误了"}},{"en":"Can you take a shortcut?","cn":"能走条近路吗?","g":{"Can":"能","you":"你","take":"走","a":"(不定冠词)","shortcut":"近路"}},{"en":"Is it within walking distance?","cn":"走路能到吗?","g":{"Is":"是","it":"它","within":"在…之内","walking":"步行","distance":"距离"}},{"en":"I'll get off here.","cn":"我在这儿下。","g":{"I'll":"我将","get":"下","off":"离开","here":"这儿"}},{"en":"Please drive a bit slower.","cn":"请开慢一点。","g":{"Please":"请","drive":"开(车)","a":"一","bit":"点","slower":"慢一点"}},{"en":"Which platform is it?","cn":"是几号站台?","g":{"Which":"哪个","platform":"站台","is":"是","it":"它"}},{"en":"Do I need to transfer?","cn":"我需要换乘吗?","g":{"Do":"(助动词)","I":"我","need":"需要","to":"去","transfer":"换乘"}},{"en":"The line is closed for repairs.","cn":"这条线在维修,停运了。","g":{"The":"(定冠词)","line":"线路","is":"是","closed":"关闭的","for":"为了","repairs":"维修"}},{"en":"Can you drop me off at the corner?","cn":"能把我放在路口吗?","g":{"Can":"能","you":"你","drop":"放","me":"我","off":"下车","at":"在","the":"(定冠词)","corner":"路口"}},{"en":"I'm heading to the city center.","cn":"我去市中心。","g":{"I'm":"我正","heading":"前往","to":"去","the":"(定冠词)","city":"城市","center":"中心"}},{"en":"Is there Wi-Fi on this bus?","cn":"这车上有无线网吗?","g":{"Is":"是","there":"有","Wi-Fi":"无线网","on":"在","this":"这","bus":"公交"}},{"en":"Let me check the map.","cn":"我看一下地图。","g":{"Let":"让","me":"我","check":"看一下","the":"(定冠词)","map":"地图"}},{"en":"You can turn right after the light.","cn":"过了红绿灯右转。","g":{"You":"你","can":"可以","turn":"转","right":"右","after":"在…之后","the":"(定冠词)","light":"红绿灯"}},{"en":"Sorry, I don't know the way.","cn":"抱歉,我不认识路。","g":{"Sorry":"抱歉","I":"我","don't":"不","know":"认识","the":"(定冠词)","way":"路"}},{"en":"That's too expensive for me.","cn":"那对我来说太贵了。","g":{"That's":"那","too":"太","expensive":"贵","for":"对","me":"我"}},{"en":"Can we share a ride?","cn":"我们能拼车吗?","g":{"Can":"能","we":"我们","share":"拼","a":"(不定冠词)","ride":"车"}},{"en":"How many stops until downtown?","cn":"到市中心还有几站?","g":{"How":"几","many":"多","stops":"站","until":"直到","downtown":"市中心"}},{"en":"Watch out for the cars.","cn":"小心车。","g":{"Watch":"注意","out":"(副词)","for":"当心","the":"(定冠词)","cars":"车"}},{"en":"I'd rather walk, thanks.","cn":"我宁愿走路,谢谢。","g":{"I'd":"我","rather":"宁愿","walk":"走路","thanks":"谢谢"}}]},"health":{"name":"看病求助","icon":"🏥","items":[{"en":"I don't feel well today.","cn":"我今天不太舒服。","g":{"I":"我","don't":"不","feel":"感觉","well":"好","today":"今天"}},{"en":"I have a bad headache.","cn":"我头疼得厉害。","g":{"I":"我","have":"有","a":"(不定冠词)","bad":"厉害的","headache":"头疼"}},{"en":"I need to see a doctor.","cn":"我需要看医生。","g":{"I":"我","need":"需要","to":"去","see":"看","a":"(不定冠词)","doctor":"医生"}},{"en":"Where is the nearest hospital?","cn":"最近的医院在哪儿?","g":{"Where":"哪儿","is":"是","the":"(定冠词)","nearest":"最近的","hospital":"医院"}},{"en":"I think I have a fever.","cn":"我好像发烧了。","g":{"I":"我","think":"觉得","have":"有","a":"(不定冠词)","fever":"发烧"}},{"en":"My stomach hurts a lot.","cn":"我肚子很疼。","g":{"My":"我的","stomach":"肚子","hurts":"疼","a":"一","lot":"很多"}},{"en":"Can I make an appointment?","cn":"我能预约吗?","g":{"Can":"能","I":"我","make":"做","an":"(不定冠词)","appointment":"预约"}},{"en":"I'm allergic to penicillin.","cn":"我对青霉素过敏。","g":{"I'm":"我","allergic":"过敏","to":"对","penicillin":"青霉素"}},{"en":"It hurts right here.","cn":"就是这儿疼。","g":{"It":"它","hurts":"疼","right":"就","here":"这儿"}},{"en":"I've had this cough for a week.","cn":"我咳嗽一星期了。","g":{"I've":"我已经","had":"有","this":"这个","cough":"咳嗽","for":"持续","a":"一","week":"星期"}},{"en":"Do I need a prescription?","cn":"我需要处方吗?","g":{"Do":"(助动词)","I":"我","need":"需要","a":"(不定冠词)","prescription":"处方"}},{"en":"How often should I take this?","cn":"这个我该多久吃一次?","g":{"How":"多","often":"经常","should":"应该","I":"我","take":"吃","this":"这个"}},{"en":"I feel dizzy and weak.","cn":"我头晕,还没力气。","g":{"I":"我","feel":"感觉","dizzy":"头晕","and":"和","weak":"没力气"}},{"en":"Is the doctor available now?","cn":"医生现在有空吗?","g":{"Is":"是","the":"(定冠词)","doctor":"医生","available":"有空","now":"现在"}},{"en":"I can't sleep at night.","cn":"我晚上睡不着。","g":{"I":"我","can't":"不能","sleep":"睡觉","at":"在","night":"晚上"}},{"en":"My back has been hurting.","cn":"我背一直疼。","g":{"My":"我的","back":"背","has":"一直","been":"(助动词)","hurting":"疼"}},{"en":"Please call an ambulance.","cn":"请叫救护车。","g":{"Please":"请","call":"叫","an":"(不定冠词)","ambulance":"救护车"}},{"en":"I have a sore throat.","cn":"我嗓子疼。","g":{"I":"我","have":"有","a":"(不定冠词)","sore":"疼的","throat":"嗓子"}},{"en":"Does it hurt when I press here?","cn":"我按这儿疼吗?","g":{"Does":"(助动词)","it":"它","hurt":"疼","when":"当…时","I":"我","press":"按","here":"这儿"}},{"en":"Take this medicine twice a day.","cn":"这药一天吃两次。","g":{"Take":"吃","this":"这个","medicine":"药","twice":"两次","a":"一","day":"天"}},{"en":"I'm feeling much better now.","cn":"我现在好多了。","g":{"I'm":"我","feeling":"感觉","much":"…得多","better":"好些","now":"现在"}},{"en":"You should get some rest.","cn":"你该休息一下。","g":{"You":"你","should":"应该","get":"得到","some":"一些","rest":"休息"}},{"en":"My son has a rash.","cn":"我儿子起疹子了。","g":{"My":"我的","son":"儿子","has":"有","a":"(不定冠词)","rash":"疹子"}},{"en":"I'm three months pregnant.","cn":"我怀孕三个月了。","g":{"I'm":"我","three":"三","months":"个月","pregnant":"怀孕了"}},{"en":"Is this covered by insurance?","cn":"这个保险能报吗?","g":{"Is":"是","this":"这个","covered":"被覆盖","by":"由","insurance":"保险"}},{"en":"I have a toothache.","cn":"我牙疼。","g":{"I":"我","have":"有","a":"(不定冠词)","toothache":"牙疼"}},{"en":"How long will it take to recover?","cn":"要多久才能好?","g":{"How":"多","long":"久","will":"将","it":"它","take":"需要","to":"去","recover":"恢复"}},{"en":"I'm not feeling well at all.","cn":"我一点都不舒服。","g":{"I'm":"我","not":"不","feeling":"感觉","well":"好","at":"在","all":"完全"}},{"en":"Do you have anything for a cold?","cn":"有治感冒的药吗?","g":{"Do":"(助动词)","you":"你","have":"有","anything":"什么东西","for":"治","a":"(不定冠词)","cold":"感冒"}},{"en":"I need something for the pain.","cn":"我需要点止痛的药。","g":{"I":"我","need":"需要","something":"某种东西","for":"治","the":"(定冠词)","pain":"疼痛"}},{"en":"My blood pressure is high.","cn":"我血压高。","g":{"My":"我的","blood":"血","pressure":"压力","is":"是","high":"高"}},{"en":"Please roll up your sleeve.","cn":"请把袖子卷起来。","g":{"Please":"请","roll":"卷","up":"(副词)","your":"你的","sleeve":"袖子"}},{"en":"The doctor will be right with you.","cn":"医生马上就来。","g":{"The":"(定冠词)","doctor":"医生","will":"将","be":"是","right":"马上","with":"和","you":"你"}},{"en":"Do I need to fast before the test?","cn":"检查前我需要空腹吗?","g":{"Do":"(助动词)","I":"我","need":"需要","to":"去","fast":"禁食","before":"在…之前","the":"(定冠词)","test":"检查"}},{"en":"I got hurt while playing soccer.","cn":"我踢球的时候受伤了。","g":{"I":"我","got":"变得","hurt":"受伤","while":"当…时","playing":"踢","soccer":"足球"}},{"en":"My eyes are really dry.","cn":"我眼睛特别干。","g":{"My":"我的","eyes":"眼睛","are":"是","really":"特别","dry":"干"}},{"en":"Can I lie down for a bit?","cn":"我能躺一会儿吗?","g":{"Can":"能","I":"我","lie":"躺","down":"(副词)","for":"…的时间","a":"一","bit":"会儿"}},{"en":"I'm running a little fever.","cn":"我有点低烧。","g":{"I'm":"我","running":"发","a":"一","little":"点","fever":"烧"}},{"en":"You should drink more water.","cn":"你该多喝水。","g":{"You":"你","should":"应该","drink":"喝","more":"更多","water":"水"}},{"en":"Where does it hurt the most?","cn":"哪儿最疼?","g":{"Where":"哪儿","does":"(助动词)","it":"它","hurt":"疼","the":"(定冠词)","most":"最"}},{"en":"I have trouble breathing.","cn":"我呼吸有困难。","g":{"I":"我","have":"有","trouble":"困难","breathing":"呼吸"}},{"en":"Take a deep breath, please.","cn":"请深吸一口气。","g":{"Take":"吸","a":"(不定冠词)","deep":"深的","breath":"一口气","please":"请"}},{"en":"I feel sick to my stomach.","cn":"我恶心想吐。","g":{"I":"我","feel":"感觉","sick":"恶心","to":"对","my":"我的","stomach":"胃"}},{"en":"Do I need any shots?","cn":"我需要打针吗?","g":{"Do":"(助动词)","I":"我","need":"需要","any":"任何","shots":"针"}},{"en":"My whole body aches.","cn":"我浑身酸痛。","g":{"My":"我的","whole":"整个","body":"身体","aches":"酸痛"}},{"en":"Can you give me something stronger?","cn":"能给我开点更管用的药吗?","g":{"Can":"能","you":"你","give":"给","me":"我","something":"某种药","stronger":"更管用的"}},{"en":"I've been coughing all night.","cn":"我咳了一整晚。","g":{"I've":"我一直","been":"(助动词)","coughing":"咳嗽","all":"整个","night":"晚上"}},{"en":"The pain comes and goes.","cn":"这疼一阵一阵的。","g":{"The":"(定冠词)","pain":"疼痛","comes":"来","and":"和","goes":"去"}},{"en":"Please fill this prescription for me.","cn":"请帮我配这个药。","g":{"Please":"请","fill":"配","this":"这个","prescription":"处方","for":"给","me":"我"}},{"en":"I hope you feel better soon.","cn":"希望你早点好起来。","g":{"I":"我","hope":"希望","you":"你","feel":"感觉","better":"好些","soon":"很快"}}]},"requests":{"name":"礼貌请求","icon":"🙏","items":[{"en":"Could you help me?","cn":"你能帮我一下吗?","g":{"Could":"能","you":"你","help":"帮","me":"我"}},{"en":"Sorry to bother you.","cn":"不好意思,打扰你了。","g":{"Sorry":"抱歉","to":"(不定式)","bother":"打扰","you":"你"}},{"en":"Can I ask you something?","cn":"我能问你件事吗?","g":{"Can":"能","I":"我","ask":"问","you":"你","something":"件事"}},{"en":"Thanks a lot.","cn":"太谢谢你了。","g":{"Thanks":"谢谢","a":"(量词)","lot":"多"}},{"en":"I really appreciate it.","cn":"我真的很感激。","g":{"I":"我","really":"真的","appreciate":"感激","it":"这件事"}},{"en":"Could I have a word with you?","cn":"能跟你说句话吗?","g":{"Could":"能","I":"我","have":"说","a":"句","word":"话","with":"和","you":"你"}},{"en":"Would you mind waiting?","cn":"你介意等一下吗?","g":{"Would":"(意愿)","you":"你","mind":"介意","waiting":"等一会儿"}},{"en":"Do you have a minute?","cn":"你有空吗?","g":{"Do":"(助动词)","you":"你","have":"有","a":"一","minute":"分钟"}},{"en":"Could you do me a favor?","cn":"能帮我个忙吗?","g":{"Could":"能","you":"你","do":"帮","me":"我","a":"个","favor":"忙"}},{"en":"Thank you so much.","cn":"太感谢你了。","g":{"Thank":"谢","you":"你","so":"这么","much":"多"}},{"en":"That's very kind of you.","cn":"你人真好。","g":{"That's":"那(是)","very":"非常","kind":"好心","of":"的","you":"你"}},{"en":"Can you give me a hand?","cn":"你能搭把手吗?","g":{"Can":"能","you":"你","give":"给","me":"我","a":"个","hand":"手(帮忙)"}},{"en":"Please wait a moment.","cn":"请稍等一下。","g":{"Please":"请","wait":"等","a":"一","moment":"会儿"}},{"en":"Could I borrow your pen?","cn":"能借你的笔用一下吗?","g":{"Could":"能","I":"我","borrow":"借","your":"你的","pen":"笔"}},{"en":"Would you speak slower, please?","cn":"你能说慢一点吗?","g":{"Would":"能","you":"你","speak":"说","slower":"慢一点","please":"请"}},{"en":"I need your help.","cn":"我需要你帮忙。","g":{"I":"我","need":"需要","your":"你的","help":"帮助"}},{"en":"Can you repeat that?","cn":"你能再说一遍吗?","g":{"Can":"能","you":"你","repeat":"重复","that":"刚才那句"}},{"en":"Sorry, I didn't catch that.","cn":"抱歉,我没听清。","g":{"Sorry":"抱歉","I":"我","didn't":"没","catch":"听清","that":"那个"}},{"en":"Could you say that again?","cn":"你能再说一次吗?","g":{"Could":"能","you":"你","say":"说","that":"那个","again":"再一次"}},{"en":"Do you mind if I sit here?","cn":"我坐这儿可以吗?","g":{"Do":"(助动词)","you":"你","mind":"介意","if":"如果","I":"我","sit":"坐","here":"这儿"}},{"en":"Is it okay if I leave early?","cn":"我可以早点走吗?","g":{"Is":"是","it":"这","okay":"可以","if":"如果","I":"我","leave":"走","early":"早点"}},{"en":"May I come in?","cn":"我可以进来吗?","g":{"May":"可以","I":"我","come":"来","in":"进来"}},{"en":"Let me know if you need anything.","cn":"需要什么就告诉我。","g":{"Let":"让","me":"我","know":"知道","if":"如果","you":"你","need":"需要","anything":"什么东西"}},{"en":"Thanks for your help.","cn":"谢谢你的帮忙。","g":{"Thanks":"谢谢","for":"因为","your":"你的","help":"帮助"}},{"en":"I owe you one.","cn":"我欠你个人情。","g":{"I":"我","owe":"欠","you":"你","one":"人情"}},{"en":"Thank you for waiting.","cn":"谢谢你等我。","g":{"Thank":"谢","you":"你","for":"因为","waiting":"等着"}},{"en":"Could you turn it down?","cn":"你能把它调小点吗?","g":{"Could":"能","you":"你","turn":"调","it":"它","down":"小一点"}},{"en":"Would you mind closing the door?","cn":"你介意把门关上吗?","g":{"Would":"(意愿)","you":"你","mind":"介意","closing":"关","the":"(定冠词)","door":"门"}},{"en":"Please don't be mad.","cn":"请别生气。","g":{"Please":"请","don't":"别","be":"(是)","mad":"生气"}},{"en":"I'm really sorry about that.","cn":"那件事我真的很抱歉。","g":{"I'm":"我(是)","really":"真的","sorry":"抱歉","about":"关于","that":"那件事"}},{"en":"Can I ask a quick question?","cn":"我能问个小问题吗?","g":{"Can":"能","I":"我","ask":"问","a":"个","quick":"快的","question":"问题"}},{"en":"Could you write it down?","cn":"你能写下来吗?","g":{"Could":"能","you":"你","write":"写","it":"它","down":"下来"}},{"en":"Sorry, my mistake.","cn":"抱歉,是我的错。","g":{"Sorry":"抱歉","my":"我的","mistake":"错"}},{"en":"Do you have time tomorrow?","cn":"你明天有空吗?","g":{"Do":"(助动词)","you":"你","have":"有","time":"时间","tomorrow":"明天"}},{"en":"Would that be okay?","cn":"那样行吗?","g":{"Would":"(会)","that":"那样","be":"(是)","okay":"行"}},{"en":"I'd appreciate your help.","cn":"我会很感激你的帮忙。","g":{"I'd":"我(会)","appreciate":"感激","your":"你的","help":"帮助"}},{"en":"Please forgive me.","cn":"请原谅我。","g":{"Please":"请","forgive":"原谅","me":"我"}},{"en":"Can you help me carry this?","cn":"你能帮我搬这个吗?","g":{"Can":"能","you":"你","help":"帮","me":"我","carry":"搬","this":"这个"}},{"en":"Sorry, I can't come.","cn":"抱歉,我来不了。","g":{"Sorry":"抱歉","I":"我","can't":"不能","come":"来"}},{"en":"Could you give me a minute?","cn":"能给我一分钟吗?","g":{"Could":"能","you":"你","give":"给","me":"我","a":"一","minute":"分钟"}},{"en":"Would you like some help?","cn":"你需要帮忙吗?","g":{"Would":"要","you":"你","like":"想","some":"一些","help":"帮助"}},{"en":"I'm sorry to hear that.","cn":"听到这个我很难过。","g":{"I'm":"我(是)","sorry":"难过","to":"(不定式)","hear":"听到","that":"这个"}},{"en":"Please let me pass.","cn":"请让我过去。","g":{"Please":"请","let":"让","me":"我","pass":"过去"}},{"en":"Sorry for the trouble.","cn":"麻烦你了,不好意思。","g":{"Sorry":"抱歉","for":"因为","the":"(定冠词)","trouble":"麻烦"}},{"en":"Can I have a receipt?","cn":"能给我一张收据吗?","g":{"Can":"能","I":"我","have":"要","a":"张","receipt":"收据"}},{"en":"Sorry to interrupt.","cn":"抱歉,打断一下。","g":{"Sorry":"抱歉","to":"(不定式)","interrupt":"打断"}},{"en":"Could you speak up, please?","cn":"你能说大声点吗?","g":{"Could":"能","you":"你","speak":"说","up":"大声点","please":"请"}},{"en":"I'm sorry for the mess.","cn":"抱歉,弄得这么乱。","g":{"I'm":"我(是)","sorry":"抱歉","for":"因为","the":"(定冠词)","mess":"乱"}}]},"daily":{"name":"日常生活","icon":"🏠","items":[{"en":"I'm going to bed.","cn":"我要去睡觉了。","g":{"I'm":"我(要)","going":"去","to":"(不定式)","bed":"睡觉"}},{"en":"Time to get up.","cn":"该起床了。","g":{"Time":"时间","to":"(不定式)","get":"起","up":"来"}},{"en":"I'm making breakfast.","cn":"我在做早饭。","g":{"I'm":"我(在)","making":"做","breakfast":"早饭"}},{"en":"What's for dinner?","cn":"晚饭吃什么?","g":{"What's":"什么(是)","for":"作为","dinner":"晚饭"}},{"en":"I need to do the laundry.","cn":"我得洗衣服了。","g":{"I":"我","need":"得","to":"(不定式)","do":"做","the":"(定冠词)","laundry":"洗衣服"}},{"en":"The dishes are dirty.","cn":"碗还没洗。","g":{"The":"(定冠词)","dishes":"碗","are":"是","dirty":"脏的"}},{"en":"Let's clean the house.","cn":"我们把家里打扫一下吧。","g":{"Let's":"我们(来)","clean":"打扫","the":"(定冠词)","house":"房子"}},{"en":"I have to walk the dog.","cn":"我得去遛狗。","g":{"I":"我","have":"得","to":"(不定式)","walk":"遛","the":"(定冠词)","dog":"狗"}},{"en":"It's raining outside.","cn":"外面在下雨。","g":{"It's":"天(在)","raining":"下雨","outside":"外面"}},{"en":"The weather is nice today.","cn":"今天天气不错。","g":{"The":"(定冠词)","weather":"天气","is":"是","nice":"好","today":"今天"}},{"en":"It's so hot today.","cn":"今天太热了。","g":{"It's":"天(气)","so":"这么","hot":"热","today":"今天"}},{"en":"It's getting cold.","cn":"天变冷了。","g":{"It's":"天(气)","getting":"变","cold":"冷"}},{"en":"Take an umbrella with you.","cn":"带把伞。","g":{"Take":"带","an":"把","umbrella":"伞","with":"随身","you":"你"}},{"en":"I'm cooking dinner.","cn":"我在做晚饭。","g":{"I'm":"我(在)","cooking":"做","dinner":"晚饭"}},{"en":"The fridge is empty.","cn":"冰箱空了。","g":{"The":"(定冠词)","fridge":"冰箱","is":"是","empty":"空的"}},{"en":"We're out of milk.","cn":"牛奶喝完了。","g":{"We're":"我们(是)","out":"用完","of":"的","milk":"牛奶"}},{"en":"I need to go shopping.","cn":"我得去买点东西。","g":{"I":"我","need":"得","to":"(不定式)","go":"去","shopping":"买东西"}},{"en":"Let's watch TV tonight.","cn":"今晚看电视吧。","g":{"Let's":"我们(来)","watch":"看","TV":"电视","tonight":"今晚"}},{"en":"I'm too tired today.","cn":"我今天太累了。","g":{"I'm":"我(是)","too":"太","tired":"累","today":"今天"}},{"en":"I stayed up late last night.","cn":"我昨晚熬夜了。","g":{"I":"我","stayed":"熬","up":"夜","late":"晚","last":"上个","night":"晚上"}},{"en":"I'm taking a shower.","cn":"我在洗澡。","g":{"I'm":"我(在)","taking":"洗","a":"个","shower":"澡"}},{"en":"Turn off the light, please.","cn":"请把灯关了。","g":{"Turn":"关","off":"掉","the":"(定冠词)","light":"灯","please":"请"}},{"en":"Turn on the TV.","cn":"把电视打开。","g":{"Turn":"开","on":"开","the":"(定冠词)","TV":"电视"}},{"en":"Dinner is ready.","cn":"晚饭好了。","g":{"Dinner":"晚饭","is":"(是)","ready":"好了"}},{"en":"I'm doing the dishes.","cn":"我在洗碗。","g":{"I'm":"我(在)","doing":"洗","the":"(定冠词)","dishes":"碗"}},{"en":"The sink is dirty.","cn":"水槽脏了。","g":{"The":"(定冠词)","sink":"水槽","is":"是","dirty":"脏的"}},{"en":"I have a day off tomorrow.","cn":"我明天休息。","g":{"I":"我","have":"有","a":"一","day":"天","off":"休息","tomorrow":"明天"}},{"en":"What time do you get up?","cn":"你几点起床?","g":{"What":"什么","time":"时间","do":"(助动词)","you":"你","get":"起","up":"床"}},{"en":"I wake up at seven.","cn":"我七点醒。","g":{"I":"我","wake":"醒","up":"来","at":"在","seven":"七点"}},{"en":"I go to bed at eleven.","cn":"我十一点睡。","g":{"I":"我","go":"去","to":"(不定式)","bed":"睡觉","at":"在","eleven":"十一点"}},{"en":"She's sleeping now.","cn":"她在睡觉。","g":{"She's":"她(在)","sleeping":"睡觉","now":"现在"}},{"en":"Close the window, please.","cn":"请把窗户关上。","g":{"Close":"关","the":"(定冠词)","window":"窗户","please":"请"}},{"en":"It's snowing outside.","cn":"外面在下雪。","g":{"It's":"天(在)","snowing":"下雪","outside":"外面"}},{"en":"The floor needs cleaning.","cn":"地板该拖了。","g":{"The":"(定冠词)","floor":"地板","needs":"需要","cleaning":"打扫"}},{"en":"I'll do it later.","cn":"我待会儿再做。","g":{"I'll":"我(会)","do":"做","it":"这件事","later":"待会儿"}},{"en":"Let's go for a walk.","cn":"我们去散步吧。","g":{"Let's":"我们","go":"去","for":"去","a":"一","walk":"散步"}},{"en":"I'm home now.","cn":"我到家了。","g":{"I'm":"我(在)","home":"家","now":"现在"}},{"en":"Are you free this weekend?","cn":"你这周末有空吗?","g":{"Are":"(是)","you":"你","free":"有空","this":"这个","weekend":"周末"}},{"en":"Let's meet at six.","cn":"我们六点见吧。","g":{"Let's":"我们","meet":"见面","at":"在","six":"六点"}},{"en":"I'm running late.","cn":"我要迟到了。","g":{"I'm":"我(快)","running":"要","late":"迟到"}},{"en":"The bus is always late.","cn":"公交车总是晚点。","g":{"The":"(定冠词)","bus":"公交车","is":"是","always":"总是","late":"晚点"}},{"en":"I need to charge my phone.","cn":"我得给手机充电。","g":{"I":"我","need":"得","to":"(不定式)","charge":"充电","my":"我的","phone":"手机"}},{"en":"Where are my keys?","cn":"我钥匙呢?","g":{"Where":"哪儿","are":"(在)","my":"我的","keys":"钥匙"}},{"en":"I forgot my umbrella.","cn":"我忘带伞了。","g":{"I":"我","forgot":"忘了","my":"我的","umbrella":"伞"}},{"en":"The laundry is still wet.","cn":"衣服还是湿的。","g":{"The":"(定冠词)","laundry":"衣服","is":"是","still":"还","wet":"湿的"}},{"en":"Wash your hands first.","cn":"先去洗手。","g":{"Wash":"洗","your":"你的","hands":"手","first":"先"}},{"en":"It's time for lunch.","cn":"该吃午饭了。","g":{"It's":"到","time":"时间","for":"该","lunch":"午饭"}},{"en":"I'll take a nap.","cn":"我去眯一会儿。","g":{"I'll":"我(要)","take":"睡","a":"个","nap":"午觉"}},{"en":"Don't forget to lock the door.","cn":"别忘了锁门。","g":{"Don't":"别","forget":"忘","to":"(不定式)","lock":"锁","the":"(定冠词)","door":"门"}},{"en":"Please take out the trash.","cn":"请把垃圾拿出去。","g":{"Please":"请","take":"拿","out":"出去","the":"(定冠词)","trash":"垃圾"}}]}};
+const FORMS_MAP = {"bills":"bill","blocks":"block","breathing":"breathe","cards":"card","cars":"car","cleaning":"clean","closing":"close","coffees":"coffee","colors":"color","comes":"come","coming":"come","cooking":"cook","coughing":"cough","dishes":"dish","does":"do","eyes":"eye","fitting":"fit","goes":"go","hands":"hand","heading":"head","hobbies":"hobby","keys":"key","lately":"late","let's":"let","lived":"live","looking":"look","loves":"love","missed":"miss","months":"month","movies":"movie","names":"name","nearest":"near","needs":"need","ordered":"order","plans":"plan","playing":"play","prices":"price","raining":"rain","really":"real","repairs":"repair","shipping":"ship","sleeping":"sleep","slower":"slow","smaller":"small","snowing":"snow","sports":"sport","started":"start","stops":"stop","stronger":"strong","taking":"take","talking":"talk","waiting":"wait","wanted":"want","watching":"watch","worked":"work","years":"year"};
+const IPA_EXTRA = {
+  "a": "/ə/",
+  "aches": "/eɪks/",
+  "ahead": "/əˈhed/",
+  "an": "/ən/",
+  "another": "/əˈnʌðə/",
+  "any": "/ˈeni/",
+  "anything": "/ˈeniθɪŋ/",
+  "anytime": "/ˈenitaɪm/",
+  "appointment": "/əˈpɔɪntmənt/",
+  "are": "/ɑː/",
+  "around": "/əˈraʊnd/",
+  "at": "/æt/",
+  "available": "/əˈveɪləbl/",
+  "bag": "/bæɡ/",
+  "been": "/biːn/",
+  "best": "/best/",
+  "better": "/ˈbetə/",
+  "bigger": "/ˈbɪɡə/",
+  "bit": "/bɪt/",
+  "bother": "/ˈbɒðə/",
+  "bought": "/bɔːt/",
+  "breath": "/breθ/",
+  "broken": "/ˈbrəʊkən/",
+  "busy": "/ˈbɪzi/",
+  "by": "/baɪ/",
+  "came": "/keɪm/",
+  "can": "/kæn/",
+  "can't": "/kɑːnt/",
+  "care": "/keə/",
+  "carry": "/ˈkæri/",
+  "cases": "/ˈkeɪsɪz/",
+  "could": "/kʊd/",
+  "covered": "/ˈkʌvəd/",
+  "crazy": "/ˈkreɪzi/",
+  "deep": "/diːp/",
+  "did": "/dɪd/",
+  "didn't": "/ˈdɪdnt/",
+  "dizzy": "/ˈdɪzi/",
+  "doesn't": "/ˈdʌznt/",
+  "doing": "/ˈduːɪŋ/",
+  "don't": "/dəʊnt/",
+  "exactly": "/ɪɡˈzæktli/",
+  "excuse": "/ɪkˈskjuːz/",
+  "fare": "/feə/",
+  "favor": "/ˈfeɪvə/",
+  "fill": "/fɪl/",
+  "final": "/ˈfaɪnl/",
+  "fine": "/faɪn/",
+  "for": "/fɔː/",
+  "forgot": "/fəˈɡɒt/",
+  "friend": "/frend/",
+  "from": "/frɒm/",
+  "get": "/ɡet/",
+  "getting": "/ˈɡetɪŋ/",
+  "glad": "/ɡlæd/",
+  "going": "/ˈɡəʊɪŋ/",
+  "got": "/ɡɒt/",
+  "gotta": "/ˈɡɒtə/",
+  "grab": "/ɡræb/",
+  "had": "/hæd/",
+  "hang": "/hæŋ/",
+  "has": "/hæz/",
+  "heard": "/hɜːd/",
+  "hey": "/heɪ/",
+  "hi": "/haɪ/",
+  "how": "/haʊ/",
+  "how's": "/haʊz/",
+  "hurt": "/hɜːt/",
+  "hurting": "/ˈhɜːtɪŋ/",
+  "hurts": "/hɜːts/",
+  "i": "/aɪ/",
+  "i'd": "/aɪd/",
+  "i'll": "/aɪl/",
+  "i'm": "/aɪm/",
+  "i've": "/aɪv/",
+  "in": "/ɪn/",
+  "included": "/ɪnˈkluːdɪd/",
+  "instead": "/ɪnˈsted/",
+  "insurance": "/ɪnˈʃʊərəns/",
+  "interrupt": "/ˌɪntəˈrʌpt/",
+  "is": "/ɪz/",
+  "isn't": "/ˈɪznt/",
+  "it": "/ɪt/",
+  "it's": "/ɪts/",
+  "kids": "/kɪdz/",
+  "last": "/lɑːst/",
+  "later": "/ˈleɪtə/",
+  "lie": "/laɪ/",
+  "little": "/ˈlɪtl/",
+  "lot": "/lɒt/",
+  "luck": "/lʌk/",
+  "mad": "/mæd/",
+  "make": "/meɪk/",
+  "making": "/ˈmeɪkɪŋ/",
+  "married": "/ˈmærid/",
+  "me": "/miː/",
+  "meet": "/miːt/",
+  "mess": "/mes/",
+  "mind": "/maɪnd/",
+  "mistake": "/mɪˈsteɪk/",
+  "moment": "/ˈməʊmənt/",
+  "much": "/mʌtʃ/",
+  "my": "/maɪ/",
+  "nice": "/naɪs/",
+  "not": "/nɒt/",
+  "of": "/əv/",
+  "off": "/ɒf/",
+  "okay": "/ˌəʊˈkeɪ/",
+  "on": "/ɒn/",
+  "out": "/aʊt/",
+  "owe": "/əʊ/",
+  "peanuts": "/ˈpiːnʌts/",
+  "penicillin": "/ˌpenɪˈsɪlɪn/",
+  "pick": "/pɪk/",
+  "pregnant": "/ˈpreɡnənt/",
+  "press": "/pres/",
+  "pressure": "/ˈpreʃə/",
+  "pricey": "/ˈpraɪsi/",
+  "rash": "/ræʃ/",
+  "rather": "/ˈrɑːðə/",
+  "ready": "/ˈredi/",
+  "refill": "/ˌriːˈfɪl/",
+  "roll": "/rəʊl/",
+  "safe": "/seɪf/",
+  "seen": "/siːn/",
+  "service": "/ˈsɜːvɪs/",
+  "set": "/set/",
+  "shanghai": "/ˌʃæŋˈhaɪ/",
+  "she": "/ʃiː/",
+  "she's": "/ʃiːz/",
+  "shortcut": "/ˈʃɔːtkʌt/",
+  "shots": "/ʃɒts/",
+  "should": "/ʃʊd/",
+  "sit": "/sɪt/",
+  "sleeve": "/sliːv/",
+  "something": "/ˈsʌmθɪŋ/",
+  "sometime": "/ˈsʌmtaɪm/",
+  "sore": "/sɔː/",
+  "speak": "/spiːk/",
+  "split": "/splɪt/",
+  "starving": "/ˈstɑːvɪŋ/",
+  "stayed": "/steɪd/",
+  "steak": "/steɪk/",
+  "stuck": "/stʌk/",
+  "sure": "/ʃɔː/",
+  "taken": "/ˈteɪkən/",
+  "that": "/ðæt/",
+  "that's": "/ðæts/",
+  "the": "/ðə/",
+  "these": "/ðiːz/",
+  "this": "/ðɪs/",
+  "tight": "/taɪt/",
+  "to": "/tuː/",
+  "tonight": "/təˈnaɪt/",
+  "tough": "/tʌf/",
+  "trash": "/træʃ/",
+  "trip": "/trɪp/",
+  "trouble": "/ˈtrʌbl/",
+  "twice": "/twaɪs/",
+  "umbrella": "/ʌmˈbrelə/",
+  "wake": "/weɪk/",
+  "was": "/wɒz/",
+  "wash": "/wɒʃ/",
+  "we": "/wiː/",
+  "we'd": "/wiːd/",
+  "we'll": "/wiːl/",
+  "we're": "/wɪə/",
+  "we've": "/wiːv/",
+  "well": "/wel/",
+  "went": "/went/",
+  "what": "/wɒt/",
+  "what's": "/wɒts/",
+  "where": "/weə/",
+  "which": "/wɪtʃ/",
+  "whole": "/həʊl/",
+  "wi-fi": "/ˈwaɪ faɪ/",
+  "will": "/wɪl/",
+  "with": "/wɪð/",
+  "within": "/wɪˈðɪn/",
+  "word": "/wɜːd/",
+  "worries": "/ˈwʌriz/",
+  "worry": "/ˈwʌri/",
+  "would": "/wʊd/",
+  "you": "/juː/",
+  "you're": "/jɔː/",
+  "your": "/jɔː/",
+  "yourself": "/jɔːˈself/"
+};
+const PATTERNS = {
+  p_request: { name: "礼貌请求", icon: "🙏", items: [
+    { frame: "Could you please ___?", cn: "能麻烦你……吗？", tip: "比 Can you 客气得多，对陌生人、长辈、同事都能用",
+      slots: [
+        { en: "help me", cn: "帮我一下" },
+        { en: "wait a moment", cn: "等一下" },
+        { en: "speak a bit slower", cn: "说慢一点" },
+        { en: "repeat that", cn: "再说一遍" },
+        { en: "write it down", cn: "写下来" }
+      ] },
+    { frame: "Would you mind ___?", cn: "你介意……吗？", tip: "很委婉。注意它反着答：不介意要说 No, not at all",
+      slots: [
+        { en: "opening the window", cn: "开一下窗" },
+        { en: "waiting a bit", cn: "稍等一下" },
+        { en: "speaking up", cn: "说大声点" },
+        { en: "taking a photo", cn: "拍张照" },
+        { en: "sitting here", cn: "坐这儿" }
+      ] },
+    { frame: "Can I ___?", cn: "我可以……吗？", tip: "最常用的请求许可，生活里天天用",
+      slots: [
+        { en: "ask you something", cn: "问你件事" },
+        { en: "have a look", cn: "看一眼" },
+        { en: "try it on", cn: "试穿一下" },
+        { en: "pay by card", cn: "刷卡付" },
+        { en: "get a receipt", cn: "要张收据" }
+      ] }
+  ] },
+
+  p_want: { name: "表达想要", icon: "🎯", items: [
+    { frame: "I'd like ___", cn: "我想要……", tip: "点餐、购物、办事的万能句，比 I want 礼貌",
+      slots: [
+        { en: "a coffee", cn: "一杯咖啡" },
+        { en: "a table for two", cn: "两人桌" },
+        { en: "to book a room", cn: "订个房间" },
+        { en: "to return this", cn: "退这个" },
+        { en: "some more water", cn: "再来点水" }
+      ] },
+    { frame: "I want to ___", cn: "我想……", tip: "直白表达意愿，对自己人、熟人都能用",
+      slots: [
+        { en: "go home", cn: "回家" },
+        { en: "learn English well", cn: "把英语学好" },
+        { en: "ask a question", cn: "问个问题" },
+        { en: "change my order", cn: "改一下订单" },
+        { en: "take a day off", cn: "请一天假" }
+      ] },
+    { frame: "I need ___", cn: "我需要……", tip: "比 I want 更急更实，办事时最管用",
+      slots: [
+        { en: "some help", cn: "一些帮助" },
+        { en: "more time", cn: "多点时间" },
+        { en: "to see a doctor", cn: "看医生" },
+        { en: "a phone charger", cn: "充电器" },
+        { en: "your ID", cn: "你的证件" }
+      ] }
+  ] },
+
+  p_opinion: { name: "表达看法", icon: "💬", items: [
+    { frame: "I think ___", cn: "我觉得……", tip: "最百搭的开场，先说自己怎么想",
+      slots: [
+        { en: "it's a good idea", cn: "这是个好主意" },
+        { en: "you're right", cn: "你说得对" },
+        { en: "we should wait", cn: "我们应该等等" },
+        { en: "it's too expensive", cn: "太贵了" },
+        { en: "that works for me", cn: "我可以" }
+      ] },
+    { frame: "In my opinion, ___", cn: "在我看来，……", tip: "稍正式一点，说观点时用，比 I think 更有分量",
+      slots: [
+        { en: "it's worth trying", cn: "值得一试" },
+        { en: "we need more time", cn: "我们需要更多时间" },
+        { en: "this one is better", cn: "这个更好" },
+        { en: "price matters most", cn: "价格最重要" }
+      ] },
+    { frame: "I'm not sure ___", cn: "我不确定……", tip: "不想直接拒绝、想留余地时用这句",
+      slots: [
+        { en: "about that", cn: "那件事" },
+        { en: "if it's true", cn: "是不是真的" },
+        { en: "what to do", cn: "该怎么办" },
+        { en: "whether he'll come", cn: "他会不会来" }
+      ] }
+  ] },
+
+  p_ask: { name: "问路问事", icon: "🧭", items: [
+    { frame: "Where is ___?", cn: "……在哪儿？", tip: "最直接的问法，配上微笑哪儿都好使",
+      slots: [
+        { en: "the restroom", cn: "洗手间" },
+        { en: "the subway station", cn: "地铁站" },
+        { en: "the nearest bank", cn: "最近的银行" },
+        { en: "the elevator", cn: "电梯" },
+        { en: "the exit", cn: "出口" }
+      ] },
+    { frame: "How do I get to ___?", cn: "我怎么去……？", tip: "问路必备，比 Where is 更能问出路线",
+      slots: [
+        { en: "the airport", cn: "机场" },
+        { en: "downtown", cn: "市中心" },
+        { en: "this address", cn: "这个地址" },
+        { en: "the train station", cn: "火车站" },
+        { en: "the hospital", cn: "医院" }
+      ] },
+    { frame: "Is there ___ near here?", cn: "这附近有……吗？", tip: "找东西专用，出差旅游高频",
+      slots: [
+        { en: "a pharmacy", cn: "药店" },
+        { en: "a convenience store", cn: "便利店" },
+        { en: "an ATM", cn: "取款机" },
+        { en: "a good restaurant", cn: "好吃的餐厅" },
+        { en: "a bus stop", cn: "公交站" }
+      ] }
+  ] },
+
+  p_time: { name: "约定时间", icon: "⏰", items: [
+    { frame: "When is ___?", cn: "……是什么时候？", tip: "问时间最省事的说法",
+      slots: [
+        { en: "the meeting", cn: "会议" },
+        { en: "your flight", cn: "你的航班" },
+        { en: "the deadline", cn: "截止时间" },
+        { en: "check-out time", cn: "退房时间" },
+        { en: "the next train", cn: "下一班车" }
+      ] },
+    { frame: "What time ___?", cn: "几点……？", tip: "问具体钟点，后面接动作",
+      slots: [
+        { en: "do you open", cn: "你们开门" },
+        { en: "does it start", cn: "几点开始" },
+        { en: "should we meet", cn: "我们几点见" },
+        { en: "do you close", cn: "你们几点关" },
+        { en: "works for you", cn: "你几点方便" }
+      ] },
+    { frame: "Are you free ___?", cn: "你……有空吗？", tip: "约人必备，先问空不空再定时间",
+      slots: [
+        { en: "tomorrow", cn: "明天" },
+        { en: "this weekend", cn: "这周末" },
+        { en: "after work", cn: "下班后" },
+        { en: "on Friday", cn: "周五" },
+        { en: "tonight", cn: "今晚" }
+      ] }
+  ] },
+
+  p_feel: { name: "表达感受", icon: "❤️", items: [
+    { frame: "It's too ___", cn: "太……了", tip: "抱怨、感叹都能用，too 表示过分",
+      slots: [
+        { en: "expensive", cn: "贵" },
+        { en: "noisy", cn: "吵" },
+        { en: "hot today", cn: "今天热" },
+        { en: "far from here", cn: "离这儿远" },
+        { en: "good to be true", cn: "好得不真实" }
+      ] },
+    { frame: "I'm really ___", cn: "我真的……", tip: "加 really 语气到位，表达情绪",
+      slots: [
+        { en: "tired", cn: "累" },
+        { en: "happy about it", cn: "开心" },
+        { en: "sorry", cn: "抱歉" },
+        { en: "not sure", cn: "不确定" },
+        { en: "looking forward to it", cn: "很期待" }
+      ] },
+    { frame: "That sounds ___", cn: "听起来……", tip: "回应别人的提议，最自然的一句",
+      slots: [
+        { en: "great", cn: "很棒" },
+        { en: "like a plan", cn: "就这么定了" },
+        { en: "a bit risky", cn: "有点冒险" },
+        { en: "interesting", cn: "有意思" },
+        { en: "perfect", cn: "完美" }
+      ] }
+  ] },
+
+  p_advice: { name: "给建议", icon: "💡", items: [
+    { frame: "Why don't you ___?", cn: "你为什么不……？", tip: "其实是提建议，不是质问，语气很软",
+      slots: [
+        { en: "take a rest", cn: "休息一下" },
+        { en: "ask him directly", cn: "直接问他" },
+        { en: "try it first", cn: "先试试" },
+        { en: "sleep on it", cn: "先睡一觉再想" },
+        { en: "come with us", cn: "跟我们一起来" }
+      ] },
+    { frame: "You should ___", cn: "你应该……", tip: "直接给建议，关系近才用",
+      slots: [
+        { en: "see a doctor", cn: "去看医生" },
+        { en: "get some sleep", cn: "去睡会儿" },
+        { en: "read the reviews", cn: "看看评价" },
+        { en: "book earlier", cn: "早点订" },
+        { en: "double-check", cn: "再核对一遍" }
+      ] },
+    { frame: "How about ___?", cn: "……怎么样？", tip: "提方案最容易开口的一句",
+      slots: [
+        { en: "going out tonight", cn: "今晚出去" },
+        { en: "a quick coffee", cn: "喝杯咖啡" },
+        { en: "next Monday", cn: "下周一" },
+        { en: "splitting the bill", cn: "AA 制" },
+        { en: "taking a taxi", cn: "打车去" }
+      ] }
+  ] },
+
+  p_confirm: { name: "确认理解", icon: "✅", items: [
+    { frame: "Do you mean ___?", cn: "你是说……？", tip: "没听清、怕理解错，用这句最安全",
+      slots: [
+        { en: "it's free", cn: "这是免费的" },
+        { en: "tomorrow", cn: "明天" },
+        { en: "the other one", cn: "另一个" },
+        { en: "I should wait", cn: "我该等着" },
+        { en: "the price includes tax", cn: "价格含税" }
+      ] },
+    { frame: "So you're saying ___?", cn: "所以你是说……？", tip: "复述对方的意思，确认谈事儿不出岔子",
+      slots: [
+        { en: "it's sold out", cn: "卖完了" },
+        { en: "we need to pay first", cn: "要先付款" },
+        { en: "there's no refund", cn: "不能退款" },
+        { en: "it takes a week", cn: "要一周" }
+      ] },
+    { frame: "Let me ___", cn: "让我……", tip: "争取时间、确认细节的缓冲句",
+      slots: [
+        { en: "repeat that", cn: "重复一遍" },
+        { en: "make sure I got it right", cn: "确认我没听错" },
+        { en: "check my notes", cn: "看下笔记" },
+        { en: "think about it", cn: "想一想" },
+        { en: "put it another way", cn: "换个说法" }
+      ] }
+  ] }
+};
 const PREMIUM_VOICES = [
   'Samantha', 'Karen', 'Daniel', 'Moira', 'Tessa', 'Veena', 'Rishi',
   'Allison', 'Ava', 'Susan', 'Tom', 'Alex', 'Victoria', 'Fred',
@@ -1609,6 +2121,10 @@ const LOW_QUALITY_KEYWORDS = [
     card.onclick = () => {
       document.querySelectorAll(".mode-card").forEach(c => c.classList.remove("active"));
       card.classList.add("active");
+      if (card.dataset.goto) {          // 句子/句型:点了直接进,不用选主题数量
+        if (card.dataset.goto === "sentence") openSentHome(); else openPatHome();
+        return;
+      }
       pageMode = card.dataset.pagemode;
       document.getElementById("quiz-options").classList.toggle("hidden", pageMode !== "quiz");
 
@@ -2433,10 +2949,314 @@ const LOW_QUALITY_KEYWORDS = [
     }
   }
 
+
+  // ============================================================
+  // 日常高频句 + 句型骨架(2026-09-11 新增)
+  // ============================================================
+
+  // ---- 主词库反查索引(英文 -> 中文) ----
+  const EN2CN = (function () {
+    const m = {};
+    for (const k in VOCAB) (VOCAB[k].words || []).forEach(x => { if (m[x.en] === undefined) m[x.en] = x.cn; });
+    return m;
+  })();
+
+  // ---- 句库全局词表(所有句子的逐词释义合并,首见优先) ----
+  const GLOSS_MAP = (function () {
+    const m = {};
+    for (const k in SENTENCES) (SENTENCES[k].items || []).forEach(it => {
+      for (const w in (it.g || {})) {
+        const n = w.toLowerCase().replace(/[’]/g, "'");
+        if (n && m[n] === undefined) m[n] = it.g[w];
+      }
+    });
+    return m;
+  })();
+
+  function normKey(s) { return String(s || '').toLowerCase().replace(/[’]/g, "'").replace(/[^a-z']/g, ''); }
+
+  // ---- 词形还原候选(规则推导,命中即用) ----
+  function lemmaCandidates(w) {
+    const o = [];
+    if (w.endsWith("'s")) o.push(w.slice(0, -2));
+    if (w.endsWith('ies') && w.length > 4) o.push(w.slice(0, -3) + 'y');
+    if (w.endsWith('es') && w.length > 3) o.push(w.slice(0, -2));
+    if (w.endsWith('s') && !w.endsWith('ss') && w.length > 3) o.push(w.slice(0, -1));
+    if (w.endsWith('ing') && w.length > 5) {
+      o.push(w.slice(0, -3), w.slice(0, -3) + 'e');
+      if (w.length > 6 && w[w.length - 4] === w[w.length - 5]) o.push(w.slice(0, -4));
+    }
+    if (w.endsWith('ed') && w.length > 4) {
+      o.push(w.slice(0, -2), w.slice(0, -1));
+      if (w.length > 5 && w[w.length - 3] === w[w.length - 4]) o.push(w.slice(0, -3));
+    }
+    if (w.endsWith('er') && w.length > 4) o.push(w.slice(0, -2));
+    if (w.endsWith('est') && w.length > 5) o.push(w.slice(0, -3));
+    return [...new Set(o)].filter(x => x.length > 1 && x !== w);
+  }
+
+  function ipaOf(raw) {
+    const w = normKey(raw);
+    if (!w) return '';
+    const pool = [w, ...lemmaCandidates(w)];
+    if (typeof FORMS_MAP !== 'undefined' && FORMS_MAP[w]) pool.splice(1, 0, FORMS_MAP[w]);
+    for (const c of pool) {
+      if (IPA_MAP[c]) return IPA_MAP[c];
+      if (typeof IPA_EXTRA !== 'undefined' && IPA_EXTRA[c]) return IPA_EXTRA[c];
+    }
+    return '';
+  }
+
+  // 释义优先级:本句专属 > 句库全局 > 词形还原后再查 > 主词库
+  function glossOf(raw, sentG) {
+    const w = normKey(raw);
+    if (!w) return null;
+    if (sentG) for (const k in sentG) if (normKey(k) === w) return { cn: sentG[k], via: 'sentence' };
+    if (GLOSS_MAP[w] !== undefined) return { cn: GLOSS_MAP[w], via: 'global' };
+    const forms = (typeof FORMS_MAP !== 'undefined' && FORMS_MAP[w]) ? [FORMS_MAP[w], ...lemmaCandidates(w)] : lemmaCandidates(w);
+    for (const c of forms) {
+      if (sentG) for (const k in sentG) if (normKey(k) === c) return { cn: sentG[k], via: 'form', lemma: c };
+      if (GLOSS_MAP[c] !== undefined) return { cn: GLOSS_MAP[c], via: 'form', lemma: c };
+      if (EN2CN[c]) return { cn: EN2CN[c], via: 'form', lemma: c };
+    }
+    if (EN2CN[w]) return { cn: EN2CN[w], via: 'vocab' };
+    return null;
+  }
+
+  // ---- 把句子切成可点的词 ----
+  function sentHTML(en) {
+    return String(en).replace(/[A-Za-z][A-Za-z'’\-]*|[^A-Za-z\s]+/g, tok =>
+      /^[A-Za-z]/.test(tok) ? `<span class="w" data-w="${tok.replace(/&/g, '&amp;').replace(/"/g, '&quot;')}">${tok}</span>` : tok);
+  }
+
+  // ---- 词义弹卡 ----
+  let popEl = null;
+  function hideWordPop() {
+    if (popEl) { popEl.remove(); popEl = null; }
+    document.querySelectorAll('.sent-en .w.on').forEach(x => x.classList.remove('on'));
+  }
+  function showWordPop(el, raw, sentG) {
+    hideWordPop();
+    const g = glossOf(raw, sentG), ipa = ipaOf(raw);
+    el.classList.add('on');
+    popEl = document.createElement('div');
+    popEl.className = 'word-pop';
+    popEl.innerHTML =
+      `<div class="wp-top"><span class="wp-w">${raw}</span>${ipa ? `<span class="wp-ipa">${ipa}</span>` : ''}</div>` +
+      (g ? `<div class="wp-cn">${g.cn}</div>` : `<div class="wp-miss">这个词暂未收录释义（可听发音）</div>`) +
+      (g && g.lemma ? `<div class="wp-lemma">原形：${g.lemma}</div>` : '') +
+      `<div class="wp-btns">
+         <button class="sent-speak-btn" data-pop-speak="${raw.replace(/"/g, '&quot;')}">🔊 读这个词</button>
+         ${g ? `<button class="sent-speak-btn" data-pop-add="1">＋ 生词本</button>` : ''}
+       </div>`;
+    document.body.appendChild(popEl);
+    const r = el.getBoundingClientRect(), pr = popEl.getBoundingClientRect();
+    let left = r.left + r.width / 2 - pr.width / 2;
+    left = Math.max(10, Math.min(left, window.innerWidth - pr.width - 10));
+    let top = r.bottom + 8;
+    if (top + pr.height > window.innerHeight - 10) top = r.top - pr.height - 8;
+    popEl.style.left = left + 'px';
+    popEl.style.top = Math.max(10, top) + 'px';
+    popEl._ctx = { raw, g };
+  }
+  document.addEventListener('click', e => {
+    if (popEl && !e.target.closest('.word-pop') && !e.target.closest('.w')) hideWordPop();
+  });
+  document.addEventListener('click', e => {
+    if (!popEl) return;
+    const sp = e.target.closest('[data-pop-speak]');
+    if (sp) { speak(sp.dataset.popSpeak, sp); return; }
+    const ad = e.target.closest('[data-pop-add]');
+    if (ad && popEl._ctx && popEl._ctx.g) {
+      if (window.addToNotebook) window.addToNotebook({ en: popEl._ctx.raw, cn: popEl._ctx.g.cn, topic: '日常高频句', icon: '💬' });
+      ad.textContent = '✓ 已加入生词本';
+      ad.disabled = true;
+    }
+  }, true);
+
+  // ---- 句子:场景列表 ----
+  let sentSceneKey = null;
+  function renderSentScenes() {
+    const grid = document.getElementById('sent-scene-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    Object.keys(SENTENCES).forEach(k => {
+      const s = SENTENCES[k];
+      const b = document.createElement('button');
+      b.className = 'topic-btn';
+      b.innerHTML = `<span class="ic">${s.icon}</span>${s.name}<span class="cnt">${s.items.length} 句</span>`;
+      b.onclick = () => openSentScene(k);
+      grid.appendChild(b);
+    });
+  }
+  function openSentScene(k) {
+    sentSceneKey = k;
+    const s = SENTENCES[k];
+    document.getElementById('sent-list-title').textContent = s.icon + ' ' + s.name;
+    document.getElementById('sent-list-count').textContent = s.items.length + ' 句';
+    const list = document.getElementById('sent-list');
+    list.innerHTML = '';
+    s.items.forEach((it, i) => {
+      const card = document.createElement('div');
+      card.className = 'sent-card';
+      card.dataset.i = i;
+      card.innerHTML =
+        `<div class="sent-en">${sentHTML(it.en)}</div>` +
+        `<div class="sent-cn">${it.cn}</div>` +
+        `<div class="sent-foot"><button class="sent-speak-btn" data-speak="${i}">🔊 整句朗读</button></div>`;
+      list.appendChild(card);
+    });
+    document.getElementById('sent-scene-view').classList.add('hidden');
+    document.getElementById('sent-list-view').classList.remove('hidden');
+    showScreen('sentence-screen');
+  }
+  function sentItems() { return (SENTENCES[sentSceneKey] || {}).items || []; }
+
+  // ---- 句子:点词 / 朗读 / 连播 ----
+  document.getElementById('sent-list').addEventListener('click', e => {
+    const wEl = e.target.closest('.sent-en .w');
+    if (wEl) {
+      const card = wEl.closest('.sent-card');
+      const it = sentItems()[+card.dataset.i];
+      showWordPop(wEl, wEl.dataset.w, it && it.g);
+      return;
+    }
+    const sp = e.target.closest('[data-speak]');
+    if (sp) { const it = sentItems()[+sp.dataset.speak]; if (it) speak(it.en, sp); }
+  });
+
+  let sentToken = 0, sentPlaying = false;
+  function setPlayBtn(on) {
+    const b = document.getElementById('sent-play-all');
+    if (b) b.textContent = on ? '⏸ 停止连播' : '▶ 从头连播';
+  }
+  function playAllSentences() {
+    if (sentPlaying) { sentToken++; sentPlaying = false; window.speechSynthesis && window.speechSynthesis.cancel(); setPlayBtn(false); return; }
+    const items = sentItems();
+    if (!items.length) return;
+    sentPlaying = true; setPlayBtn(true);
+    const my = ++sentToken;
+    let i = 0;
+    (function step() {
+      if (my !== sentToken || i >= items.length) { if (my === sentToken) { sentPlaying = false; setPlayBtn(false); } return; }
+      const it = items[i];
+      const card = document.querySelector(`.sent-card[data-i="${i}"]`);
+      if (card) card.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      i++;
+      const u = new SpeechSynthesisUtterance(it.en);
+      u.rate = speakRate; u.pitch = 1; u.volume = 1;
+      if (selectedVoice) { u.voice = selectedVoice; u.lang = selectedVoice.lang; } else u.lang = 'en-US';
+      u.onend = () => { if (my === sentToken) setTimeout(step, 600); };
+      u.onerror = () => { if (my === sentToken) setTimeout(step, 600); };
+      window.speechSynthesis && window.speechSynthesis.speak(u);
+    })();
+  }
+  document.getElementById('sent-play-all').onclick = playAllSentences;
+  document.getElementById('sent-hide-cn').onchange = e => {
+    document.querySelectorAll('#sent-list .sent-card').forEach(c => c.classList.toggle('hide-cn', e.target.checked));
+  };
+  document.getElementById('sent-home').onclick = backHome;
+  document.getElementById('sent-list-home').onclick = backHome;
+  document.getElementById('sent-list-back').onclick = () => {
+    sentToken++; sentPlaying = false; window.speechSynthesis && window.speechSynthesis.cancel(); setPlayBtn(false);
+    document.getElementById('sent-list-view').classList.add('hidden');
+    document.getElementById('sent-scene-view').classList.remove('hidden');
+    window.scrollTo(0, 0);
+  };
+
+  // ---- 句型骨架 ----
+  let patGroupKey = null;
+  function renderPatGroups() {
+    const grid = document.getElementById('pat-group-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    Object.keys(PATTERNS).forEach(k => {
+      const g = PATTERNS[k];
+      const b = document.createElement('button');
+      b.className = 'topic-btn';
+      b.innerHTML = `<span class="ic">${g.icon}</span>${g.name}<span class="cnt">${g.items.length} 个</span>`;
+      b.onclick = () => openPatGroup(k);
+      grid.appendChild(b);
+    });
+  }
+  function openPatGroup(k) {
+    patGroupKey = k;
+    const g = PATTERNS[k];
+    document.getElementById('pat-title').textContent = g.icon + ' ' + g.name;
+    document.getElementById('pat-count').textContent = g.items.length + ' 个骨架';
+    const list = document.getElementById('pat-list');
+    list.innerHTML = '';
+    g.items.forEach((p, pi) => {
+      const card = document.createElement('div');
+      card.className = 'pat-card';
+      card.dataset.pi = pi;
+      card.innerHTML =
+        `<div class="pat-frame">${p.frame.replace('___', '<span class="blank">…</span>')}</div>` +
+        `<div class="pat-cn">${p.cn}</div>` +
+        `<div class="pat-tip">💡 ${p.tip}</div>` +
+        `<div class="pat-slots">${p.slots.map((s, si) => `<button class="slot-btn" data-si="${si}">${s.en}</button>`).join('')}</div>` +
+        `<div class="pat-result hidden">
+           <div class="pat-sentence"></div>
+           <div class="pat-foot"><span class="pat-slot-cn"></span>
+             <button class="sent-speak-btn" data-pat-speak="1">🔊 读整句</button></div>
+         </div>`;
+      list.appendChild(card);
+    });
+    document.getElementById('pat-group-view').classList.add('hidden');
+    document.getElementById('pat-practice-view').classList.remove('hidden');
+    showScreen('pattern-screen');
+  }
+  document.getElementById('pat-list').addEventListener('click', e => {
+    const card = e.target.closest('.pat-card');
+    if (!card || !patGroupKey) return;
+    const p = PATTERNS[patGroupKey].items[+card.dataset.pi];
+    const sb = e.target.closest('.slot-btn');
+    if (sb) {
+      const slot = p.slots[+sb.dataset.si];
+      card.querySelectorAll('.slot-btn').forEach(x => x.classList.remove('on'));
+      sb.classList.add('on');
+      const full = p.frame.replace('___', slot.en);
+      card.querySelector('.pat-result').classList.remove('hidden');
+      card.querySelector('.pat-sentence').innerHTML = full.replace(slot.en, `<span class="hl">${slot.en}</span>`);
+      card.querySelector('.pat-slot-cn').textContent = slot.cn;
+      speak(full);
+      if (window.recordStudied) window.recordStudied();
+      return;
+    }
+    const sp = e.target.closest('[data-pat-speak]');
+    if (sp) {
+      const sel = card.querySelector('.slot-btn.on');
+      const txt = sel ? p.frame.replace('___', p.slots[+sel.dataset.si].en) : p.frame.replace('___', '...');
+      speak(txt, sp);
+    }
+  });
+  document.getElementById('pat-home').onclick = backHome;
+  document.getElementById('pat-home2').onclick = backHome;
+  document.getElementById('pat-back').onclick = () => {
+    window.speechSynthesis && window.speechSynthesis.cancel();
+    document.getElementById('pat-practice-view').classList.add('hidden');
+    document.getElementById('pat-group-view').classList.remove('hidden');
+    window.scrollTo(0, 0);
+  };
+
+  renderSentScenes();
+  renderPatGroups();
+
+  function openSentHome() {
+    document.getElementById('sent-list-view').classList.add('hidden');
+    document.getElementById('sent-scene-view').classList.remove('hidden');
+    showScreen('sentence-screen');
+  }
+  function openPatHome() {
+    document.getElementById('pat-practice-view').classList.add('hidden');
+    document.getElementById('pat-group-view').classList.remove('hidden');
+    showScreen('pattern-screen');
+  }
+
   // ============ 屏幕切换辅助 ============
   const TOP_SCREENS = ["start-screen","study-screen","study-end-screen","phonics-screen",
     "games-screen","game-screen","end-screen","review-screen","review-end-screen","achv-screen",
-    "type-screen","type-end-screen","listen-screen"];
+    "type-screen","type-end-screen","listen-screen","sentence-screen","pattern-screen"];
   function showScreen(id) {
     window.speechSynthesis && window.speechSynthesis.cancel();
     TOP_SCREENS.forEach(s => { const el = document.getElementById(s); if (el) el.classList.toggle("hidden", s !== id); });

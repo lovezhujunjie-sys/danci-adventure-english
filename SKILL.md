@@ -1,6 +1,6 @@
 ---
 name: 自学英语
-description: 开发与迭代「单词大冒险」自学英语 web 应用（帮中文母语者轻松自学英语单词、发音与拼读）。单文件 index.html，纯前端 + localStorage，含六大学习模式(翻卡学习/闯关选择题/字母拼读/游戏乐园/拼写默写/听力磨耳朵免提自动连播)+ 生词本间隔复习(SRS,可移除/全部提前复习) + 进度仪表盘(每日目标可调) + 成就系统 + 优选发音朗读 + 深色模式 + 设置持久化(发音/语速/主题/打字偏好)。词库约 3143 个日常高频词、41 个主题。触发场景：用户想新增/优化单词大冒险的功能、加单词/主题词库、加新游戏或学习模式、改 SRS/生词本逻辑、做学习数据可视化与激励、调发音/音标、改视觉文案、或部署分享。每次改完都要：①更新本地 skill 文件 ②commit 并 push 到 GitHub。
+description: 开发与迭代「单词大冒险」自学英语 web 应用——老曾和大宝曾麟轩的亲子共学玩具（也适合中文母语者自学单词、发音与拼读）。单文件 index.html，纯前端 + localStorage，含六大单词模式(翻卡学习/闯关选择题/字母拼读/游戏乐园/拼写默写/听力磨耳朵免提自动连播) + 开口说双模块(日常高频句 392 句·点词查义·整句朗读 + 句型骨架 24 个可替换框架)+ 生词本间隔复习(SRS,可移除/全部提前复习) + 进度仪表盘(每日目标可调) + 成就系统 + 优选发音朗读 + 深色模式 + 设置持久化(发音/语速/主题/打字偏好)。词库约 3143 个日常高频词、41 个主题。触发场景：用户想新增/优化单词大冒险的功能、加单词/主题词库、加新游戏或学习模式、改 SRS/生词本逻辑、做学习数据可视化与激励、调发音/音标、改视觉文案、或部署分享。每次改完都要：①更新本地 skill 文件 ②commit 并 push 到 GitHub。
 ---
 
 # 自学英语 · 单词大冒险 App
@@ -37,6 +37,34 @@ description: 开发与迭代「单词大冒险」自学英语 web 应用（帮�
 4. **🎮 游戏乐园** — 5 个小游戏：看图猜词 `startEmojiGame`、字母拼图 `startSpellGame`、限时挑战 `startTimedGame`、连连看 `startMatchGame`、**听音选词** `startListenGame`（听 TTS 选中文）。`launchGame(g)` 统一入口，会调 `recordGamePlayed()`。**看图猜词为「手动翻页」**：答完不自动跳，停在当题显示反馈，由用户点 `#emoji-next`「下一题 →」（末题变「看结果 →」）才前进——给自学者看清答案/听完发音的节奏自主权（`renderEmojiQ` 每题开头先 `hidden` 掉该按钮，答完 `emojiIdx++` 后 `nextBtn.onclick = renderEmojiQ` 显示之）。
 5. **⌨️ 拼写默写**（顶级模式，用主题+数量）— `startTyping/renderTypeWord/onTypeInput`。看中文+音标、自动朗读，用键盘把英文逐字母敲出来；敲错即拦截(砍回正确前缀)+震动红闪+错误音，敲对前进+清脆音；**键盘音效全是 Web Audio 实时合成**(`typeBlip`，零文件离线)。一次拼对→`recordWord`(掌握)；中途出错/用提示/跳过→`recordStudied`+`addToNotebook`(进 SRS 生词本)。隐藏 `#type-input` 捕获输入(兼容手机软键盘，点卡片唤起)，`#type-slots` 渲染字母槽(空格词如 "plane ticket" 渲染 `.tslot.space`)。结束页 `type-end-screen` 显示一次拼对数/出错数/按键正确率 + **打字速度 WPM**(`typeStartMs`/`typeCharCount`，标准 5 字符=1 词) + 错词复习列表。首页该卡为整行「featured」样式(`.mode-card.span2`)。**思路吸收自 TypeWords/Qwerty 打字背单词，自研单文件版**。
 6. **🎧 听力磨耳朵**（顶级模式，用主题+数量，整行 featured 卡）— `startListening/lsRun/lsPlay/lsPause`。**免提自动连播**：英文 ×N 遍（1/2/3 可选）→ 中文释义（用 `zhVoice()` 自动挑的中文 TTS 声音，可关；**严格按 zh-CN 普通话 > zh-TW > 其他 zh 的顺序选池**——只按 `zh` 开头筛会混进 zh-HK 粤语如 macOS 的 Sinji，已踩过坑，2026-06-11 修正）→ 词间停顿（短/中/长跟读档）→ 下一个；列表播完若开「循环播放」则 `shuffle` 洗牌再来。供开车/跑步/做家务戴耳机用。核心约定：**`lsSpeak()` 是带兜底超时的可等待朗读**（防个别机型 `onend` 不触发卡死队列）；`lsToken` 令牌使暂停/跳词后旧循环立即作废；播放中用 **Wake Lock API 防熄屏**（`lsWakeOn/lsWakeOff` + visibilitychange 回来重新申请），因为锁屏会被系统掐断 speechSynthesis；每听完一词 `recordStudied()` 计入今日/连续天数；遍数/停顿/读中文/循环四项偏好全部记进 `settings`(`lsRepeat/lsGap/lsSayCn/lsLoop`)。控件：⏮ ▶/⏸ ⏭ 大按钮 + `ls-*` 系列 id。UI 有安全提示（开车用车架、锁屏可能停）。
+
+## 开口说：日常高频句 + 句型骨架（2026-09-11 新增）
+
+> **使用背景（做任何决策前先读这句）**：这个 app 是**亲子共学玩具**——老曾和儿子**曾麟轩（大宝）**一起学英语用的。任何 UI／玩法改动都要同时照顾两件事：**大人看得进去**、**孩子愿意玩**。
+
+### 💬 日常高频句 `SENTENCES`
+
+- **392 句 / 8 个场景**：问候寒暄 greeting(50)、闲聊家常 smalltalk(50)、点餐吃饭 dining(46)、购物买东西 shopping(50)、出行问路 travel(48)、看病求助 health(50)、礼貌请求 requests(48)、日常生活 daily(50)。
+- **数据格式**：`{ 场景key: { name, icon, items:[{ en, cn, g }] } }`。`g` 是**逐词释义表** `{句中原始拼写: 中文}`，覆盖句中每一个词（含 the/a/to/of 等虚词），缩写（`I'm`/`don't`/`it's`）整体作一个 key。
+- **点词查义（核心功能）**：句子渲染时每个词包成 `<span class="w" data-w="原词">`，点击弹 `.word-pop`：词 + 音标 + **当句释义** + 🔊读这个词 + ＋生词本（直通 SRS）。
+- **释义优先级** `glossOf(raw, sentG)`：① 本句 `g`（最准，含多义词的当句义）② `GLOSS_MAP`（全句库合并词表，首见优先）③ 词形还原后再查 ④ `EN2CN`（主词库反查）。**实测 1880 词命中 1880（100%）**。
+- **音标** `ipaOf(raw)`：`IPA_MAP`（主词库 2627）→ `IPA_EXTRA`（2026-09-11 为句库补的 187 条，英式 RP）→ 词形还原后查。**实测 1879/1880 有音标**（唯一缺 `separate`，因名/动词读音不同、无法判定词性，**主动留空不瞎编**）。
+- **词形还原** `FORMS_MAP`（56 条）+ `lemmaCandidates()` 规则推导（-s/-es/-ed/-ing/-er/-est、ies→y、双写辅音回退等）。
+- **整句朗读** `speak(it.en)`；「▶ 从头连播」`playAllSentences()` 用 `sentToken` 令牌防串台，逐句朗读 + `scrollIntoView` 跟随当前句。
+- 「遮住中文（自我测试）」勾选后给所有卡加 `.hide-cn`，中文模糊化。
+
+### 🏗️ 句型骨架 `PATTERNS`
+
+- **8 组 × 3 骨架 = 24 个可替换框架、约 110 个词槽**：礼貌请求／表达想要／表达看法／问路问事／约定时间／表达感受／给建议／确认理解。
+- **数据格式**：`{ 组key: { name, icon, items:[{ frame, cn, tip, slots:[{en,cn}] }] } }`，`frame` 里用 `___` 作占位符。
+- **交互**：点词槽按钮 → 骨架里 `___` 替换成该词 → 下方展开整句（替换部分橙色高亮）+ 中文 + 🔊读整句 → 自动朗读并 `recordStudied()` 记账。
+- **设计意图**：句型 = **可替换框架**，不是语法讲解。给骨架 + 词槽，换词造出真实句子，直接能说出口。
+
+### 改这块别踩的坑
+
+- 两个 screen 的 id `sentence-screen` / `pattern-screen` **必须留在 `TOP_SCREENS` 数组里**，否则 `showScreen()` 切不过去。
+- 首页入口卡用 `data-goto="sentence|pattern"`（**不是** `data-pagemode`），在 `.mode-card` 的 onclick 里**早期 return 直接进模块**，不走"选主题+数量+点开始"那套四步流程。
+- 新增句子/单词后若带出新词，顺手核对 `IPA_EXTRA` 有没有音标；音标一律**英式 RP**，拿不准就留空。
 
 ## 生词本 + 间隔复习 SRS（核心留存机制）
 
