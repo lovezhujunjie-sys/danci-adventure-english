@@ -100,3 +100,43 @@ cases.forEach(c => {
   console.log(`      切出 ${toks.length} 个: ${JSON.stringify(toks)}`);
   if (!lossless) console.log(`      ❗ 丢了非空白字符: 原文(去空白)=${JSON.stringify(c.replace(/\s/g,''))} 切词拼回=${JSON.stringify(rebuilt)}`);
 });
+
+// ══════════════════════════════════════════════════════════════════
+// ④ 分级阅读 READINGS —— 2026-09-11 补
+// 🔴 原来这个脚本只查 SENTENCES 和 PATTERNS，**20 篇分级阅读一个字都没查**。
+//    阅读篇的查词链跟句子不同：它传的是 Object.assign({}, a.gloss, p.g || {})
+//    （篇级词表 + 段级词表合并），见 index.html 里 rd-body 的 click 处理。
+//    这里必须**照抄那个合并方式**，否则查出来的死区数跟真机对不上。
+// ══════════════════════════════════════════════════════════════════
+console.log('\n=== ④ 分级阅读 READINGS ===');
+const READINGS = lit('READINGS');
+const rk = Object.keys(READINGS);
+let rParas = 0, rMissG = [], rMissI = [], rBad = [];
+rk.forEach(k => {
+  const a = READINGS[k];
+  if (!a.title || !a.titleCn || !a.level) rBad.push(k + '(缺标题/级别)');
+  if (!Array.isArray(a.paras) || !a.paras.length) { rBad.push(k + '(没有段落)'); return; }
+  a.paras.forEach((p, idx) => {
+    rParas++;
+    if (!p.en || !p.cn) rBad.push(k + '#' + idx + '(缺中/英)');
+    // 🔴 与真机一致：篇级 gloss 打底，段级 g 覆盖
+    const sentG = Object.assign({}, a.gloss, p.g || {});
+    (String(p.en || '').match(TOK) || []).forEach(t => {
+      const c0 = t.charCodeAt(0);
+      if (!((c0 >= 65 && c0 <= 90) || (c0 >= 97 && c0 <= 122))) return;
+      const c = norm(t); if (!c) return;
+      if (!CH.glossOf(c, sentG)) rMissG.push(k + ':' + t);
+      if (!CH.ipaOf(c)) rMissI.push(k + ':' + t);
+    });
+  });
+});
+const rLevels = {};
+rk.forEach(k => { rLevels[READINGS[k].level] = (rLevels[READINGS[k].level] || 0) + 1; });
+console.log(`  篇数 ${rk.length} 个（${Object.entries(rLevels).map(([a,b])=>a+b).join(' / ')}） | 段落 ${rParas} 段`);
+console.log(rBad.length ? `  ❌ 结构/内容问题 ${rBad.length}: ${rBad.slice(0, 6).join(', ')}` : '  ✅ 结构完好');
+console.log(`  点词缺释义 ${rMissG.length} ${rMissG.slice(0, 40).join(' ')}`);
+console.log(`  点词缺音标 ${rMissI.length} ${rMissI.slice(0, 40).join(' ')}`);
+if (rMissG.length) {
+  const uniq = [...new Set(rMissG.map(x => x.split(':')[1].toLowerCase()))].sort();
+  console.log(`  ❗ 去重后 ${uniq.length} 个词：${uniq.join(' ')}`);
+}

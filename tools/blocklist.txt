@@ -1,0 +1,41 @@
+# 人工剔除名单：人名/地名/语气词/古语/俚语/脏话 —— 不该进词库
+#
+# 🔴 为什么是人工的（2026-09-11 三种自动信号全部实测失败）：
+#   ① /usr/share/dict/web2 词典 —— 人名全收，零区分度
+#   ② /usr/share/dict/propernames —— 只有 1308 个常见名，漏一大堆
+#   ③ 维基词典词性小节 —— **人名在维基里就是挂 ===Noun===**（rachel/maggie/lucy 实测都是
+#      Noun），根本分不出人名和普通名词；真正被挡下的只是「小写页面不存在」的那批
+#   ④ 网页词频 × 字幕词频交叉 —— 只挡 37%，还误杀 6/54 个真常用词
+#   结论：这活儿没有可靠的自动办法，老老实实手工过一遍。
+#   好在量不大：候选池前 2000 名里非真词就这 180 来个。
+#
+# 判据（依次）：
+#   人名/姓氏/地名/国名 → 剔（除非该词另有常用普通词义，如 smith 铁匠、ivy 常春藤）
+#   语气词/象声词      → 剔（与 pick_words.py 的 JUNK 口径一致）
+#   古语/方言（thou/thy/thee/ye）→ 剔（成年初学者读现代文用不上）
+#   俚语/下流词        → 剔（这个 app 大宝偶尔也会玩）
+#   拼音/罗马字        → 剔
+
+ya york la de uh-huh jake whoo ugh aye ho san gosh da re alice rachel rome lucy
+jenny washington thou california jackson thy taylor joey amen maggie thee
+hollywood pa gee sara jo abby katie hong sec pussy jessica charlotte el texas
+heck tina nina chloe berlin boston na batman virginia blah britain olivia ye
+rita maya joan sammy carrie florida miami bo dont han natalie nelson riley
+gloria moscow noah christine mel mi fu ivan lincoln caesar diego superman kang
+khan di en yang benny sebastian excellency alicia samantha sire tara lo singh
+ay si egypt geez hercules darn freddy murphy vanessa ahem rosa jenna romeo
+melissa bailey wha iraq brazil chi nicky tae veronica vera min freddie allah wu
+dong phoebe finn kung jessie erica manhattan zach lola rory georgia lydia ana
+carmen th chang austin daphne burt irene dee cal se meg buddha lena angie miguel
+mona florence chad
+ha-ha cassie bam willy ta fanny wa bon otto agnes georgie hugo elderman sylvia
+ba horny yea reggie ni wong pimp hallelujah es howdy cuba broadway burke harvard
+bella hanna napoleon kai serena jerusalem lizzie scotty shan eleanor
+bugger marge nam wally dang baxter roosevelt missy poop cha hogan
+arizona amelia nana delhi susie lionel frasier mimi baba hah gilbert
+apollo abraham dexter yah hath sub sophia
+# 2026-09-11 补漏：1858 名之后整段复核时又捞出的（原名单只扫到 sophia，这 12 个漏网）
+#   人名/地名：isabel alec venice ella milan reese rio mercedes helena vienna
+#   ling  —— 作中文姓（玲/林）远比作「鳕鱼」常见，成年初学者先学姓没意义
+#   unto  —— 古语，与上面已封的 thou/thee/ye/hath 同类，现代文用不上
+isabel alec venice ella milan reese rio mercedes helena vienna ling unto

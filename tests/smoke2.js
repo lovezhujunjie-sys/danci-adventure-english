@@ -63,6 +63,33 @@ const ok = (name, cond, extra) => {
   await click('.mode-card[data-pagemode="listen"]');
   ok('「听什么」选择器出现', await vis('#ls-source-opts'));
   ok('默认单词源：主题区可见', await vis('#topic-grid'));
+  // ══════════ 单词主题网格的折叠（2026-09-11 补：原先把 nth-child 陷阱只测了篇目网格，
+  //            而主题网格 41→51 个才是这个陷阱最容易爆的地方，属于测试盲区）
+  //   注意：下面全部按「与主题数量无关」的写法，41 个时能过，51 个时也要能过
+  const nTopic = await page.evaluate(() => Object.keys(VOCAB).length);
+  const nTopicBtn = await page.locator('#topic-grid > .topic-btn').count();
+  ok('主题网格按钮数 = 主题数 + 1（多一个「全部混合」）', nTopicBtn === nTopic + 1, nTopicBtn + ' 个按钮 vs ' + nTopic + ' 个主题');
+  ok('副标题「N 个主题」与真实数据一致', ((await page.locator('#topic-count').textContent()) || '').trim() === String(nTopic));
+  const sumCnt = await page.evaluate(() => Array.from(document.querySelectorAll('#topic-grid .cnt'))
+    .filter(e => e.id !== 'cnt-all').reduce((s, e) => s + Number(e.textContent || 0), 0));
+  ok('副标题「N 个词」= 各主题词数之和', Number(((await page.locator('#total-count').textContent()) || '').trim()) === sumCnt, sumCnt);
+  const shownTop = await page.evaluate(() => Array.from(document.querySelectorAll('#topic-grid > .topic-btn'))
+    .slice(0, 10).map(b => getComputedStyle(b).display !== 'none'));
+  ok('收起态：前 9 个主题可见', shownTop.slice(0, 9).every(Boolean));
+  ok('🔴 收起态：第 10 个主题被藏 —— nth-child 陷阱（单词网格）', shownTop[9] === false);
+  ok('「展开全部」按钮存在', await vis('#topic-more'));
+  const moreTxt = ((await page.locator('#topic-more').textContent()) || '').trim();
+  ok('🔴 展开按钮的数字与副标题一致（同屏不许自相矛盾）', moreTxt.includes(String(nTopic)), '按钮写「' + moreTxt + '」而副标题是 ' + nTopic);
+  await click('#topic-more');
+  const lastShown = await page.evaluate(() => {
+    const a = document.querySelectorAll('#topic-grid > .topic-btn');
+    return { tenth: getComputedStyle(a[9]).display !== 'none', last: getComputedStyle(a[a.length - 1]).display !== 'none' };
+  });
+  ok('🔴 展开后第 10 个主题可见 —— nth-child 陷阱（单词网格）', lastShown.tenth);
+  ok('🔴 展开后最后一个主题可见', lastShown.last);
+  ok('展开后按钮文案变「收起」', (((await page.locator('#topic-more').textContent()) || '').includes('收起')));
+  await click('#topic-more');
+  ok('🔴 再点收起：第 10 个又藏起来', await page.evaluate(() => getComputedStyle(document.querySelectorAll('#topic-grid > .topic-btn')[9]).display === 'none'));
   ok('默认单词源：篇目区隐藏', !(await vis('#ls-book-grid')));
   const btnWord = await page.locator('#start-btn').textContent();
 

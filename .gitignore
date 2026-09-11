@@ -1,0 +1,6 @@
+# 抓取缓存：都是「跑一遍就能重建」的中间产物，而且分不清是哪版提取器写的——
+# tools/.ipa_cache.json 更是**坏提取器**产出的（漏 118 个词），入库只会让人误当权威数据。
+# 需要留档的是产生它们的脚本（fetch_ipa.py / refetch_v3.py / merge_ipa.py），不是结果。
+tools/.*cache*.json
+tools/*.bak
+/tmp_probe*.log

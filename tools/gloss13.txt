@@ -1,0 +1,16 @@
+# 英式拼写形式的释义（2026-09-11）
+# 🔴 为什么要单开一组：词频表给的是**美式拼写**（humor/rumor/harbor/armor/honorable/
+#    offense/judgment），而这 7 个词在词频表里**没有英式拼写的对应条目**。
+#    本词库的音标 100% 是英式 RP，拼写却留美式就自相矛盾，所以由 build_final 的
+#    US2UK 表在**原位**换成英式（占同一个词频位次，不额外占名额），释义在这里补齐。
+#    另外 3 组（honor/honour、favor/favour、defense/defence）词频表里英美两种拼写都有，
+#    合并成一条即可，不在这里。
+#
+# 写法与前面各文件一致：词 空格 中文释义，多个义项用**全角**分号
+harbour 港口；避风港
+armour 盔甲
+honourable 光荣的；体面的
+humour 幽默
+judgement 判断力；判决
+offence 罪行；冒犯
+rumour 谣言

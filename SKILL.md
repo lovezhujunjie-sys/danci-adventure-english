@@ -316,18 +316,91 @@ document.getElementById('x').classList.remove('hidden'); // ❌ 会被 inline di
 切屏必须让 token 自增作废：`rdToken++`（整篇朗读）、`sentToken++`（句库）、`lsToken++`/`lsPlaying=false`（听力）。
 不然人都回到首页了，它还在后台念完整篇。
 
+## 📚 词库扩容 3143 → 5000（2026-09-11，工具全在 `tools/`）
+
+用户拍板"现在就扩到 5000"。**41 → 51 个主题**：原 41 个不动，新增 `freq1`~`freq10` 十个
+「高频补充①~⑩」，按**词频梯队**切（每主题 ~186 词，①最常用）。不按词性分组——
+词性分组实测不可用（同一词多词性，分不开）。
+
+### 流水线（五步，每步都是独立可重跑的脚本）
+
+| 脚本 | 干什么 |
+|---|---|
+| `tools/pick_words.py` | 按词频扫，过 6 层过滤造候选池 |
+| `tools/fetch_pos.py` | 抓维基词典词性小节（**试过了，剔不了人名**，见下） |
+| `tools/fetch_ipa.py` | 抓维基英式音标 |
+| `tools/build_final.py` | 候选池 − 人工黑名单 → 取前 1857 → 查释义/音标覆盖 |
+| `tools/apply_words.py` | 注入 `index.html` 的 `VOCAB` + `IPA_MAP`，带前后置断言 |
+
+配套数据：`tools/gloss*.txt`（**1877 条手写中文释义**，格式 `word 中文`，按词名索引与位置无关）、
+`tools/blocklist.txt`（**220 个人工剔除**：人名/地名/语气词/古语/俚语/脏话）。
+
+### 🔴 铁律一：没有自动办法能把人名和普通名词分开（四种信号全部实测失败）
+
+| 信号 | 结果 |
+|---|---|
+| `/usr/share/dict/web2` | 人名全收（maggie/lena/rachel 60/60 命中），**零区分度** |
+| `/usr/share/dict/propernames` | 只有 1308 个常见名，漏掉一大片，`pick_words.py` 用它等于没过滤 |
+| **维基词典词性小节** | 🔴 **`rachel`/`maggie`/`lucy` 在维基里就是挂 `===Noun===`** —— 人名和普通名词都叫 Noun，根本分不出。真正被挡下的那 83 个只是**小写页面不存在**，不是识别出来的 |
+| 网页词频 × 字幕词频交叉 | 只挡 37% 人名，却误杀 6/54 个真常用词 |
+
+**结论：机器管词频，人管"这词该不该教"。** 好在量不大——候选池前 2000 名里非真词就 200 来个，
+肉眼过一遍比调启发式靠谱得多。
+⚠️ 反向的坑：`smith`(铁匠)/`ivy`(常春藤)/`homer`(本垒打)/`drake`(公鸭)/`ford`(浅滩) 看着像人名，
+**其实是真词，别误杀**。
+
+### 🔴 铁律二：维基 `{{IPA|en|...}}` 的参数顺序不固定，绝不能假定 `args[0]` 是音标
+
+```
+{{IPA|en|/kəˈlæps/|a=US}}        ← a= 在后面
+{{IPA|en|a=RP,GA,CA|/kəˈlæps/}} ← a= 在前面
+```
+按 `args[0]` 取，第二种会拿到字符串 `"a=RP,GA,CA"`，找不到 `/.../` 就跳过 →
+**整批词被误判成"没有音标"（实测漏掉 118 个）**。正确做法：在模板体里**任意位置**找第一个
+`/.../`，在**任意位置**找 `a=` 标注，按 `RP/UK/GB`(最优先) > 未标注 > 其它 > `GA/US/CA/AU`(最后) 排优先级。
+
+### 🔴 铁律三：换个提取器就必须换缓存文件
+
+`.ipa_cache.json` 是**坏提取器**产出的，修好 `pick_ipa` 后**不能往同一个缓存里续写**——
+缓存里分不清哪条是谁写的，失败还会伪装成"这词没音标"。用 `CACHE=` 换个新文件重抓。
+同理：**抓取失败的批次绝不写缓存**，否则"请求失败"会变成"这个词查不到"。
+
+### 🔴 铁律四：绝不并发轰同一个 API
+
+抓维基时一边跑任务一边手动探针 → 立刻 429。**串行 + `time.sleep(1.2)`**，
+429 时读 `Retry-After` 退避重试。抓 2409 个词 ≈ 20 分钟，急不得。
+
+### 拆分自检的实战价值（这次靠它抓住了解析器 bug）
+
+第一版 `fetch_pos.py` 只认三级标题，结果 `with`/`kill`/`really`/`last`/`sit`/`mine` 这些
+最常见的词全被判成"没有词性"，647 个集体沦为"其它"。**一词多源的词条，词性会嵌在
+`===Etymology 1===` 底下降一级（`====Preposition====`）**，必须同时收三级和四级标题。
+—— 之所以能发现，是因为脚本**把"其它"分类的样例打出来看了**。只打印计数不打印样例，
+这个 bug 会一路带进词库。
+
 ## 🧪 测试与验证（2026-09-11 全盘体检时建的）
 
-四套测试脚本在 `/tmp`（会随重启消失，要长期用得挪进 skill 目录）：
+测试脚本已从 `/tmp` 挪进 `tests/`（2026-09-11）：
 
 | 脚本 | 内容 | 期望 |
 |---|---|---|
-| `/tmp/test_zixue_fixes.js` | 本次修的 bug 逐条回归 | 44 通过 / 0 失败 |
-| `/tmp/test_ls_sent.js` | 听力·短文音源 | 60 / 0 |
-| `/tmp/test_m30.js` | 今日 30 分钟计时 | 24 / 0 |
-| `/tmp/pwtest/smoke2.js` | **真 Chromium** 走遍每个界面 | 53 / 0 |
-| `/tmp/audit_static.js` | 静态审计（id 引用/落盘配对/.hidden 陷阱） | 无 ❌ |
-| `/tmp/vfy3.js` | 点词死区（音标/释义） | 0 / 0 |
+| `tests/test_zixue_fixes.js` | 全盘体检修的 bug 逐条回归 | 44 通过 / 0 失败 |
+| `tests/test_ls_sent.js` | 听力·短文音源 | 60 / 0 |
+| `tests/test_m30.js` | 今日 30 分钟计时 | 24 / 0 |
+| `tests/test_idle.js` | 免提朗读时的挂机豁免 | 12 / 0 |
+| `tests/smoke2.js` | **真 Chromium** 走遍每个界面 | 53 / 0 |
+| `tests/audit_static.js` | 静态审计（id 引用/落盘配对/.hidden 陷阱） | 无 ❌ |
+| `tests/audit_sentences.js` | 句库静态审计 | 无 ❌ |
+| `tests/vfy3.js` | 点词死区（音标/释义） | 0 / 0 |
+| `tests/perf.js` | 加载/渲染性能 | 见脚本 |
+
+**跑法**（脚本里用的是相对路径 `index.html`，必须在 skill 目录下跑）：
+```bash
+cd ~/.claude/skills/自学英语
+NODE_PATH=/tmp/pwtest/node_modules node tests/test_zixue_fixes.js
+```
+真浏览器测试用的是 Playwright 自带 Chromium：
+`~/Library/Caches/ms-playwright/chromium-1228/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing`
 
 ### 🔴🔴 写测试的头号纪律：不许重写业务函数
 
@@ -344,6 +417,15 @@ function cut(a, b) { const i = src.indexOf(a), j = src.indexOf(b);
   if (i < 0 || j < 0 || j < i) throw new Error('提取失败: ' + a); return src.slice(i, j); }
 const CODE = cut('  function todayStr() {', '  function defaults()');
 ```
+
+### 跑长任务的三个操作坑（都会让"等结果"变成"永远等不到"）
+
+- **别用 `pgrep -f <脚本名>` 当等待条件**：等待的 shell 自己命令行里就含这个字符串，
+  `pgrep` 会匹配到自己，`until ! pgrep -f fetch_ipa.py` **永远不退出**（2026-09-11 卡死两个等待进程）。
+  改成**盯日志里的完成标记**：`until grep -q "拿到音标" /tmp/ipa.log; do sleep 20; done`。
+- **macOS 没有 `timeout` 命令**（GNU coreutils 才有）。别写 `timeout 300 python3 xxx.py`，直接报 command not found。
+- **前台 `sleep` 会被拦**：要等就先 `run_in_background: true` 跑 `until …; do sleep N; done`，
+  或者用 Monitor 工具挂个 until 循环。
 
 ### 真浏览器测试的两个已知坑
 
