@@ -1134,6 +1134,96 @@
     border-radius: 9px; padding: 1px 8px;
     font-size: 16px; font-weight: 900; letter-spacing: .5px;
   }
+
+  /* ============================================================
+     🗺️ 闯关地图(2026-09-11)
+     ============================================================ */
+  .map-hud {
+    position: sticky; top: 0; z-index: 8;
+    margin: -18px -16px 10px; padding: 12px 16px 10px;
+    padding-top: max(12px, env(safe-area-inset-top));
+    background: var(--bg);
+    border-bottom: 2px dashed var(--line2);
+  }
+  .map-hud-row { display: flex; align-items: center; gap: 10px; }
+  .map-hud-t { font-size: 17px; font-weight: 900; color: var(--ink); line-height: 1.15; }
+  .map-hud-s { font-size: 11px; color: var(--ink3); font-weight: 700; margin-top: 1px; }
+  .map-stars {
+    margin-left: auto; flex: 0 0 auto;
+    display: flex; align-items: center; gap: 3px;
+    background: linear-gradient(135deg, #ffeaa7, #ffd166);
+    border: 2.5px solid #d99b12; border-radius: 999px;
+    padding: 4px 11px; font-size: 15px; font-weight: 900; color: #7a5300;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, .10);
+  }
+  .map-dir { display: flex; gap: 6px; margin-top: 9px; }
+  .map-dir button {
+    flex: 1 1 0; font-family: inherit; cursor: pointer;
+    font-size: 12px; font-weight: 800; padding: 7px 4px;
+    border-radius: 11px; border: 2px solid var(--line2);
+    background: var(--card); color: var(--ink2);
+    transition: all .16s cubic-bezier(.34,1.56,.64,1);
+  }
+  .map-dir button.on {
+    border-color: var(--c-orange-d); color: var(--c-orange-d);
+    background: color-mix(in srgb, var(--c-orange) 16%, var(--card));
+    box-shadow: 0 3px 0 var(--c-orange-d);
+  }
+
+  .map-path { position: relative; display: flex; flex-direction: column; gap: 13px; padding: 10px 0 4px; }
+  .map-path::before {
+    content: ''; position: absolute; left: 50%; top: 10px; bottom: 10px;
+    border-left: 3px dotted var(--line2); transform: translateX(-50%); z-index: 0;
+  }
+  .map-isle {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; gap: 10px;
+    width: 214px; max-width: 80%; text-align: left;
+    padding: 10px 12px; font-family: inherit; cursor: pointer;
+    background: var(--card); color: var(--ink);
+    border: 2.5px solid var(--line2); border-radius: 18px;
+    box-shadow: 0 4px 0 var(--line2);
+    transition: transform .16s cubic-bezier(.34,1.56,.64,1), box-shadow .16s;
+  }
+  .map-isle:nth-child(3n+1) { align-self: flex-start; }
+  .map-isle:nth-child(3n+2) { align-self: center; }
+  .map-isle:nth-child(3n+3) { align-self: flex-end; }
+  .map-isle:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--line2); }
+  .map-isle .isle-ic {
+    flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 21px; background: color-mix(in srgb, var(--c-blue) 18%, var(--card));
+  }
+  .isle-body { flex: 1 1 auto; min-width: 0; }
+  .isle-nm {
+    display: block; font-size: 13px; font-weight: 900; line-height: 1.25;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .isle-st { display: block; font-size: 11px; font-weight: 700; color: var(--ink3); margin-top: 2px; }
+  .map-isle.done { border-color: var(--c-green-d); box-shadow: 0 4px 0 var(--c-green-d); }
+  .map-isle.done .isle-ic { background: color-mix(in srgb, var(--c-green) 28%, var(--card)); }
+  .map-isle.locked { filter: grayscale(.85); opacity: .55; }
+  .map-isle.now {
+    border-color: var(--c-orange-d); box-shadow: 0 4px 0 var(--c-orange-d);
+    animation: mapPulse 1.7s ease-in-out infinite;
+  }
+  .map-isle.now .isle-ic { background: color-mix(in srgb, var(--c-orange) 26%, var(--card)); }
+  @keyframes mapPulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.04); }
+  }
+  .isle-here {
+    position: absolute; top: -11px; left: 12px;
+    font-size: 10px; font-weight: 900; color: #fff; white-space: nowrap;
+    background: var(--c-orange-d); border-radius: 999px; padding: 2px 8px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, .12);
+  }
+  .map-foot { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+  .map-tip {
+    margin: 0 0 2px; text-align: center;
+    font-size: 11.5px; font-weight: 700; color: var(--ink3); line-height: 1.5;
+  }
+
 </style>
 </head>
 <body>
@@ -1212,10 +1302,10 @@
         <div class="mc-title">学习</div>
         <div class="mc-desc">翻卡学单词</div>
       </div>
-      <div class="mode-card" data-pagemode="quiz">
-        <div class="mc-icon">✅</div>
-        <div class="mc-title">闯关</div>
-        <div class="mc-desc">做选择题</div>
+      <div class="mode-card" data-goto="map">
+        <div class="mc-icon">🗺️</div>
+        <div class="mc-title">闯关地图</div>
+        <div class="mc-desc">41 座小岛，拿满星星</div>
       </div>
       <div class="mode-card" data-pagemode="phonics">
         <div class="mc-icon">🔤</div>
@@ -1466,6 +1556,28 @@
   </div>
 
   <!-- ===== 闯关模式 ===== -->
+  <!-- ============ 🗺️ 闯关地图(2026-09-11 新增) ============ -->
+  <div id="map-screen" class="hidden">
+    <div class="map-hud">
+      <div class="map-hud-row">
+        <div>
+          <div class="map-hud-t">🗺️ 闯关地图</div>
+          <div class="map-hud-s" id="map-progress-text">已通关 0 / 41 关</div>
+        </div>
+        <div class="map-stars"><span id="map-star-total">0</span> ⭐</div>
+      </div>
+      <div class="map-dir" id="map-dir">
+        <button type="button" data-dir="cn2en" class="on">看中文 → 选英文</button>
+        <button type="button" data-dir="en2cn">看英文 → 选中文</button>
+      </div>
+    </div>
+    <div class="map-path" id="map-path"></div>
+    <div class="map-foot">
+      <p class="map-tip">41 座小岛随便点 —— 每关 5 题，答对越多星星越多 ⭐</p>
+      <button class="btn-secondary" id="map-home">返回首页</button>
+    </div>
+  </div>
+
   <div id="game-screen" class="hidden">
     <div class="hud">
       <span>第 <span class="val" id="qnum">1</span>/<span id="qtotal">20</span> 题</span>
@@ -2422,8 +2534,11 @@ const LOW_QUALITY_KEYWORDS = [
     card.onclick = () => {
       document.querySelectorAll(".mode-card").forEach(c => c.classList.remove("active"));
       card.classList.add("active");
-      if (card.dataset.goto) {          // 句子/句型:点了直接进,不用选主题数量
-        if (card.dataset.goto === "sentence") openSentHome(); else openPatHome();
+      if (card.dataset.goto) {          // 句子/句型/地图:点了直接进,不用选主题数量
+        const g = card.dataset.goto;
+        if (g === "sentence") openSentHome();
+        else if (g === "pattern") openPatHome();
+        else if (g === "map") openMap();
         return;
       }
       pageMode = card.dataset.pagemode;
@@ -2777,6 +2892,7 @@ const LOW_QUALITY_KEYWORDS = [
   }
 
   function showEnd() {
+    if (mapKey) { showMapEnd(); return; }
     document.getElementById("game-screen").classList.add("hidden");
     document.getElementById("end-screen").classList.remove("hidden");
     document.getElementById("final-score").textContent = score;
@@ -2792,7 +2908,14 @@ const LOW_QUALITY_KEYWORDS = [
     else if (rate >= 0.8) { emoji.textContent = "🌟"; title.textContent = "表现不错！"; sub.textContent = "再练几遍就能拿满分啦"; }
     else if (rate >= 0.5) { emoji.textContent = "💪"; title.textContent = "继续加油！"; sub.textContent = "多练习就会越来越好"; }
     else { emoji.textContent = "🌱"; title.textContent = "慢慢来"; sub.textContent = "复习一下错题再战"; }
+    document.getElementById("restart-btn").textContent = "再玩一次";
+    document.getElementById("home-btn").textContent = "返回首页";
 
+    renderWrongReview();
+  }
+
+  // 错题回顾(闯关地图与本来的闯关模式共用)
+  function renderWrongReview() {
     const review = document.getElementById("wrong-review");
     if (wrongAnswers.length > 0) {
       let html = '<div class="review"><p class="rtitle">需要复习的单词（点 🔊 听发音）：</p>';
@@ -2808,6 +2931,8 @@ const LOW_QUALITY_KEYWORDS = [
   }
 
   function startGame() {
+    mapKey = null;
+    document.getElementById("back-to-home").textContent = "返回首页";
     questions = buildQuestions();
     currentIdx = 0; score = 0; combo = 0; maxCombo = 0;
     correctCount = 0; wrongAnswers = [];
@@ -2819,12 +2944,157 @@ const LOW_QUALITY_KEYWORDS = [
   }
 
   function goHome() {
+    mapKey = null;
+    document.getElementById("back-to-home").textContent = "返回首页";
     window.speechSynthesis && window.speechSynthesis.cancel();
     document.getElementById("game-screen").classList.add("hidden");
     document.getElementById("end-screen").classList.add("hidden");
     document.getElementById("start-screen").classList.remove("hidden");
     if (window.updateDashboard) window.updateDashboard();
   }
+
+
+  // ============================================================
+  // 🗺️ 闯关地图(2026-09-11 新增)
+  // 每关 = 一个主题, 5 题, 按正确率给 0~3 星; 顺序解锁
+  // ============================================================
+  const MAP_STARS_KEY = "wordadv_map_stars";
+  const MAP_OPEN_KEY = "wordadv_map_open";
+  let mapStars = {}, mapOpen = false, mapKey = null;
+
+  function mapLoadState() {
+    try { mapStars = JSON.parse(localStorage.getItem(MAP_STARS_KEY) || "{}") || {}; } catch (e) { mapStars = {}; }
+    try { mapOpen = localStorage.getItem(MAP_OPEN_KEY) === "1"; } catch (e) { mapOpen = false; }
+  }
+  function mapSaveStars() { try { localStorage.setItem(MAP_STARS_KEY, JSON.stringify(mapStars)); } catch (e) {} }
+  function mapKeysArr() { return Object.keys(VOCAB); }
+  // 不设锁:41 座岛全部可进。老曾 2026-09-11 定调——提前让大宝碰"天书",
+  // 锁关卡等于把天书藏起来,与目的相反。进度感交给星星总数。
+  function mapUnlocked(i) { return true; }
+  function mapFrontier() {
+    const ks = mapKeysArr();
+    let i = 0;
+    while (i < ks.length && (mapStars[ks[i]] || 0) >= 1) i++;
+    return Math.min(i, ks.length - 1);
+  }
+  function mapStarStr(n) { return "⭐".repeat(n) + "☆".repeat(Math.max(0, 3 - n)); }
+
+  function renderMap() {
+    const path = document.getElementById("map-path");
+    if (!path) return;
+    const ks = mapKeysArr();
+    const cur = mapFrontier();
+    let total = 0, cleared = 0;
+    ks.forEach(k => { const s = mapStars[k] || 0; total += s; if (s >= 1) cleared++; });
+    document.getElementById("map-star-total").textContent = total;
+    document.getElementById("map-progress-text").textContent = "已通关 " + cleared + " / " + ks.length + " 关";
+
+    path.innerHTML = ks.map((k, i) => {
+      const d = VOCAB[k], st = mapStars[k] || 0, open = mapUnlocked(i);
+      const cls = ["map-isle"];
+      if (st >= 3) cls.push("done");
+      if (i === cur) cls.push("now");
+      const here = (i === cur) ? '<span class="isle-here">👦 你在这里</span>' : '';
+      const sub = mapStarStr(st) + " · " + d.words.length + " 词";
+      return '<button type="button" class="' + cls.join(" ") + '" data-k="' + k + '">' + here +
+        '<span class="isle-ic">' + d.icon + '</span>' +
+        '<span class="isle-body">' +
+          '<span class="isle-nm">' + (i + 1) + '. ' + d.name + '</span>' +
+          '<span class="isle-st">' + sub + '</span>' +
+        '</span></button>';
+    }).join("");
+
+    path.querySelectorAll(".map-isle").forEach(b => {
+      b.onclick = () => startMapLevel(b.dataset.k);
+    });
+    const now = path.querySelector(".map-isle.now");
+    if (now) setTimeout(() => now.scrollIntoView({ block: "center" }), 70);
+  }
+
+  function syncQuizModeBtns() {
+    document.querySelectorAll("[data-quizmode]").forEach(b => {
+      b.classList.toggle("active", b.dataset.quizmode === selectedQuizMode);
+    });
+    document.querySelectorAll("#map-dir [data-dir]").forEach(b => {
+      b.classList.toggle("on", b.dataset.dir === selectedQuizMode);
+    });
+  }
+
+  function openMap() {
+    mapKey = null;
+    mapLoadState();
+    syncQuizModeBtns();
+    showScreen("map-screen");
+    renderMap();
+  }
+
+  function buildMapQuestions(key) {
+    const d = VOCAB[key];
+    const pool = d.words.map(w => ({ ...w, _topic: d.name, _icon: d.icon }));
+    const picked = shuffle(pool).slice(0, Math.min(5, pool.length));
+    const allWords = [];
+    Object.values(VOCAB).forEach(x => allWords.push(...x.words));
+    const isCn2En = selectedQuizMode !== "en2cn";
+    return picked.map(item => {
+      const seen = new Set([isCn2En ? item.en : item.cn]);
+      const wrongs = [];
+      for (const v of shuffle(allWords)) {
+        const kk = isCn2En ? v.en : v.cn;
+        if (seen.has(kk)) continue;
+        seen.add(kk); wrongs.push(v);
+        if (wrongs.length === 3) break;
+      }
+      return { item, options: shuffle([item, ...wrongs]) };
+    });
+  }
+
+  function startMapLevel(key) {
+    mapKey = key;
+    questions = buildMapQuestions(key);
+    currentIdx = 0; score = 0; combo = 0; maxCombo = 0; correctCount = 0; wrongAnswers = [];
+    document.getElementById("qtotal").textContent = questions.length;
+    document.getElementById("back-to-home").textContent = "🗺️ 回到地图";
+    showScreen("game-screen");
+    renderQuestion();
+  }
+
+  function showMapEnd() {
+    const key = mapKey, d = VOCAB[key];
+    const total = questions.length || 1;
+    const rate = correctCount / total;
+    const got = rate === 1 ? 3 : (rate >= 0.8 ? 2 : (rate >= 0.6 ? 1 : 0));
+    const prev = mapStars[key] || 0;
+    const isNew = got > prev;
+    mapStars[key] = Math.max(prev, got);
+    mapSaveStars();
+
+    showScreen("end-screen");
+    document.getElementById("final-score").textContent = score;
+    document.getElementById("final-correct").textContent = correctCount + "/" + total;
+    document.getElementById("final-combo").textContent = maxCombo;
+    document.getElementById("end-emoji").textContent = got === 3 ? "🏆" : (got === 2 ? "🌟" : (got === 1 ? "💪" : "🌱"));
+    document.getElementById("end-title").textContent = d.icon + " " + d.name + " " + mapStarStr(got);
+    const best = mapStars[key];
+    document.getElementById("end-subtitle").textContent =
+      got === 0 ? "答对一半以上才能点亮星星,再挑战一次吧!" :
+      (isNew && got === 3) ? "三星通关!这一关你拿满了 ⭐⭐⭐" :
+      isNew ? "点亮 " + got + " 颗星,再挑战能刷到三星 ⭐⭐⭐" :
+      "这次 " + got + " 星,最佳记录 " + best + " 星";
+    document.getElementById("restart-btn").textContent = "🔁 再挑战一次";
+    document.getElementById("home-btn").textContent = "🗺️ 回到地图";
+    renderWrongReview();
+    if (isNew) window.cuteConfetti && window.cuteConfetti(got * 12 + 12);
+  }
+
+  document.getElementById("map-dir").addEventListener("click", e => {
+    const b = e.target.closest("[data-dir]");
+    if (!b) return;
+    selectedQuizMode = b.dataset.dir;
+    document.querySelectorAll("#map-dir [data-dir]").forEach(x => x.classList.toggle("on", x === b));
+    syncQuizModeBtns();
+  });
+  document.getElementById("map-home").onclick = () => { mapKey = null; backHome(); };
+  // 注:地图不设锁,故无"解锁"按钮。
 
   // ============ 字母拼读模块 ============
   let currentPhTab = "letters";
@@ -2929,9 +3199,9 @@ const LOW_QUALITY_KEYWORDS = [
     else if (pageMode === "listen") startListening();
     else startGame();
   };
-  document.getElementById("restart-btn").onclick = startGame;
-  document.getElementById("home-btn").onclick = goHome;
-  document.getElementById("back-to-home").onclick = goHome;
+  document.getElementById("restart-btn").onclick = () => { if (mapKey) startMapLevel(mapKey); else startGame(); };
+  document.getElementById("home-btn").onclick = () => { if (mapKey) openMap(); else goHome(); };
+  document.getElementById("back-to-home").onclick = () => { if (mapKey) openMap(); else goHome(); };
 
   // ============ 游戏乐园 ============
   // 收集有emoji的词池（用于看图猜词）
@@ -3684,7 +3954,7 @@ const LOW_QUALITY_KEYWORDS = [
   // ============ 屏幕切换辅助 ============
   const TOP_SCREENS = ["start-screen","study-screen","study-end-screen","phonics-screen",
     "games-screen","game-screen","end-screen","review-screen","review-end-screen","achv-screen",
-    "type-screen","type-end-screen","listen-screen","sentence-screen","pattern-screen"];
+    "type-screen","type-end-screen","listen-screen","sentence-screen","pattern-screen","map-screen"];
   function showScreen(id) {
     window.speechSynthesis && window.speechSynthesis.cancel();
     TOP_SCREENS.forEach(s => { const el = document.getElementById(s); if (el) el.classList.toggle("hidden", s !== id); });
