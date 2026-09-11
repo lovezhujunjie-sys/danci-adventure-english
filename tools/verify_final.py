@@ -13,6 +13,9 @@ ROOT = HOME + '/.claude/skills/自学英语'
 FINAL = json.load(open('/tmp/final_words.json'))
 GLOSS = json.load(open('/tmp/gloss.json'))
 IPA = json.load(open('/tmp/ipa_final.json'))
+# 🔴 目标数不许写死（2026-09-11）：改成跟 build_final.py 一样读 TARGET，
+#    否则每修一个音标、最终成员一变，这道闸门就先自己报假警。
+TARGET = int(os.environ.get('TARGET', 1857))
 SRC = open(ROOT + '/index.html', encoding='utf-8').read()
 
 
@@ -56,11 +59,12 @@ def check(name, cond, detail=''):
 
 print('═══ 注入前质量闸门 ═══')
 print('\n① 数量')
-check('新词 1857 个', len(FINAL) == 1857, len(FINAL))
-check('释义齐全 1857 个', len(GLOSS) == 1857, len(GLOSS))
-check('音标齐全 1857 个', len(IPA) == 1857, len(IPA))
+check('新词 %d 个' % TARGET, len(FINAL) == TARGET, len(FINAL))
+check('释义齐全 %d 个' % TARGET, len(GLOSS) == TARGET, len(GLOSS))
+check('音标齐全 %d 个' % TARGET, len(IPA) == TARGET, len(IPA))
 check('新词无重复', len(set(FINAL)) == len(FINAL))
-check('最终词库 = 3143 + 1857 = 5000', len(old_words) + len(FINAL) == 5000)
+check('最终词库 = %d + %d = 5000' % (len(old_words), TARGET),
+      len(old_words) + len(FINAL) == 5000)
 
 print('\n② 不与现有内容打架')
 dup_vocab = sorted(set(w.lower() for w in FINAL) & old_lower)
@@ -102,6 +106,34 @@ check('音标都用斜杠包裹', all(v.startswith('/') and v.endswith('/') for 
 # ɔ 不查——ɔɪ 里的 ɔ 本来就短（boy /bɔɪ/），拿它当错会误伤一大片。
 lacks_long = [w for w, v in IPA.items() if re.search(r'[ɑɜ](?!ː)', v)]
 check('ɑ/ɜ 都带长音号（RP 规律）', not lacks_long, ' '.join(lacks_long[:15]))
+
+# ── 以下判据全部拿自有音标校准过「零误报」，判据来源写在 normalize_ipa.py 里 ──
+# 裸 u 只在词尾算错（`(?<!j)u(?!ː)(?=$|/)`）：自有表 0 命中；ju 里的 u 是
+#   /ˈdɒkjumənt/ 这类合法写法，所以必须带 (?<!j)。
+BARE_U = re.compile(r'(?<!j)u(?!ː)(?=$|/)')
+bare_u = [w for w, v in IPA.items() if BARE_U.search(v.strip('/'))]
+check('词尾无裸 u（自有表 0 命中）', not bare_u,
+      ' '.join('%s=%s' % (w, IPA[w]) for w in bare_u[:10]))
+
+# 重读音节核里的裸 i（判据见 normalize_ipa.py 的 _STRESSED_BARE_I）：
+#   自有表 0 命中，重读的 iː 有 16 条 —— 本词库重读 FLEECE 一律写 iː。
+#   marina=/məˈrinə/、upbeat=/ʌpˈbit/ 就是这么抓出来的（维基写裸 i）。
+sbi = [w for w, v in IPA.items() if _ns['_STRESSED_BARE_I'].search(v.strip('/'))]
+check('重读音节核里无裸 i（自有表 0 命中）', not sbi,
+      ' '.join('%s=%s' % (w, IPA[w]) for w in sbi[:10]))
+
+# 🔴 音标内的空格是**报告**不是失败：自有表里 url=/ˌjuː ɑː ˈel/、brother-in-law=
+#    /ˈbrʌðər ɪn ˌlɔː/ 都是合法的（逐字母拼读、连字符复合词）。删空格那条规则
+#    在自有表上误报 8 条，已经删掉了（见 normalize_ipa.py）。这里只列出来给人过目。
+spaced = sorted(w for w, v in IPA.items() if ' ' in v)
+print('  ℹ️ 音标含空格的 %d 个（自有表同类写法合法，仅供过目）：%s'
+      % (len(spaced), ' '.join('%s=%s' % (w, IPA[w]) for w in spaced[:8]) or '无'))
+
+# normalize 必须对新音标是恒等变换 —— 否则说明注入的音标没被规范化过，
+#   或者某条新词触发了会破坏数据的规则。
+not_idem = [w for w, v in IPA.items() if _ns['normalize'](v, w) != v]
+check('新音标都已是规范化形态（normalize 恒等）', not not_idem,
+      ' '.join('%s: %s → %s' % (w, IPA[w], _ns['normalize'](IPA[w], w)) for w in not_idem[:6]))
 
 print('\n⑤ 释义质量')
 empty_cn = [w for w, c in GLOSS.items() if not c.strip()]

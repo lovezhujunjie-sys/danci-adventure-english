@@ -863,8 +863,10 @@
   .sent-toggle input { accent-color: #d97757; width: 15px; height: 15px; margin: 0; }
   .sent-card { background: var(--card); border-radius: 14px; padding: 15px 14px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
   .sent-en { font-size: 19px; line-height: 1.85; color: var(--ink); font-weight: 500; }
-  .sent-en .w { cursor: pointer; border-radius: 5px; padding: 1px 1px; transition: background 0.12s, color 0.12s; }
-  .sent-en .w.on { background: var(--soft); color: var(--soft-ink); }
+  .sent-en .w,
+  .pat-frame .w, .pat-sentence .w { cursor: pointer; border-radius: 5px; padding: 1px 1px; transition: background 0.12s, color 0.12s; }
+  .sent-en .w.on,
+  .pat-frame .w.on, .pat-sentence .w.on { background: var(--soft); color: var(--soft-ink); }
   .sent-cn { font-size: 14px; color: var(--ink2); margin-top: 7px; transition: filter .2s, opacity .2s; }
   .sent-card.hide-cn .sent-cn { filter: blur(7px); opacity: .5; }
   .sent-foot { display: flex; justify-content: flex-end; margin-top: 9px; }
@@ -6524,7 +6526,8 @@ const LOW_QUALITY_KEYWORDS = [
   let popEl = null;
   function hideWordPop() {
     if (popEl) { popEl.remove(); popEl = null; }
-    document.querySelectorAll('.sent-en .w.on').forEach(x => x.classList.remove('on'));
+    document.querySelectorAll('.sent-en .w.on, .pat-frame .w.on, .pat-sentence .w.on')
+      .forEach(x => x.classList.remove('on'));
   }
   function showWordPop(el, raw, sentG, src) {
     hideWordPop();
@@ -6682,8 +6685,14 @@ const LOW_QUALITY_KEYWORDS = [
       const card = document.createElement('div');
       card.className = 'pat-card';
       card.dataset.pi = pi;
+      // 🔴 骨架里的词也要能点（2026-09-11 老曾提的）：
+      //    原来 p.frame 是**纯文本**塞进去的，只有下面的槽位按钮（slot-btn）能看中文，
+      //    骨架本身的 Could / you / please / mind 全都点不动 —— 恰恰这些才是「句型」要教的东西。
+      //    复用句库那套 sentHTML 切词（跟句子/阅读同一个函数，不另写一份），
+      //    再把 ___ 换成虚线空位。必须先切词再换 ___：反过来的话 sentHTML 会把
+      //    <span class="blank"> 当普通文本再切一遍，HTML 就散架了。
       card.innerHTML =
-        `<div class="pat-frame">${p.frame.replace('___', '<span class="blank">…</span>')}</div>` +
+        `<div class="pat-frame">${sentHTML(p.frame).replace('___', '<span class="blank">…</span>')}</div>` +
         `<div class="pat-cn">${p.cn}</div>` +
         `<div class="pat-tip">💡 ${p.tip}</div>` +
         `<div class="pat-slots">${p.slots.map((s, si) => `<button class="slot-btn" data-si="${si}">${s.en}</button>`).join('')}</div>` +
@@ -6699,6 +6708,12 @@ const LOW_QUALITY_KEYWORDS = [
     showScreen('pattern-screen');
   }
   document.getElementById('pat-list').addEventListener('click', e => {
+    // 点骨架/整句里的词 → 弹卡查义（跟句库、阅读同一套弹卡，含 ＋生词本）
+    const wEl = e.target.closest('.pat-frame .w, .pat-sentence .w');
+    if (wEl) {
+      showWordPop(wEl, wEl.dataset.w, null, { topic: '句型骨架', icon: '🧱' });
+      return;
+    }
     const card = e.target.closest('.pat-card');
     if (!card || !patGroupKey) return;
     const p = PATTERNS[patGroupKey].items[+card.dataset.pi];
@@ -6709,7 +6724,13 @@ const LOW_QUALITY_KEYWORDS = [
       sb.classList.add('on');
       const full = p.frame.replace('___', slot.en);
       card.querySelector('.pat-result').classList.remove('hidden');
-      card.querySelector('.pat-sentence').innerHTML = full.replace(slot.en, `<span class="hl">${slot.en}</span>`);
+      // 🔴 整句也要能点词（2026-09-11）：原来是用 full 原文直接 replace 出高亮，
+      //    整句是**纯文本**，点不动。改成按 ___ 切开、分段切词，槽位那段整体套 .hl。
+      //    不能沿用 full.replace(slot.en, …)：slot.en 里可能有正则特殊字符，
+      //    而且 replace 只换第一处 —— 按 ___ 切是结构与位置都确定的做法。
+      const parts = p.frame.split('___');
+      card.querySelector('.pat-sentence').innerHTML =
+        sentHTML(parts[0]) + '<span class="hl">' + sentHTML(slot.en) + '</span>' + sentHTML(parts[1] || '');
       card.querySelector('.pat-slot-cn').textContent = slot.cn;
       speak(full);
       if (window.recordStudied) window.recordStudied();
@@ -7930,6 +7951,19 @@ const LOW_QUALITY_KEYWORDS = [
     window.renderM30();
   }
 })();
+</script>
+
+<!-- 离线缓存注册：原理与代价见 sw.js 顶部注释（2026-09-11 加，治「点进去好卡」） -->
+<script>
+// 🔴 只在 http(s) 下注册：双击本地文件打开时是 file:// 协议，Service Worker
+//    在那里**根本不工作**，硬注册只会在控制台刷一条报错，毫无好处。
+//    换句话说——本地双击打开仍然只要 index.html 这一个文件，加 sw.js 不影响。
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  window.addEventListener('load', function () {
+    // 注册失败就算了，联网那套照常能用，不该因此影响学习
+    navigator.serviceWorker.register('./sw.js').catch(function () {});
+  });
+}
 </script>
 
 </body>

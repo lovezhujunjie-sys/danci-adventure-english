@@ -155,7 +155,13 @@ if no_ipa:
 
 json.dump(final, open('/tmp/final_words.json', 'w'), ensure_ascii=False)
 json.dump({w: gloss[w] for w in final}, open('/tmp/gloss.json', 'w'), ensure_ascii=False)
-json.dump({w: ipa_cache[w]['ipa'] for w in final if (ipa_cache.get(w) or {}).get('ipa')},
+# 🔴 写出去的必须是**规范化之后**的形态（2026-09-11 修结构问题）：
+#    原来直接写 ipa_cache[w]['ipa'] 的**原值**，于是「音标规范化」这一步只能靠
+#    normalize_ipa.py **原地改写缓存文件**来完成。而那个缓存同时又是 merge_ipa.py 的输入，
+#    结果就是：规则一旦有 bug（当时的「重读裸 i」规则把 deeply 改成 /ˈdiː(ː)pli/、
+#    cemetery 改成 /ˈsemɪˌtriː/），**污染会被写回缓存、再喂给下游**，事后分不清哪条是脏的。
+#    改成在这里规范化之后，缓存文件不再需要被就地改写，链路少一个可变状态。
+json.dump({w: normalize(ipa_cache[w]['ipa'], w) for w in final if (ipa_cache.get(w) or {}).get('ipa')},
           open('/tmp/ipa_final.json', 'w'), ensure_ascii=False)
 
 print('\n→ 可注入 %d 个（释义齐全），其中带音标 %d 个'

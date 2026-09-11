@@ -46,6 +46,33 @@ VOWELS = 'ɑɒɔɜəɪeæʌʊuiuːɐa'      # 🔴 必须含普通 a：aɪ/aʊ �
 STRESS = 'ˈˌ'                     # 重音号夹在中间不算「r 后面是辅音」
 NON_RHOTIC_AFTER = VOWELS + STRESS + '. ('   # 音节点、空格（连读 r）、左括号
 
+# ── 重读音节核里的裸 i → iː（FLEECE）：记号统一，不是口音 ──
+# 🔴 判据来自自有表（2026-09-11 校准）：「重音号 → 若干辅音 → 裸 i（i 后不是元音）」
+#    在自有 2985 条里出现 **0 次**，而重读的 iː 有 16 条 —— 本词库重读 FLEECE 一律带长音号。
+#    维基相反，重读 FLEECE 常写裸 i：marina=/məˈrinə/、upbeat=/ʌpˈbit/。
+#    ⚠️ 不能笼统地把裸 i 都改长：自有表里 jellyfish=/ˈdʒelifɪʃ/、anyone=/ˈeniwʌn/、
+#    healthy=/ˈhelθi/ 这些**非重读**的裸 i 是既有写法。泛化的裸 i 规则在自有表上
+#    误报 41 条，只有「重读音节核」这一刀切下去是零误报的。
+# 🔴 但「零误报」不等于「规则对」——2026-09-11 又发现两个语义漏洞：
+#    ① **词尾必须排除**：cemetery=/ˈsemɪˌtri/ 的裸 i 在词尾，是 happy 元音
+#       （跟自有表 healthy=/ˈhelθi/ 同类），只是前面挂了个次重音号 ˌ。
+#       自有表恰好没有「ˌ+辅音+i 结尾」这种形态，所以标定显示零误报——
+#       **那是数据没覆盖，不是规则正确**。加 (?!$) 把词尾排除掉。
+#    ② **可选长音号要吃掉**：deeply=/ˈdi(ː)pli/ 的 i(ː) 是「可长可短」，
+#       直接插 ː 会得到 iː(ː) 这种畸形写法，正确结果是 iː。
+#    ⚠️ 排除词尾用的是 (?=[^/]) 而不是 (?!$)：normalize 拿到的是**带斜杠**的
+#       /ˈsemɪˌtri/，末尾的 i 后面还有个 /，用 (?!$) 判「结尾」根本判不到，
+#       cemetery 照样被误改。`(?=[^/])` 同时管住两种情况——后面必须是**非斜杠的实字符**，
+#       既排掉字符串结尾、也排掉右斜杠。
+_STRESSED_BARE_I = re.compile(
+    r'[%s][^%s]*i(?!ː|ɪ)(?![%s])(?:\(ː\))?(?=[^/])' % (STRESS, VOWELS, VOWELS))
+
+
+def _fix_stressed_bare_i(m):
+    s = m.group(0)
+    # i(ː) 要整个换成 iː —— 砍 4 个字符（i + ( + ː + )），只砍 3 个会剩个 i 变成 iiː
+    return (s[:-4] if s.endswith('(ː)') else s[:-1]) + 'iː'
+
 
 def rhotic_hits(v):
     """找出「元音后不发出来的 r」= 儿化，英式 RP 没有。
@@ -114,6 +141,15 @@ def normalize(v, word=''):
     """记号统一。word 用来判断要不要保留空格（连字符复合词的空格是词与词的分界）"""
     for a, b in SUBST.items():
         v = v.replace(a, b)
+    # 裸 a → æ（TRAP 元音）。判据同样来自自有表：3082 条里**裸 a 出现 0 次**，
+    #   TRAP 一律写 æ；而维基有些条目写成 a（magic=/ˈmadʒɪk/、ladder=/ˈladə/）。
+    #   这是**记号**不是口音——`a` 和 `æ` 在这里指同一个音位，跟 ɛ→e 同类。
+    #   条件不能少：后面接 ɪ/ʊ 时那是 PRICE/MOUTH 双元音的核心 a（aɪ/aʊ），动了就毁音。
+    v = re.sub(r'a(?!ɪ|ʊ)', 'æ', v)
+    # 重读音节核里的裸 i → iː（判据见上方 _STRESSED_BARE_I 的注释）：
+    #   marina=/məˈrinə/ → /məˈriːnə/、upbeat=/ʌpˈbit/ → /ʌpˈbiːt/。
+    #   这两条原来会**带着错音标进词库**（它们不是美音，美音检测兜不住）。
+    v = _STRESSED_BARE_I.sub(_fix_stressed_bare_i, v)
     # 一次发音里的「或读」用逗号分隔：hatred=/ˈheɪtrɪd, ˈheɪtrəd/ → 只留第一种
     if ',' in v:
         v = v.split(',')[0].strip()
@@ -123,10 +159,14 @@ def normalize(v, word=''):
         #    「音标都用斜杠包裹」就是这么抓出来的。截完必须补回来。
         if v.startswith('/') and not v.endswith('/'):
             v += '/'
-    # 连字符复合词（brother-in-law）的空格分隔的是三个词，必须留；
-    # 其余情况音标里不该有空格（honourable 抓到过 /ˈɒnə ɹəbl̩/ 这种脏数据）
-    if ' ' in v and '-' not in word:
-        v = v.replace(' ', '')
+    # 🔴 「删掉音标里的空格」这条规则**已删除**（2026-09-11）——它在自有表上误报 8 条：
+    #       url=/ˌjuː ɑː ˈel/  usa=/ˌjuː es ˈeɪ/  uk=/ˌjuː ˈkeɪ/  atm=/ˌeɪ tiː ˈem/
+    #       vip=/ˌviː aɪ ˈpiː/  pip=/ˌpiː aɪ ˈpiː/  bts=/ˌbiː tiː ˈes/  loadmore=/ˈləʊd mɔː/
+    #    这些是**逐字母拼读**的条目，音标里的空格是字母之间的分界，删了就毁。
+    #    「词本身含空格」的补充判断也挡不住——上面这些词本身都没空格。
+    #    而它在 1904 个新词上**一次都没用上**（唯一带空格的 brother-in-law 是连字符
+    #    复合词，原本就被 '-' 判断放行）。出一个误报、零个收益 → 规则不成立，删掉。
+    #    改成**报告制**：verify_final.py 会列出最终词表里音标带空格的词，由人过目。
     return v
 
 
@@ -169,6 +209,28 @@ if false_pos:
     sys.exit(1)
 print('  → 全部规则在现有数据上零误报，可以用来判新词\n')
 
+# ══════════ 自检二：normalize 在自有音标上必须是「恒等变换」══════════
+# 自有表的音标**本来就是规范化后的形态**，所以 normalize 跑上去应当逐条不变。
+# 变一条就说明这条规则会破坏正确数据。（2026-09-11 就是靠这一刀砍掉了
+# 「删音标内空格」那条规则——它在 url / atm / vip 这些逐字母拼读的条目上误伤 8 条。）
+print('═══ normalize 自检（在自有音标上跑，必须一条都不变）═══')
+n_chg = []
+for w, v in old.items():
+    if not isinstance(v, str):
+        continue
+    raw = '/' + v.strip('/') + '/'
+    got = normalize(raw, w)
+    if got != raw:
+        n_chg.append((w, raw, got))
+print('  %s %d 条被改动 %s' % ('✅' if not n_chg else '❌', len(n_chg),
+                               '' if not n_chg else [x[0] for x in n_chg[:8]]))
+if n_chg:
+    for w, a, b in n_chg[:10]:
+        print('     %-18s %-24s → %s' % (w, a, b))
+    print('\n🔴 normalize 会破坏已知正确的音标，必须先修规则再往下走。')
+    sys.exit(1)
+print('  → normalize 对自有数据是恒等变换，可安全用于新词\n')
+
 # ══════════ 正式跑 ══════════
 cache = json.load(open(CACHE))
 FINAL = json.load(open('/tmp/final_words.json'))
@@ -192,5 +254,15 @@ print('\n仍在最终词表里、且判定为美音的 %d 个：' % len(n_ga))
 for w, v, why in n_ga:
     print('  %-16s %-22s %s' % (w, v, '；'.join(why)))
 
-json.dump(cache, open(CACHE, 'w'), ensure_ascii=False)
-print('\n已写回 %s' % CACHE)
+# 🔴 默认**只读**，要写回必须显式 WRITE=1（2026-09-11 改）：
+#    原来二话不说就原地改写 CACHE。而 CACHE 往往同时是 merge_ipa.py 的输入，
+#    于是「规则有 bug」会直接**污染一个共享的中间文件**——本会话就中过一次：
+#    旧的「重读裸 i」规则把 deeply 改成 /ˈdiː(ː)pli/、cemetery 改成 /ˈsemɪˌtriː/，
+#    写回 /tmp/ipa_cache_merged.json 后，下游再读就分不清哪条是脏的。
+#    现在规范化的职责挪到 build_final.py（写 ipa_final.json 时自己规范化），
+#    这里保持只读，链路少一个可变状态。
+if os.environ.get('WRITE') == '1':
+    json.dump(cache, open(CACHE, 'w'), ensure_ascii=False)
+    print('\n已写回 %s（WRITE=1）' % CACHE)
+else:
+    print('\n（只读，未改写 %s；要写回请加 WRITE=1）' % CACHE)

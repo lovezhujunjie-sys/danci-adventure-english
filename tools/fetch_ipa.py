@@ -55,27 +55,32 @@ def english_section(txt):
 # 只认 a= 的话，regardless 的英式音标明明在页面上却被判成「没有英式」，取了美式。
 ACC_ANNOT = re.compile(r'\ba=([^|}]+)|\{\{a\|(?:en\|)?([^|}]+)\}\}')
 
+# 🔴 `a=` 不一定是口音标注（2026-09-11 实测）：
+#    upbeat = {{IPA|en|/ʌpˈbit/|a=adjective}} / {{IPA|en|/ˈʌpˌbit/|a=noun}}
+#    —— 这里 a= 是**词性**。原来把任何 a= 都当口音，`a=adjective` 于是被算成
+#    「标了别的口音」，跟真正的地区标注（a=Scotland）混为一谈。
+#    词性/语域这类限定词不提供任何口音信息，遇到就该当「没标注」。
+NOT_ACCENT = re.compile(
+    r'^(?:adjective|noun|verb|adverb|pronoun|preposition|conjunction|interjection|'
+    r'obsolete|archaic|rare|dated|informal|slang|poetic|literary|nonstandard|'
+    r'humorous|figurative|colloquial|proscribed|historical|dialectal)$', re.I)
 
-def pick_ipa(txt):
-    """从英语段的 {{IPA|en|...}} 模板里取音标，优先英式 RP。
 
-    🔴 参数顺序不固定，绝不能假定 args[0] 就是音标（2026-09-11 实测踩坑）：
-         {{IPA|en|/kəˈlæps/|a=US}}        ← a= 在后面
-         {{IPA|en|a=RP,GA,CA|/kəˈlæps/}} ← a= 在前面（collapse 就是这种）
-       原来的写法把 args[0] 当音标，第二种会取到字符串 "a=RP,GA,CA"，
-       找不到 /.../ 就 continue，结果整批词被误判成「没有音标」。
-       正确做法：在模板体里任意位置找第一个 /.../，并在任意位置找 a= 标注。
+def parse_ipa_templates(seg):
+    """把英语段里所有 {{IPA|en|...}} 拆成 (音标, 样式, 口音标注)。
+
+    样式：0 = 斜杠式 /.../（宽式 phonemic，词典引用形）
+          1 = 方括号式 [...]（窄式 phonetic，某个口音的**实际实现**）
+    两个 pick 函数共用这一份，避免同一套括号/口音规则写两遍、改一处漏一处。
     """
-    seg = english_section(txt)
-    if not seg: return None
-    best = None                       # (优先级, 音标)，数字越小越优先
+    out = []
     for m in re.finditer(r'\{\{IPA\|en\|([^}]*)\}\}', seg):
         body = m.group(1)
         # 🔴 两种括号都要认（2026-09-11 踩坑）：
         #   /.../ = 宽式音标（phonemic），[ ... ] = 窄式（phonetic）。
         #   有些词条**只给方括号**，例如 barn = {{IPA|en|[ˈbɒːn]|a=RP,ZA}}、
         #   suitable = {{IPA|en|[ˈsjuː.tə.bɫ̩]|a=RP}}。只认斜杠的话这些词全部取不到音标，
-        #   会被误当成「这个词没有音标」。斜杠式永远优先（+0），方括号垫底（+10）。
+        #   会被误当成「这个词没有音标」。
         slash = re.search(r'/([^/]+)/', body)
         brack = re.search(r'\[([^\[\]]+)\]', body)
         if slash:   val, style = '/' + slash.group(1).replace('.', '') + '/', 0
@@ -96,7 +101,12 @@ def pick_ipa(txt):
         #                                                        结果标准音输给弱读变体
         #    维基一条读音占一行（enPR 与它配对的 IPA 用逗号连在同一行），
         #    跨行回看就会把**上一条读音**的口音标签安到这一条头上。
-        #    行内回看对 nuclear / stark / regardless 三种正确写法照样有效。
+        #    🔴 这条「同行继承」是**故意**的，别当 bug 再查一遍（2026-09-11 已核）：
+        #       sector 第一行 {{enPR|sĕk'tər|a=US}}, {{IPA|en|/ˈsɛk.təɹ/}} ——
+        #       那个 IPA 本身没标口音，但同一行前面的 enPR 标了 a=US，按维基写法就是
+        #       「这行的读音是美音」。所以它拿到 acc_r=3、输给第二行的 a=IE（爱尔兰，
+        #       也卷舌，acc_r=2），最后两条都被美音检测兜掉 —— 结果正确（sector 本就该剔）。
+        #       曾经误以为「应该取那条未标注斜杠」，是把同行继承错当成跨行继承了。
         am = re.search(r'\ba=([^|}]+)', body)
         if am:
             acc = am.group(1)
@@ -104,16 +114,46 @@ def pick_ipa(txt):
             ls = seg.rfind('\n', 0, m.start()) + 1
             prior = ACC_ANNOT.findall(seg[ls:m.start()])
             acc = (prior[-1][0] or prior[-1][1]) if prior else ''
-        # 🔴 口音优先于括号样式（2026-09-11 修正）：
-        #   本词库是**英式 RP 专用**（现有 2623 条：0 条美音 oʊ、247 条英式 əʊ）。
+        if NOT_ACCENT.match(acc.strip()):
+            acc = ''                      # 词性/语域限定词不含口音信息
+        out.append((val, style, acc))
+    return out
+
+
+def pick_ipa(txt):
+    """从英语段的 {{IPA|en|...}} 模板里取音标，优先英式 RP。
+
+    🔴 参数顺序不固定，绝不能假定 args[0] 就是音标（2026-09-11 实测踩坑）：
+         {{IPA|en|/kəˈlæps/|a=US}}        ← a= 在后面
+         {{IPA|en|a=RP,GA,CA|/kəˈlæps/}} ← a= 在前面（collapse 就是这种）
+       原来的写法把 args[0] 当音标，第二种会取到字符串 "a=RP,GA,CA"，
+       找不到 /.../ 就 continue，结果整批词被误判成「没有音标」。
+       正确做法：在模板体里任意位置找第一个 /.../，并在任意位置找 a= 标注。
+    """
+    seg = english_section(txt)
+    if not seg: return None
+    best = None                       # (优先级, 音标)，数字越小越优先
+    for val, style, acc in parse_ipa_templates(seg):
+        # 🔴 口音优先于括号样式（2026-09-11 修正，american 栽过）：
         #   一开始把"斜杠式"排在"方括号式"前面是错的——american 那页的斜杠式是美音、
-        #   英音反而是方括号，结果取回 /əˈmɛɹɪkən/ 这种美音。现在：先按口音排（英式 0 分），
-        #   同口音再比括号样式（斜杠式略优）。
+        #   英音反而是方括号，结果取回 /əˈmɛɹɪkən/ 这种美音。
+        #   所以先按口音排（英式 0 分），同口音再比括号样式。
         if re.search(r'\b(RP|UK|GB)\b', acc):         acc_r = 0   # 明确标英式，最可信
         elif re.search(r'\b(GA|US|CA|AU|NZ)\b', acc): acc_r = 3   # 明确标非英式，最后考虑
         elif acc.strip():                             acc_r = 2   # 标了别的口音
         else:                                         acc_r = 1   # 未标口音，默认
-        rank = acc_r * 10 + style
+        # 🔴 但口音优先有一条**例外**（2026-09-11 再修，leap 栽在这）：
+        #   页面上「未标口音的斜杠式」是**词典的默认引用形**，而「带 a=RP 的方括号式」
+        #   是某个口音的**实际发音实现**（窄式，带实现细节）。
+        #   leap = {{IPA|en|/ˈliːp/}} + {{IPA|en|[ˈlɪi̯p]|a=RP}}：
+        #   按 acc_r*10+style 算，方括号那条是 0+1=1、斜杠那条是 10+0=10，
+        #   于是选中了窄式的 [ˈlɪi̯p]（落到库里成了 /ˈlɪip/ 这种半截音标）。
+        #   正确的引用形是 /ˈliːp/。所以：未标注 + 斜杠式 = 最高优先级。
+        #   这不影响 american —— 那页斜杠式**明确标了 a=GA**，仍排在英式方括号之后。
+        if acc_r == 1 and style == 0:
+            rank = -1
+        else:
+            rank = acc_r * 10 + style
         if best is None or rank < best[0]: best = (rank, val)
     return best[1] if best else None
 
@@ -131,25 +171,9 @@ def pick_ipa_strict(txt):
     if not seg:
         return None, None
     best = None
-    for m in re.finditer(r'\{\{IPA\|en\|([^}]*)\}\}', seg):
-        body = m.group(1)
-        am = re.search(r'\ba=([^|}]+)', body)
-        if am:
-            acc = am.group(1)
-        else:
-            ls = seg.rfind('\n', 0, m.start()) + 1
-            prior = ACC_ANNOT.findall(seg[ls:m.start()])
-            acc = (prior[-1][0] or prior[-1][1]) if prior else ''
+    for val, style, acc in parse_ipa_templates(seg):
         if not re.search(r'\b(RP|UK|GB)\b', acc):
             continue                      # 没明确标英式 → 不收
-        slash = re.search(r'/([^/]+)/', body)
-        brack = re.search(r'\[([^\[\]]+)\]', body)
-        if slash:
-            val, style = '/' + slash.group(1).replace('.', '') + '/', 0
-        elif brack:
-            val, style = '/' + brack.group(1).replace('.', '') + '/', 1
-        else:
-            continue
         rank = style
         if best is None or rank < best[0]:
             best = (rank, val, acc)
