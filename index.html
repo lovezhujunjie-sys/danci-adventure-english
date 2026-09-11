@@ -819,6 +819,12 @@
   .ls-ipa { font-size: 16px; color: #d97757; font-weight: 500; min-height: 19px; margin: 0 0 8px; }
   .ls-cn { font-size: 22px; color: var(--ink2); margin: 0; }
   .ls-wave { font-size: 13px; color: var(--ink4); margin: 12px 0 0; min-height: 16px; letter-spacing: 2px; }
+  /* 短文音源：整句显示，字号要收小，不然一句 100 字符会撑爆卡片(2026-09-11) */
+  .ls-card.sent { padding: 40px 18px 26px; text-align: left; }
+  .ls-card.sent .ls-en { font-size: 21px; line-height: 1.55; font-weight: 600; }
+  .ls-card.sent .ls-ipa { display: none; }
+  .ls-card.sent .ls-cn { font-size: 16px; color: var(--ink3); margin-top: 10px; line-height: 1.5; }
+  .ls-card.sent .ls-wave { text-align: center; }
 
   .ls-controls { display: flex; justify-content: center; align-items: center; gap: 18px; margin-bottom: 14px; }
   .ls-btn {
@@ -1436,8 +1442,21 @@
       </div>
     </div>
 
+    <!-- 🎧 听力音源：单词 / 短文(2026-09-11 新增) -->
+    <div id="ls-source-opts" class="hidden">
+      <div class="section-label">听什么</div>
+      <div class="mode-mini-grid">
+        <button class="mode-btn-mini active" data-lssrc="word">🔤 单词</button>
+        <button class="mode-btn-mini" data-lssrc="sent">📖 短文</button>
+      </div>
+    </div>
+
     <div class="section-label" id="topic-section">选择主题</div>
     <div class="topic-grid" id="topic-grid"></div>
+
+    <!-- 短文音源专用：选篇目 -->
+    <div class="section-label hidden" id="ls-book-label">听哪几篇</div>
+    <div class="topic-grid hidden" id="ls-book-grid"></div>
 
     <div class="section-label" id="count-label">每次学习数量</div>
     <div class="count-grid">
@@ -1654,6 +1673,7 @@
       <div id="rd-body"></div>
       <div class="rd-foot">
         <button class="sent-speak-btn" id="rd-read-all">▶ 从头朗读全文</button>
+        <button class="sent-speak-btn" id="rd-listen">🎧 听这篇（磨耳朵）</button>
         <button class="btn-secondary" id="rd-shelf-back2">← 回到书架</button>
       </div>
     </div>
@@ -1745,8 +1765,8 @@
   <!-- ===== 听力磨耳朵模式 ===== -->
   <div id="listen-screen" class="hidden">
     <div class="study-hud">
-      <span class="progress-text">第 <span id="ls-idx">1</span> / <span id="ls-total">20</span> 个</span>
-      <span class="stats-mini"><span class="known">已听 <span id="ls-count">0</span> 词</span></span>
+      <span class="progress-text">第 <span id="ls-idx">1</span> / <span id="ls-total">20</span> <span id="ls-unit">个</span></span>
+      <span class="stats-mini"><span class="known">已听 <span id="ls-count">0</span> <span id="ls-unit2">词</span></span></span>
     </div>
     <div class="progress"><div class="progress-bar" id="ls-progress"></div></div>
 
@@ -1766,14 +1786,14 @@
     </div>
 
     <div class="ls-opts">
-      <div class="ls-row"><span>英文读几遍</span>
+      <div class="ls-row"><span id="ls-rep-label">英文读几遍</span>
         <span class="ls-chips" id="ls-rep-chips">
           <span class="ls-chip" data-rep="1">1 遍</span>
           <span class="ls-chip active" data-rep="2">2 遍</span>
           <span class="ls-chip" data-rep="3">3 遍</span>
         </span>
       </div>
-      <div class="ls-row"><span>词间停顿</span>
+      <div class="ls-row"><span id="ls-gap-label">词间停顿</span>
         <span class="ls-chips" id="ls-gap-chips">
           <span class="ls-chip" data-gap="600">短</span>
           <span class="ls-chip active" data-gap="1200">中</span>
@@ -5169,6 +5189,16 @@ const LOW_QUALITY_KEYWORDS = [
       document.getElementById("count-label").style.display = hideOpts ? "none" : "";
       document.querySelector(".count-grid").style.display = hideOpts ? "none" : "";
 
+      // 🎧 听力的音源选择只在听力模式下出现；短文子模式再把主题区换成篇目区
+      document.getElementById("ls-source-opts").classList.toggle("hidden", pageMode !== "listen");
+      const bm = document.getElementById("topic-more"); if (bm) bm.style.display = "";
+      if (pageMode === "listen") {
+        applyLsSource();
+      } else {
+        document.getElementById("ls-book-label").style.display = "none";
+        document.getElementById("ls-book-grid").style.display = "none";
+      }
+
       document.getElementById("count-label").textContent =
         pageMode === "study" ? "每次学习数量" : (pageMode === "type" ? "每次默写数量" : (pageMode === "listen" ? "每轮听多少个" : "题目数量"));
       let btnText = "开始游戏";
@@ -5176,7 +5206,7 @@ const LOW_QUALITY_KEYWORDS = [
       else if (pageMode === "phonics") btnText = "进入字母拼读";
       else if (pageMode === "games") btnText = "进入游戏乐园";
       else if (pageMode === "type") btnText = "开始默写";
-      else if (pageMode === "listen") btnText = "🎧 开始磨耳朵";
+      else if (pageMode === "listen") btnText = (lsSource === "sent") ? "🎧 开始听短文" : "🎧 开始磨耳朵";
       document.getElementById("start-btn").textContent = btnText;
     };
   });
@@ -6663,6 +6693,24 @@ const LOW_QUALITY_KEYWORDS = [
     step();
   };
 
+  // 🎧 读完直接听这篇：把音源切成短文 + 选中当前篇，跳进磨耳朵
+  document.getElementById('rd-listen').onclick = function () {
+    if (!rdKey) return;
+    if (rdPlaying) {   // 正在「从头朗读全文」的话先掐掉，免得两个 TTS 抢麦
+      rdToken++; rdPlaying = false;
+      window.speechSynthesis && window.speechSynthesis.cancel();
+      document.getElementById('rd-read-all').textContent = '▶ 从头朗读全文';
+    }
+    lsSource = 'sent'; settings.lsSource = 'sent'; saveSettings();
+    selectedBook = rdKey;
+    renderBookGrid();   // 可能还没建过篇目网格，先建出来再点亮当前篇
+    document.querySelectorAll('#ls-source-opts .mode-btn-mini').forEach(b =>
+      b.classList.toggle('active', b.dataset.lssrc === 'sent'));
+    document.querySelectorAll('#ls-book-grid .topic-btn').forEach(b =>
+      b.classList.toggle('active', b.dataset.book === rdKey));
+    startListening();
+  };
+
   function openSentHome() {
     document.getElementById('sent-list-view').classList.add('hidden');
     document.getElementById('sent-scene-view').classList.remove('hidden');
@@ -7141,6 +7189,42 @@ const LOW_QUALITY_KEYWORDS = [
   let lsLoopAll = settings.lsLoop !== false;
   let lsZhVoice = null;
 
+  // 音源：word=单词(老逻辑) / sent=短文逐句(2026-09-11 新增)
+  let lsSource = settings.lsSource === 'sent' ? 'sent' : 'word';
+  let selectedBook = 'all';     // 短文音源选中的篇目键(r01..r20)或 'all'
+
+  // 两套播放参数分开记：单词和短文的「读几遍/停顿/中文」诉求完全不同，
+  // 共用一份会把单词的设置冲掉(比如短文默认不读中文，切回单词就没释义了)
+  function lsKeys() {
+    return lsSource === 'sent'
+      ? { rep: 'lsRepeatSent', gap: 'lsGapSent', cn: 'lsSayCnSent' }
+      : { rep: 'lsRepeat', gap: 'lsGap', cn: 'lsSayCn' };
+  }
+  function lsDefaults() {
+    return lsSource === 'sent'
+      ? { rep: 1, gap: 900, cn: false }    // 短文=磨耳朵整句流，默认不夹中文
+      : { rep: 2, gap: 1200, cn: true };
+  }
+  function lsLoadSource() {
+    const k = lsKeys(), d = lsDefaults();
+    lsRepeat = settings[k.rep] || d.rep;
+    lsGapMs = settings[k.gap] || d.gap;
+    lsSayCn = (settings[k.cn] === undefined) ? d.cn : (settings[k.cn] === true);
+    lsLoopAll = settings.lsLoop !== false;
+    lsSyncChips();
+  }
+  function lsSyncChips() {
+    document.querySelectorAll('#ls-rep-chips .ls-chip').forEach(c => c.classList.toggle('active', parseInt(c.dataset.rep) === lsRepeat));
+    document.querySelectorAll('#ls-gap-chips .ls-chip').forEach(c => c.classList.toggle('active', parseInt(c.dataset.gap) === lsGapMs));
+    document.getElementById('ls-saycn').checked = lsSayCn;
+    document.getElementById('ls-loop').checked = lsLoopAll;
+    const sent = lsSource === 'sent';
+    document.getElementById('ls-unit').textContent = sent ? '句' : '个';
+    document.getElementById('ls-unit2').textContent = sent ? '句' : '词';
+    document.getElementById('ls-rep-label').textContent = sent ? '每句读几遍' : '英文读几遍';
+    document.getElementById('ls-gap-label').textContent = sent ? '句间停顿' : '词间停顿';
+  }
+
   // 挑一个最好的中文声音（读释义用）——必须是普通话！
   // 注意：只按 'zh' 开头筛会混进 zh-HK 粤语(如 macOS 的 Sinji)、zh-TW，
   // 严格按 zh-CN(普通话) > zh-TW(国语) > 其他 zh 的顺序选，粤语只做最后兜底。
@@ -7189,7 +7273,8 @@ const LOW_QUALITY_KEYWORDS = [
     document.getElementById('ls-count').textContent = lsListened;
     document.getElementById('ls-topic').textContent = (w._icon || '') + ' ' + (w._topic || '');
     document.getElementById('ls-en').textContent = w.en;
-    document.getElementById('ls-ipa').textContent = IPA_MAP[w.en] || '';
+    // 短文整句查音标表必然查不到，靠 w._ipa 自带(单词项没有这个字段，走原逻辑)
+    document.getElementById('ls-ipa').textContent = w._ipa || IPA_MAP[w.en] || '';
     document.getElementById('ls-cn').textContent = w.cn;
   }
   function lsSetStatus(txt, playing) {
@@ -7203,11 +7288,13 @@ const LOW_QUALITY_KEYWORDS = [
       const w = lsWords[lsIdx];
       lsRenderWord();
       const wave = document.getElementById('ls-wave');
+      // 单词要拆驼峰+转小写(如 iPhone→i phone)；整句不能动，动了就把句首大写和专有名词毁了
+      const sayEn = lsSource === 'sent' ? w.en : w.en.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
       for (let i = 0; i < lsRepeat; i++) {
         if (!lsPlaying || token !== lsToken) return;
         wave.textContent = '🔊 ' + '· '.repeat(i + 1);
-        await lsSpeak(w.en.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase(), selectedVoice, speakRate);
-        await lsDelay(350);
+        await lsSpeak(sayEn, selectedVoice, speakRate);
+        await lsDelay(lsSource === 'sent' ? 500 : 350);
       }
       if (!lsPlaying || token !== lsToken) return;
       if (lsSayCn && zhVoice()) { wave.textContent = '🀄'; await lsSpeak(w.cn, zhVoice(), 1.0); }
@@ -7215,9 +7302,13 @@ const LOW_QUALITY_KEYWORDS = [
       await lsDelay(lsGapMs);
       if (!lsPlaying || token !== lsToken) return;
       lsListened++;
-      if (window.recordStudied) window.recordStudied();   // 听完一个词 = 一次学习互动
+      if (window.recordStudied) window.recordStudied();   // 听完一个词/一句 = 一次学习互动
       lsIdx++;
-      if (lsIdx >= lsWords.length && lsLoopAll) { lsWords = shuffle(lsWords); lsIdx = 0; }
+      if (lsIdx >= lsWords.length && lsLoopAll) {
+        // 短文是一篇文章，重头再来的顺序必须是原文顺序，不能洗牌
+        if (lsSource === 'sent') lsIdx = 0;
+        else { lsWords = shuffle(lsWords); lsIdx = 0; }
+      }
     }
     if (lsPlaying && token === lsToken) { lsPlaying = false; lsSetStatus('本轮播完 ✅', false); lsWakeOff(); }
   }
@@ -7244,10 +7335,60 @@ const LOW_QUALITY_KEYWORDS = [
     if (wasPlaying) lsPlay();
   }
 
+  // 短文音源的篇目清单(建一次，之后只切 active)
+  function renderBookGrid() {
+    const grid = document.getElementById('ls-book-grid');
+    if (grid.dataset.done === '1') return;
+    const keys = Object.keys(READINGS);
+    let total = 0;
+    keys.forEach(k => { total += READINGS[k].paras.length; });
+    let html = '<button class="topic-btn active" data-book="all"><span class="ic">🌈</span>全部 ' + keys.length + ' 篇<span class="cnt">' + total + '</span></button>';
+    keys.forEach(k => {
+      const a = READINGS[k];
+      html += '<button class="topic-btn" data-book="' + k + '"><span class="ic">' + a.icon + '</span>' + a.title +
+              '<span class="cnt">' + a.paras.length + '</span></button>';
+    });
+    grid.innerHTML = html;
+    grid.dataset.done = '1';
+    grid.querySelectorAll('.topic-btn').forEach(btn => {
+      btn.onclick = () => {
+        grid.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedBook = btn.dataset.book;
+      };
+    });
+  }
+  // 设置屏上按音源切换「选主题 / 选篇目」两套 UI
+  function applyLsSource() {
+    const sent = lsSource === 'sent';
+    const on = (id, show) => { const el = document.getElementById(id); if (el) el.style.display = show ? '' : 'none'; };
+    on('topic-section', !sent); on('topic-grid', !sent); on('topic-more', !sent);
+    on('ls-book-label', sent); on('ls-book-grid', sent);
+    on('count-label', !sent);
+    const cg = document.querySelector('.count-grid'); if (cg) cg.style.display = sent ? 'none' : '';
+    if (sent) renderBookGrid();
+    lsLoadSource();
+  }
+
   function startListening() {
-    const pool = getVocabPool();
-    lsWords = shuffle(pool).slice(0, selectedCount);
+    if (lsSource === 'sent') {
+      const keys = Object.keys(READINGS);
+      // 「全部」只打乱篇目顺序，篇内句子必须保持原文顺序，否则就不是一篇文章了
+      const books = (selectedBook === 'all') ? shuffle(keys) : [selectedBook];
+      const sents = [];
+      books.forEach(k => {
+        const a = READINGS[k];
+        if (!a) return;
+        a.paras.forEach(p => sents.push({ en: p.en, cn: p.cn, _topic: a.title, _icon: a.icon, _book: k, _ipa: '' }));
+      });
+      lsWords = sents;
+    } else {
+      const pool = getVocabPool();
+      lsWords = shuffle(pool).slice(0, selectedCount);
+    }
     lsIdx = 0; lsListened = 0; lsZhVoice = null;
+    document.querySelector('.ls-card').classList.toggle('sent', lsSource === 'sent');
+    lsLoadSource();
     showScreen('listen-screen');
     lsRenderWord();
     lsSetStatus('准备中', false);
@@ -7263,23 +7404,33 @@ const LOW_QUALITY_KEYWORDS = [
     c.onclick = () => {
       document.querySelectorAll('#ls-rep-chips .ls-chip').forEach(x => x.classList.remove('active'));
       c.classList.add('active');
-      lsRepeat = parseInt(c.dataset.rep); settings.lsRepeat = lsRepeat; saveSettings();
+      lsRepeat = parseInt(c.dataset.rep); settings[lsKeys().rep] = lsRepeat; saveSettings();
     };
   });
   document.querySelectorAll('#ls-gap-chips .ls-chip').forEach(c => {
     c.onclick = () => {
       document.querySelectorAll('#ls-gap-chips .ls-chip').forEach(x => x.classList.remove('active'));
       c.classList.add('active');
-      lsGapMs = parseInt(c.dataset.gap); settings.lsGap = lsGapMs; saveSettings();
+      lsGapMs = parseInt(c.dataset.gap); settings[lsKeys().gap] = lsGapMs; saveSettings();
     };
   });
-  document.getElementById('ls-saycn').checked = lsSayCn;
-  document.getElementById('ls-loop').checked = lsLoopAll;
-  document.getElementById('ls-saycn').onchange = (e) => { lsSayCn = e.target.checked; settings.lsSayCn = lsSayCn; saveSettings(); };
+  document.getElementById('ls-saycn').onchange = (e) => { lsSayCn = e.target.checked; settings[lsKeys().cn] = lsSayCn; saveSettings(); };
   document.getElementById('ls-loop').onchange = (e) => { lsLoopAll = e.target.checked; settings.lsLoop = lsLoopAll; saveSettings(); };
-  // 恢复记忆的遍数/停顿选中态
-  document.querySelectorAll('#ls-rep-chips .ls-chip').forEach(c => c.classList.toggle('active', parseInt(c.dataset.rep) === lsRepeat));
-  document.querySelectorAll('#ls-gap-chips .ls-chip').forEach(c => c.classList.toggle('active', parseInt(c.dataset.gap) === lsGapMs));
+  lsSyncChips();   // 恢复记忆的遍数/停顿/中文选中态 + 单位文案
+
+  // 音源切换：单词 / 短文
+  document.querySelectorAll('#ls-source-opts .mode-btn-mini').forEach(b => {
+    b.onclick = () => {
+      document.querySelectorAll('#ls-source-opts .mode-btn-mini').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      lsSource = b.dataset.lssrc === 'sent' ? 'sent' : 'word';
+      settings.lsSource = lsSource; saveSettings();
+      applyLsSource();
+    };
+  });
+  // 恢复上次选的音源
+  document.querySelectorAll('#ls-source-opts .mode-btn-mini').forEach(b =>
+    b.classList.toggle('active', (b.dataset.lssrc === 'sent') === (lsSource === 'sent')));
 
   renderTopics();
 })();
