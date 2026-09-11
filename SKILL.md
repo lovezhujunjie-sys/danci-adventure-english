@@ -1,6 +1,6 @@
 ---
 name: 自学英语
-description: 开发与迭代「单词大冒险」自学英语 web 应用——老曾和大宝曾麟轩的亲子共学玩具（也适合中文母语者自学单词、发音与拼读）。单文件 index.html，纯前端 + localStorage，含六大单词模式(翻卡学习/闯关选择题/字母拼读/游戏乐园/拼写默写/听力磨耳朵免提自动连播) + 开口说双模块(日常高频句 392 句·点词查义·整句朗读 + 句型骨架 24 个可替换框架)+ 生词本间隔复习(SRS,可移除/全部提前复习) + 进度仪表盘(每日目标可调) + 成就系统 + 优选发音朗读 + 深色模式 + 设置持久化(发音/语速/主题/打字偏好)。词库约 3143 个日常高频词、41 个主题。触发场景：用户想新增/优化单词大冒险的功能、加单词/主题词库、加新游戏或学习模式、改 SRS/生词本逻辑、做学习数据可视化与激励、调发音/音标、改视觉文案、或部署分享。每次改完都要：①更新本地 skill 文件 ②commit 并 push 到 GitHub。
+description: 开发与迭代「单词大冒险」自学英语 web 应用——老曾和大宝曾麟轩的亲子共学玩具（也适合中文母语者自学单词、发音与拼读）。单文件 index.html，纯前端 + localStorage，含六大单词模式(翻卡学习/闯关选择题/字母拼读/游戏乐园/拼写默写/听力磨耳朵免提自动连播) + 开口说双模块(日常高频句 392 句·点词查义·整句朗读 + 句型骨架 24 个可替换框架)+ 生词本间隔复习(SRS,可移除/全部提前复习) + 进度仪表盘(每日目标可调) + 成就系统 + 优选发音朗读 + 深色模式 + 设置持久化(发音/语速/主题/打字偏好) + 亲子向可爱皮肤(糖果色/果冻卡/撒花动效) + 双人对战(爸爸 vs 大宝)。词库约 3143 个日常高频词、41 个主题。触发场景：用户想新增/优化单词大冒险的功能、加单词/主题词库、加新游戏或学习模式、改 SRS/生词本逻辑、做学习数据可视化与激励、调发音/音标、改视觉文案、或部署分享。每次改完都要：①更新本地 skill 文件 ②commit 并 push 到 GitHub。
 ---
 
 # 自学英语 · 单词大冒险 App
@@ -8,6 +8,11 @@ description: 开发与迭代「单词大冒险」自学英语 web 应用——�
 「单词大冒险」是一个面向中文母语者的英语单词自学应用，愿景是**让任何人都能轻松、有趣、有效地自学英语单词、发音和拼读**。本 skill 既是产品代码，也是迭代手册。
 
 ## 当前形态
+
+> **身份:老曾和大宝曾麟轩的亲子共学玩具**(2026-09-11 老曾钦定)。老曾原话:"这个目前是我和我家大宝曾麟轩一起学习英语的一个玩具"。
+> 两个用户:老曾自己(自学,已有 3143 词基础盘)+ 大宝(孩子,要可爱、要好玩、要有爸爸的陪伴感)。
+> **做任何 UI/玩法决策,先问:大宝会不会想再玩一次?**
+
 
 - **单文件** `index.html`，纯前端，无构建步骤、无后端，用浏览器 `localStorage` 存进度。
 - 这个文件就是这个 skill 仓库的根，也是 GitHub Pages 的入口（在线体验即下载链接）。
@@ -62,11 +67,46 @@ description: 开发与迭代「单词大冒险」自学英语 web 应用——�
 
 ### 改这块别踩的坑
 
+**① 词库里的"连体复合词"**(2026-09-11 全量修掉 48 个)
+
+VOCAB 里一度有 `gasstation` / `trafficlight` / `highschool` / `makebed` 这种**丢空格的写法**,孩子会学错拼写。发现手法:**
+`IPA_MAP` 的音标里带空格、但英文单词里没有 → 就是漏了空格**(如 `"gasstation":"/ˈɡæs steəʃn/"`)。一条正则扫全库即得。
+
+修正要**三处同步改名**,少一处就出问题:
+1. `VOCAB` 的 `"en":"gasstation"` → `"en":"gas station"`
+2. `EMOJI_MAP` 的键 `"gasstation":` → `"gas station":`(不改则看图猜词取不到 emoji)
+3. `IPA_MAP` 的键同上(不改则点词没音标)
+
+附带好处:改完 `getSpellPool()` 的 `/^[a-z]+$/` 自动排除多词短语,拼写游戏不会再让人拼 "gasstation"。
+⚠️ 别用 `json.loads` 校验 `PATTERNS`——它的键**不带引号**(是 JS 对象字面量不是 JSON),会误报"坏了"。
+
+
 - 两个 screen 的 id `sentence-screen` / `pattern-screen` **必须留在 `TOP_SCREENS` 数组里**，否则 `showScreen()` 切不过去。
 - 首页入口卡用 `data-goto="sentence|pattern"`（**不是** `data-pagemode`），在 `.mode-card` 的 onclick 里**早期 return 直接进模块**，不走"选主题+数量+点开始"那套四步流程。
 - 新增句子/单词后若带出新词，顺手核对 `IPA_EXTRA` 有没有音标；音标一律**英式 RP**，拿不准就留空。
 
-## 生词本 + 间隔复习 SRS（核心留存机制）
+## 游戏乐园(6 个玩法)
+
+`#games-screen` 下用 `showGameArea(id)` 切换 `.game-area` 区块,菜单项靠 `.game-item[data-game]` → `launchGame(g)` 派发。
+
+| data-game | 玩法 | 说明 |
+|---|---|---|
+| `emoji` | 看图猜单词 | emoji → 选英文 |
+| `spell` | 字母拼图 | 中文 → 拼字母 |
+| `timed` | 限时挑战 | 60 秒,答错扣 3 秒 |
+| `match` | 连连看 | 中英配对,6 对 |
+| `listen` | 听音选词 | 听发音 → 选中文 |
+| **`vs`** | **双人对战** | **亲子:爸爸 vs 大宝 轮流答,各 5 题** |
+
+### 👨🆚👦 双人对战(2026-09-11 新增,把工具变玩具的关键)
+
+- 入口是菜单顶部的 `.vs-card#vs-entry`(橙色大卡,`launchGame("vs")`)。
+- 10 题从 `getEmojiPool()` 抽,`vsIdx % 2` 决定轮到谁 → **每人 5 题**。
+- 顶部双计分板 `.vs-player.on` 高亮当前回合,`vsFinish()` 出冠军/平局。
+- **名字可点改**(默认 爸爸 / 大宝,存 `localStorage['wordadv_vs_names']`)——老曾家二宝出生后改名字不用改代码。
+- ⚠️ 加游戏要动 **4 处**:① `#game-vs` 区块 HTML(必须静态写在页面里,`.game-quit` 是**初始化时一次性绑定**的,动态插入的按钮没有退出事件)② `launchGame` 的 if/else 链 ③ 菜单入口 ④ `showGameArea` 不需改(它按 `.game-area` 类全量隐藏)。
+
+
 
 - **自动入库**：学习点「不熟」、闯关答错、听音选词答错 → `window.addToNotebook(word)`，存进 `progress.notebook`。
 - **SRS 间隔**：`SRS_INTERVALS = [1,2,4,7,15]` 天。每个词有 `level` 与 `nextReview`。复习答对 `level++` 并把 `nextReview` 推后；答错 `level=0` 当天再练；`level` 达到 `SRS_INTERVALS.length`(5) 即**毕业出库**并计入已学。重复入库会降级 + 立即可复习。
@@ -92,9 +132,20 @@ description: 开发与迭代「单词大冒险」自学英语 web 应用——�
 - **🌙 深色模式**：首页右上 `#theme-toggle`。全站颜色已做 **CSS 变量化重构**——`:root`(浅) / `body.dark`(深) 定义 `--bg/--card/--ink/--ink2/--ink3/--soft/--soft2/--soft-ink/--line/--line2/--track` 等；强调橙 `#d97757`、语义红绿、强调色上的白字保持字面值不变。`applyTheme()` 切 `body.dark` + 改 `<meta theme-color>`；`<body>` 顶部有内联引导脚本先读 localStorage 上 dark 类，**避免刷新闪白**。**新增 UI 一律用 `var(--xxx)` 上色，不要再硬编码背景/文字色**，否则深色下会出错。
 - **每日目标可调**：首页仪表盘 `#pd-goal` 点开 `#goal-picker`(10/15/20/30/50)，`window.setGoal(n)` 写 `progress.goal`。
 
-## 设计语言
+## 设计语言(2026-09-11 可爱化改版)
 
-暖米色背景 `var(--bg)` + 暖橙主色 `#d97757`。圆角卡片 `var(--card)` + 轻阴影。max-width 480px 移动优先、适配 `env(safe-area-inset-*)`。支持深/浅色两套主题（CSS 变量驱动）。文案亲切鼓励、面向自学者。新增 UI 沿用这套配色与圆角风格，**颜色必须走 CSS 变量**。
+**底色**:暖奶油底 + 四角漂浮糖斑(`body` 上的 4 个 `radial-gradient`,深色模式另配一套低透明度版)。
+**糖果色板**:`--c-pink/yellow/green/blue/purple/orange` + 各自 `-d` 深色版(做厚底边);轮换色 `--tint-0..5`。
+**果冻卡**:圆角 20-22px + `border: 2.5px solid` + `box-shadow: 0 4px 0 <同色深版>`,`:active` 时 `translateY(3px)` 且阴影压到 `0 1px 0` —— 按下去有"沉一下"的手感。
+**六色轮换**:`.topic-btn` / `.game-item` 靠 `nth-child(6n+k)` 分到 `--tint-*`,同类卡片自动彩虹化,不用手写颜色。
+**动效**:`cuteFloat`(吉祥物飘)、`cutePop`(答对弹跳)、`cuteShake`(答错抖动)、`confettiFall`(撒花)。
+**撒花**:`window.cuteConfetti(n)` 撒 `n` 片,元素 2.8s 后自删。已挂在 5 个游戏的答对分支 + `showResult()` 结算。
+**主题折叠**:41 个主题默认只露 9 个(3×3),`.topic-grid.topic-open` 展开,按钮 `#topic-more` 由 `renderTopics()` 动态创建。
+
+⚠️ **颜色必须走 CSS 变量**,深色模式靠 `body.dark` 覆盖变量,硬编码颜色会在深色下瞎掉。
+⚠️ **`.topic-btn` 是 3 列网格`,卡片内容宽度只有约 95px**。给 `.ic` 设 `display:inline-flex` 会让图标和文字挤在同一行(图标 48px + 文字 64px > 95px)→ 主题名换行。`.ic` 必须是**块级**(`display:flex` + 左右 `auto` 居中)。这个坑踩过一次。
+
+ `var(--bg)` + 暖橙主色 `#d97757`。圆角卡片 `var(--card)` + 轻阴影。max-width 480px 移动优先、适配 `env(safe-area-inset-*)`。支持深/浅色两套主题（CSS 变量驱动）。文案亲切鼓励、面向自学者。新增 UI 沿用这套配色与圆角风格，**颜色必须走 CSS 变量**。
 
 ## 本地预览
 
