@@ -1456,7 +1456,9 @@
 
     <!-- 短文音源专用：选篇目 -->
     <div class="section-label hidden" id="ls-book-label">听哪几篇</div>
-    <div class="topic-grid hidden" id="ls-book-grid"></div>
+    <!-- topic-open 是必须的:全局规则 `.topic-grid:not(.topic-open) > .topic-btn:nth-child(n+10)`
+         会藏掉第 10 个及以后的按钮,篇目有 21 个,不加这个类 r09~r20 这 12 篇点不到(2026-09-11 修) -->
+    <div class="topic-grid topic-open hidden" id="ls-book-grid"></div>
 
     <div class="section-label" id="count-label">每次学习数量</div>
     <div class="count-grid">
@@ -4713,6 +4715,7 @@ const IPA_EXTRA = {
   "with": "/wɪð/",
   "within": "/wɪˈðɪn/",
   "word": "/wɜːd/",
+  "separate": "/ˈseprət/",
   "worries": "/ˈwʌriz/",
   "worry": "/ˈwʌri/",
   "would": "/wʊd/",
@@ -5184,30 +5187,27 @@ const LOW_QUALITY_KEYWORDS = [
 
       // 拼读和游戏模式不需要选主题和数量
       const hideOpts = pageMode === "phonics" || pageMode === "games";
-      document.getElementById("topic-section").style.display = hideOpts ? "none" : "";
-      document.getElementById("topic-grid").style.display = hideOpts ? "none" : "";
-      document.getElementById("count-label").style.display = hideOpts ? "none" : "";
-      document.querySelector(".count-grid").style.display = hideOpts ? "none" : "";
+      setShown("topic-section", !hideOpts);
+      setShown("topic-grid", !hideOpts);
+      setShown("count-label", !hideOpts);
+      const cgEl = document.querySelector(".count-grid");
+      if (cgEl) { cgEl.style.display = hideOpts ? "none" : ""; cgEl.classList.toggle("hidden", hideOpts); }
+      // 「展开全部主题」按钮是跟着主题网格走的,网格藏了它也得藏,不然会孤零零留一个按钮
+      setShown("topic-more", !hideOpts);
 
       // 🎧 听力的音源选择只在听力模式下出现；短文子模式再把主题区换成篇目区
       document.getElementById("ls-source-opts").classList.toggle("hidden", pageMode !== "listen");
-      const bm = document.getElementById("topic-more"); if (bm) bm.style.display = "";
       if (pageMode === "listen") {
         applyLsSource();
       } else {
-        document.getElementById("ls-book-label").style.display = "none";
-        document.getElementById("ls-book-grid").style.display = "none";
+        // 非听力模式：把听力专属区块收起来
+        setShown('ls-book-label', false);
+        setShown('ls-book-grid', false);
       }
 
       document.getElementById("count-label").textContent =
         pageMode === "study" ? "每次学习数量" : (pageMode === "type" ? "每次默写数量" : (pageMode === "listen" ? "每轮听多少个" : "题目数量"));
-      let btnText = "开始游戏";
-      if (pageMode === "study") btnText = "开始学习";
-      else if (pageMode === "phonics") btnText = "进入字母拼读";
-      else if (pageMode === "games") btnText = "进入游戏乐园";
-      else if (pageMode === "type") btnText = "开始默写";
-      else if (pageMode === "listen") btnText = (lsSource === "sent") ? "🎧 开始听短文" : "🎧 开始磨耳朵";
-      document.getElementById("start-btn").textContent = btnText;
+      syncStartBtn();
     };
   });
 
@@ -5318,13 +5318,16 @@ const LOW_QUALITY_KEYWORDS = [
   }
 
   function markUnknown() {
+    // 已经在当前这张卡上点过「不熟」就直接返回:这个按钮不翻卡、也不禁用,
+    // 连点 5 下会把今日计数虚增 5 次,还把生词本里同一个词的 SRS 档位连降 5 级(2026-09-11 修)
+    if (studyUnknown.has(studyIdx)) return;
     studyKnown.delete(studyIdx);
     studyUnknown.add(studyIdx);
     // 计入今日学习并加入生词本
     const w = studyWords[studyIdx];
     if (w) {
       if (window.recordStudied) window.recordStudied();
-      if (window.addToNotebook) window.addToNotebook(w);
+      if (window.addToNotebook) window.addToNotebook(w, true);   // 记不熟=错
     }
     // 显示中文（让用户看到答案）
     studyCnVisible = true;
@@ -5514,7 +5517,8 @@ const LOW_QUALITY_KEYWORDS = [
       };
     } else {
       combo = 0; wrongAnswers.push(q.item);
-      if (window.addToNotebook) window.addToNotebook(q.item);
+      if (window.addToNotebook) window.addToNotebook(q.item, true);   // 答错
+
       btn.classList.add("wrong");
       buttons.forEach(b => {
         if (b.dataset.en === q.item.en) b.classList.add("correct");
@@ -5715,6 +5719,10 @@ const LOW_QUALITY_KEYWORDS = [
     const isNew = got > prev;
     mapStars[key] = Math.max(prev, got);
     mapSaveStars();
+    // 三星=满分,要记进「💯 完美闯关」徽章。
+    // showEnd() 一开头就会 return 到这儿,所以它里面那句 recordPerfectQuiz 永远执行不到,
+    // 而首页已经没有普通闯关入口了 —— 不补这句,这个徽章永远拿不到(2026-09-11 修)
+    if (rate === 1 && window.recordPerfectQuiz) window.recordPerfectQuiz();
 
     showScreen("end-screen");
     document.getElementById("final-score").textContent = score;
@@ -6726,8 +6734,22 @@ const LOW_QUALITY_KEYWORDS = [
   const TOP_SCREENS = ["start-screen","study-screen","study-end-screen","phonics-screen",
     "games-screen","game-screen","end-screen","review-screen","review-end-screen","achv-screen",
     "type-screen","type-end-screen","listen-screen","sentence-screen","pattern-screen","map-screen","reading-screen"];
+  // 🔴 全文件唯一正确的「显示/隐藏某个区块」写法。
+  // 为什么必须两个都动:CSS 里是 `.hidden{display:none!important}`,只设 el.style.display=''
+  // 顶不过 !important,带 hidden 类的元素会永远藏着。只加类又会被 inline 的 display:none 压住。
+  // 2026-09-11 因为这个坑连续踩了两次(短文篇目区出不来、首页主题区回不来),统一收口到这一个函数。
+  function setShown(id, show) {
+    const el = document.getElementById(id); if (!el) return;
+    el.style.display = show ? '' : 'none';
+    el.classList.toggle('hidden', !show);
+  }
   function showScreen(id) {
     window.speechSynthesis && window.speechSynthesis.cancel();
+    // 切屏时把「还在自己往下念」的连播链全部作废。只 cancel() 掐得掉当前这一句,
+    // 掐不掉 setTimeout/onend 的链条 —— 人会看到已经回到首页了它还在念整篇(2026-09-11 修)
+    rdToken++; rdPlaying = false; setPlayBtn(false);
+    sentToken++; sentPlaying = false;
+    lsPlaying = false; lsToken++;
     TOP_SCREENS.forEach(s => { const el = document.getElementById(s); if (el) el.classList.toggle("hidden", s !== id); });
     window.__curScreen = id;                       // 供「今日30分钟」计时判断是否在学习界面
     if (id === "start-screen" && window.renderM30) window.renderM30();
@@ -6810,7 +6832,9 @@ const LOW_QUALITY_KEYWORDS = [
     document.querySelector("#review-end-screen .stats").style.display = "";
     document.getElementById("review-end-emoji").textContent = reviewGraduated > 0 ? "🎓" : (reviewBad === 0 ? "🌟" : "🗂️");
     document.getElementById("review-end-title").textContent = "复习完成！";
-    document.getElementById("review-end-sub").textContent = "本次复习了 " + reviewWords.length + " 个生词";
+    // 用 reviewSession(本轮实际复习过的全部)而不是 reviewWords ——
+    // reviewWords 会被「✕ 移除(已记牢)」splice 掉,导致屏幕上「复习了 7 个」和「记住 10」自相矛盾
+    document.getElementById("review-end-sub").textContent = "本次复习了 " + reviewSession.length + " 个生词";
     document.getElementById("review-end-good").textContent = reviewGood;
     document.getElementById("review-end-bad").textContent = reviewBad;
     document.getElementById("review-end-graduated").textContent = reviewGraduated;
@@ -6964,7 +6988,8 @@ const LOW_QUALITY_KEYWORDS = [
       btn.classList.add("wrong");
       buttons.forEach(b => { if (b.textContent === w.cn) b.classList.add("correct"); });
       fb.textContent = "✗ 正确：" + w.en + " = " + w.cn; fb.className = "game-feedback no";
-      if (window.addToNotebook) window.addToNotebook(w);
+      if (window.addToNotebook) window.addToNotebook(w, true);   // 答错
+
     }
     document.getElementById("listen-score").textContent = "得分 " + listenScore;
     setTimeout(() => { listenIdx++; renderListenQ(); }, 1300);
@@ -7091,7 +7116,7 @@ const LOW_QUALITY_KEYWORDS = [
       fb.textContent = "✓ 拼对了（中途有错，已加入生词本复习）";
       fb.className = "type-feedback ok";
       if (window.recordStudied) window.recordStudied();
-      if (window.addToNotebook) window.addToNotebook(w);
+      if (window.addToNotebook) window.addToNotebook(w, true);   // 默写错
       typeWrongList.push(w);
     }
     document.getElementById("type-perfect").textContent = typePerfect;
@@ -7115,7 +7140,7 @@ const LOW_QUALITY_KEYWORDS = [
     fb.textContent = "正确拼写：" + w.en + " · 已加入生词本";
     fb.className = "type-feedback";
     if (window.recordStudied) window.recordStudied();
-    if (window.addToNotebook) window.addToNotebook(w);
+    if (window.addToNotebook) window.addToNotebook(w, true);   // 默写错
     typeWrongList.push(w);
     speak(w.en, document.getElementById("type-speak"));
     setTimeout(nextTypeWord, 1100);
@@ -7248,20 +7273,42 @@ const LOW_QUALITY_KEYWORDS = [
     return new Promise(resolve => {
       if (!('speechSynthesis' in window) || !text) return resolve();
       const u = new SpeechSynthesisUtterance(text);
-      if (voice) { u.voice = voice; u.lang = voice.lang; }
+      // 兜底 lang 必给:没选中声音时(苹果设备首次进页面 getVoices() 返回空是已知行为),
+      // 不设 lang 就会落到文档语言的 zh-CN,拿中文嗓子念英文(2026-09-11 修)
+      u.lang = 'en-US';
+      // 赋值本身也可能抛(voice 对象失效),绝不能让它把整个连播循环带崩
+      try { if (voice) { u.voice = voice; u.lang = voice.lang; } } catch (e) {}
       u.rate = rate || speakRate; u.pitch = 1; u.volume = 1;
       const t = setTimeout(resolve, Math.max(5000, text.length * 400));
       const done = () => { clearTimeout(t); resolve(); };
       u.onend = done; u.onerror = done;
-      window.speechSynthesis.speak(u);
+      try { window.speechSynthesis.speak(u); } catch (e) { done(); }
     });
   }
   function lsDelay(ms) { return new Promise(r => setTimeout(r, ms)); }
 
   // 防熄屏（播放中保持亮屏，TTS 才不会被系统掐断）
   let lsWake = null;
-  async function lsWakeOn() { try { if ('wakeLock' in navigator) lsWake = await navigator.wakeLock.request('screen'); } catch (e) {} }
-  function lsWakeOff() { try { if (lsWake) lsWake.release(); } catch (e) {} lsWake = null; }
+  // 🔴 request 是异步的。重复调用时旧 sentinel 会被新对象覆盖,而 lsWakeOff 只释放得掉
+  // 最后那一个 —— 有一个永远不释放,页面可见时屏幕就不再自动熄灭。
+  // 用 'pending' 占位挡住重入,用 lsWakeWanted 判断「等回来之后还要不要」(2026-09-11 修)
+  let lsWakeWanted = false;
+  async function lsWakeOn() {
+    lsWakeWanted = true;
+    if (lsWake) return;                 // 已经拿到了,或正在申请中
+    lsWake = 'pending';
+    try {
+      if (!('wakeLock' in navigator)) { lsWake = null; return; }
+      const s = await navigator.wakeLock.request('screen');
+      if (!lsWakeWanted) { try { s.release(); } catch (e) {} lsWake = null; return; }
+      lsWake = s;
+    } catch (e) { lsWake = null; }
+  }
+  function lsWakeOff() {
+    lsWakeWanted = false;
+    if (lsWake && lsWake !== 'pending') { try { lsWake.release(); } catch (e) {} }
+    lsWake = null;
+  }
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && lsPlaying) lsWakeOn(); });
 
   function lsRenderWord() {
@@ -7359,15 +7406,31 @@ const LOW_QUALITY_KEYWORDS = [
     });
   }
   // 设置屏上按音源切换「选主题 / 选篇目」两套 UI
+  // 开始按钮的文案跟着「模式 + 音源」走。切换音源时也要调，不然切了短文按钮还写「开始磨耳朵」
+  function syncStartBtn() {
+    const b = document.getElementById('start-btn'); if (!b) return;
+    let t = '开始游戏';
+    if (pageMode === 'study') t = '开始学习';
+    else if (pageMode === 'phonics') t = '进入字母拼读';
+    else if (pageMode === 'games') t = '进入游戏乐园';
+    else if (pageMode === 'type') t = '开始默写';
+    else if (pageMode === 'listen') t = (lsSource === 'sent') ? '🎧 开始听短文' : '🎧 开始磨耳朵';
+    b.textContent = t;
+  }
+
   function applyLsSource() {
     const sent = lsSource === 'sent';
-    const on = (id, show) => { const el = document.getElementById(id); if (el) el.style.display = show ? '' : 'none'; };
-    on('topic-section', !sent); on('topic-grid', !sent); on('topic-more', !sent);
-    on('ls-book-label', sent); on('ls-book-grid', sent);
-    on('count-label', !sent);
-    const cg = document.querySelector('.count-grid'); if (cg) cg.style.display = sent ? 'none' : '';
+    setShown('topic-section', !sent);
+    setShown('topic-grid', !sent);
+    setShown('topic-more', !sent);
+    setShown('ls-book-label', sent);
+    setShown('ls-book-grid', sent);
+    setShown('count-label', !sent);
+    const cg = document.querySelector('.count-grid');
+    if (cg) { cg.style.display = sent ? 'none' : ''; cg.classList.toggle('hidden', sent); }
     if (sent) renderBookGrid();
     lsLoadSource();
+    syncStartBtn();
   }
 
   function startListening() {
@@ -7445,6 +7508,16 @@ const LOW_QUALITY_KEYWORDS = [
     return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
   }
 
+  // 🔴 比较日期必须转成数字,不能拿 "2026-9-30" 这种字符串直接比大小。
+  // 字符串是字典序:'2026-10-1' < '2026-9-30'、'2026-9-2' > '2026-9-11',
+  // 于是跨月/跨位数时 SRS 排期全乱 —— 该复习的查不出来,没到期的提前冒出来(2026-09-11 修)。
+  // 不改 todayStr() 的存储格式,是为了兼容老存档里已经存下的不补零日期。
+  function dayNum(s) {
+    const m = String(s || '').split('-');
+    if (m.length !== 3) return 0;
+    return (+m[0]) * 10000 + (+m[1]) * 100 + (+m[2]);
+  }
+
   function defaults() {
     return { learned: {}, streak: 0, lastDay: '', todayCount: 0, todayDay: '', goal: 20, todaySec: 0,
              notebook: {}, history: {}, totalStudied: 0, gamesPlayed: 0, perfectQuiz: 0,
@@ -7475,6 +7548,13 @@ const LOW_QUALITY_KEYWORDS = [
       progress.todaySec = 0;        // 学习时长也归零(跨天自动重置)
       progress._unsavedSec = 0;
       progress.todayDay = today;
+    }
+    // 断签了就把连续天数清零。以前只在「下一次互动」时才由 bumpEngagement 纠正,
+    // 于是断签后打开 App 会一直显示旧的连续天数,是假的(2026-09-11 修)
+    if (progress.lastDay && progress.lastDay !== today) {
+      const y = new Date(); y.setDate(y.getDate() - 1);
+      const yesterday = y.getFullYear() + '-' + (y.getMonth()+1) + '-' + y.getDate();
+      if (progress.lastDay !== yesterday) progress.streak = 0;
     }
     saveProgress(progress);
   }
@@ -7522,19 +7602,27 @@ const LOW_QUALITY_KEYWORDS = [
   ["click","keydown","touchstart","input","scroll","pointerdown"].forEach(ev =>
     document.addEventListener(ev, () => { _lastAct = Date.now(); }, { passive: true, capture: true }));
 
-  function _isStudying() {
-    const s = window.__curScreen;
-    if (!s || s === "start-screen" || s === "achv-screen") return false;
-    return document.visibilityState === "visible";
+  // 哪些界面算「在学」。直接看 DOM 谁露着,不再依赖「切屏的函数记得设 window.__curScreen」——
+  // 单词学习/字母拼读/游戏乐园这三个模式走的是裸 classList 切屏,从不设 __curScreen,
+  // 导致最常用的闪卡模式计时恒为 0(2026-09-11 修)。
+  const STUDY_SCREENS = ["study-screen","phonics-screen","games-screen","game-screen","type-screen",
+    "listen-screen","sentence-screen","pattern-screen","map-screen","reading-screen","review-screen"];
+  function _isStudying(ignoreVisibility) {
+    if (!ignoreVisibility && document.visibilityState !== "visible") return false;
+    for (let i = 0; i < STUDY_SCREENS.length; i++) {
+      const el = document.getElementById(STUDY_SCREENS[i]);
+      if (el && !el.classList.contains("hidden")) return true;
+    }
+    return false;
   }
   window.getTodaySec = function () { checkDay(); return progress.todaySec || 0; };
 
-  function _tickTime() {
+  function _tickTime(ignoreVisibility) {
     const now = Date.now();
     // 单次最多记 30 秒:防笔记本合盖/休眠后时间跳变,凭空灌进去一堆分钟
     const dt = Math.min(Math.round((now - _lastTick) / 1000), 30);
     _lastTick = now;
-    if (dt <= 0 || !_isStudying()) return;
+    if (dt <= 0 || !_isStudying(ignoreVisibility)) return;
     if (now - _lastAct > IDLE_LIMIT_MS) return;
     checkDay();
     progress.todaySec = (progress.todaySec || 0) + dt;
@@ -7544,12 +7632,14 @@ const LOW_QUALITY_KEYWORDS = [
   }
   setInterval(_tickTime, 5000);
 
-  // 切走/关页时立刻结算一次,别丢最后那几十秒
+  // 切走/关页时立刻结算一次,别丢最后那几十秒。
+  // ignoreVisibility=true 是必须的:此刻 visibilityState 已经是 hidden,
+  // 不绕过可见性判断就会被 _isStudying 挡掉,每次切走都白丢一段(2026-09-11 修)
   document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden") { _tickTime(); saveProgress(progress); }
+    if (document.visibilityState === "hidden") { _tickTime(true); saveProgress(progress); }
     else { _lastTick = Date.now(); }
   });
-  window.addEventListener("pagehide", () => { _tickTime(); saveProgress(progress); });
+  window.addEventListener("pagehide", () => { _tickTime(true); saveProgress(progress); });
 
   window.renderM30 = function () {
     const card = document.getElementById("m30");
@@ -7576,9 +7666,14 @@ const LOW_QUALITY_KEYWORDS = [
     const d = new Date(); d.setDate(d.getDate() + n);
     return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
   }
-  window.addToNotebook = function(word) {
+  // isMistake=true 才降级。只有「答错/记不熟」这类信号才是降级依据;
+  // 在阅读/句库里点「＋生词本」只是「这个词我想存」,不是答错,
+  // 早先一律降级,导致存一次词就把攒了几天的 SRS 档位打回原形(2026-09-11 修)
+  window.addToNotebook = function(word, isMistake) {
     if (!word || !word.en) return;
-    const en = word.en;
+    // 统一小写入库:点词弹卡给的是原文(句首的 "Hello"/"The"),大小写不一致会让
+    // 同一个词在生词本里变成两条互不相干的记录,而且按精确键查音标会查不到(2026-09-11 修)
+    const en = String(word.en).toLowerCase();
     if (!progress.notebook[en]) {
       progress.notebook[en] = {
         en: en, cn: word.cn || '',
@@ -7589,8 +7684,7 @@ const LOW_QUALITY_KEYWORDS = [
       // 已在生词本里又错了：补充信息、降级、立即可复习
       const e = progress.notebook[en];
       if (word.cn) e.cn = word.cn;
-      e.level = Math.max(0, e.level - 1);
-      e.nextReview = todayStr();
+      if (isMistake) { e.level = Math.max(0, e.level - 1); e.nextReview = todayStr(); }
     }
     saveProgress(progress);
     updateDashboard();
@@ -7598,9 +7692,9 @@ const LOW_QUALITY_KEYWORDS = [
   window.getNotebook = function() { return Object.values(progress.notebook); };
   window.getDueWords = function() {
     const today = todayStr();
-    return Object.values(progress.notebook).filter(w => !w.nextReview || w.nextReview <= today);
+    return Object.values(progress.notebook).filter(w => !w.nextReview || dayNum(w.nextReview) <= dayNum(today));
   };
-  window.isDue = function(w) { return !w.nextReview || w.nextReview <= todayStr(); };
+  window.isDue = function(w) { return !w.nextReview || dayNum(w.nextReview) <= dayNum(todayStr()); };
   // 从生词本移除一个词（已记牢/不想再练）
   window.removeFromNotebook = function(en) {
     if (progress.notebook[en]) { delete progress.notebook[en]; saveProgress(progress); updateDashboard(); }
@@ -7618,7 +7712,9 @@ const LOW_QUALITY_KEYWORDS = [
     bumpEngagement();
     if (good) {
       e.level++;
-      if (e.level >= SRS_INTERVALS.length) {
+      // 必须用 > 而不是 >=:level 到 5 时该排「15 天后」,到 6 才出库。
+      // 写成 >= 的话 15 天这一档永远走不到,复习卡的第 5 颗进度点也永远点不亮(2026-09-11 修)
+      if (e.level > SRS_INTERVALS.length) {
         delete progress.notebook[en];
         progress.notebookGraduated = (progress.notebookGraduated || 0) + 1;
         if (!progress.learned[en]) progress.learned[en] = { count: 1, firstDay: todayStr() };

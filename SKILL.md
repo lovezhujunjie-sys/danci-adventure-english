@@ -232,8 +232,48 @@ python3 -m http.server --directory "$SKILL_DIR" 8765
    git -C "$SKILL_DIR" commit -m "描述本次优化"
    git -C "$SKILL_DIR" push
    ```
-   ⚠️ **推之前先清代理环境变量**：本机 shell 里常驻 `ALL_PROXY/http_proxy=127.0.0.1:7897`，代理软件没开时会 `HTTP 408 / RPC failed` 推送失败。先 `unset ALL_PROXY all_proxy HTTP_PROXY http_proxy HTTPS_PROXY https_proxy` 再推（GitHub 国内直连可通）。
+   ⚠️ **推送走哪条路要现场试，别认死一种**（2026-09-11 实测推翻了旧结论）：
+   旧文档写"清掉代理直连就能推"，当天实测**直连 push 挂**（HTTP/2 framing error、75 秒超时），
+   而 `curl` 直连是通的、**显式走 7897 代理反而成功**。按这个顺序试：
+
+   ```bash
+   # ① 先 curl 探一下哪条通
+   curl -sS -o /dev/null -w '%{http_code}\n' --max-time 15 https://github.com
+   # ② 直连不行就显式挂代理 + 强制 HTTP/1.1（当日实测可用）
+   env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u all_proxy -u ALL_PROXY \
+     GIT_HTTP_LOW_SPEED_LIMIT=1 GIT_HTTP_LOW_SPEED_TIME=300 \
+     git -c http.version=HTTP/1.1 \
+         -c http.proxy=http://127.0.0.1:7897 -c https.proxy=http://127.0.0.1:7897 \
+         push origin main
+   ```
+
    推送后 GitHub Pages 自动更新，在线链接即最新版（也是给用户的下载/分享链接）。
+   **推完必做**：抓一次线上文件的 sha256 跟本地比，确认线上真是新版，别只信 git 的回显。
+
+## 🩺 2026-09-11 全盘体检修掉的 15 个 bug（别再重复修）
+
+用户原话："你帮我全盘检查检查看看有没有什么BUG和可以优化的地方?"。逐条定位、逐条修、逐条回归：
+
+| # | 问题 | 根因 |
+|---|---|---|
+| 1 | 短文篇目区选不出来 | `.hidden!important` 陷阱（第 2 次） |
+| 2 | 从短文切回别的模式，主题区再也回不来 | 同上（第 3 次）→ 收口成 `setShown()` |
+| 3 | 篇目 r09~r20 共 12 篇点不到 | 缺 `topic-open` 类，被 `nth-child(n+10)` 藏掉 |
+| 4 | 切音源后"开始"按钮文案不变 | 没有 `syncStartBtn()`，只在模式卡切换时更新 |
+| 5 | **最常用的闪卡模式，30 分钟计时恒为 0** | 计时判据是 `window.__curScreen`，而闪卡走裸 `classList` 切屏从不设它 → 改成 `_isStudying()` 直接看 DOM |
+| 6 | **跨月/跨位数时 SRS 复习排期全乱** | 拿 `"2026-9-30"` 这种**字符串**比大小（字典序）：`'2026-10-1' < '2026-9-30'` → 加 `dayNum()` 转数字 |
+| 7 | SRS 第 5 档"15 天后"永远走不到，复习卡第 5 颗点永远不亮 | 出库判据写成 `level >= SRS_INTERVALS.length`，应为 `>` |
+| 8 | 在阅读/句库点"＋生词本"会把攒了几天的 SRS 档位打回原形 | 一律降级；收藏≠答错 → `addToNotebook(word, isMistake)`，只有答错才降 |
+| 9 | 同一个词在生词本里变成两条互不相干的记录 | 句首词带大写入库 → 统一 `toLowerCase()` |
+| 10 | 断签后一直显示旧的连续天数（假的） | `streak` 只在下次互动时才被纠正 → `checkDay()` 里当场清零 |
+| 11 | 复习结算"本次复习了 N 个"数字自相矛盾 | 用了 `reviewWords.length`（含未复习的）→ 改 `reviewSession.length` |
+| 12 | 💯「完美闯关」徽章永远拿不到 | `showEnd()` 一开头就 return 到 `showMapEnd()`，里面那句 `recordPerfectQuiz` 是死代码；且首页已无普通闯关入口 → 在 `showMapEnd` 里补上 |
+| 13 | 苹果设备首次进页面用**中文嗓子念英文** | 没选中 voice 时没给兜底 `u.lang` → 落成文档语言 zh-CN |
+| 14 | 一句 TTS 抛异常会带崩整个连播循环 | `u.voice =` 赋值和 `speak()` 都可能抛 → 各自包 `try` |
+| 15 | 回到首页了还在后台念整篇 | `cancel()` 掐不掉 `onend` 链条 → 切屏时 token 自增作废 |
+
+同期还补了：`lsWakeOn` 重入保护（`lsWake='pending'` 占位）、`markUnknown` 连点保护
+（连点 5 下会虚增 5 次今日计数 + 连降 5 级 SRS）、`BASE_IPA` 补 `separate` 的音标。
 
 ## 后续路线（可继续做）
 
@@ -243,6 +283,88 @@ python3 -m http.server --directory "$SKILL_DIR" 8765
 - 数据导出/导入、跨设备同步（需后端）。
 - 改微信小程序便于国内传播。
 
+## 🔴 改这个文件的三条铁律（每次动手前先读）
+
+### ① 显示/隐藏任何区块，只能用 `setShown(id, show)`
+
+```js
+setShown('topic-grid', true);    // ✅ 唯一正确写法
+document.getElementById('x').style.display = '';        // ❌ 顶不过 !important
+document.getElementById('x').classList.remove('hidden'); // ❌ 会被 inline display:none 压住
+```
+
+**为什么**：CSS 里是 `.hidden{display:none!important}`（约 424 行）。要让一个带 `hidden` 类的元素重新出现，
+必须**同时**清掉 `hidden` 类和 inline 的 `display:none` —— 写一个都会留下"东西点不出来"的鬼 bug。
+
+这个坑前后踩了**三次**（短文篇目区出不来、首页主题区回不来、篇目 r09~r20 点不到）。
+第三次之后把所有显示/隐藏收口进 `setShown()`，并写了两道闸门卡住它：
+- 静态审计第 ⑦ 项：扫全文件有没有"只设 `style.display` 去显示一个带 `hidden` 类的元素"。
+- 回归测试 ⑪b：同样规则，且带一条"确实扫到了带 hidden 的元素"防空转。
+
+### ② 第 10 个及以后的 `.topic-btn` 会被全局规则藏掉
+
+```css
+.topic-grid:not(.topic-open) > .topic-btn:nth-child(n+10){ display:none }
+```
+
+任何**动态填充**的 `.topic-grid`（篇目网格 21 个按钮就是）必须带 `topic-open` 类，
+否则第 10 个之后的按钮渲染出来了但点不到 —— 不报错、不消失，只是没反应，最难查。
+
+### ③ 离开屏幕时要把"还在自己往下念"的连播链全部作废
+
+`speechSynthesis.cancel()` **只掐得掉当前这一句**，掐不掉 `setTimeout`/`onend` 串起来的链条。
+切屏必须让 token 自增作废：`rdToken++`（整篇朗读）、`sentToken++`（句库）、`lsToken++`/`lsPlaying=false`（听力）。
+不然人都回到首页了，它还在后台念完整篇。
+
+## 🧪 测试与验证（2026-09-11 全盘体检时建的）
+
+四套测试脚本在 `/tmp`（会随重启消失，要长期用得挪进 skill 目录）：
+
+| 脚本 | 内容 | 期望 |
+|---|---|---|
+| `/tmp/test_zixue_fixes.js` | 本次修的 bug 逐条回归 | 44 通过 / 0 失败 |
+| `/tmp/test_ls_sent.js` | 听力·短文音源 | 60 / 0 |
+| `/tmp/test_m30.js` | 今日 30 分钟计时 | 24 / 0 |
+| `/tmp/pwtest/smoke2.js` | **真 Chromium** 走遍每个界面 | 53 / 0 |
+| `/tmp/audit_static.js` | 静态审计（id 引用/落盘配对/.hidden 陷阱） | 无 ❌ |
+| `/tmp/vfy3.js` | 点词死区（音标/释义） | 0 / 0 |
+
+### 🔴🔴 写测试的头号纪律：不许重写业务函数
+
+**必须从 `index.html` 里切"真身"代码来跑，一个业务函数都不许在测试里重新实现。**
+
+这个错犯过**两次**，第二次（`/tmp/vfy2.js`）谎报了"缺 92 条释义 / 207 条音标"，
+差点让我去补一堆根本不存在的问题。重写版和真身的差别就在细节里（大小写、lemma 候选、fallback 顺序），
+自己实现一遍等于考自己出的题。
+
+正确姿势：按**注释行**做切片的锚点（函数签名会改，注释行更稳），例如：
+
+```js
+function cut(a, b) { const i = src.indexOf(a), j = src.indexOf(b);
+  if (i < 0 || j < 0 || j < i) throw new Error('提取失败: ' + a); return src.slice(i, j); }
+const CODE = cut('  function todayStr() {', '  function defaults()');
+```
+
+### 真浏览器测试的两个已知坑
+
+- **`SpeechSynthesisUtterance` 是浏览器原生类**，桩必须**整个替换掉这个类**
+  （`Object.defineProperty(window,'SpeechSynthesisUtterance',{value:MyStub})`）。
+  写成 `if (!window.SpeechSynthesisUtterance)` 是无效的 —— Chrome 早就定义好了，
+  于是 `u.voice = 普通对象` 会撞上真实校验器抛异常，**级联出一堆假的"导航超时"**。
+- **断言别考内部状态**（如 `window.__curScreen`）。内部判据一改，测试就在考陈旧契约。
+  考对外的口子（如 `window.getTodaySec()`）或直接考用户看得见的结果。
+
+## 已知限制（刻意不修，不是漏了）
+
+1. **13 处短语释义点不到**：短文词表里的 `alarm clock`/`red light`/`used to`/`waiting room`/
+   `out of work`/`woke up`/`came in`/`sat down`/`twenty-five`/`stood up`/`hard way`/
+   `look up`/`came back` —— `glossOf` 是按**单个 token** 查的，短语永远命中不了。
+   **故意不改**：给初学者做短语识别是个脆弱启发式，猜错释义比给个通用义更糟；
+   而且这 13 处全都能回落到正确的全局词义，用户不会看到空白。
+2. **215 处主题间词义冲突**（同一个词在不同主题下释义不同）：都取了首次出现的那条，无害。
+3. **句型骨架那屏的句子不可点词**（纯文本 + `.hl` 高亮），所以那里的"缺释义/缺音标"不是死区，
+   静态扫描会报出来，**忽略即可**。
+
 ## 注意
 
 - **保持单文件、零依赖、离线可用**，除非用户同意引入后端/框架。
@@ -250,3 +372,5 @@ python3 -m http.server --directory "$SKILL_DIR" 8765
 - 新增持久化字段务必加进 `defaults()`，否则老用户存档读不到。
 - 词库是 `{cn,en}`；展示音标从 `IPA_MAP` 取，没有就留空（不要瞎编音标）。
 - 朗读始终是发音的权威来源，音标只是辅助。
+- **数据常量里不要写 `//` 行内注释**：评估脚本用 `JSON.parse` 读它们会炸
+  （`BASE_IPA` 里曾有个 `//` 注释，害得校验脚本报错）。要写说明就写进本文件。
