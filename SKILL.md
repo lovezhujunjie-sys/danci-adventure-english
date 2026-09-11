@@ -99,7 +99,9 @@ description: 开发与迭代「单词大冒险」自学英语 web 应用——�
 ## 本地预览
 
 ```bash
-python3 -m http.server --directory ~/.claude/skills/自学英语 8765
+# SKILL_DIR = 本 skill 所在目录（~/.claude/skills/自学英语 或 ~/.agents/skills/自学英语，两处同源）
+SKILL_DIR=~/.claude/skills/自学英语
+python3 -m http.server --directory "$SKILL_DIR" 8765
 # 浏览器打开 http://localhost:8765/index.html
 # 注意：含中文文件名/file:// 受限，用上面的 http server 方式预览
 ```
@@ -108,13 +110,14 @@ python3 -m http.server --directory ~/.claude/skills/自学英语 8765
 
 > 用户的明确要求：每次改完都执行这两个动作。
 
-1. **更新本地 skill**：直接编辑 `~/.claude/skills/自学英语/index.html`（及本 SKILL.md），这是唯一真源。用户在 `~/Downloads` 里的副本只是导出，**不要**把它当源。
-2. **推到 GitHub**：在该目录下
+1. **更新本地 skill**：直接编辑本 skill 目录下的 `index.html`（及本 SKILL.md）。**真源是 GitHub 仓库 `lovezhujunjie-sys/danci-adventure-english`**；本机有两个同源工作副本（`~/.claude/skills/自学英语` 与 `~/.agents/skills/自学英语`，指向同一 remote），改完记得**两边同步**，否则会分叉。用户在 `~/Downloads` 里的副本只是导出，**不要**当成源。
+2. **推到 GitHub**：在 skill 目录下（`git -C "$SKILL_DIR"`）
    ```bash
-   git -C ~/.claude/skills/自学英语 add -A
-   git -C ~/.claude/skills/自学英语 commit -m "描述本次优化"
-   git -C ~/.claude/skills/自学英语 push
+   git -C "$SKILL_DIR" add -A
+   git -C "$SKILL_DIR" commit -m "描述本次优化"
+   git -C "$SKILL_DIR" push
    ```
+   ⚠️ **推之前先清代理环境变量**：本机 shell 里常驻 `ALL_PROXY/http_proxy=127.0.0.1:7897`，代理软件没开时会 `HTTP 408 / RPC failed` 推送失败。先 `unset ALL_PROXY all_proxy HTTP_PROXY http_proxy HTTPS_PROXY https_proxy` 再推（GitHub 国内直连可通）。
    推送后 GitHub Pages 自动更新，在线链接即最新版（也是给用户的下载/分享链接）。
 
 ## 后续路线（可继续做）
