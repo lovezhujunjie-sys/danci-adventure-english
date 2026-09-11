@@ -1224,6 +1224,48 @@
     font-size: 11.5px; font-weight: 700; color: var(--ink3); line-height: 1.5;
   }
 
+  /* ============================================================
+     📖 分级阅读(2026-09-11)
+     ============================================================ */
+  .rd-hud {
+    position: sticky; top: 0; z-index: 8;
+    margin: -18px -16px 10px; padding: 12px 16px 10px;
+    padding-top: max(12px, env(safe-area-inset-top));
+    background: var(--bg);
+    border-bottom: 2px dashed var(--line2);
+  }
+  .rd-hud-row { display: flex; align-items: center; gap: 10px; }
+  .rd-hud-t {
+    font-size: 17px; font-weight: 900; color: var(--ink); line-height: 1.15;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .rd-hud-s { font-size: 11px; color: var(--ink3); font-weight: 700; margin-top: 2px; }
+  .rd-back {
+    flex: 0 0 auto; font-family: inherit; cursor: pointer;
+    font-size: 12px; font-weight: 800; padding: 6px 10px;
+    border-radius: 10px; border: 2px solid var(--line2);
+    background: var(--card); color: var(--ink2);
+  }
+  .rd-shelf { display: flex; flex-direction: column; gap: 11px; }
+  .rd-book {
+    display: flex; align-items: center; gap: 12px;
+    width: 100%; text-align: left;
+    padding: 12px; font-family: inherit; cursor: pointer;
+    background: var(--card); color: var(--ink);
+    border: 2.5px solid var(--line2); border-radius: 16px;
+    box-shadow: 0 4px 0 var(--line2);
+    transition: transform .16s cubic-bezier(.34,1.56,.64,1), box-shadow .16s;
+  }
+  .rd-book:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--line2); }
+  .rd-bk-ic { flex: 0 0 auto; font-size: 26px; }
+  .rd-bk-body { flex: 1 1 auto; min-width: 0; }
+  .rd-bk-nm { display: block; font-size: 14px; font-weight: 900; }
+  .rd-bk-cn { display: block; font-size: 12px; color: var(--ink2); font-weight: 700; margin-top: 1px; }
+  .rd-bk-meta { display: block; font-size: 11px; color: var(--ink3); font-weight: 700; margin-top: 2px; }
+  .rd-sent { margin-bottom: 14px; }
+  .rd-sent .sent-en { font-size: 19px; line-height: 1.7; }
+  .rd-foot { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+
 </style>
 </head>
 <body>
@@ -1273,6 +1315,17 @@
         <div>
           <div class="he-title">我的成就</div>
           <div class="he-sub" id="achv-entry-sub">看学习数据</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">阅读 <span class="new-badge">NEW</span></div>
+    <div class="mode-cards mode-cards-4">
+      <div class="mode-card span2" data-goto="reading">
+        <div class="mc-icon">📖</div>
+        <div class="mc-body">
+          <div class="mc-title">分级阅读</div>
+          <div class="mc-desc">像读书一样读短文 · 点单词就查意思、一键收进生词本</div>
         </div>
       </div>
     </div>
@@ -1556,6 +1609,34 @@
   </div>
 
   <!-- ===== 闯关模式 ===== -->
+  <!-- ============ 📖 分级阅读(2026-09-11 新增) ============ -->
+  <div id="reading-screen" class="hidden">
+    <!-- 书架 -->
+    <div id="rd-shelf-view">
+      <div class="rd-hud">
+        <div class="rd-hud-t">📖 分级阅读</div>
+        <div class="rd-hud-s">从最简单的开始，一本一本往上走 —— 点单词就查意思</div>
+      </div>
+      <div class="rd-shelf" id="rd-shelf"></div>
+      <div class="rd-foot"><button class="btn-secondary" id="rd-home">返回首页</button></div>
+    </div>
+    <!-- 阅读页 -->
+    <div id="rd-read-view" class="hidden">
+      <div class="rd-hud">
+        <div class="rd-hud-row">
+          <button class="rd-back" id="rd-shelf-back">← 书架</button>
+          <div class="rd-hud-t" id="rd-title"></div>
+        </div>
+        <div class="rd-hud-s" id="rd-meta"></div>
+      </div>
+      <div id="rd-body"></div>
+      <div class="rd-foot">
+        <button class="sent-speak-btn" id="rd-read-all">▶ 从头朗读全文</button>
+        <button class="btn-secondary" id="rd-shelf-back2">← 回到书架</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ============ 🗺️ 闯关地图(2026-09-11 新增) ============ -->
   <div id="map-screen" class="hidden">
     <div class="map-hud">
@@ -1894,6 +1975,188 @@ const IPA_MAP = {"person":"/ˈpɜːsn/","people":"/ˈpiːpl/","man":"/mæn/","wo
 
 // ===== 日常高频句数据(2026-09-11 新增) =====
 const SENTENCES = {"greeting":{"name":"问候寒暄","icon":"👋","items":[{"en":"How are you doing?","cn":"你最近怎么样?","g":{"How":"怎么","are":"是","you":"你","doing":"过得"}},{"en":"Long time no see!","cn":"好久不见!","g":{"Long":"久","time":"时间","no":"没","see":"见"}},{"en":"How's it going?","cn":"最近怎么样?","g":{"How's":"怎么样","it":"事情","going":"进展"}},{"en":"Nice to meet you.","cn":"很高兴认识你。","g":{"Nice":"高兴","to":"不定式","meet":"认识","you":"你"}},{"en":"Nice to see you again.","cn":"很高兴又见到你。","g":{"Nice":"高兴","to":"不定式","see":"见到","you":"你","again":"又"}},{"en":"Good to see you.","cn":"见到你真好。","g":{"Good":"好","to":"不定式","see":"见到","you":"你"}},{"en":"It's been a while.","cn":"有一阵子没见了。","g":{"It's":"已经","been":"有","a":"一段","while":"时间"}},{"en":"How have you been?","cn":"你最近过得好吗?","g":{"How":"怎么","have":"助动词","you":"你","been":"过得"}},{"en":"Hey, what's up?","cn":"嘿,最近咋样?","g":{"Hey":"嘿","what's":"什么","up":"事"}},{"en":"What's new with you?","cn":"你最近有什么新鲜事?","g":{"What's":"有什么","new":"新鲜事","with":"关于","you":"你"}},{"en":"Morning! Sleep well?","cn":"早!睡得好吗?","g":{"Morning":"早上好","Sleep":"睡","well":"好"}},{"en":"How was your day?","cn":"你今天过得怎么样?","g":{"How":"怎么","was":"是","your":"你的","day":"一天"}},{"en":"How was your weekend?","cn":"你周末过得怎么样?","g":{"How":"怎么","was":"是","your":"你的","weekend":"周末"}},{"en":"Have a good day!","cn":"祝你今天过得愉快!","g":{"Have":"度过","a":"一个","good":"好的","day":"一天"}},{"en":"Have a nice weekend!","cn":"周末愉快!","g":{"Have":"度过","a":"一个","nice":"愉快的","weekend":"周末"}},{"en":"Take care of yourself!","cn":"照顾好自己!","g":{"Take":"照顾","care":"好","of":"你","yourself":"自己"}},{"en":"See you later!","cn":"待会儿见!","g":{"See":"见","you":"你","later":"待会儿"}},{"en":"See you tomorrow.","cn":"明天见。","g":{"See":"见","you":"你","tomorrow":"明天"}},{"en":"See you around.","cn":"回头见。","g":{"See":"见","you":"你","around":"回头"}},{"en":"Talk to you later.","cn":"晚点再跟你聊。","g":{"Talk":"聊","to":"和","you":"你","later":"晚点"}},{"en":"I gotta go.","cn":"我得走了。","g":{"I":"我","gotta":"得","go":"走"}},{"en":"I have to go now.","cn":"我现在得走了。","g":{"I":"我","have":"得","to":"不定式","go":"走","now":"现在"}},{"en":"Catch you later!","cn":"回头见!","g":{"Catch":"找","you":"你","later":"回头"}},{"en":"Say hi to your family.","cn":"代我向你家人问好。","g":{"Say":"说","hi":"问好","to":"向","your":"你的","family":"家人"}},{"en":"Say hello to your mom for me.","cn":"代我向你妈妈问好。","g":{"Say":"说","hello":"问好","to":"向","your":"你的","mom":"妈妈","for":"替","me":"我"}},{"en":"Give my best to your wife.","cn":"代我向你太太问好。","g":{"Give":"带给","my":"我的","best":"问候","to":"向","your":"你的","wife":"太太"}},{"en":"Welcome back, my friend!","cn":"欢迎回来,我的朋友!","g":{"Welcome":"欢迎","back":"回来","my":"我的","friend":"朋友"}},{"en":"Thanks for coming.","cn":"谢谢你能来。","g":{"Thanks":"谢谢","for":"因为","coming":"来"}},{"en":"I'm so glad you came.","cn":"你能来我太高兴了。","g":{"I'm":"我","so":"太","glad":"高兴","you":"你","came":"来了"}},{"en":"Sorry I'm late.","cn":"抱歉我迟到了。","g":{"Sorry":"抱歉","I'm":"我","late":"迟到"}},{"en":"Sorry to keep you waiting.","cn":"抱歉让你久等了。","g":{"Sorry":"抱歉","to":"不定式","keep":"让","you":"你","waiting":"等着"}},{"en":"No worries, it's fine.","cn":"没关系,这没什么。","g":{"No":"没有","worries":"关系","it's":"这","fine":"没什么"}},{"en":"It's okay, don't worry.","cn":"没事,别担心。","g":{"It's":"这","okay":"没事","don't":"别","worry":"担心"}},{"en":"Excuse me for a second.","cn":"抱歉,失陪一下。","g":{"Excuse":"原谅","me":"我","for":"占用","a":"一","second":"秒"}},{"en":"I didn't catch your name.","cn":"我没听清你的名字。","g":{"I":"我","didn't":"没有","catch":"听清","your":"你的","name":"名字"}},{"en":"What's your name again?","cn":"你叫什么名字来着?","g":{"What's":"是什么","your":"你的","name":"名字","again":"来着"}},{"en":"I'm terrible with names.","cn":"我记人名特别差。","g":{"I'm":"我","terrible":"很差","with":"对于","names":"名字"}},{"en":"Nice talking to you.","cn":"跟你聊天很开心。","g":{"Nice":"开心","talking":"聊天","to":"和","you":"你"}},{"en":"Let's catch up soon.","cn":"我们快点找个时间聚聚。","g":{"Let's":"让我们","catch":"叙","up":"旧","soon":"尽快"}},{"en":"We should hang out sometime.","cn":"我们改天该一起出去玩玩。","g":{"We":"我们","should":"应该","hang":"出去","out":"玩","sometime":"改天"}},{"en":"Drop by anytime.","cn":"随时来坐坐。","g":{"Drop":"来","by":"顺便","anytime":"随时"}},{"en":"Come over for dinner sometime.","cn":"改天来家里吃个饭。","g":{"Come":"来","over":"过来","for":"吃","dinner":"晚饭","sometime":"改天"}},{"en":"Say hello to your parents for me.","cn":"代我向你父母问好。","g":{"Say":"说","hello":"问好","to":"向","your":"你的","parents":"父母","for":"替","me":"我"}},{"en":"I've heard so much about you.","cn":"我早就听说过你很多事了。","g":{"I've":"我已经","heard":"听说","so":"这么","much":"多","about":"关于","you":"你"}},{"en":"It's nice to finally meet you.","cn":"终于见到你了,真好。","g":{"It's":"这","nice":"好","to":"不定式","finally":"终于","meet":"见到","you":"你"}},{"en":"How's your family doing?","cn":"你家里人还好吗?","g":{"How's":"怎么样","your":"你的","family":"家人","doing":"过得"}},{"en":"Let's grab coffee sometime.","cn":"改天一起喝杯咖啡吧。","g":{"Let's":"让我们","grab":"喝","coffee":"咖啡","sometime":"改天"}},{"en":"Give me a call when you're free.","cn":"你有空给我打个电话。","g":{"Give":"给","me":"我","a":"一个","call":"电话","when":"当","you're":"你","free":"有空"}},{"en":"Have a safe trip!","cn":"一路平安!","g":{"Have":"度过","a":"一个","safe":"平安的","trip":"旅程"}},{"en":"Good luck with your interview!","cn":"祝你面试顺利!","g":{"Good":"好的","luck":"运气","with":"在","your":"你的","interview":"面试"}}]},"smalltalk":{"name":"闲聊家常","icon":"💬","items":[{"en":"Nice weather today, isn't it?","cn":"今天天气不错,是吧?","g":{"Nice":"好","weather":"天气","today":"今天","isn't":"不是","it":"它"}},{"en":"It's really hot today.","cn":"今天真热。","g":{"It's":"天气","really":"真","hot":"热","today":"今天"}},{"en":"It's so cold today.","cn":"今天太冷了。","g":{"It's":"天气","so":"太","cold":"冷","today":"今天"}},{"en":"Looks like it's going to rain.","cn":"看样子要下雨了。","g":{"Looks":"看起来","like":"像","it's":"天","going":"要","to":"不定式","rain":"下雨"}},{"en":"It's a beautiful day.","cn":"今天天气真好。","g":{"It's":"今天","a":"一个","beautiful":"美丽的","day":"日子"}},{"en":"How's the weather there?","cn":"你那边天气怎么样?","g":{"How's":"怎么样","the":"那","weather":"天气","there":"那儿"}},{"en":"It's raining pretty hard.","cn":"雨下得挺大的。","g":{"It's":"雨","raining":"下","pretty":"相当","hard":"大"}},{"en":"The sun is finally out.","cn":"太阳终于出来了。","g":{"The":"这","sun":"太阳","is":"是","finally":"终于","out":"出来了"}},{"en":"What's your job?","cn":"你做什么工作?","g":{"What's":"是什么","your":"你的","job":"工作"}},{"en":"I work at a bank.","cn":"我在银行上班。","g":{"I":"我","work":"工作","at":"在","a":"一家","bank":"银行"}},{"en":"How long have you worked there?","cn":"你在那儿工作多久了?","g":{"How":"多","long":"久","have":"助动词","you":"你","worked":"工作","there":"在那儿"}},{"en":"Do you like your job?","cn":"你喜欢你的工作吗?","g":{"Do":"助动词","you":"你","like":"喜欢","your":"你的","job":"工作"}},{"en":"I'm busy with work lately.","cn":"我最近工作挺忙的。","g":{"I'm":"我","busy":"忙","with":"于","work":"工作","lately":"最近"}},{"en":"Work has been crazy lately.","cn":"最近工作忙疯了。","g":{"Work":"工作","has":"一直","been":"是","crazy":"忙疯了","lately":"最近"}},{"en":"I need a break.","cn":"我需要歇一歇。","g":{"I":"我","need":"需要","a":"一下","break":"休息"}},{"en":"Did you sleep well last night?","cn":"你昨晚睡得好吗?","g":{"Did":"助动词","you":"你","sleep":"睡","well":"好","last":"昨天","night":"晚上"}},{"en":"I stayed up too late.","cn":"我昨晚熬夜太晚了。","g":{"I":"我","stayed":"待着","up":"不睡","too":"太","late":"晚"}},{"en":"What did you have for lunch?","cn":"你午饭吃了什么?","g":{"What":"什么","did":"助动词","you":"你","have":"吃","for":"作为","lunch":"午饭"}},{"en":"I had noodles for lunch.","cn":"我午饭吃的面条。","g":{"I":"我","had":"吃了","noodles":"面条","for":"作为","lunch":"午饭"}},{"en":"Let's grab something to eat.","cn":"我们去找点吃的吧。","g":{"Let's":"让我们","grab":"弄点","something":"东西","to":"不定式","eat":"吃"}},{"en":"I'm starving. Let's eat.","cn":"我饿死了,我们吃吧。","g":{"I'm":"我","starving":"饿死了","Let's":"我们","eat":"吃吧"}},{"en":"This food is amazing.","cn":"这个太好吃了。","g":{"This":"这","food":"食物","is":"是","amazing":"太好吃了"}},{"en":"I love spicy food.","cn":"我爱吃辣的。","g":{"I":"我","love":"爱","spicy":"辣的","food":"食物"}},{"en":"Do you cook at home?","cn":"你在家做饭吗?","g":{"Do":"助动词","you":"你","cook":"做饭","at":"在","home":"家"}},{"en":"I can't cook at all.","cn":"我完全不会做饭。","g":{"I":"我","can't":"不会","cook":"做饭","at":"一点","all":"也"}},{"en":"What did you do this weekend?","cn":"你周末干什么了?","g":{"What":"什么","did":"助动词","you":"你","do":"做","this":"这个","weekend":"周末"}},{"en":"I just stayed home.","cn":"我就待在家里。","g":{"I":"我","just":"就","stayed":"待","home":"家"}},{"en":"We went hiking on Sunday.","cn":"我们周日去爬山了。","g":{"We":"我们","went":"去","hiking":"爬山","on":"在","Sunday":"星期天"}},{"en":"Any plans for the weekend?","cn":"周末有什么安排吗?","g":{"Any":"有什么","plans":"计划","for":"对于","the":"这个","weekend":"周末"}},{"en":"Do you have kids?","cn":"你有孩子吗?","g":{"Do":"助动词","you":"你","have":"有","kids":"孩子"}},{"en":"I have two kids.","cn":"我有两个孩子。","g":{"I":"我","have":"有","two":"两个","kids":"孩子"}},{"en":"My son just started school.","cn":"我儿子刚上学。","g":{"My":"我的","son":"儿子","just":"刚","started":"开始","school":"上学"}},{"en":"How old is your daughter?","cn":"你女儿多大了?","g":{"How":"多","old":"大","is":"是","your":"你的","daughter":"女儿"}},{"en":"She looks just like you.","cn":"她长得真像你。","g":{"She":"她","looks":"长得","just":"就","like":"像","you":"你"}},{"en":"My wife loves shopping.","cn":"我太太喜欢逛街。","g":{"My":"我的","wife":"太太","loves":"喜欢","shopping":"逛街"}},{"en":"We've been married for ten years.","cn":"我们结婚十年了。","g":{"We've":"我们已经","been":"是","married":"结婚","for":"有","ten":"十","years":"年"}},{"en":"Where are you from?","cn":"你是哪里人?","g":{"Where":"哪里","are":"是","you":"你","from":"来自"}},{"en":"I'm from Shanghai.","cn":"我是上海的。","g":{"I'm":"我","from":"来自","Shanghai":"上海"}},{"en":"Have you lived here long?","cn":"你在这儿住很久了吗?","g":{"Have":"助动词","you":"你","lived":"住","here":"这儿","long":"久"}},{"en":"How do you get to work?","cn":"你怎么去上班?","g":{"How":"怎么","do":"助动词","you":"你","get":"去","to":"到","work":"上班"}},{"en":"I take the subway every day.","cn":"我每天坐地铁。","g":{"I":"我","take":"坐","the":"这","subway":"地铁","every":"每","day":"天"}},{"en":"The traffic is terrible today.","cn":"今天路上堵得厉害。","g":{"The":"这","traffic":"交通","is":"是","terrible":"太糟了","today":"今天"}},{"en":"I'm stuck in traffic.","cn":"我堵在路上了。","g":{"I'm":"我","stuck":"堵","in":"在","traffic":"车流里"}},{"en":"What are your hobbies?","cn":"你有什么爱好?","g":{"What":"什么","are":"是","your":"你的","hobbies":"爱好"}},{"en":"I like watching movies.","cn":"我喜欢看电影。","g":{"I":"我","like":"喜欢","watching":"看","movies":"电影"}},{"en":"Do you play any sports?","cn":"你做什么运动吗?","g":{"Do":"助动词","you":"你","play":"打","any":"什么","sports":"运动"}},{"en":"I go running every morning.","cn":"我每天早上跑步。","g":{"I":"我","go":"去","running":"跑步","every":"每","morning":"早上"}},{"en":"Have you seen that new movie?","cn":"那部新电影你看了吗?","g":{"Have":"助动词","you":"你","seen":"看过","that":"那","new":"新的","movie":"电影"}},{"en":"It's a really good show.","cn":"这剧真不错。","g":{"It's":"这","a":"一部","really":"真","good":"好的","show":"剧"}},{"en":"Let's hang out this weekend.","cn":"我们这周末一起出去玩玩吧。","g":{"Let's":"我们","hang":"出去","out":"玩","this":"这个","weekend":"周末"}}]},"dining":{"name":"点餐吃饭","icon":"🍽️","items":[{"en":"Can I see the menu?","cn":"我能看下菜单吗?","g":{"Can":"能","I":"我","see":"看","the":"这个","menu":"菜单"}},{"en":"I'd like a coffee.","cn":"我要一杯咖啡。","g":{"I'd":"我想要","like":"要","a":"一","coffee":"咖啡"}},{"en":"A table for two, please.","cn":"要一张两人桌,谢谢。","g":{"A":"一张","table":"桌子","for":"给","two":"两人","please":"谢谢"}},{"en":"Do you have a reservation?","cn":"您有预订吗?","g":{"Do":"助动词","you":"您","have":"有","a":"一个","reservation":"预订"}},{"en":"Could we sit by the window?","cn":"我们能坐窗边吗?","g":{"Could":"能","we":"我们","sit":"坐","by":"靠","the":"这个","window":"窗户"}},{"en":"What do you recommend?","cn":"你推荐点什么?","g":{"What":"什么","do":"助动词","you":"你","recommend":"推荐"}},{"en":"I'm ready to order.","cn":"我准备好点餐了。","g":{"I'm":"我","ready":"准备好","to":"去","order":"点餐"}},{"en":"Are you ready to order?","cn":"您准备好点餐了吗?","g":{"Are":"是否","you":"您","ready":"准备好","to":"去","order":"点餐"}},{"en":"What's good here?","cn":"这儿什么好吃?","g":{"What's":"什么是","good":"好吃","here":"这里"}},{"en":"I'll have the steak.","cn":"我要这个牛排。","g":{"I'll":"我要","have":"点","the":"这个","steak":"牛排"}},{"en":"Give me a minute, please.","cn":"请稍等一下。","g":{"Give":"给","me":"我","a":"一","minute":"分钟","please":"请"}},{"en":"Can I get some water?","cn":"能给我点水吗?","g":{"Can":"能","I":"我","get":"拿","some":"一些","water":"水"}},{"en":"Could I have the bill?","cn":"可以买单吗?","g":{"Could":"可以","I":"我","have":"拿","the":"这个","bill":"账单"}},{"en":"Is this seat taken?","cn":"这个位子有人吗?","g":{"Is":"是","this":"这个","seat":"位子","taken":"被占"}},{"en":"We need one more chair.","cn":"我们还需要一把椅子。","g":{"We":"我们","need":"需要","one":"一","more":"再","chair":"椅子"}},{"en":"This is not what I ordered.","cn":"这不是我点的。","g":{"This":"这","is":"是","not":"不","what":"什么","I":"我","ordered":"点的"}},{"en":"It's a bit too salty.","cn":"有点太咸了。","g":{"It's":"它","a":"一","bit":"点","too":"太","salty":"咸"}},{"en":"Not too spicy, please.","cn":"不要太辣,谢谢。","g":{"Not":"不要","too":"太","spicy":"辣","please":"谢谢"}},{"en":"I'm allergic to peanuts.","cn":"我对花生过敏。","g":{"I'm":"我","allergic":"过敏","to":"对","peanuts":"花生"}},{"en":"Do you have a vegetarian dish?","cn":"有素菜吗?","g":{"Do":"助动词","you":"你们","have":"有","a":"一道","vegetarian":"素的","dish":"菜"}},{"en":"What's in this soup?","cn":"这汤里有什么?","g":{"What's":"什么","in":"在","this":"这个","soup":"汤"}},{"en":"Can I have it to go?","cn":"可以打包带走吗?","g":{"Can":"可以","I":"我","have":"要","it":"它","to":"去","go":"走"}},{"en":"That was delicious, thank you.","cn":"太好吃了,谢谢。","g":{"That":"那","was":"是","delicious":"好吃","thank":"谢谢","you":"你"}},{"en":"I'll pay by card.","cn":"我刷卡。","g":{"I'll":"我","pay":"付","by":"用","card":"卡"}},{"en":"Let's split the bill.","cn":"我们分开付吧。","g":{"Let's":"我们","split":"分开","the":"这个","bill":"账单"}},{"en":"Keep the change.","cn":"不用找零了。","g":{"Keep":"留着","the":"这个","change":"零钱"}},{"en":"Is service included?","cn":"含服务费吗?","g":{"Is":"是否","service":"服务费","included":"包含"}},{"en":"We'd like a table outside.","cn":"我们想坐外面。","g":{"We'd":"我们想","like":"要","a":"一个","table":"桌子","outside":"外面"}},{"en":"How long is the wait?","cn":"要等多久?","g":{"How":"多","long":"久","is":"是","the":"这个","wait":"等待"}},{"en":"Two coffees and one tea, please.","cn":"两杯咖啡一杯茶,谢谢。","g":{"Two":"两杯","coffees":"咖啡","and":"和","one":"一杯","tea":"茶","please":"谢谢"}},{"en":"I don't eat meat.","cn":"我不吃肉。","g":{"I":"我","don't":"不","eat":"吃","meat":"肉"}},{"en":"Could I get a refill?","cn":"能再续一杯吗?","g":{"Could":"能","I":"我","get":"要","a":"一","refill":"续杯"}},{"en":"Excuse me, we're ready.","cn":"你好,我们可以点餐了。","g":{"Excuse":"打扰","me":"我","we're":"我们","ready":"准备好"}},{"en":"What's the special today?","cn":"今天有什么特价?","g":{"What's":"什么","the":"这个","special":"特价","today":"今天"}},{"en":"I'll take the set menu.","cn":"我要这个套餐。","g":{"I'll":"我要","take":"要","the":"这个","set":"套餐","menu":"菜单"}},{"en":"Can we get separate bills?","cn":"可以分开结账吗?","g":{"Can":"可以","we":"我们","get":"要","separate":"分开的","bills":"账单"}},{"en":"My food is cold.","cn":"我的菜凉了。","g":{"My":"我的","food":"菜","is":"是","cold":"凉的"}},{"en":"Could you warm it up?","cn":"能热一下吗?","g":{"Could":"能","you":"你","warm":"加热","it":"它","up":"一下"}},{"en":"I'm still waiting for my drink.","cn":"我的饮料还没来。","g":{"I'm":"我","still":"还","waiting":"等","for":"要","my":"我的","drink":"饮料"}},{"en":"The steak is too tough.","cn":"这牛排太硬了。","g":{"The":"这","steak":"牛排","is":"是","too":"太","tough":"硬"}},{"en":"Can I have the receipt?","cn":"能给我小票吗?","g":{"Can":"能","I":"我","have":"拿","the":"这个","receipt":"小票"}},{"en":"We'll come back again.","cn":"我们还会再来的。","g":{"We'll":"我们会","come":"来","back":"回来","again":"再"}},{"en":"It's on me today.","cn":"今天我请客。","g":{"It's":"它","on":"由","me":"我","today":"今天"}},{"en":"Do you take cash?","cn":"你们收现金吗?","g":{"Do":"助动词","you":"你们","take":"收","cash":"现金"}},{"en":"Could I get another fork?","cn":"能再给我一把叉子吗?","g":{"Could":"能","I":"我","get":"拿","another":"另一把","fork":"叉子"}},{"en":"This table is dirty.","cn":"这桌子不干净。","g":{"This":"这","table":"桌子","is":"是","dirty":"脏的"}}]},"shopping":{"name":"购物买东西","icon":"🛒","items":[{"en":"How much is this?","cn":"这个多少钱?","g":{"How":"多","much":"少","is":"是","this":"这个"}},{"en":"Can I try it on?","cn":"我能试穿吗?","g":{"Can":"能","I":"我","try":"试","it":"它","on":"上"}},{"en":"Do you have this in small?","cn":"这个有小号的吗?","g":{"Do":"助动词","you":"你们","have":"有","this":"这个","in":"在","small":"小号"}},{"en":"I'm just looking, thanks.","cn":"我随便看看,谢谢。","g":{"I'm":"我","just":"只是","looking":"看看","thanks":"谢谢"}},{"en":"Where is the fitting room?","cn":"试衣间在哪儿?","g":{"Where":"哪里","is":"是","the":"这个","fitting":"试衣","room":"房间"}},{"en":"Do you have a bigger size?","cn":"有大一号的吗?","g":{"Do":"助动词","you":"你们","have":"有","a":"一个","bigger":"更大的","size":"尺码"}},{"en":"How much for two?","cn":"两个多少钱?","g":{"How":"多","much":"少","for":"要","two":"两个"}},{"en":"It's too expensive for me.","cn":"对我来说太贵了。","g":{"It's":"它","too":"太","expensive":"贵","for":"对","me":"我"}},{"en":"Can you give me a discount?","cn":"能便宜点吗?","g":{"Can":"能","you":"你","give":"给","me":"我","a":"一个","discount":"折扣"}},{"en":"Is there any cheaper one?","cn":"有便宜点的吗?","g":{"Is":"是否","there":"有","any":"任何","cheaper":"更便宜的","one":"一个"}},{"en":"I'll take this one.","cn":"我要这个。","g":{"I'll":"我要","take":"要","this":"这个","one":"一个"}},{"en":"Do you accept credit cards?","cn":"可以刷信用卡吗?","g":{"Do":"助动词","you":"你们","accept":"接受","credit":"信用","cards":"卡"}},{"en":"Can I get a receipt?","cn":"能给我小票吗?","g":{"Can":"能","I":"我","get":"拿","a":"一张","receipt":"小票"}},{"en":"I'd like to return this.","cn":"我想退这个。","g":{"I'd":"我想","like":"要","to":"去","return":"退","this":"这个"}},{"en":"It doesn't fit me.","cn":"我穿不合身。","g":{"It":"它","doesn't":"不","fit":"合身","me":"我"}},{"en":"Can I exchange it?","cn":"能换吗?","g":{"Can":"能","I":"我","exchange":"换","it":"它"}},{"en":"Where do I pay?","cn":"在哪儿付款?","g":{"Where":"哪里","do":"助动词","I":"我","pay":"付款"}},{"en":"I need a gift for my mom.","cn":"我要给我妈买个礼物。","g":{"I":"我","need":"需要","a":"一个","gift":"礼物","for":"给","my":"我的","mom":"妈妈"}},{"en":"Do you have it in black?","cn":"有黑色的吗?","g":{"Do":"助动词","you":"你们","have":"有","it":"它","in":"在","black":"黑色"}},{"en":"This one is on sale.","cn":"这个是打折的。","g":{"This":"这","one":"个","is":"是","on":"在","sale":"促销"}},{"en":"Is this the final price?","cn":"这是最终价吗?","g":{"Is":"是","this":"这","the":"这个","final":"最终","price":"价格"}},{"en":"Can you wrap it for me?","cn":"能帮我包装一下吗?","g":{"Can":"能","you":"你","wrap":"包装","it":"它","for":"帮","me":"我"}},{"en":"I'll think about it.","cn":"我再考虑一下。","g":{"I'll":"我","think":"想想","about":"考虑","it":"它"}},{"en":"That's a little pricey.","cn":"有点小贵。","g":{"That's":"这个","a":"一","little":"点","pricey":"贵"}},{"en":"Let me check the price.","cn":"我看看价格。","g":{"Let":"让","me":"我","check":"看看","the":"这个","price":"价格"}},{"en":"Can I have a bag?","cn":"能给我个袋子吗?","g":{"Can":"能","I":"我","have":"拿","a":"一个","bag":"袋子"}},{"en":"Where is the checkout?","cn":"收银台在哪儿?","g":{"Where":"哪里","is":"是","the":"这个","checkout":"收银台"}},{"en":"Is shipping free?","cn":"包邮吗?","g":{"Is":"是否","shipping":"运费","free":"免费"}},{"en":"I'll pay in cash.","cn":"我付现金。","g":{"I'll":"我","pay":"付","in":"用","cash":"现金"}},{"en":"Please keep the receipt.","cn":"小票请留着。","g":{"Please":"请","keep":"留着","the":"这个","receipt":"小票"}},{"en":"What colors do you have?","cn":"你们有哪些颜色?","g":{"What":"哪些","colors":"颜色","do":"助动词","you":"你们","have":"有"}},{"en":"My size is medium.","cn":"我穿中号。","g":{"My":"我的","size":"尺码","is":"是","medium":"中号"}},{"en":"Can I get a refund?","cn":"能退款吗?","g":{"Can":"能","I":"我","get":"拿","a":"一个","refund":"退款"}},{"en":"The zipper is broken.","cn":"拉链坏了。","g":{"The":"这个","zipper":"拉链","is":"是","broken":"坏的"}},{"en":"I bought this yesterday.","cn":"我昨天买的。","g":{"I":"我","bought":"买了","this":"这个","yesterday":"昨天"}},{"en":"Do you have this in stock?","cn":"这款有货吗?","g":{"Do":"助动词","you":"你们","have":"有","this":"这款","in":"在","stock":"库存"}},{"en":"It's a little too tight.","cn":"有点太紧了。","g":{"It's":"它","a":"一","little":"点","too":"太","tight":"紧"}},{"en":"Let me compare prices.","cn":"我比较一下价格。","g":{"Let":"让","me":"我","compare":"比较","prices":"价格"}},{"en":"Are these the same price?","cn":"这些价格一样吗?","g":{"Are":"是否","these":"这些","the":"这个","same":"一样","price":"价格"}},{"en":"I'll take two of these.","cn":"这些我要两个。","g":{"I'll":"我要","take":"要","two":"两个","of":"的","these":"这些"}},{"en":"Can I pay by phone?","cn":"能用手机支付吗?","g":{"Can":"能","I":"我","pay":"付款","by":"用","phone":"手机"}},{"en":"Is there a warranty?","cn":"有保修吗?","g":{"Is":"是否","there":"有","a":"一个","warranty":"保修"}},{"en":"This is exactly what I wanted.","cn":"这正是我想要的。","g":{"This":"这","is":"是","exactly":"正是","what":"什么","I":"我","wanted":"想要的"}},{"en":"Thanks, I'll come back.","cn":"谢谢,我下次再来。","g":{"Thanks":"谢谢","I'll":"我会","come":"来","back":"回来"}},{"en":"Do you have a smaller one?","cn":"有小一点的吗?","g":{"Do":"助动词","you":"你们","have":"有","a":"一个","smaller":"更小的","one":"一个"}},{"en":"Where are the shoes?","cn":"鞋子在哪儿?","g":{"Where":"哪里","are":"是","the":"这个","shoes":"鞋子"}},{"en":"It's cheaper online.","cn":"网上更便宜。","g":{"It's":"它","cheaper":"更便宜","online":"网上"}},{"en":"What's your return policy?","cn":"怎么退货?","g":{"What's":"什么是","your":"你们的","return":"退货","policy":"政策"}},{"en":"Do you sell phone cases?","cn":"你们卖手机壳吗?","g":{"Do":"助动词","you":"你们","sell":"卖","phone":"手机","cases":"壳"}},{"en":"I'm not sure about the size.","cn":"我不确定尺码。","g":{"I'm":"我","not":"不","sure":"确定","about":"关于","the":"这个","size":"尺码"}}]},"travel":{"name":"出行问路","icon":"🚕","items":[{"en":"How do I get there?","cn":"我怎么去那儿?","g":{"How":"怎么","do":"(助动词)","I":"我","get":"到","there":"那儿"}},{"en":"Is it far from here?","cn":"离这儿远吗?","g":{"Is":"是","it":"它","far":"远","from":"离","here":"这儿"}},{"en":"Where is the subway station?","cn":"地铁站在哪儿?","g":{"Where":"哪儿","is":"是","the":"(定冠词)","subway":"地铁","station":"站"}},{"en":"Can you show me on the map?","cn":"你能在地图上指给我看吗?","g":{"Can":"能","you":"你","show":"指给","me":"我","on":"在","the":"(定冠词)","map":"地图"}},{"en":"I'm looking for this address.","cn":"我在找这个地址。","g":{"I'm":"我在","looking":"找","for":"(介词)","this":"这个","address":"地址"}},{"en":"Turn left at the corner.","cn":"在路口左转。","g":{"Turn":"转","left":"左","at":"在","the":"(定冠词)","corner":"路口"}},{"en":"Go straight for two blocks.","cn":"直着走两个街区。","g":{"Go":"走","straight":"直","for":"持续","two":"两","blocks":"街区"}},{"en":"Is this the right way downtown?","cn":"这是去市中心的正确方向吗?","g":{"Is":"是","this":"这","the":"(定冠词)","right":"正确的","way":"路","downtown":"市中心"}},{"en":"How long does it take by taxi?","cn":"打车过去要多久?","g":{"How":"多","long":"久","does":"(助动词)","it":"它","take":"花","by":"坐","taxi":"出租车"}},{"en":"Please take me to this hotel.","cn":"请送我到这家酒店。","g":{"Please":"请","take":"送","me":"我","to":"到","this":"这家","hotel":"酒店"}},{"en":"Stop here, please.","cn":"请在这儿停。","g":{"Stop":"停","here":"这儿","please":"请"}},{"en":"How much is the fare?","cn":"车费多少钱?","g":{"How":"多","much":"少","is":"是","the":"(定冠词)","fare":"车费"}},{"en":"Does this bus go to the airport?","cn":"这趟公交去机场吗?","g":{"Does":"(助动词)","this":"这","bus":"公交","go":"去","to":"到","the":"(定冠词)","airport":"机场"}},{"en":"Where can I catch a taxi?","cn":"我在哪儿能拦到出租车?","g":{"Where":"哪儿","can":"能","I":"我","catch":"拦(车)","a":"(不定冠词)","taxi":"出租车"}},{"en":"I think I'm lost.","cn":"我好像迷路了。","g":{"I":"我","think":"觉得","I'm":"我","lost":"迷路了"}},{"en":"Could you say that again slowly?","cn":"你能慢点再说一遍吗?","g":{"Could":"能","you":"你","say":"说","that":"那个","again":"再一遍","slowly":"慢一点"}},{"en":"Which exit should I take?","cn":"我该走哪个出口?","g":{"Which":"哪个","exit":"出口","should":"应该","I":"我","take":"走"}},{"en":"Is there a bus stop near here?","cn":"这附近有公交站吗?","g":{"Is":"是","there":"有","a":"(不定冠词)","bus":"公交","stop":"站","near":"靠近","here":"这儿"}},{"en":"I need to get off at the next stop.","cn":"我下一站要下车。","g":{"I":"我","need":"要","to":"去","get":"下","off":"离开","at":"在","the":"(定冠词)","next":"下一个","stop":"站"}},{"en":"Can I pay by card?","cn":"我能刷卡吗?","g":{"Can":"能","I":"我","pay":"付钱","by":"用","card":"卡"}},{"en":"Keep going straight ahead.","cn":"一直往前走。","g":{"Keep":"保持","going":"走","straight":"直","ahead":"向前"}},{"en":"The traffic is really bad today.","cn":"今天路上真堵。","g":{"The":"(定冠词)","traffic":"交通","is":"是","really":"真","bad":"糟","today":"今天"}},{"en":"How far is the beach from here?","cn":"海滩离这儿多远?","g":{"How":"多","far":"远","is":"是","the":"(定冠词)","beach":"海滩","from":"离","here":"这儿"}},{"en":"Let's take the subway instead.","cn":"我们改坐地铁吧。","g":{"Let's":"我们…吧","take":"坐","the":"(定冠词)","subway":"地铁","instead":"改为"}},{"en":"I missed my train.","cn":"我错过火车了。","g":{"I":"我","missed":"错过了","my":"我的","train":"火车"}},{"en":"What time does the next train leave?","cn":"下一班火车几点开?","g":{"What":"什么","time":"时间","does":"(助动词)","the":"(定冠词)","next":"下一","train":"火车","leave":"出发"}},{"en":"Excuse me, is this seat taken?","cn":"打扰一下,这个位子有人吗?","g":{"Excuse":"原谅","me":"我","is":"是","this":"这个","seat":"座位","taken":"被占了"}},{"en":"I'd like a window seat, please.","cn":"我想要个靠窗的位子。","g":{"I'd":"我想要","like":"要","a":"(不定冠词)","window":"窗","seat":"座位","please":"请"}},{"en":"Where do I pick up my luggage?","cn":"我在哪儿取行李?","g":{"Where":"哪儿","do":"(助动词)","I":"我","pick":"取","up":"(副词)","my":"我的","luggage":"行李"}},{"en":"My flight is delayed.","cn":"我的航班延误了。","g":{"My":"我的","flight":"航班","is":"是","delayed":"延误了"}},{"en":"Can you take a shortcut?","cn":"能走条近路吗?","g":{"Can":"能","you":"你","take":"走","a":"(不定冠词)","shortcut":"近路"}},{"en":"Is it within walking distance?","cn":"走路能到吗?","g":{"Is":"是","it":"它","within":"在…之内","walking":"步行","distance":"距离"}},{"en":"I'll get off here.","cn":"我在这儿下。","g":{"I'll":"我将","get":"下","off":"离开","here":"这儿"}},{"en":"Please drive a bit slower.","cn":"请开慢一点。","g":{"Please":"请","drive":"开(车)","a":"一","bit":"点","slower":"慢一点"}},{"en":"Which platform is it?","cn":"是几号站台?","g":{"Which":"哪个","platform":"站台","is":"是","it":"它"}},{"en":"Do I need to transfer?","cn":"我需要换乘吗?","g":{"Do":"(助动词)","I":"我","need":"需要","to":"去","transfer":"换乘"}},{"en":"The line is closed for repairs.","cn":"这条线在维修,停运了。","g":{"The":"(定冠词)","line":"线路","is":"是","closed":"关闭的","for":"为了","repairs":"维修"}},{"en":"Can you drop me off at the corner?","cn":"能把我放在路口吗?","g":{"Can":"能","you":"你","drop":"放","me":"我","off":"下车","at":"在","the":"(定冠词)","corner":"路口"}},{"en":"I'm heading to the city center.","cn":"我去市中心。","g":{"I'm":"我正","heading":"前往","to":"去","the":"(定冠词)","city":"城市","center":"中心"}},{"en":"Is there Wi-Fi on this bus?","cn":"这车上有无线网吗?","g":{"Is":"是","there":"有","Wi-Fi":"无线网","on":"在","this":"这","bus":"公交"}},{"en":"Let me check the map.","cn":"我看一下地图。","g":{"Let":"让","me":"我","check":"看一下","the":"(定冠词)","map":"地图"}},{"en":"You can turn right after the light.","cn":"过了红绿灯右转。","g":{"You":"你","can":"可以","turn":"转","right":"右","after":"在…之后","the":"(定冠词)","light":"红绿灯"}},{"en":"Sorry, I don't know the way.","cn":"抱歉,我不认识路。","g":{"Sorry":"抱歉","I":"我","don't":"不","know":"认识","the":"(定冠词)","way":"路"}},{"en":"That's too expensive for me.","cn":"那对我来说太贵了。","g":{"That's":"那","too":"太","expensive":"贵","for":"对","me":"我"}},{"en":"Can we share a ride?","cn":"我们能拼车吗?","g":{"Can":"能","we":"我们","share":"拼","a":"(不定冠词)","ride":"车"}},{"en":"How many stops until downtown?","cn":"到市中心还有几站?","g":{"How":"几","many":"多","stops":"站","until":"直到","downtown":"市中心"}},{"en":"Watch out for the cars.","cn":"小心车。","g":{"Watch":"注意","out":"(副词)","for":"当心","the":"(定冠词)","cars":"车"}},{"en":"I'd rather walk, thanks.","cn":"我宁愿走路,谢谢。","g":{"I'd":"我","rather":"宁愿","walk":"走路","thanks":"谢谢"}}]},"health":{"name":"看病求助","icon":"🏥","items":[{"en":"I don't feel well today.","cn":"我今天不太舒服。","g":{"I":"我","don't":"不","feel":"感觉","well":"好","today":"今天"}},{"en":"I have a bad headache.","cn":"我头疼得厉害。","g":{"I":"我","have":"有","a":"(不定冠词)","bad":"厉害的","headache":"头疼"}},{"en":"I need to see a doctor.","cn":"我需要看医生。","g":{"I":"我","need":"需要","to":"去","see":"看","a":"(不定冠词)","doctor":"医生"}},{"en":"Where is the nearest hospital?","cn":"最近的医院在哪儿?","g":{"Where":"哪儿","is":"是","the":"(定冠词)","nearest":"最近的","hospital":"医院"}},{"en":"I think I have a fever.","cn":"我好像发烧了。","g":{"I":"我","think":"觉得","have":"有","a":"(不定冠词)","fever":"发烧"}},{"en":"My stomach hurts a lot.","cn":"我肚子很疼。","g":{"My":"我的","stomach":"肚子","hurts":"疼","a":"一","lot":"很多"}},{"en":"Can I make an appointment?","cn":"我能预约吗?","g":{"Can":"能","I":"我","make":"做","an":"(不定冠词)","appointment":"预约"}},{"en":"I'm allergic to penicillin.","cn":"我对青霉素过敏。","g":{"I'm":"我","allergic":"过敏","to":"对","penicillin":"青霉素"}},{"en":"It hurts right here.","cn":"就是这儿疼。","g":{"It":"它","hurts":"疼","right":"就","here":"这儿"}},{"en":"I've had this cough for a week.","cn":"我咳嗽一星期了。","g":{"I've":"我已经","had":"有","this":"这个","cough":"咳嗽","for":"持续","a":"一","week":"星期"}},{"en":"Do I need a prescription?","cn":"我需要处方吗?","g":{"Do":"(助动词)","I":"我","need":"需要","a":"(不定冠词)","prescription":"处方"}},{"en":"How often should I take this?","cn":"这个我该多久吃一次?","g":{"How":"多","often":"经常","should":"应该","I":"我","take":"吃","this":"这个"}},{"en":"I feel dizzy and weak.","cn":"我头晕,还没力气。","g":{"I":"我","feel":"感觉","dizzy":"头晕","and":"和","weak":"没力气"}},{"en":"Is the doctor available now?","cn":"医生现在有空吗?","g":{"Is":"是","the":"(定冠词)","doctor":"医生","available":"有空","now":"现在"}},{"en":"I can't sleep at night.","cn":"我晚上睡不着。","g":{"I":"我","can't":"不能","sleep":"睡觉","at":"在","night":"晚上"}},{"en":"My back has been hurting.","cn":"我背一直疼。","g":{"My":"我的","back":"背","has":"一直","been":"(助动词)","hurting":"疼"}},{"en":"Please call an ambulance.","cn":"请叫救护车。","g":{"Please":"请","call":"叫","an":"(不定冠词)","ambulance":"救护车"}},{"en":"I have a sore throat.","cn":"我嗓子疼。","g":{"I":"我","have":"有","a":"(不定冠词)","sore":"疼的","throat":"嗓子"}},{"en":"Does it hurt when I press here?","cn":"我按这儿疼吗?","g":{"Does":"(助动词)","it":"它","hurt":"疼","when":"当…时","I":"我","press":"按","here":"这儿"}},{"en":"Take this medicine twice a day.","cn":"这药一天吃两次。","g":{"Take":"吃","this":"这个","medicine":"药","twice":"两次","a":"一","day":"天"}},{"en":"I'm feeling much better now.","cn":"我现在好多了。","g":{"I'm":"我","feeling":"感觉","much":"…得多","better":"好些","now":"现在"}},{"en":"You should get some rest.","cn":"你该休息一下。","g":{"You":"你","should":"应该","get":"得到","some":"一些","rest":"休息"}},{"en":"My son has a rash.","cn":"我儿子起疹子了。","g":{"My":"我的","son":"儿子","has":"有","a":"(不定冠词)","rash":"疹子"}},{"en":"I'm three months pregnant.","cn":"我怀孕三个月了。","g":{"I'm":"我","three":"三","months":"个月","pregnant":"怀孕了"}},{"en":"Is this covered by insurance?","cn":"这个保险能报吗?","g":{"Is":"是","this":"这个","covered":"被覆盖","by":"由","insurance":"保险"}},{"en":"I have a toothache.","cn":"我牙疼。","g":{"I":"我","have":"有","a":"(不定冠词)","toothache":"牙疼"}},{"en":"How long will it take to recover?","cn":"要多久才能好?","g":{"How":"多","long":"久","will":"将","it":"它","take":"需要","to":"去","recover":"恢复"}},{"en":"I'm not feeling well at all.","cn":"我一点都不舒服。","g":{"I'm":"我","not":"不","feeling":"感觉","well":"好","at":"在","all":"完全"}},{"en":"Do you have anything for a cold?","cn":"有治感冒的药吗?","g":{"Do":"(助动词)","you":"你","have":"有","anything":"什么东西","for":"治","a":"(不定冠词)","cold":"感冒"}},{"en":"I need something for the pain.","cn":"我需要点止痛的药。","g":{"I":"我","need":"需要","something":"某种东西","for":"治","the":"(定冠词)","pain":"疼痛"}},{"en":"My blood pressure is high.","cn":"我血压高。","g":{"My":"我的","blood":"血","pressure":"压力","is":"是","high":"高"}},{"en":"Please roll up your sleeve.","cn":"请把袖子卷起来。","g":{"Please":"请","roll":"卷","up":"(副词)","your":"你的","sleeve":"袖子"}},{"en":"The doctor will be right with you.","cn":"医生马上就来。","g":{"The":"(定冠词)","doctor":"医生","will":"将","be":"是","right":"马上","with":"和","you":"你"}},{"en":"Do I need to fast before the test?","cn":"检查前我需要空腹吗?","g":{"Do":"(助动词)","I":"我","need":"需要","to":"去","fast":"禁食","before":"在…之前","the":"(定冠词)","test":"检查"}},{"en":"I got hurt while playing soccer.","cn":"我踢球的时候受伤了。","g":{"I":"我","got":"变得","hurt":"受伤","while":"当…时","playing":"踢","soccer":"足球"}},{"en":"My eyes are really dry.","cn":"我眼睛特别干。","g":{"My":"我的","eyes":"眼睛","are":"是","really":"特别","dry":"干"}},{"en":"Can I lie down for a bit?","cn":"我能躺一会儿吗?","g":{"Can":"能","I":"我","lie":"躺","down":"(副词)","for":"…的时间","a":"一","bit":"会儿"}},{"en":"I'm running a little fever.","cn":"我有点低烧。","g":{"I'm":"我","running":"发","a":"一","little":"点","fever":"烧"}},{"en":"You should drink more water.","cn":"你该多喝水。","g":{"You":"你","should":"应该","drink":"喝","more":"更多","water":"水"}},{"en":"Where does it hurt the most?","cn":"哪儿最疼?","g":{"Where":"哪儿","does":"(助动词)","it":"它","hurt":"疼","the":"(定冠词)","most":"最"}},{"en":"I have trouble breathing.","cn":"我呼吸有困难。","g":{"I":"我","have":"有","trouble":"困难","breathing":"呼吸"}},{"en":"Take a deep breath, please.","cn":"请深吸一口气。","g":{"Take":"吸","a":"(不定冠词)","deep":"深的","breath":"一口气","please":"请"}},{"en":"I feel sick to my stomach.","cn":"我恶心想吐。","g":{"I":"我","feel":"感觉","sick":"恶心","to":"对","my":"我的","stomach":"胃"}},{"en":"Do I need any shots?","cn":"我需要打针吗?","g":{"Do":"(助动词)","I":"我","need":"需要","any":"任何","shots":"针"}},{"en":"My whole body aches.","cn":"我浑身酸痛。","g":{"My":"我的","whole":"整个","body":"身体","aches":"酸痛"}},{"en":"Can you give me something stronger?","cn":"能给我开点更管用的药吗?","g":{"Can":"能","you":"你","give":"给","me":"我","something":"某种药","stronger":"更管用的"}},{"en":"I've been coughing all night.","cn":"我咳了一整晚。","g":{"I've":"我一直","been":"(助动词)","coughing":"咳嗽","all":"整个","night":"晚上"}},{"en":"The pain comes and goes.","cn":"这疼一阵一阵的。","g":{"The":"(定冠词)","pain":"疼痛","comes":"来","and":"和","goes":"去"}},{"en":"Please fill this prescription for me.","cn":"请帮我配这个药。","g":{"Please":"请","fill":"配","this":"这个","prescription":"处方","for":"给","me":"我"}},{"en":"I hope you feel better soon.","cn":"希望你早点好起来。","g":{"I":"我","hope":"希望","you":"你","feel":"感觉","better":"好些","soon":"很快"}}]},"requests":{"name":"礼貌请求","icon":"🙏","items":[{"en":"Could you help me?","cn":"你能帮我一下吗?","g":{"Could":"能","you":"你","help":"帮","me":"我"}},{"en":"Sorry to bother you.","cn":"不好意思,打扰你了。","g":{"Sorry":"抱歉","to":"(不定式)","bother":"打扰","you":"你"}},{"en":"Can I ask you something?","cn":"我能问你件事吗?","g":{"Can":"能","I":"我","ask":"问","you":"你","something":"件事"}},{"en":"Thanks a lot.","cn":"太谢谢你了。","g":{"Thanks":"谢谢","a":"(量词)","lot":"多"}},{"en":"I really appreciate it.","cn":"我真的很感激。","g":{"I":"我","really":"真的","appreciate":"感激","it":"这件事"}},{"en":"Could I have a word with you?","cn":"能跟你说句话吗?","g":{"Could":"能","I":"我","have":"说","a":"句","word":"话","with":"和","you":"你"}},{"en":"Would you mind waiting?","cn":"你介意等一下吗?","g":{"Would":"(意愿)","you":"你","mind":"介意","waiting":"等一会儿"}},{"en":"Do you have a minute?","cn":"你有空吗?","g":{"Do":"(助动词)","you":"你","have":"有","a":"一","minute":"分钟"}},{"en":"Could you do me a favor?","cn":"能帮我个忙吗?","g":{"Could":"能","you":"你","do":"帮","me":"我","a":"个","favor":"忙"}},{"en":"Thank you so much.","cn":"太感谢你了。","g":{"Thank":"谢","you":"你","so":"这么","much":"多"}},{"en":"That's very kind of you.","cn":"你人真好。","g":{"That's":"那(是)","very":"非常","kind":"好心","of":"的","you":"你"}},{"en":"Can you give me a hand?","cn":"你能搭把手吗?","g":{"Can":"能","you":"你","give":"给","me":"我","a":"个","hand":"手(帮忙)"}},{"en":"Please wait a moment.","cn":"请稍等一下。","g":{"Please":"请","wait":"等","a":"一","moment":"会儿"}},{"en":"Could I borrow your pen?","cn":"能借你的笔用一下吗?","g":{"Could":"能","I":"我","borrow":"借","your":"你的","pen":"笔"}},{"en":"Would you speak slower, please?","cn":"你能说慢一点吗?","g":{"Would":"能","you":"你","speak":"说","slower":"慢一点","please":"请"}},{"en":"I need your help.","cn":"我需要你帮忙。","g":{"I":"我","need":"需要","your":"你的","help":"帮助"}},{"en":"Can you repeat that?","cn":"你能再说一遍吗?","g":{"Can":"能","you":"你","repeat":"重复","that":"刚才那句"}},{"en":"Sorry, I didn't catch that.","cn":"抱歉,我没听清。","g":{"Sorry":"抱歉","I":"我","didn't":"没","catch":"听清","that":"那个"}},{"en":"Could you say that again?","cn":"你能再说一次吗?","g":{"Could":"能","you":"你","say":"说","that":"那个","again":"再一次"}},{"en":"Do you mind if I sit here?","cn":"我坐这儿可以吗?","g":{"Do":"(助动词)","you":"你","mind":"介意","if":"如果","I":"我","sit":"坐","here":"这儿"}},{"en":"Is it okay if I leave early?","cn":"我可以早点走吗?","g":{"Is":"是","it":"这","okay":"可以","if":"如果","I":"我","leave":"走","early":"早点"}},{"en":"May I come in?","cn":"我可以进来吗?","g":{"May":"可以","I":"我","come":"来","in":"进来"}},{"en":"Let me know if you need anything.","cn":"需要什么就告诉我。","g":{"Let":"让","me":"我","know":"知道","if":"如果","you":"你","need":"需要","anything":"什么东西"}},{"en":"Thanks for your help.","cn":"谢谢你的帮忙。","g":{"Thanks":"谢谢","for":"因为","your":"你的","help":"帮助"}},{"en":"I owe you one.","cn":"我欠你个人情。","g":{"I":"我","owe":"欠","you":"你","one":"人情"}},{"en":"Thank you for waiting.","cn":"谢谢你等我。","g":{"Thank":"谢","you":"你","for":"因为","waiting":"等着"}},{"en":"Could you turn it down?","cn":"你能把它调小点吗?","g":{"Could":"能","you":"你","turn":"调","it":"它","down":"小一点"}},{"en":"Would you mind closing the door?","cn":"你介意把门关上吗?","g":{"Would":"(意愿)","you":"你","mind":"介意","closing":"关","the":"(定冠词)","door":"门"}},{"en":"Please don't be mad.","cn":"请别生气。","g":{"Please":"请","don't":"别","be":"(是)","mad":"生气"}},{"en":"I'm really sorry about that.","cn":"那件事我真的很抱歉。","g":{"I'm":"我(是)","really":"真的","sorry":"抱歉","about":"关于","that":"那件事"}},{"en":"Can I ask a quick question?","cn":"我能问个小问题吗?","g":{"Can":"能","I":"我","ask":"问","a":"个","quick":"快的","question":"问题"}},{"en":"Could you write it down?","cn":"你能写下来吗?","g":{"Could":"能","you":"你","write":"写","it":"它","down":"下来"}},{"en":"Sorry, my mistake.","cn":"抱歉,是我的错。","g":{"Sorry":"抱歉","my":"我的","mistake":"错"}},{"en":"Do you have time tomorrow?","cn":"你明天有空吗?","g":{"Do":"(助动词)","you":"你","have":"有","time":"时间","tomorrow":"明天"}},{"en":"Would that be okay?","cn":"那样行吗?","g":{"Would":"(会)","that":"那样","be":"(是)","okay":"行"}},{"en":"I'd appreciate your help.","cn":"我会很感激你的帮忙。","g":{"I'd":"我(会)","appreciate":"感激","your":"你的","help":"帮助"}},{"en":"Please forgive me.","cn":"请原谅我。","g":{"Please":"请","forgive":"原谅","me":"我"}},{"en":"Can you help me carry this?","cn":"你能帮我搬这个吗?","g":{"Can":"能","you":"你","help":"帮","me":"我","carry":"搬","this":"这个"}},{"en":"Sorry, I can't come.","cn":"抱歉,我来不了。","g":{"Sorry":"抱歉","I":"我","can't":"不能","come":"来"}},{"en":"Could you give me a minute?","cn":"能给我一分钟吗?","g":{"Could":"能","you":"你","give":"给","me":"我","a":"一","minute":"分钟"}},{"en":"Would you like some help?","cn":"你需要帮忙吗?","g":{"Would":"要","you":"你","like":"想","some":"一些","help":"帮助"}},{"en":"I'm sorry to hear that.","cn":"听到这个我很难过。","g":{"I'm":"我(是)","sorry":"难过","to":"(不定式)","hear":"听到","that":"这个"}},{"en":"Please let me pass.","cn":"请让我过去。","g":{"Please":"请","let":"让","me":"我","pass":"过去"}},{"en":"Sorry for the trouble.","cn":"麻烦你了,不好意思。","g":{"Sorry":"抱歉","for":"因为","the":"(定冠词)","trouble":"麻烦"}},{"en":"Can I have a receipt?","cn":"能给我一张收据吗?","g":{"Can":"能","I":"我","have":"要","a":"张","receipt":"收据"}},{"en":"Sorry to interrupt.","cn":"抱歉,打断一下。","g":{"Sorry":"抱歉","to":"(不定式)","interrupt":"打断"}},{"en":"Could you speak up, please?","cn":"你能说大声点吗?","g":{"Could":"能","you":"你","speak":"说","up":"大声点","please":"请"}},{"en":"I'm sorry for the mess.","cn":"抱歉,弄得这么乱。","g":{"I'm":"我(是)","sorry":"抱歉","for":"因为","the":"(定冠词)","mess":"乱"}}]},"daily":{"name":"日常生活","icon":"🏠","items":[{"en":"I'm going to bed.","cn":"我要去睡觉了。","g":{"I'm":"我(要)","going":"去","to":"(不定式)","bed":"睡觉"}},{"en":"Time to get up.","cn":"该起床了。","g":{"Time":"时间","to":"(不定式)","get":"起","up":"来"}},{"en":"I'm making breakfast.","cn":"我在做早饭。","g":{"I'm":"我(在)","making":"做","breakfast":"早饭"}},{"en":"What's for dinner?","cn":"晚饭吃什么?","g":{"What's":"什么(是)","for":"作为","dinner":"晚饭"}},{"en":"I need to do the laundry.","cn":"我得洗衣服了。","g":{"I":"我","need":"得","to":"(不定式)","do":"做","the":"(定冠词)","laundry":"洗衣服"}},{"en":"The dishes are dirty.","cn":"碗还没洗。","g":{"The":"(定冠词)","dishes":"碗","are":"是","dirty":"脏的"}},{"en":"Let's clean the house.","cn":"我们把家里打扫一下吧。","g":{"Let's":"我们(来)","clean":"打扫","the":"(定冠词)","house":"房子"}},{"en":"I have to walk the dog.","cn":"我得去遛狗。","g":{"I":"我","have":"得","to":"(不定式)","walk":"遛","the":"(定冠词)","dog":"狗"}},{"en":"It's raining outside.","cn":"外面在下雨。","g":{"It's":"天(在)","raining":"下雨","outside":"外面"}},{"en":"The weather is nice today.","cn":"今天天气不错。","g":{"The":"(定冠词)","weather":"天气","is":"是","nice":"好","today":"今天"}},{"en":"It's so hot today.","cn":"今天太热了。","g":{"It's":"天(气)","so":"这么","hot":"热","today":"今天"}},{"en":"It's getting cold.","cn":"天变冷了。","g":{"It's":"天(气)","getting":"变","cold":"冷"}},{"en":"Take an umbrella with you.","cn":"带把伞。","g":{"Take":"带","an":"把","umbrella":"伞","with":"随身","you":"你"}},{"en":"I'm cooking dinner.","cn":"我在做晚饭。","g":{"I'm":"我(在)","cooking":"做","dinner":"晚饭"}},{"en":"The fridge is empty.","cn":"冰箱空了。","g":{"The":"(定冠词)","fridge":"冰箱","is":"是","empty":"空的"}},{"en":"We're out of milk.","cn":"牛奶喝完了。","g":{"We're":"我们(是)","out":"用完","of":"的","milk":"牛奶"}},{"en":"I need to go shopping.","cn":"我得去买点东西。","g":{"I":"我","need":"得","to":"(不定式)","go":"去","shopping":"买东西"}},{"en":"Let's watch TV tonight.","cn":"今晚看电视吧。","g":{"Let's":"我们(来)","watch":"看","TV":"电视","tonight":"今晚"}},{"en":"I'm too tired today.","cn":"我今天太累了。","g":{"I'm":"我(是)","too":"太","tired":"累","today":"今天"}},{"en":"I stayed up late last night.","cn":"我昨晚熬夜了。","g":{"I":"我","stayed":"熬","up":"夜","late":"晚","last":"上个","night":"晚上"}},{"en":"I'm taking a shower.","cn":"我在洗澡。","g":{"I'm":"我(在)","taking":"洗","a":"个","shower":"澡"}},{"en":"Turn off the light, please.","cn":"请把灯关了。","g":{"Turn":"关","off":"掉","the":"(定冠词)","light":"灯","please":"请"}},{"en":"Turn on the TV.","cn":"把电视打开。","g":{"Turn":"开","on":"开","the":"(定冠词)","TV":"电视"}},{"en":"Dinner is ready.","cn":"晚饭好了。","g":{"Dinner":"晚饭","is":"(是)","ready":"好了"}},{"en":"I'm doing the dishes.","cn":"我在洗碗。","g":{"I'm":"我(在)","doing":"洗","the":"(定冠词)","dishes":"碗"}},{"en":"The sink is dirty.","cn":"水槽脏了。","g":{"The":"(定冠词)","sink":"水槽","is":"是","dirty":"脏的"}},{"en":"I have a day off tomorrow.","cn":"我明天休息。","g":{"I":"我","have":"有","a":"一","day":"天","off":"休息","tomorrow":"明天"}},{"en":"What time do you get up?","cn":"你几点起床?","g":{"What":"什么","time":"时间","do":"(助动词)","you":"你","get":"起","up":"床"}},{"en":"I wake up at seven.","cn":"我七点醒。","g":{"I":"我","wake":"醒","up":"来","at":"在","seven":"七点"}},{"en":"I go to bed at eleven.","cn":"我十一点睡。","g":{"I":"我","go":"去","to":"(不定式)","bed":"睡觉","at":"在","eleven":"十一点"}},{"en":"She's sleeping now.","cn":"她在睡觉。","g":{"She's":"她(在)","sleeping":"睡觉","now":"现在"}},{"en":"Close the window, please.","cn":"请把窗户关上。","g":{"Close":"关","the":"(定冠词)","window":"窗户","please":"请"}},{"en":"It's snowing outside.","cn":"外面在下雪。","g":{"It's":"天(在)","snowing":"下雪","outside":"外面"}},{"en":"The floor needs cleaning.","cn":"地板该拖了。","g":{"The":"(定冠词)","floor":"地板","needs":"需要","cleaning":"打扫"}},{"en":"I'll do it later.","cn":"我待会儿再做。","g":{"I'll":"我(会)","do":"做","it":"这件事","later":"待会儿"}},{"en":"Let's go for a walk.","cn":"我们去散步吧。","g":{"Let's":"我们","go":"去","for":"去","a":"一","walk":"散步"}},{"en":"I'm home now.","cn":"我到家了。","g":{"I'm":"我(在)","home":"家","now":"现在"}},{"en":"Are you free this weekend?","cn":"你这周末有空吗?","g":{"Are":"(是)","you":"你","free":"有空","this":"这个","weekend":"周末"}},{"en":"Let's meet at six.","cn":"我们六点见吧。","g":{"Let's":"我们","meet":"见面","at":"在","six":"六点"}},{"en":"I'm running late.","cn":"我要迟到了。","g":{"I'm":"我(快)","running":"要","late":"迟到"}},{"en":"The bus is always late.","cn":"公交车总是晚点。","g":{"The":"(定冠词)","bus":"公交车","is":"是","always":"总是","late":"晚点"}},{"en":"I need to charge my phone.","cn":"我得给手机充电。","g":{"I":"我","need":"得","to":"(不定式)","charge":"充电","my":"我的","phone":"手机"}},{"en":"Where are my keys?","cn":"我钥匙呢?","g":{"Where":"哪儿","are":"(在)","my":"我的","keys":"钥匙"}},{"en":"I forgot my umbrella.","cn":"我忘带伞了。","g":{"I":"我","forgot":"忘了","my":"我的","umbrella":"伞"}},{"en":"The laundry is still wet.","cn":"衣服还是湿的。","g":{"The":"(定冠词)","laundry":"衣服","is":"是","still":"还","wet":"湿的"}},{"en":"Wash your hands first.","cn":"先去洗手。","g":{"Wash":"洗","your":"你的","hands":"手","first":"先"}},{"en":"It's time for lunch.","cn":"该吃午饭了。","g":{"It's":"到","time":"时间","for":"该","lunch":"午饭"}},{"en":"I'll take a nap.","cn":"我去眯一会儿。","g":{"I'll":"我(要)","take":"睡","a":"个","nap":"午觉"}},{"en":"Don't forget to lock the door.","cn":"别忘了锁门。","g":{"Don't":"别","forget":"忘","to":"(不定式)","lock":"锁","the":"(定冠词)","door":"门"}},{"en":"Please take out the trash.","cn":"请把垃圾拿出去。","g":{"Please":"请","take":"拿","out":"出去","the":"(定冠词)","trash":"垃圾"}}]}};
+// ===== 分级阅读短文(2026-09-11 新增) =====
+// 每篇: paras=[{en,cn}];gloss=本篇通用补充词表(代词/复数等词库未收的基础词),
+// 渲染时与本句合并后传给 showWordPop,保证点词零死区。
+const READINGS = {
+ "r01": {
+  "title": "My Day",
+  "titleCn": "我的一天",
+  "level": "入门",
+  "icon": "🌅",
+  "gloss": {
+   "our": "我们的",
+   "teeth": "牙齿（tooth 的复数）",
+   "together": "一起"
+  },
+  "paras": [
+   {
+    "en": "I get up at six.",
+    "cn": "我六点起床。"
+   },
+   {
+    "en": "I wash my face.",
+    "cn": "我洗脸。"
+   },
+   {
+    "en": "I brush my teeth.",
+    "cn": "我刷牙。"
+   },
+   {
+    "en": "Then I eat breakfast.",
+    "cn": "然后我吃早饭。"
+   },
+   {
+    "en": "I eat eggs and bread.",
+    "cn": "我吃鸡蛋和面包。"
+   },
+   {
+    "en": "I drink milk.",
+    "cn": "我喝牛奶。"
+   },
+   {
+    "en": "My son eats with me.",
+    "cn": "我儿子和我一起吃。"
+   },
+   {
+    "en": "At seven, I drive to work.",
+    "cn": "七点，我开车去上班。"
+   },
+   {
+    "en": "My office is in the city.",
+    "cn": "我的办公室在城里。"
+   },
+   {
+    "en": "I work for eight hours.",
+    "cn": "我工作八个小时。"
+   },
+   {
+    "en": "I read and write.",
+    "cn": "我读书、写字。"
+   },
+   {
+    "en": "I talk with many people.",
+    "cn": "我和很多人交谈。"
+   },
+   {
+    "en": "At six, I go home.",
+    "cn": "六点，我回家。"
+   },
+   {
+    "en": "We eat dinner together.",
+    "cn": "我们一起吃晚饭。"
+   },
+   {
+    "en": "We talk about our day.",
+    "cn": "我们聊各自的一天。"
+   },
+   {
+    "en": "After dinner, I read a book.",
+    "cn": "晚饭后，我读一本书。"
+   },
+   {
+    "en": "I learn English every day.",
+    "cn": "我每天学英语。"
+   },
+   {
+    "en": "At ten, I go to bed.",
+    "cn": "十点，我上床睡觉。"
+   }
+  ]
+ },
+ "r02": {
+  "title": "The New Neighbor",
+  "titleCn": "新邻居",
+  "level": "入门",
+  "icon": "🏠",
+  "gloss": {
+   "he": "他",
+   "his": "他的",
+   "him": "他（宾格）",
+   "us": "我们（宾格）",
+   "we": "我们",
+   "am": "是（用在 I 后面）",
+   "boxes": "箱子（box 的复数）",
+   "children": "孩子们（child 的复数）",
+   "shake": "摇；握（shake hands = 握手）",
+   "li": "李（姓氏）",
+   "ming": "明（名字）",
+   "wang": "王（姓氏）",
+   "wei": "伟（名字）"
+  },
+  "paras": [
+   {
+    "en": "A new family moves in next door.",
+    "cn": "一户新人家搬到了隔壁。"
+   },
+   {
+    "en": "The man has a wife and two children.",
+    "cn": "这个男人有妻子和两个孩子。"
+   },
+   {
+    "en": "One morning, I meet him outside.",
+    "cn": "一天早上，我在外面遇到他。"
+   },
+   {
+    "en": "\"Good morning,\" I say.",
+    "cn": "“早上好，”我说。"
+   },
+   {
+    "en": "\"Good morning,\" he says.",
+    "cn": "“早上好，”他说。"
+   },
+   {
+    "en": "\"My name is Li Ming.\"",
+    "cn": "“我叫李明。”"
+   },
+   {
+    "en": "\"Nice to meet you,\" I say. \"I am Wang Wei.\"",
+    "cn": "“很高兴认识你，”我说。“我是王伟。”"
+   },
+   {
+    "en": "We shake hands.",
+    "cn": "我们握手。"
+   },
+   {
+    "en": "\"Do you need help?\" I ask.",
+    "cn": "“你需要帮忙吗？”我问。"
+   },
+   {
+    "en": "\"Yes, the boxes are heavy,\" he says.",
+    "cn": "“是的，这些箱子很重，”他说。"
+   },
+   {
+    "en": "I help him carry the boxes.",
+    "cn": "我帮他把箱子搬进去。"
+   },
+   {
+    "en": "His wife makes tea for us.",
+    "cn": "他的妻子给我们泡茶。"
+   },
+   {
+    "en": "We sit in the living room and talk.",
+    "cn": "我们坐在客厅里聊天。"
+   },
+   {
+    "en": "He works in a bank.",
+    "cn": "他在一家银行工作。"
+   },
+   {
+    "en": "He likes to play basketball.",
+    "cn": "他喜欢打篮球。"
+   },
+   {
+    "en": "His children go to my son's school.",
+    "cn": "他的孩子和我儿子上同一所学校。"
+   },
+   {
+    "en": "Now we are good friends.",
+    "cn": "现在我们成了好朋友。"
+   }
+  ]
+ }
+};
+
 const FORMS_MAP = {"bills":"bill","blocks":"block","breathing":"breathe","cards":"card","cars":"car","cleaning":"clean","closing":"close","coffees":"coffee","colors":"color","comes":"come","coming":"come","cooking":"cook","coughing":"cough","dishes":"dish","does":"do","eyes":"eye","fitting":"fit","goes":"go","hands":"hand","heading":"head","hobbies":"hobby","keys":"key","lately":"late","let's":"let","lived":"live","looking":"look","loves":"love","missed":"miss","months":"month","movies":"movie","names":"name","nearest":"near","needs":"need","ordered":"order","plans":"plan","playing":"play","prices":"price","raining":"rain","really":"real","repairs":"repair","shipping":"ship","sleeping":"sleep","slower":"slow","smaller":"small","snowing":"snow","sports":"sport","started":"start","stops":"stop","stronger":"strong","taking":"take","talking":"talk","waiting":"wait","wanted":"want","watching":"watch","worked":"work","years":"year"};
 const IPA_EXTRA = {
   "a": "/ə/",
@@ -2534,11 +2797,12 @@ const LOW_QUALITY_KEYWORDS = [
     card.onclick = () => {
       document.querySelectorAll(".mode-card").forEach(c => c.classList.remove("active"));
       card.classList.add("active");
-      if (card.dataset.goto) {          // 句子/句型/地图:点了直接进,不用选主题数量
+      if (card.dataset.goto) {          // 句子/句型/地图/阅读:点了直接进,不用选主题数量
         const g = card.dataset.goto;
         if (g === "sentence") openSentHome();
         else if (g === "pattern") openPatHome();
         else if (g === "map") openMap();
+        else if (g === "reading") openReadingHome();
         return;
       }
       pageMode = card.dataset.pagemode;
@@ -3733,7 +3997,7 @@ const LOW_QUALITY_KEYWORDS = [
     if (popEl) { popEl.remove(); popEl = null; }
     document.querySelectorAll('.sent-en .w.on').forEach(x => x.classList.remove('on'));
   }
-  function showWordPop(el, raw, sentG) {
+  function showWordPop(el, raw, sentG, src) {
     hideWordPop();
     const g = glossOf(raw, sentG), ipa = ipaOf(raw);
     el.classList.add('on');
@@ -3755,7 +4019,7 @@ const LOW_QUALITY_KEYWORDS = [
     if (top + pr.height > window.innerHeight - 10) top = r.top - pr.height - 8;
     popEl.style.left = left + 'px';
     popEl.style.top = Math.max(10, top) + 'px';
-    popEl._ctx = { raw, g };
+    popEl._ctx = { raw, g, src: src || null };
   }
   document.addEventListener('click', e => {
     if (popEl && !e.target.closest('.word-pop') && !e.target.closest('.w')) hideWordPop();
@@ -3766,7 +4030,8 @@ const LOW_QUALITY_KEYWORDS = [
     if (sp) { speak(sp.dataset.popSpeak, sp); return; }
     const ad = e.target.closest('[data-pop-add]');
     if (ad && popEl._ctx && popEl._ctx.g) {
-      if (window.addToNotebook) window.addToNotebook({ en: popEl._ctx.raw, cn: popEl._ctx.g.cn, topic: '日常高频句', icon: '💬' });
+      const _src = popEl._ctx.src || { topic: '日常高频句', icon: '💬' };
+      if (window.addToNotebook) window.addToNotebook({ en: popEl._ctx.raw, cn: popEl._ctx.g.cn, topic: _src.topic, icon: _src.icon });
       ad.textContent = '✓ 已加入生词本';
       ad.disabled = true;
     }
@@ -3940,6 +4205,104 @@ const LOW_QUALITY_KEYWORDS = [
   renderSentScenes();
   renderPatGroups();
 
+  // ============ 📖 分级阅读(2026-09-11 新增) ============
+  // 复用句库那套:sentHTML 切词 → 点词 showWordPop(含 ＋生词本)→ speak 朗读。
+  // 与句库的唯一区别:释义要用「本篇通用词表 gloss + 本句词表」合并后再查,
+  // 因为代词/复数等基础词(he/his/boxes…)不在 VOCAB 里,不合并会点出"暂未收录"。
+  let rdKey = null, rdToken = 0, rdPlaying = false;
+
+  function openReadingHome() {
+    renderShelf();
+    document.getElementById('rd-read-view').classList.add('hidden');
+    document.getElementById('rd-shelf-view').classList.remove('hidden');
+    showScreen('reading-screen');
+  }
+
+  function renderShelf() {
+    const box = document.getElementById('rd-shelf');
+    if (!box) return;
+    box.innerHTML = '';
+    Object.keys(READINGS).forEach((k, i) => {
+      const a = READINGS[k];
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'rd-book';
+      b.innerHTML =
+        '<span class="rd-bk-ic">' + a.icon + '</span>' +
+        '<span class="rd-bk-body">' +
+          '<span class="rd-bk-nm">' + (i + 1) + '. ' + a.title + '</span>' +
+          '<span class="rd-bk-cn">' + a.titleCn + '</span>' +
+          '<span class="rd-bk-meta">' + a.level + ' · ' + a.paras.length + ' 句</span>' +
+        '</span>';
+      b.onclick = () => openReading(k);
+      box.appendChild(b);
+    });
+  }
+
+  function openReading(k) {
+    rdKey = k;
+    const a = READINGS[k];
+    document.getElementById('rd-title').textContent = a.icon + ' ' + a.title;
+    document.getElementById('rd-meta').textContent = a.titleCn + ' · ' + a.level;
+    const body = document.getElementById('rd-body');
+    body.innerHTML = '';
+    a.paras.forEach((p, i) => {
+      const d = document.createElement('div');
+      d.className = 'rd-sent';
+      d.dataset.i = i;
+      d.innerHTML = '<div class="sent-en">' + sentHTML(p.en) + '</div>' +
+                    '<div class="sent-cn">' + p.cn + '</div>';
+      body.appendChild(d);
+    });
+    document.getElementById('rd-shelf-view').classList.add('hidden');
+    document.getElementById('rd-read-view').classList.remove('hidden');
+    showScreen('reading-screen');
+  }
+
+  // 点词查义:本篇通用词表 + 本句词表 合并 → 交给弹卡
+  document.getElementById('rd-body').addEventListener('click', e => {
+    const wEl = e.target.closest('.sent-en .w');
+    if (!wEl || !rdKey) return;
+    const card = wEl.closest('.rd-sent');
+    const a = READINGS[rdKey];
+    const p = a.paras[+card.dataset.i] || {};
+    showWordPop(wEl, wEl.dataset.w, Object.assign({}, a.gloss, p.g || {}),
+                { topic: '分级阅读', icon: '📖' });
+  });
+
+  document.getElementById('rd-shelf-back').onclick = () => openReadingHome();
+  document.getElementById('rd-shelf-back2').onclick = () => openReadingHome();
+  document.getElementById('rd-home').onclick = () => backHome();
+
+  // 全文连播(rdToken 令牌使停止/切换后旧链立即作废)
+  document.getElementById('rd-read-all').onclick = function () {
+    const btn = this;
+    if (rdPlaying) {
+      rdToken++; rdPlaying = false;
+      window.speechSynthesis && window.speechSynthesis.cancel();
+      btn.textContent = '▶ 从头朗读全文';
+      return;
+    }
+    if (!rdKey) return;
+    const a = READINGS[rdKey];
+    const cards = document.querySelectorAll('#rd-body .rd-sent');
+    rdPlaying = true; const my = ++rdToken;
+    btn.textContent = '⏸ 停止朗读';
+    let i = 0;
+    const step = () => {
+      if (my !== rdToken) return;
+      if (i >= a.paras.length) {
+        rdPlaying = false; btn.textContent = '▶ 从头朗读全文'; return;
+      }
+      if (cards[i]) cards[i].scrollIntoView({ block: 'center', behavior: 'smooth' });
+      speak(a.paras[i].en, null);
+      const dur = Math.max(2000, a.paras[i].en.length * 62);
+      i++;
+      setTimeout(step, dur);
+    };
+    step();
+  };
+
   function openSentHome() {
     document.getElementById('sent-list-view').classList.add('hidden');
     document.getElementById('sent-scene-view').classList.remove('hidden');
@@ -3954,7 +4317,7 @@ const LOW_QUALITY_KEYWORDS = [
   // ============ 屏幕切换辅助 ============
   const TOP_SCREENS = ["start-screen","study-screen","study-end-screen","phonics-screen",
     "games-screen","game-screen","end-screen","review-screen","review-end-screen","achv-screen",
-    "type-screen","type-end-screen","listen-screen","sentence-screen","pattern-screen","map-screen"];
+    "type-screen","type-end-screen","listen-screen","sentence-screen","pattern-screen","map-screen","reading-screen"];
   function showScreen(id) {
     window.speechSynthesis && window.speechSynthesis.cancel();
     TOP_SCREENS.forEach(s => { const el = document.getElementById(s); if (el) el.classList.toggle("hidden", s !== id); });

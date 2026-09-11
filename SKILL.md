@@ -1,6 +1,6 @@
 ---
 name: 自学英语
-description: 开发与迭代「单词大冒险」自学英语 web 应用——老曾和大宝曾麟轩的亲子共学玩具（也适合中文母语者自学单词、发音与拼读）。单文件 index.html，纯前端 + localStorage，含六大单词模式(翻卡学习/🗺️闯关地图41岛拿星/字母拼读/游戏乐园/拼写默写/听力磨耳朵免提自动连播) + 开口说双模块(日常高频句 392 句·点词查义·整句朗读 + 句型骨架 24 个可替换框架)+ 生词本间隔复习(SRS,可移除/全部提前复习) + 进度仪表盘(每日目标可调) + 成就系统 + 优选发音朗读 + 深色模式 + 设置持久化(发音/语速/主题/打字偏好) + 亲子向可爱皮肤(糖果色/果冻卡/撒花动效) + 双人对战(爸爸 vs 大宝)。词库约 3143 个日常高频词、41 个主题。触发场景：用户想新增/优化单词大冒险的功能、加单词/主题词库、加新游戏或学习模式、改 SRS/生词本逻辑、做学习数据可视化与激励、调发音/音标、改视觉文案、或部署分享。每次改完都要：①更新本地 skill 文件 ②commit 并 push 到 GitHub。
+description: 开发与迭代「单词大冒险」自学英语 web 应用——老曾和大宝曾麟轩的亲子共学玩具（也适合中文母语者自学单词、发音与拼读）。单文件 index.html，纯前端 + localStorage，含六大单词模式(翻卡学习/🗺️闯关地图41岛拿星/字母拼读/游戏乐园/拼写默写/听力磨耳朵免提自动连播) + 📖分级阅读(在App里直接读短文·点词即查即收) + 开口说双模块(日常高频句 392 句·点词查义·整句朗读 + 句型骨架 24 个可替换框架)+ 生词本间隔复习(SRS,可移除/全部提前复习) + 进度仪表盘(每日目标可调) + 成就系统 + 优选发音朗读 + 深色模式 + 设置持久化(发音/语速/主题/打字偏好) + 亲子向可爱皮肤(糖果色/果冻卡/撒花动效) + 双人对战(爸爸 vs 大宝)。词库约 3143 个日常高频词、41 个主题。触发场景：用户想新增/优化单词大冒险的功能、加单词/主题词库、加新游戏或学习模式、改 SRS/生词本逻辑、做学习数据可视化与激励、调发音/音标、改视觉文案、或部署分享。每次改完都要：①更新本地 skill 文件 ②commit 并 push 到 GitHub。
 ---
 
 # 自学英语 · 单词大冒险 App
@@ -42,6 +42,22 @@ description: 开发与迭代「单词大冒险」自学英语 web 应用——�
 4. **🎮 游戏乐园** — 5 个小游戏：看图猜词 `startEmojiGame`、字母拼图 `startSpellGame`、限时挑战 `startTimedGame`、连连看 `startMatchGame`、**听音选词** `startListenGame`（听 TTS 选中文）。`launchGame(g)` 统一入口，会调 `recordGamePlayed()`。**看图猜词为「手动翻页」**：答完不自动跳，停在当题显示反馈，由用户点 `#emoji-next`「下一题 →」（末题变「看结果 →」）才前进——给自学者看清答案/听完发音的节奏自主权（`renderEmojiQ` 每题开头先 `hidden` 掉该按钮，答完 `emojiIdx++` 后 `nextBtn.onclick = renderEmojiQ` 显示之）。
 5. **⌨️ 拼写默写**（顶级模式，用主题+数量）— `startTyping/renderTypeWord/onTypeInput`。看中文+音标、自动朗读，用键盘把英文逐字母敲出来；敲错即拦截(砍回正确前缀)+震动红闪+错误音，敲对前进+清脆音；**键盘音效全是 Web Audio 实时合成**(`typeBlip`，零文件离线)。一次拼对→`recordWord`(掌握)；中途出错/用提示/跳过→`recordStudied`+`addToNotebook`(进 SRS 生词本)。隐藏 `#type-input` 捕获输入(兼容手机软键盘，点卡片唤起)，`#type-slots` 渲染字母槽(空格词如 "plane ticket" 渲染 `.tslot.space`)。结束页 `type-end-screen` 显示一次拼对数/出错数/按键正确率 + **打字速度 WPM**(`typeStartMs`/`typeCharCount`，标准 5 字符=1 词) + 错词复习列表。首页该卡为整行「featured」样式(`.mode-card.span2`)。**思路吸收自 TypeWords/Qwerty 打字背单词，自研单文件版**。
 6. **🎧 听力磨耳朵**（顶级模式，用主题+数量，整行 featured 卡）— `startListening/lsRun/lsPlay/lsPause`。**免提自动连播**：英文 ×N 遍（1/2/3 可选）→ 中文释义（用 `zhVoice()` 自动挑的中文 TTS 声音，可关；**严格按 zh-CN 普通话 > zh-TW > 其他 zh 的顺序选池**——只按 `zh` 开头筛会混进 zh-HK 粤语如 macOS 的 Sinji，已踩过坑，2026-06-11 修正）→ 词间停顿（短/中/长跟读档）→ 下一个；列表播完若开「循环播放」则 `shuffle` 洗牌再来。供开车/跑步/做家务戴耳机用。核心约定：**`lsSpeak()` 是带兜底超时的可等待朗读**（防个别机型 `onend` 不触发卡死队列）；`lsToken` 令牌使暂停/跳词后旧循环立即作废；播放中用 **Wake Lock API 防熄屏**（`lsWakeOn/lsWakeOff` + visibilitychange 回来重新申请），因为锁屏会被系统掐断 speechSynthesis；每听完一词 `recordStudied()` 计入今日/连续天数；遍数/停顿/读中文/循环四项偏好全部记进 `settings`(`lsRepeat/lsGap/lsSayCn/lsLoop`)。控件：⏮ ▶/⏸ ⏭ 大按钮 + `ls-*` 系列 id。UI 有安全提示（开车用车架、锁屏可能停）。
+
+## 📖 分级阅读（2026-09-11 新增）
+
+🔴 **定位背景**：老曾 2026-09-11 明确**这个 App 主要给他本人用**（成年初学者，水平自述"和大宝差不多"），目标是"正常阅读英文书 + 正常对话、母语级"。按词汇习得原则，**阅读是输入主线、背词只是辅助**——所以做的是"在 App 里直接读书 + 点词即收"的闭环，而不是扩通用词表。
+
+- **数据** `READINGS`（**顶层常量，IIFE 之外**，2026-09-11 起）：`{ id: {title, titleCn, level, icon, gloss:{词:中文}, paras:[{en, cn, g?}]} }`
+  - `paras` **逐句**存英文+中文 → 为了直接复用句库那套渲染（`sentHTML` + `showWordPop`）。
+  - `gloss` 是**本篇通用补充词表**。代词/复数等基础词（`he/his/him/us/we/am/boxes/children/shake…`）**不在 `VOCAB` 里**，不补就会点出"暂未收录释义"。
+  - 渲染时合并 `Object.assign({}, a.gloss, p.g||{})` 再传给弹卡 → **保证点词零死区**（r01/r02 实测 35 句 / 189 词，缺失 0）。
+- **界面** `reading-screen`：书架视图 `rd-shelf-view` + 阅读视图 `rd-read-view`。`renderShelf()` 列书单，`openReading(k)` 渲染正文（每句一个 `.rd-sent`，内含 `.sent-en` 可点词 + `.sent-cn` 中文）。
+- **首页入口**：`data-goto="reading"` 的 mode-card，在「阅读」分组，**排在开口说之前**（阅读是主线）。路由分支在首页 mode-card 点击处理里（`else if (g === "reading") openReadingHome();`）。
+- 🔴 **`showWordPop(el, raw, sentG, src)` 第 4 参 `src` 是 2026-09-11 新加的**：用来标记生词来源。阅读传 `{topic:'分级阅读', icon:'📖'}`；**不传时默认 `{topic:'日常高频句', icon:'💬'}`——这个默认值是给句库用的，改动会影响句库的收词标记**。
+- **全文连播** `#rd-read-all`：用 `rdToken` 令牌防串台（与句库 `sentToken` 同套路），按句长估算停顿（`max(2000, len*62)` ms，因为 `speak()` 不返回 Promise）。
+- **加新文章**：往 `READINGS` 加一项即可，注意 ①每句都要中文 ②基础代词/复数记得进 `gloss` ③**改完必须跑覆盖率检查确认零死区**（见下）。
+- **验收脚本（加文章后必跑）**：解析 `VOCAB` / `GLOSS_MAP` / `EN2CN` / `FORMS_MAP`，对每篇逐词走一遍 `gloss()` 的优先级链（本句 g → 全局 GLOSS → 词形还原 → EN2CN），确认缺失为 0。纯手写容易漏代词，别凭感觉。
+- **当前书单**：r01《My Day / 我的一天》、r02《The New Neighbor / 新邻居》（均为入门级，约 90~100 词）。**计划扩到 10 篇并逐级升难度**。
 
 ## 开口说：日常高频句 + 句型骨架（2026-09-11 新增）
 
