@@ -1,0 +1,9 @@
+{
+  "operate": "T16",
+  "permit": "T07",
+  "approve": "T07",
+  "dial": "T20",
+  "locate": "T16",
+  "establish": "T18",
+  "weigh": "T24"
+}

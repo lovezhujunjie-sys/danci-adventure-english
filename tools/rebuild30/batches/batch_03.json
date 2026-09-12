@@ -1,0 +1,882 @@
+[
+ {
+  "en": "take medicine",
+  "cn": "吃药",
+  "from": "daily"
+ },
+ {
+  "en": "take temperature",
+  "cn": "量体温",
+  "from": "daily"
+ },
+ {
+  "en": "check blood pressure",
+  "cn": "测血压",
+  "from": "daily"
+ },
+ {
+  "en": "hospitalize",
+  "cn": "住院",
+  "from": "daily"
+ },
+ {
+  "en": "discharge",
+  "cn": "出院",
+  "from": "daily"
+ },
+ {
+  "en": "recover",
+  "cn": "康复",
+  "from": "daily"
+ },
+ {
+  "en": "raise flag",
+  "cn": "升旗",
+  "from": "daily"
+ },
+ {
+  "en": "have class",
+  "cn": "上课",
+  "from": "daily"
+ },
+ {
+  "en": "end class",
+  "cn": "下课",
+  "from": "daily"
+ },
+ {
+  "en": "raise hand",
+  "cn": "举手",
+  "from": "daily"
+ },
+ {
+  "en": "speak up",
+  "cn": "发言",
+  "from": "daily"
+ },
+ {
+  "en": "ask",
+  "cn": "提问",
+  "from": "daily"
+ },
+ {
+  "en": "answer",
+  "cn": "回答",
+  "from": "daily"
+ },
+ {
+  "en": "examine",
+  "cn": "考试",
+  "from": "daily"
+ },
+ {
+  "en": "pass",
+  "cn": "及格",
+  "from": "daily"
+ },
+ {
+  "en": "fail",
+  "cn": "不及格",
+  "from": "daily"
+ },
+ {
+  "en": "graduate",
+  "cn": "毕业",
+  "from": "daily"
+ },
+ {
+  "en": "computer",
+  "cn": "电脑",
+  "from": "tech"
+ },
+ {
+  "en": "laptop",
+  "cn": "笔记本电脑",
+  "from": "tech"
+ },
+ {
+  "en": "desktop",
+  "cn": "台式机",
+  "from": "tech"
+ },
+ {
+  "en": "tablet",
+  "cn": "平板",
+  "from": "tech"
+ },
+ {
+  "en": "phone",
+  "cn": "手机",
+  "from": "tech"
+ },
+ {
+  "en": "smartphone",
+  "cn": "智能手机",
+  "from": "tech"
+ },
+ {
+  "en": "smartwatch",
+  "cn": "智能手表",
+  "from": "tech"
+ },
+ {
+  "en": "screen",
+  "cn": "屏幕",
+  "from": "tech"
+ },
+ {
+  "en": "monitor",
+  "cn": "显示器",
+  "from": "tech"
+ },
+ {
+  "en": "keyboard",
+  "cn": "键盘",
+  "from": "tech"
+ },
+ {
+  "en": "mouse",
+  "cn": "鼠标",
+  "from": "tech"
+ },
+ {
+  "en": "touchpad",
+  "cn": "触摸板",
+  "from": "tech"
+ },
+ {
+  "en": "touchscreen",
+  "cn": "触摸屏",
+  "from": "tech"
+ },
+ {
+  "en": "headphone",
+  "cn": "耳机",
+  "from": "tech"
+ },
+ {
+  "en": "earbuds",
+  "cn": "耳塞",
+  "from": "tech"
+ },
+ {
+  "en": "speaker",
+  "cn": "音箱",
+  "from": "tech"
+ },
+ {
+  "en": "camera",
+  "cn": "摄像头",
+  "from": "tech"
+ },
+ {
+  "en": "microphone",
+  "cn": "话筒",
+  "from": "tech"
+ },
+ {
+  "en": "printer",
+  "cn": "打印机",
+  "from": "tech"
+ },
+ {
+  "en": "scanner",
+  "cn": "扫描仪",
+  "from": "tech"
+ },
+ {
+  "en": "usb",
+  "cn": "U盘",
+  "from": "tech"
+ },
+ {
+  "en": "harddrive",
+  "cn": "硬盘",
+  "from": "tech"
+ },
+ {
+  "en": "ssd",
+  "cn": "固态硬盘",
+  "from": "tech"
+ },
+ {
+  "en": "memory",
+  "cn": "内存",
+  "from": "tech"
+ },
+ {
+  "en": "processor",
+  "cn": "处理器",
+  "from": "tech"
+ },
+ {
+  "en": "chip",
+  "cn": "芯片",
+  "from": "tech"
+ },
+ {
+  "en": "graphics",
+  "cn": "显卡",
+  "from": "tech"
+ },
+ {
+  "en": "motherboard",
+  "cn": "主板",
+  "from": "tech"
+ },
+ {
+  "en": "battery",
+  "cn": "电池",
+  "from": "tech"
+ },
+ {
+  "en": "charger",
+  "cn": "充电器",
+  "from": "tech"
+ },
+ {
+  "en": "charge",
+  "cn": "充电",
+  "from": "tech"
+ },
+ {
+  "en": "plug",
+  "cn": "插头",
+  "from": "tech"
+ },
+ {
+  "en": "cable",
+  "cn": "电缆",
+  "from": "tech"
+ },
+ {
+  "en": "adapter",
+  "cn": "适配器",
+  "from": "tech"
+ },
+ {
+  "en": "router",
+  "cn": "路由器",
+  "from": "tech"
+ },
+ {
+  "en": "modem",
+  "cn": "调制解调器",
+  "from": "tech"
+ },
+ {
+  "en": "internet",
+  "cn": "网络",
+  "from": "tech"
+ },
+ {
+  "en": "network",
+  "cn": "网",
+  "from": "tech"
+ },
+ {
+  "en": "web",
+  "cn": "万维网",
+  "from": "tech"
+ },
+ {
+  "en": "website",
+  "cn": "网站",
+  "from": "tech"
+ },
+ {
+  "en": "webpage",
+  "cn": "网页",
+  "from": "tech"
+ },
+ {
+  "en": "homepage",
+  "cn": "主页",
+  "from": "tech"
+ },
+ {
+  "en": "link",
+  "cn": "链接",
+  "from": "tech"
+ },
+ {
+  "en": "hyperlink",
+  "cn": "超链接",
+  "from": "tech"
+ },
+ {
+  "en": "address",
+  "cn": "地址",
+  "from": "tech"
+ },
+ {
+  "en": "domain",
+  "cn": "域名",
+  "from": "tech"
+ },
+ {
+  "en": "url",
+  "cn": "网址",
+  "from": "tech"
+ },
+ {
+  "en": "browser",
+  "cn": "浏览器",
+  "from": "tech"
+ },
+ {
+  "en": "search",
+  "cn": "搜索",
+  "from": "tech"
+ },
+ {
+  "en": "search engine",
+  "cn": "搜索引擎",
+  "from": "tech"
+ },
+ {
+  "en": "keyword",
+  "cn": "关键词",
+  "from": "tech"
+ },
+ {
+  "en": "tag",
+  "cn": "标签",
+  "from": "tech"
+ },
+ {
+  "en": "bookmark",
+  "cn": "书签",
+  "from": "tech"
+ },
+ {
+  "en": "favorite",
+  "cn": "收藏夹",
+  "from": "tech"
+ },
+ {
+  "en": "history",
+  "cn": "历史记录",
+  "from": "tech"
+ },
+ {
+  "en": "download",
+  "cn": "下载",
+  "from": "tech"
+ },
+ {
+  "en": "upload",
+  "cn": "上传",
+  "from": "tech"
+ },
+ {
+  "en": "load",
+  "cn": "加载",
+  "from": "tech"
+ },
+ {
+  "en": "refresh",
+  "cn": "刷新",
+  "from": "tech"
+ },
+ {
+  "en": "reload",
+  "cn": "重新加载",
+  "from": "tech"
+ },
+ {
+  "en": "redirect",
+  "cn": "跳转",
+  "from": "tech"
+ },
+ {
+  "en": "go back",
+  "cn": "返回",
+  "from": "tech"
+ },
+ {
+  "en": "forward",
+  "cn": "前进",
+  "from": "tech"
+ },
+ {
+  "en": "wifi",
+  "cn": "WiFi",
+  "from": "tech"
+ },
+ {
+  "en": "hotspot",
+  "cn": "热点",
+  "from": "tech"
+ },
+ {
+  "en": "signal",
+  "cn": "信号",
+  "from": "tech"
+ },
+ {
+  "en": "connect",
+  "cn": "连接",
+  "from": "tech"
+ },
+ {
+  "en": "disconnect",
+  "cn": "断开",
+  "from": "tech"
+ },
+ {
+  "en": "online",
+  "cn": "在线",
+  "from": "tech"
+ },
+ {
+  "en": "offline",
+  "cn": "离线",
+  "from": "tech"
+ },
+ {
+  "en": "data",
+  "cn": "数据",
+  "from": "tech"
+ },
+ {
+  "en": "traffic",
+  "cn": "流量",
+  "from": "tech"
+ },
+ {
+  "en": "bandwidth",
+  "cn": "带宽",
+  "from": "tech"
+ },
+ {
+  "en": "net speed",
+  "cn": "网速",
+  "from": "tech"
+ },
+ {
+  "en": "software",
+  "cn": "软件",
+  "from": "tech"
+ },
+ {
+  "en": "hardware",
+  "cn": "硬件",
+  "from": "tech"
+ },
+ {
+  "en": "app",
+  "cn": "应用",
+  "from": "tech"
+ },
+ {
+  "en": "application",
+  "cn": "应用程序",
+  "from": "tech"
+ },
+ {
+  "en": "program",
+  "cn": "程序",
+  "from": "tech"
+ },
+ {
+  "en": "plugin",
+  "cn": "插件",
+  "from": "tech"
+ },
+ {
+  "en": "extension",
+  "cn": "扩展",
+  "from": "tech"
+ },
+ {
+  "en": "tool",
+  "cn": "工具",
+  "from": "tech"
+ },
+ {
+  "en": "feature",
+  "cn": "功能",
+  "from": "tech"
+ },
+ {
+  "en": "version",
+  "cn": "版本",
+  "from": "tech"
+ },
+ {
+  "en": "update",
+  "cn": "更新",
+  "from": "tech"
+ },
+ {
+  "en": "upgrade",
+  "cn": "升级",
+  "from": "tech"
+ },
+ {
+  "en": "install",
+  "cn": "安装",
+  "from": "tech"
+ },
+ {
+  "en": "uninstall",
+  "cn": "卸载",
+  "from": "tech"
+ },
+ {
+  "en": "launch",
+  "cn": "启动",
+  "from": "tech"
+ },
+ {
+  "en": "run",
+  "cn": "运行",
+  "from": "tech"
+ },
+ {
+  "en": "quit",
+  "cn": "退出",
+  "from": "tech"
+ },
+ {
+  "en": "restart",
+  "cn": "重启",
+  "from": "tech"
+ },
+ {
+  "en": "crash",
+  "cn": "崩溃",
+  "from": "tech"
+ },
+ {
+  "en": "error",
+  "cn": "错误",
+  "from": "tech"
+ },
+ {
+  "en": "bug",
+  "cn": "故障",
+  "from": "tech"
+ },
+ {
+  "en": "fix",
+  "cn": "修复",
+  "from": "tech"
+ },
+ {
+  "en": "debug",
+  "cn": "调试",
+  "from": "tech"
+ },
+ {
+  "en": "file",
+  "cn": "文件",
+  "from": "tech"
+ },
+ {
+  "en": "folder",
+  "cn": "文件夹",
+  "from": "tech"
+ },
+ {
+  "en": "directory",
+  "cn": "目录",
+  "from": "tech"
+ },
+ {
+  "en": "document",
+  "cn": "文档",
+  "from": "tech"
+ },
+ {
+  "en": "picture",
+  "cn": "图片",
+  "from": "tech"
+ },
+ {
+  "en": "photo",
+  "cn": "照片",
+  "from": "tech"
+ },
+ {
+  "en": "image",
+  "cn": "图像",
+  "from": "tech"
+ },
+ {
+  "en": "icon",
+  "cn": "图标",
+  "from": "tech"
+ },
+ {
+  "en": "video",
+  "cn": "视频",
+  "from": "tech"
+ },
+ {
+  "en": "audio",
+  "cn": "音频",
+  "from": "tech"
+ },
+ {
+  "en": "zip",
+  "cn": "压缩包",
+  "from": "tech"
+ },
+ {
+  "en": "format",
+  "cn": "格式",
+  "from": "tech"
+ },
+ {
+  "en": "filesize",
+  "cn": "文件大小",
+  "from": "tech"
+ },
+ {
+  "en": "filename",
+  "cn": "文件名",
+  "from": "tech"
+ },
+ {
+  "en": "save",
+  "cn": "保存",
+  "from": "tech"
+ },
+ {
+  "en": "save as",
+  "cn": "另存为",
+  "from": "tech"
+ },
+ {
+  "en": "export",
+  "cn": "导出",
+  "from": "tech"
+ },
+ {
+  "en": "import",
+  "cn": "导入",
+  "from": "tech"
+ },
+ {
+  "en": "copy",
+  "cn": "复制",
+  "from": "tech"
+ },
+ {
+  "en": "paste",
+  "cn": "粘贴",
+  "from": "tech"
+ },
+ {
+  "en": "cut",
+  "cn": "剪切",
+  "from": "tech"
+ },
+ {
+  "en": "delete",
+  "cn": "删除",
+  "from": "tech"
+ },
+ {
+  "en": "undo",
+  "cn": "撤销",
+  "from": "tech"
+ },
+ {
+  "en": "redo",
+  "cn": "重做",
+  "from": "tech"
+ },
+ {
+  "en": "select",
+  "cn": "选中",
+  "from": "tech"
+ },
+ {
+  "en": "drag",
+  "cn": "拖动",
+  "from": "tech"
+ },
+ {
+  "en": "drop",
+  "cn": "放置",
+  "from": "tech"
+ },
+ {
+  "en": "open file",
+  "cn": "打开文件",
+  "from": "tech"
+ },
+ {
+  "en": "close file",
+  "cn": "关闭文件",
+  "from": "tech"
+ },
+ {
+  "en": "email",
+  "cn": "邮件",
+  "from": "tech"
+ },
+ {
+  "en": "mail",
+  "cn": "电子邮件",
+  "from": "tech"
+ },
+ {
+  "en": "inbox",
+  "cn": "收件箱",
+  "from": "tech"
+ },
+ {
+  "en": "outbox",
+  "cn": "发件箱",
+  "from": "tech"
+ },
+ {
+  "en": "spam",
+  "cn": "垃圾邮件",
+  "from": "tech"
+ },
+ {
+  "en": "attachment",
+  "cn": "附件",
+  "from": "tech"
+ },
+ {
+  "en": "reply",
+  "cn": "回复邮件",
+  "from": "tech"
+ },
+ {
+  "en": "forward email",
+  "cn": "转发邮件",
+  "from": "tech"
+ },
+ {
+  "en": "send",
+  "cn": "发送",
+  "from": "tech"
+ },
+ {
+  "en": "receive",
+  "cn": "接收",
+  "from": "tech"
+ },
+ {
+  "en": "sms",
+  "cn": "短信",
+  "from": "tech"
+ },
+ {
+  "en": "message",
+  "cn": "消息",
+  "from": "tech"
+ },
+ {
+  "en": "chat",
+  "cn": "聊天",
+  "from": "tech"
+ },
+ {
+  "en": "conversation",
+  "cn": "对话",
+  "from": "tech"
+ },
+ {
+  "en": "voice",
+  "cn": "语音",
+  "from": "tech"
+ },
+ {
+  "en": "video call",
+  "cn": "视频通话",
+  "from": "tech"
+ },
+ {
+  "en": "call",
+  "cn": "通话",
+  "from": "tech"
+ },
+ {
+  "en": "hang up",
+  "cn": "挂断",
+  "from": "tech"
+ },
+ {
+  "en": "answer",
+  "cn": "接听",
+  "from": "tech"
+ },
+ {
+  "en": "livestream",
+  "cn": "直播",
+  "from": "tech"
+ },
+ {
+  "en": "social media",
+  "cn": "社交媒体",
+  "from": "tech"
+ },
+ {
+  "en": "feed",
+  "cn": "信息流",
+  "from": "tech"
+ },
+ {
+  "en": "status",
+  "cn": "动态",
+  "from": "tech"
+ },
+ {
+  "en": "post",
+  "cn": "帖子",
+  "from": "tech"
+ },
+ {
+  "en": "publish",
+  "cn": "发布",
+  "from": "tech"
+ },
+ {
+  "en": "share",
+  "cn": "分享",
+  "from": "tech"
+ },
+ {
+  "en": "repost",
+  "cn": "转发",
+  "from": "tech"
+ },
+ {
+  "en": "comment",
+  "cn": "评论",
+  "from": "tech"
+ },
+ {
+  "en": "like",
+  "cn": "点赞",
+  "from": "tech"
+ },
+ {
+  "en": "follow",
+  "cn": "关注",
+  "from": "tech"
+ },
+ {
+  "en": "follower",
+  "cn": "粉丝",
+  "from": "tech"
+ },
+ {
+  "en": "unfollow",
+  "cn": "取关",
+  "from": "tech"
+ },
+ {
+  "en": "block",
+  "cn": "拉黑",
+  "from": "tech"
+ }
+]

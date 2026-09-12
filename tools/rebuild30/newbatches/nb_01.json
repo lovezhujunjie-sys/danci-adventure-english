@@ -1,0 +1,872 @@
+[
+ {
+  "en": "guy",
+  "cn": "家伙；人",
+  "cefr": "A1"
+ },
+ {
+  "en": "spy",
+  "cn": "间谍",
+  "cefr": "A1"
+ },
+ {
+  "en": "burger",
+  "cn": "汉堡包",
+  "cefr": "A1"
+ },
+ {
+  "en": "poster",
+  "cn": "海报",
+  "cefr": "A1"
+ },
+ {
+  "en": "shelf",
+  "cn": "架子；搁板",
+  "cefr": "A1"
+ },
+ {
+  "en": "surf",
+  "cn": "海浪；冲浪",
+  "cefr": "A1"
+ },
+ {
+  "en": "hometown",
+  "cn": "故乡；家乡",
+  "cefr": "A1"
+ },
+ {
+  "en": "elementary",
+  "cn": "初步的；基本的",
+  "cefr": "A1"
+ },
+ {
+  "en": "survey",
+  "cn": "调查；测量",
+  "cefr": "A1"
+ },
+ {
+  "en": "vase",
+  "cn": "花瓶",
+  "cefr": "A1"
+ },
+ {
+  "en": "reader",
+  "cn": "读者；读物",
+  "cefr": "A1"
+ },
+ {
+  "en": "biscuit",
+  "cn": "饼干；素坯",
+  "cefr": "A1"
+ },
+ {
+  "en": "dictionary",
+  "cn": "字典；词典",
+  "cefr": "A1"
+ },
+ {
+  "en": "apron",
+  "cn": "围裙",
+  "cefr": "A1"
+ },
+ {
+  "en": "paragraph",
+  "cn": "段落；短评",
+  "cefr": "A1"
+ },
+ {
+  "en": "interviewer",
+  "cn": "面试官；采访者",
+  "cefr": "A1"
+ },
+ {
+  "en": "nationality",
+  "cn": "国籍",
+  "cefr": "A1"
+ },
+ {
+  "en": "underline",
+  "cn": "在……下面划线",
+  "cefr": "A1"
+ },
+ {
+  "en": "grandparent",
+  "cn": "祖父母",
+  "cefr": "A1"
+ },
+ {
+  "en": "o'clock",
+  "cn": "点钟",
+  "cefr": "A1"
+ },
+ {
+  "en": "frank",
+  "cn": "坦白的；率直的",
+  "cefr": "A2"
+ },
+ {
+  "en": "mark",
+  "cn": "标志；分数",
+  "cefr": "A2"
+ },
+ {
+  "en": "major",
+  "cn": "主要的；专业",
+  "cefr": "A2"
+ },
+ {
+  "en": "max",
+  "cn": "最大",
+  "cefr": "A2"
+ },
+ {
+  "en": "ray",
+  "cn": "光线；射线",
+  "cefr": "A2"
+ },
+ {
+  "en": "grace",
+  "cn": "优雅；风度",
+  "cefr": "A2"
+ },
+ {
+  "en": "rob",
+  "cn": "抢劫",
+  "cefr": "A2"
+ },
+ {
+  "en": "treasure",
+  "cn": "宝藏；珍宝",
+  "cefr": "A2"
+ },
+ {
+  "en": "someday",
+  "cn": "有一天",
+  "cefr": "A2"
+ },
+ {
+  "en": "robin",
+  "cn": "知更鸟",
+  "cefr": "A2"
+ },
+ {
+  "en": "hunter",
+  "cn": "猎人",
+  "cefr": "A2"
+ },
+ {
+  "en": "plastic",
+  "cn": "塑料",
+  "cefr": "A2"
+ },
+ {
+  "en": "kit",
+  "cn": "装备；工具箱",
+  "cefr": "A2"
+ },
+ {
+  "en": "sandy",
+  "cn": "沙质的",
+  "cefr": "A2"
+ },
+ {
+  "en": "good-looking",
+  "cn": "相貌好看的；吸引人的",
+  "cefr": "A2"
+ },
+ {
+  "en": "mug",
+  "cn": "马克杯",
+  "cefr": "A2"
+ },
+ {
+  "en": "harmony",
+  "cn": "协调；和睦",
+  "cefr": "A2"
+ },
+ {
+  "en": "difficulty",
+  "cn": "困难；难点",
+  "cefr": "A2"
+ },
+ {
+  "en": "maker",
+  "cn": "制造者",
+  "cefr": "A2"
+ },
+ {
+  "en": "unnecessary",
+  "cn": "不必要的",
+  "cefr": "A2"
+ },
+ {
+  "en": "wheelchair",
+  "cn": "轮椅",
+  "cefr": "A2"
+ },
+ {
+  "en": "underwater",
+  "cn": "水下的",
+  "cefr": "A2"
+ },
+ {
+  "en": "make-up",
+  "cn": "化妆；构成",
+  "cefr": "A2"
+ },
+ {
+  "en": "shade",
+  "cn": "阴凉处；色度",
+  "cefr": "A2"
+ },
+ {
+  "en": "wander",
+  "cn": "漫步；闲逛",
+  "cefr": "A2"
+ },
+ {
+  "en": "chart",
+  "cn": "图表",
+  "cefr": "A2"
+ },
+ {
+  "en": "globe",
+  "cn": "地球；球体",
+  "cefr": "A2"
+ },
+ {
+  "en": "disco",
+  "cn": "夜总会；迪斯科",
+  "cefr": "A2"
+ },
+ {
+  "en": "additional",
+  "cn": "附加的；另外的",
+  "cefr": "A2"
+ },
+ {
+  "en": "adjust",
+  "cn": "调整；使适应于",
+  "cefr": "A2"
+ },
+ {
+  "en": "lifestyle",
+  "cn": "生活方式",
+  "cefr": "A2"
+ },
+ {
+  "en": "jelly",
+  "cn": "果冻；胶状物",
+  "cefr": "A2"
+ },
+ {
+  "en": "refer",
+  "cn": "提到；参考",
+  "cefr": "A2"
+ },
+ {
+  "en": "fare",
+  "cn": "车费；票价",
+  "cefr": "A2"
+ },
+ {
+  "en": "artificial",
+  "cn": "人造的；假的",
+  "cefr": "A2"
+ },
+ {
+  "en": "sock",
+  "cn": "短袜",
+  "cefr": "A2"
+ },
+ {
+  "en": "cheque",
+  "cn": "支票",
+  "cefr": "A2"
+ },
+ {
+  "en": "satisfy",
+  "cn": "使满意",
+  "cefr": "A2"
+ },
+ {
+  "en": "frighten",
+  "cn": "使惊吓；惊恐",
+  "cefr": "A2"
+ },
+ {
+  "en": "spaghetti",
+  "cn": "意大利面",
+  "cefr": "A2"
+ },
+ {
+  "en": "feather",
+  "cn": "羽毛",
+  "cefr": "A2"
+ },
+ {
+  "en": "continent",
+  "cn": "大陆；洲",
+  "cefr": "A2"
+ },
+ {
+  "en": "curry",
+  "cn": "咖哩粉；咖哩饭菜",
+  "cefr": "A2"
+ },
+ {
+  "en": "sunlight",
+  "cn": "阳光",
+  "cefr": "A2"
+ },
+ {
+  "en": "occupation",
+  "cn": "职业；占有",
+  "cefr": "A2"
+ },
+ {
+  "en": "astronaut",
+  "cn": "太空旅行者；宇航员",
+  "cefr": "A2"
+ },
+ {
+  "en": "petrol",
+  "cn": "汽油",
+  "cefr": "A2"
+ },
+ {
+  "en": "lively",
+  "cn": "活泼的；鲜明的",
+  "cefr": "A2"
+ },
+ {
+  "en": "acceptable",
+  "cn": "可接受的；合意的",
+  "cefr": "A2"
+ },
+ {
+  "en": "refrigerator",
+  "cn": "冰箱",
+  "cefr": "A2"
+ },
+ {
+  "en": "aisle",
+  "cn": "走廊；侧廊",
+  "cefr": "A2"
+ },
+ {
+  "en": "spaceship",
+  "cn": "宇宙飞船",
+  "cefr": "A2"
+ },
+ {
+  "en": "pronounce",
+  "cn": "发音；宣称",
+  "cefr": "A2"
+ },
+ {
+  "en": "runner",
+  "cn": "跑步者",
+  "cefr": "A2"
+ },
+ {
+  "en": "greatly",
+  "cn": "很；非常",
+  "cefr": "A2"
+ },
+ {
+  "en": "dinosaur",
+  "cn": "恐龙",
+  "cefr": "A2"
+ },
+ {
+  "en": "container",
+  "cn": "容器；集装箱",
+  "cefr": "A2"
+ },
+ {
+  "en": "elderly",
+  "cn": "年长的",
+  "cefr": "A2"
+ },
+ {
+  "en": "granddad",
+  "cn": "爷爷；老太爷",
+  "cefr": "A2"
+ },
+ {
+  "en": "regularly",
+  "cn": "定期地；经常",
+  "cefr": "A2"
+ },
+ {
+  "en": "invent",
+  "cn": "发明；创作",
+  "cefr": "A2"
+ },
+ {
+  "en": "weep",
+  "cn": "哭泣",
+  "cefr": "A2"
+ },
+ {
+  "en": "lemonade",
+  "cn": "柠檬水",
+  "cefr": "A2"
+ },
+ {
+  "en": "successfully",
+  "cn": "成功地",
+  "cefr": "A2"
+ },
+ {
+  "en": "olympic",
+  "cn": "奥林匹克的",
+  "cefr": "A2"
+ },
+ {
+  "en": "weekly",
+  "cn": "每周的；周刊",
+  "cefr": "A2"
+ },
+ {
+  "en": "roughly",
+  "cn": "大约；粗略地",
+  "cefr": "A2"
+ },
+ {
+  "en": "automatically",
+  "cn": "自动地；机械地",
+  "cefr": "A2"
+ },
+ {
+  "en": "athlete",
+  "cn": "运动员；运动选手",
+  "cefr": "A2"
+ },
+ {
+  "en": "cereal",
+  "cn": "谷类食品；谷类植物",
+  "cefr": "A2"
+ },
+ {
+  "en": "psychologist",
+  "cn": "心理学家",
+  "cefr": "A2"
+ },
+ {
+  "en": "sew",
+  "cn": "缝纫",
+  "cefr": "A2"
+ },
+ {
+  "en": "confuse",
+  "cn": "使混乱；使狼狈",
+  "cefr": "A2"
+ },
+ {
+  "en": "batch",
+  "cn": "一批；批量",
+  "cefr": "A2"
+ },
+ {
+  "en": "architecture",
+  "cn": "建筑学；建筑式样",
+  "cefr": "A2"
+ },
+ {
+  "en": "fisherman",
+  "cn": "渔夫；钓鱼者",
+  "cefr": "A2"
+ },
+ {
+  "en": "insect",
+  "cn": "昆虫",
+  "cefr": "A2"
+ },
+ {
+  "en": "essay",
+  "cn": "随笔；短文",
+  "cefr": "A2"
+ },
+ {
+  "en": "wool",
+  "cn": "羊毛",
+  "cefr": "A2"
+ },
+ {
+  "en": "partly",
+  "cn": "部分地；在一定程度上",
+  "cefr": "A2"
+ },
+ {
+  "en": "quiz",
+  "cn": "测验；问答比赛",
+  "cefr": "A2"
+ },
+ {
+  "en": "superstar",
+  "cn": "超级明星",
+  "cefr": "A2"
+ },
+ {
+  "en": "well-known",
+  "cn": "著名的",
+  "cefr": "A2"
+ },
+ {
+  "en": "gender",
+  "cn": "性别",
+  "cefr": "A2"
+ },
+ {
+  "en": "atom",
+  "cn": "原子；核能",
+  "cefr": "A2"
+ },
+ {
+  "en": "smoothly",
+  "cn": "平稳地；流畅地",
+  "cefr": "A2"
+ },
+ {
+  "en": "bulb",
+  "cn": "电灯泡；球茎",
+  "cefr": "A2"
+ },
+ {
+  "en": "clone",
+  "cn": "克隆；复制品",
+  "cefr": "A2"
+ },
+ {
+  "en": "invade",
+  "cn": "入侵",
+  "cefr": "A2"
+ },
+ {
+  "en": "consequence",
+  "cn": "结果；重要性",
+  "cefr": "A2"
+ },
+ {
+  "en": "annoy",
+  "cn": "使恼怒；骚扰",
+  "cefr": "A2"
+ },
+ {
+  "en": "kilo",
+  "cn": "公斤；千米",
+  "cefr": "A2"
+ },
+ {
+  "en": "educational",
+  "cn": "教育的；教育性的",
+  "cefr": "A2"
+ },
+ {
+  "en": "symphony",
+  "cn": "交响乐",
+  "cefr": "A2"
+ },
+ {
+  "en": "crisp",
+  "cn": "脆的；新鲜的",
+  "cefr": "A2"
+ },
+ {
+  "en": "lunchtime",
+  "cn": "午餐时间",
+  "cefr": "A2"
+ },
+ {
+  "en": "pea",
+  "cn": "豌豆",
+  "cefr": "A2"
+ },
+ {
+  "en": "uncertain",
+  "cn": "不确定的",
+  "cefr": "A2"
+ },
+ {
+  "en": "uneasy",
+  "cn": "不安的",
+  "cefr": "A2"
+ },
+ {
+  "en": "silently",
+  "cn": "默默地；静静地",
+  "cefr": "A2"
+ },
+ {
+  "en": "melon",
+  "cn": "甜瓜",
+  "cefr": "A2"
+ },
+ {
+  "en": "leisure",
+  "cn": "空闲；闲暇",
+  "cefr": "A2"
+ },
+ {
+  "en": "euro",
+  "cn": "欧元",
+  "cefr": "A2"
+ },
+ {
+  "en": "receptionist",
+  "cn": "接待员",
+  "cefr": "A2"
+ },
+ {
+  "en": "creativity",
+  "cn": "创造力；创造性",
+  "cefr": "A2"
+ },
+ {
+  "en": "dishonest",
+  "cn": "不诚实的；不忠实的",
+  "cefr": "A2"
+ },
+ {
+  "en": "composer",
+  "cn": "作曲家；作家",
+  "cefr": "A2"
+ },
+ {
+  "en": "seafood",
+  "cn": "海鲜",
+  "cefr": "A2"
+ },
+ {
+  "en": "progressive",
+  "cn": "进步的",
+  "cefr": "A2"
+ },
+ {
+  "en": "grandchild",
+  "cn": "孙",
+  "cefr": "A2"
+ },
+ {
+  "en": "playful",
+  "cn": "好玩的；爱玩的",
+  "cefr": "A2"
+ },
+ {
+  "en": "drugstore",
+  "cn": "药房；杂货店",
+  "cefr": "A2"
+ },
+ {
+  "en": "right-hand",
+  "cn": "用右手的；右侧的",
+  "cefr": "A2"
+ },
+ {
+  "en": "energetic",
+  "cn": "精力充沛的；积极的",
+  "cefr": "A2"
+ },
+ {
+  "en": "tram",
+  "cn": "有轨电车",
+  "cefr": "A2"
+ },
+ {
+  "en": "cassette",
+  "cn": "盒式磁带",
+  "cefr": "A2"
+ },
+ {
+  "en": "pilgrim",
+  "cn": "朝圣者",
+  "cefr": "A2"
+ },
+ {
+  "en": "harmful",
+  "cn": "有害的；伤害的",
+  "cefr": "A2"
+ },
+ {
+  "en": "widely",
+  "cn": "广泛地",
+  "cefr": "A2"
+ },
+ {
+  "en": "tights",
+  "cn": "紧身裤袜",
+  "cefr": "A2"
+ },
+ {
+  "en": "midday",
+  "cn": "正午；中午",
+  "cefr": "A2"
+ },
+ {
+  "en": "vocabulary",
+  "cn": "词汇；词汇量",
+  "cefr": "A2"
+ },
+ {
+  "en": "unforgettable",
+  "cn": "难忘的",
+  "cefr": "A2"
+ },
+ {
+  "en": "prediction",
+  "cn": "预言；预测",
+  "cefr": "A2"
+ },
+ {
+  "en": "unhealthy",
+  "cn": "不健康的",
+  "cefr": "A2"
+ },
+ {
+  "en": "sleepless",
+  "cn": "不睡眠的；睡不着的",
+  "cefr": "A2"
+ },
+ {
+  "en": "unimportant",
+  "cn": "不重要的",
+  "cefr": "A2"
+ },
+ {
+  "en": "beginner",
+  "cn": "初学者",
+  "cefr": "A2"
+ },
+ {
+  "en": "swimsuit",
+  "cn": "泳衣",
+  "cefr": "A2"
+ },
+ {
+  "en": "summary",
+  "cn": "摘要；总结",
+  "cefr": "A2"
+ },
+ {
+  "en": "disadvantage",
+  "cn": "缺点；不利",
+  "cefr": "A2"
+ },
+ {
+  "en": "indoor",
+  "cn": "户内的；室内的",
+  "cefr": "A2"
+ },
+ {
+  "en": "overweight",
+  "cn": "超重的",
+  "cefr": "A2"
+ },
+ {
+  "en": "raincoat",
+  "cn": "雨衣",
+  "cefr": "A2"
+ },
+ {
+  "en": "singular",
+  "cn": "单数的",
+  "cefr": "A2"
+ },
+ {
+  "en": "timetable",
+  "cn": "时间表",
+  "cefr": "A2"
+ },
+ {
+  "en": "learner",
+  "cn": "学习者；初学者",
+  "cefr": "A2"
+ },
+ {
+  "en": "angrily",
+  "cn": "愤怒地",
+  "cefr": "A2"
+ },
+ {
+  "en": "lyric",
+  "cn": "抒情诗；歌词",
+  "cefr": "A2"
+ },
+ {
+  "en": "chirp",
+  "cn": "喳喳声；唧唧声",
+  "cefr": "A2"
+ },
+ {
+  "en": "plural",
+  "cn": "复数",
+  "cefr": "A2"
+ },
+ {
+  "en": "cooker",
+  "cn": "炉灶；炊具",
+  "cefr": "A2"
+ },
+ {
+  "en": "motorway",
+  "cn": "高速公路",
+  "cefr": "A2"
+ },
+ {
+  "en": "chimpanzee",
+  "cn": "黑猩猩",
+  "cefr": "A2"
+ },
+ {
+  "en": "injure",
+  "cn": "伤害；损害",
+  "cefr": "A2"
+ },
+ {
+  "en": "verb",
+  "cn": "动词",
+  "cefr": "A2"
+ },
+ {
+  "en": "armchair",
+  "cn": "扶手椅",
+  "cefr": "A2"
+ },
+ {
+  "en": "roundabout",
+  "cn": "环岛；迂回的",
+  "cefr": "A2"
+ },
+ {
+  "en": "left-hand",
+  "cn": "左侧的；左手的",
+  "cefr": "A2"
+ },
+ {
+  "en": "thunderstorm",
+  "cn": "雷暴",
+  "cefr": "A2"
+ },
+ {
+  "en": "policewoman",
+  "cn": "女警察",
+  "cefr": "A2"
+ },
+ {
+  "en": "businesswoman",
+  "cn": "女商人",
+  "cefr": "A2"
+ },
+ {
+  "en": "bookshop",
+  "cn": "书店",
+  "cefr": "A2"
+ },
+ {
+  "en": "brainstorm",
+  "cn": "灵机一动；集体讨论",
+  "cefr": "A2"
+ }
+]

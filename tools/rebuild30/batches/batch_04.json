@@ -1,0 +1,882 @@
+[
+ {
+  "en": "report",
+  "cn": "举报",
+  "from": "tech"
+ },
+ {
+  "en": "mute",
+  "cn": "屏蔽",
+  "from": "tech"
+ },
+ {
+  "en": "mention",
+  "cn": "@提到",
+  "from": "tech"
+ },
+ {
+  "en": "topic",
+  "cn": "话题",
+  "from": "tech"
+ },
+ {
+  "en": "hashtag",
+  "cn": "话题标签",
+  "from": "tech"
+ },
+ {
+  "en": "dm",
+  "cn": "私信",
+  "from": "tech"
+ },
+ {
+  "en": "group",
+  "cn": "群组",
+  "from": "tech"
+ },
+ {
+  "en": "channel",
+  "cn": "频道",
+  "from": "tech"
+ },
+ {
+  "en": "subscribe",
+  "cn": "订阅",
+  "from": "tech"
+ },
+ {
+  "en": "unsubscribe",
+  "cn": "退订",
+  "from": "tech"
+ },
+ {
+  "en": "video meeting",
+  "cn": "视频会议",
+  "from": "tech"
+ },
+ {
+  "en": "account",
+  "cn": "账户",
+  "from": "tech"
+ },
+ {
+  "en": "id",
+  "cn": "账号",
+  "from": "tech"
+ },
+ {
+  "en": "user",
+  "cn": "用户",
+  "from": "tech"
+ },
+ {
+  "en": "username",
+  "cn": "用户名",
+  "from": "tech"
+ },
+ {
+  "en": "password",
+  "cn": "密码",
+  "from": "tech"
+ },
+ {
+  "en": "pin",
+  "cn": "PIN码",
+  "from": "tech"
+ },
+ {
+  "en": "verify code",
+  "cn": "验证码",
+  "from": "tech"
+ },
+ {
+  "en": "login",
+  "cn": "登录",
+  "from": "tech"
+ },
+ {
+  "en": "logout",
+  "cn": "登出",
+  "from": "tech"
+ },
+ {
+  "en": "signout",
+  "cn": "注销",
+  "from": "tech"
+ },
+ {
+  "en": "register",
+  "cn": "注册",
+  "from": "tech"
+ },
+ {
+  "en": "profile",
+  "cn": "个人资料",
+  "from": "tech"
+ },
+ {
+  "en": "avatar",
+  "cn": "头像",
+  "from": "tech"
+ },
+ {
+  "en": "nickname",
+  "cn": "昵称",
+  "from": "tech"
+ },
+ {
+  "en": "bio",
+  "cn": "简介",
+  "from": "tech"
+ },
+ {
+  "en": "settings",
+  "cn": "设置",
+  "from": "tech"
+ },
+ {
+  "en": "preferences",
+  "cn": "偏好",
+  "from": "tech"
+ },
+ {
+  "en": "privacy",
+  "cn": "隐私",
+  "from": "tech"
+ },
+ {
+  "en": "public",
+  "cn": "公开",
+  "from": "tech"
+ },
+ {
+  "en": "private",
+  "cn": "私密",
+  "from": "tech"
+ },
+ {
+  "en": "permission",
+  "cn": "权限",
+  "from": "tech"
+ },
+ {
+  "en": "access",
+  "cn": "访问",
+  "from": "tech"
+ },
+ {
+  "en": "authorize",
+  "cn": "授权",
+  "from": "tech"
+ },
+ {
+  "en": "security",
+  "cn": "安全",
+  "from": "tech"
+ },
+ {
+  "en": "encrypt",
+  "cn": "加密",
+  "from": "tech"
+ },
+ {
+  "en": "decrypt",
+  "cn": "解密",
+  "from": "tech"
+ },
+ {
+  "en": "verify",
+  "cn": "验证",
+  "from": "tech"
+ },
+ {
+  "en": "identity",
+  "cn": "身份",
+  "from": "tech"
+ },
+ {
+  "en": "two-factor",
+  "cn": "双重验证",
+  "from": "tech"
+ },
+ {
+  "en": "fingerprint",
+  "cn": "指纹",
+  "from": "tech"
+ },
+ {
+  "en": "Face ID",
+  "cn": "人脸识别",
+  "from": "tech"
+ },
+ {
+  "en": "biometric",
+  "cn": "生物识别",
+  "from": "tech"
+ },
+ {
+  "en": "content",
+  "cn": "内容",
+  "from": "tech"
+ },
+ {
+  "en": "article",
+  "cn": "文章",
+  "from": "tech"
+ },
+ {
+  "en": "blog",
+  "cn": "博客",
+  "from": "tech"
+ },
+ {
+  "en": "news",
+  "cn": "新闻",
+  "from": "tech"
+ },
+ {
+  "en": "recommend",
+  "cn": "推荐",
+  "from": "tech"
+ },
+ {
+  "en": "trending",
+  "cn": "热门",
+  "from": "tech"
+ },
+ {
+  "en": "hot search",
+  "cn": "热搜",
+  "from": "tech"
+ },
+ {
+  "en": "popular",
+  "cn": "流行",
+  "from": "tech"
+ },
+ {
+  "en": "latest",
+  "cn": "最新",
+  "from": "tech"
+ },
+ {
+  "en": "pinned",
+  "cn": "置顶",
+  "from": "tech"
+ },
+ {
+  "en": "featured",
+  "cn": "精选",
+  "from": "tech"
+ },
+ {
+  "en": "advertisement",
+  "cn": "广告",
+  "from": "tech"
+ },
+ {
+  "en": "sponsored",
+  "cn": "赞助",
+  "from": "tech"
+ },
+ {
+  "en": "promotion",
+  "cn": "推广",
+  "from": "tech"
+ },
+ {
+  "en": "notification",
+  "cn": "通知",
+  "from": "tech"
+ },
+ {
+  "en": "reminder",
+  "cn": "提醒",
+  "from": "tech"
+ },
+ {
+  "en": "popup",
+  "cn": "弹窗",
+  "from": "tech"
+ },
+ {
+  "en": "banner",
+  "cn": "横幅",
+  "from": "tech"
+ },
+ {
+  "en": "cookie",
+  "cn": "Cookie",
+  "from": "tech"
+ },
+ {
+  "en": "cache",
+  "cn": "缓存",
+  "from": "tech"
+ },
+ {
+  "en": "clear",
+  "cn": "清除",
+  "from": "tech"
+ },
+ {
+  "en": "loading",
+  "cn": "加载中",
+  "from": "tech"
+ },
+ {
+  "en": "interface",
+  "cn": "界面",
+  "from": "tech"
+ },
+ {
+  "en": "ui",
+  "cn": "用户界面",
+  "from": "tech"
+ },
+ {
+  "en": "ux",
+  "cn": "用户体验",
+  "from": "tech"
+ },
+ {
+  "en": "button",
+  "cn": "按钮",
+  "from": "tech"
+ },
+ {
+  "en": "menu",
+  "cn": "菜单",
+  "from": "tech"
+ },
+ {
+  "en": "option",
+  "cn": "选项",
+  "from": "tech"
+ },
+ {
+  "en": "dropdown",
+  "cn": "下拉",
+  "from": "tech"
+ },
+ {
+  "en": "checkbox",
+  "cn": "复选框",
+  "from": "tech"
+ },
+ {
+  "en": "radio",
+  "cn": "单选",
+  "from": "tech"
+ },
+ {
+  "en": "toggle",
+  "cn": "开关",
+  "from": "tech"
+ },
+ {
+  "en": "slider",
+  "cn": "滑块",
+  "from": "tech"
+ },
+ {
+  "en": "input",
+  "cn": "输入框",
+  "from": "tech"
+ },
+ {
+  "en": "typetext",
+  "cn": "输入文字",
+  "from": "tech"
+ },
+ {
+  "en": "submit",
+  "cn": "提交",
+  "from": "tech"
+ },
+ {
+  "en": "cancel",
+  "cn": "取消",
+  "from": "tech"
+ },
+ {
+  "en": "confirm",
+  "cn": "确认",
+  "from": "tech"
+ },
+ {
+  "en": "agree",
+  "cn": "同意",
+  "from": "tech"
+ },
+ {
+  "en": "decline",
+  "cn": "拒绝",
+  "from": "tech"
+ },
+ {
+  "en": "continue",
+  "cn": "继续",
+  "from": "tech"
+ },
+ {
+  "en": "skip",
+  "cn": "跳过",
+  "from": "tech"
+ },
+ {
+  "en": "next",
+  "cn": "下一步",
+  "from": "tech"
+ },
+ {
+  "en": "previous",
+  "cn": "上一步",
+  "from": "tech"
+ },
+ {
+  "en": "done",
+  "cn": "完成",
+  "from": "tech"
+ },
+ {
+  "en": "view",
+  "cn": "查看",
+  "from": "tech"
+ },
+ {
+  "en": "preview",
+  "cn": "预览",
+  "from": "tech"
+ },
+ {
+  "en": "details",
+  "cn": "详情",
+  "from": "tech"
+ },
+ {
+  "en": "more",
+  "cn": "更多",
+  "from": "tech"
+ },
+ {
+  "en": "searchbar",
+  "cn": "搜索栏",
+  "from": "tech"
+ },
+ {
+  "en": "sidebar",
+  "cn": "侧边栏",
+  "from": "tech"
+ },
+ {
+  "en": "browser tab",
+  "cn": "标签页",
+  "from": "tech"
+ },
+ {
+  "en": "window",
+  "cn": "窗口",
+  "from": "tech"
+ },
+ {
+  "en": "modal",
+  "cn": "弹出窗口",
+  "from": "tech"
+ },
+ {
+  "en": "dialog",
+  "cn": "对话框",
+  "from": "tech"
+ },
+ {
+  "en": "toolbar",
+  "cn": "工具栏",
+  "from": "tech"
+ },
+ {
+  "en": "statusbar",
+  "cn": "状态栏",
+  "from": "tech"
+ },
+ {
+  "en": "cloud",
+  "cn": "云",
+  "from": "tech"
+ },
+ {
+  "en": "cloudstorage",
+  "cn": "云存储",
+  "from": "tech"
+ },
+ {
+  "en": "sync",
+  "cn": "同步",
+  "from": "tech"
+ },
+ {
+  "en": "backup",
+  "cn": "备份",
+  "from": "tech"
+ },
+ {
+  "en": "restore",
+  "cn": "还原",
+  "from": "tech"
+ },
+ {
+  "en": "storage",
+  "cn": "存储",
+  "from": "tech"
+ },
+ {
+  "en": "disk space",
+  "cn": "空间",
+  "from": "tech"
+ },
+ {
+  "en": "remaining",
+  "cn": "剩余",
+  "from": "tech"
+ },
+ {
+  "en": "capacity",
+  "cn": "容量",
+  "from": "tech"
+ },
+ {
+  "en": "server",
+  "cn": "服务器",
+  "from": "tech"
+ },
+ {
+  "en": "database",
+  "cn": "数据库",
+  "from": "tech"
+ },
+ {
+  "en": "ecommerce",
+  "cn": "电商",
+  "from": "tech"
+ },
+ {
+  "en": "online shopping",
+  "cn": "网购",
+  "from": "tech"
+ },
+ {
+  "en": "cart",
+  "cn": "购物车",
+  "from": "tech"
+ },
+ {
+  "en": "checkout",
+  "cn": "结账",
+  "from": "tech"
+ },
+ {
+  "en": "order",
+  "cn": "订单",
+  "from": "tech"
+ },
+ {
+  "en": "ship",
+  "cn": "发货",
+  "from": "tech"
+ },
+ {
+  "en": "delivery",
+  "cn": "配送",
+  "from": "tech"
+ },
+ {
+  "en": "logistics",
+  "cn": "物流",
+  "from": "tech"
+ },
+ {
+  "en": "tracking",
+  "cn": "跟踪",
+  "from": "tech"
+ },
+ {
+  "en": "return",
+  "cn": "退货",
+  "from": "tech"
+ },
+ {
+  "en": "refund",
+  "cn": "退款",
+  "from": "tech"
+ },
+ {
+  "en": "review",
+  "cn": "评价",
+  "from": "tech"
+ },
+ {
+  "en": "rating",
+  "cn": "评分",
+  "from": "tech"
+ },
+ {
+  "en": "discount",
+  "cn": "折扣",
+  "from": "tech"
+ },
+ {
+  "en": "coupon",
+  "cn": "优惠券",
+  "from": "tech"
+ },
+ {
+  "en": "sale",
+  "cn": "促销",
+  "from": "tech"
+ },
+ {
+  "en": "freetrial",
+  "cn": "免费试用",
+  "from": "tech"
+ },
+ {
+  "en": "membership",
+  "cn": "会员",
+  "from": "tech"
+ },
+ {
+  "en": "paid",
+  "cn": "付费",
+  "from": "tech"
+ },
+ {
+  "en": "subscription",
+  "cn": "订阅服务",
+  "from": "tech"
+ },
+ {
+  "en": "free version",
+  "cn": "免费版",
+  "from": "tech"
+ },
+ {
+  "en": "pro",
+  "cn": "专业版",
+  "from": "tech"
+ },
+ {
+  "en": "premium",
+  "cn": "高级版",
+  "from": "tech"
+ },
+ {
+  "en": "ai",
+  "cn": "人工智能",
+  "from": "tech"
+ },
+ {
+  "en": "ml",
+  "cn": "机器学习",
+  "from": "tech"
+ },
+ {
+  "en": "robot",
+  "cn": "机器人",
+  "from": "tech"
+ },
+ {
+  "en": "chatbot",
+  "cn": "聊天机器人",
+  "from": "tech"
+ },
+ {
+  "en": "algorithm",
+  "cn": "算法",
+  "from": "tech"
+ },
+ {
+  "en": "automatic",
+  "cn": "自动",
+  "from": "tech"
+ },
+ {
+  "en": "smart",
+  "cn": "智能",
+  "from": "tech"
+ },
+ {
+  "en": "virtual",
+  "cn": "虚拟",
+  "from": "tech"
+ },
+ {
+  "en": "ar",
+  "cn": "增强现实",
+  "from": "tech"
+ },
+ {
+  "en": "vr",
+  "cn": "虚拟现实",
+  "from": "tech"
+ },
+ {
+  "en": "metaverse",
+  "cn": "元宇宙",
+  "from": "tech"
+ },
+ {
+  "en": "digital",
+  "cn": "数字化",
+  "from": "tech"
+ },
+ {
+  "en": "code",
+  "cn": "代码",
+  "from": "tech"
+ },
+ {
+  "en": "coding",
+  "cn": "编程",
+  "from": "tech"
+ },
+ {
+  "en": "develop",
+  "cn": "开发",
+  "from": "tech"
+ },
+ {
+  "en": "developer",
+  "cn": "开发者",
+  "from": "tech"
+ },
+ {
+  "en": "programmer",
+  "cn": "程序员",
+  "from": "tech"
+ },
+ {
+  "en": "script",
+  "cn": "脚本",
+  "from": "tech"
+ },
+ {
+  "en": "api",
+  "cn": "API接口",
+  "from": "tech"
+ },
+ {
+  "en": "help",
+  "cn": "帮助",
+  "from": "tech"
+ },
+ {
+  "en": "support",
+  "cn": "支持",
+  "from": "tech"
+ },
+ {
+  "en": "customer service",
+  "cn": "客服",
+  "from": "tech"
+ },
+ {
+  "en": "faq",
+  "cn": "常见问题",
+  "from": "tech"
+ },
+ {
+  "en": "tutorial",
+  "cn": "教程",
+  "from": "tech"
+ },
+ {
+  "en": "guide",
+  "cn": "指南",
+  "from": "tech"
+ },
+ {
+  "en": "docs",
+  "cn": "说明文档",
+  "from": "tech"
+ },
+ {
+  "en": "feedback",
+  "cn": "反馈",
+  "from": "tech"
+ },
+ {
+  "en": "suggestion",
+  "cn": "建议",
+  "from": "tech"
+ },
+ {
+  "en": "issue",
+  "cn": "问题",
+  "from": "tech"
+ },
+ {
+  "en": "resolve",
+  "cn": "解决",
+  "from": "tech"
+ },
+ {
+  "en": "contact",
+  "cn": "联系",
+  "from": "tech"
+ },
+ {
+  "en": "virus",
+  "cn": "病毒",
+  "from": "tech"
+ },
+ {
+  "en": "trojan",
+  "cn": "木马",
+  "from": "tech"
+ },
+ {
+  "en": "hacker",
+  "cn": "黑客",
+  "from": "tech"
+ },
+ {
+  "en": "attack",
+  "cn": "网络攻击",
+  "from": "tech"
+ },
+ {
+  "en": "phishing",
+  "cn": "钓鱼",
+  "from": "tech"
+ },
+ {
+  "en": "scam",
+  "cn": "诈骗",
+  "from": "tech"
+ },
+ {
+  "en": "fraud",
+  "cn": "欺诈",
+  "from": "tech"
+ },
+ {
+  "en": "protect",
+  "cn": "保护",
+  "from": "tech"
+ },
+ {
+  "en": "firewall",
+  "cn": "防火墙",
+  "from": "tech"
+ },
+ {
+  "en": "antivirus",
+  "cn": "杀毒",
+  "from": "tech"
+ },
+ {
+  "en": "idea",
+  "cn": "想法",
+  "from": "abstract"
+ }
+]

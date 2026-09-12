@@ -1,0 +1,3272 @@
+[
+ {
+  "en": "guy",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 194
+ },
+ {
+  "en": "spy",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 2513
+ },
+ {
+  "en": "burger",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 4531
+ },
+ {
+  "en": "poster",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 6385
+ },
+ {
+  "en": "shelf",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 6520
+ },
+ {
+  "en": "surf",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 6974
+ },
+ {
+  "en": "hometown",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 7555
+ },
+ {
+  "en": "elementary",
+  "cefr": "A1",
+  "pos": "adjective",
+  "rank": 7837
+ },
+ {
+  "en": "survey",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 7939
+ },
+ {
+  "en": "vase",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 8497
+ },
+ {
+  "en": "reader",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 8936
+ },
+ {
+  "en": "biscuit",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 9248
+ },
+ {
+  "en": "dictionary",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 9847
+ },
+ {
+  "en": "apron",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 10062
+ },
+ {
+  "en": "paragraph",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 12116
+ },
+ {
+  "en": "interviewer",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 12684
+ },
+ {
+  "en": "nationality",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 19350
+ },
+ {
+  "en": "underline",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 38061
+ },
+ {
+  "en": "grandparent",
+  "cefr": "A1",
+  "pos": "noun",
+  "rank": 47491
+ },
+ {
+  "en": "o'clock",
+  "cefr": "A1",
+  "pos": "adverb",
+  "rank": 1000000000
+ },
+ {
+  "en": "frank",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 809
+ },
+ {
+  "en": "mark",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 888
+ },
+ {
+  "en": "major",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 906
+ },
+ {
+  "en": "max",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 1089
+ },
+ {
+  "en": "ray",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 1310
+ },
+ {
+  "en": "grace",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 1365
+ },
+ {
+  "en": "rob",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 2215
+ },
+ {
+  "en": "treasure",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 2240
+ },
+ {
+  "en": "someday",
+  "cefr": "A2",
+  "pos": "adverb",
+  "rank": 2340
+ },
+ {
+  "en": "robin",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 2543
+ },
+ {
+  "en": "hunter",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 2751
+ },
+ {
+  "en": "plastic",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 2956
+ },
+ {
+  "en": "kit",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 3524
+ },
+ {
+  "en": "sandy",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 3707
+ },
+ {
+  "en": "good-looking",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 5706
+ },
+ {
+  "en": "mug",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6295
+ },
+ {
+  "en": "harmony",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6338
+ },
+ {
+  "en": "difficulty",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6339
+ },
+ {
+  "en": "maker",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6343
+ },
+ {
+  "en": "unnecessary",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 6408
+ },
+ {
+  "en": "wheelchair",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6426
+ },
+ {
+  "en": "underwater",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 6434
+ },
+ {
+  "en": "make-up",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6442
+ },
+ {
+  "en": "shade",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6495
+ },
+ {
+  "en": "wander",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 6510
+ },
+ {
+  "en": "chart",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6523
+ },
+ {
+  "en": "globe",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6566
+ },
+ {
+  "en": "disco",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6633
+ },
+ {
+  "en": "additional",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 6662
+ },
+ {
+  "en": "adjust",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 6692
+ },
+ {
+  "en": "lifestyle",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6708
+ },
+ {
+  "en": "jelly",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6727
+ },
+ {
+  "en": "refer",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 6755
+ },
+ {
+  "en": "fare",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6781
+ },
+ {
+  "en": "artificial",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 6792
+ },
+ {
+  "en": "sock",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6857
+ },
+ {
+  "en": "cheque",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6953
+ },
+ {
+  "en": "satisfy",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 6966
+ },
+ {
+  "en": "frighten",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 6977
+ },
+ {
+  "en": "spaghetti",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 6984
+ },
+ {
+  "en": "feather",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7007
+ },
+ {
+  "en": "continent",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7018
+ },
+ {
+  "en": "curry",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7042
+ },
+ {
+  "en": "sunlight",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7044
+ },
+ {
+  "en": "occupation",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7053
+ },
+ {
+  "en": "astronaut",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7188
+ },
+ {
+  "en": "petrol",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7249
+ },
+ {
+  "en": "lively",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 7289
+ },
+ {
+  "en": "acceptable",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 7395
+ },
+ {
+  "en": "refrigerator",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7420
+ },
+ {
+  "en": "aisle",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7444
+ },
+ {
+  "en": "spaceship",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7483
+ },
+ {
+  "en": "pronounce",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 7544
+ },
+ {
+  "en": "runner",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7569
+ },
+ {
+  "en": "greatly",
+  "cefr": "A2",
+  "pos": "adverb",
+  "rank": 7644
+ },
+ {
+  "en": "dinosaur",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7665
+ },
+ {
+  "en": "container",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7672
+ },
+ {
+  "en": "elderly",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 7694
+ },
+ {
+  "en": "granddad",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7769
+ },
+ {
+  "en": "regularly",
+  "cefr": "A2",
+  "pos": "adverb",
+  "rank": 7776
+ },
+ {
+  "en": "invent",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 7783
+ },
+ {
+  "en": "weep",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7805
+ },
+ {
+  "en": "lemonade",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 7862
+ },
+ {
+  "en": "successfully",
+  "cefr": "A2",
+  "pos": "adverb",
+  "rank": 7871
+ },
+ {
+  "en": "olympic",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 7991
+ },
+ {
+  "en": "weekly",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 8005
+ },
+ {
+  "en": "roughly",
+  "cefr": "A2",
+  "pos": "adverb",
+  "rank": 8043
+ },
+ {
+  "en": "automatically",
+  "cefr": "A2",
+  "pos": "adverb",
+  "rank": 8096
+ },
+ {
+  "en": "athlete",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 8104
+ },
+ {
+  "en": "cereal",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 8189
+ },
+ {
+  "en": "psychologist",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 8238
+ },
+ {
+  "en": "sew",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 8250
+ },
+ {
+  "en": "confuse",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 8278
+ },
+ {
+  "en": "batch",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 8291
+ },
+ {
+  "en": "architecture",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 8463
+ },
+ {
+  "en": "fisherman",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 8505
+ },
+ {
+  "en": "insect",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 8550
+ },
+ {
+  "en": "essay",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 8667
+ },
+ {
+  "en": "wool",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 8726
+ },
+ {
+  "en": "partly",
+  "cefr": "A2",
+  "pos": "adverb",
+  "rank": 8756
+ },
+ {
+  "en": "quiz",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 8790
+ },
+ {
+  "en": "superstar",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 9021
+ },
+ {
+  "en": "well-known",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 9155
+ },
+ {
+  "en": "gender",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 9269
+ },
+ {
+  "en": "atom",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 9343
+ },
+ {
+  "en": "smoothly",
+  "cefr": "A2",
+  "pos": "adverb",
+  "rank": 9510
+ },
+ {
+  "en": "bulb",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 9611
+ },
+ {
+  "en": "clone",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 9645
+ },
+ {
+  "en": "invade",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 9669
+ },
+ {
+  "en": "consequence",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 9811
+ },
+ {
+  "en": "annoy",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 10176
+ },
+ {
+  "en": "kilo",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 10359
+ },
+ {
+  "en": "educational",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 10548
+ },
+ {
+  "en": "symphony",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 10685
+ },
+ {
+  "en": "crisp",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 10732
+ },
+ {
+  "en": "lunchtime",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 10926
+ },
+ {
+  "en": "pea",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 10940
+ },
+ {
+  "en": "uncertain",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 10975
+ },
+ {
+  "en": "uneasy",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 11077
+ },
+ {
+  "en": "silently",
+  "cefr": "A2",
+  "pos": "adverb",
+  "rank": 11160
+ },
+ {
+  "en": "melon",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 11245
+ },
+ {
+  "en": "leisure",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 11275
+ },
+ {
+  "en": "euro",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 11289
+ },
+ {
+  "en": "receptionist",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 11616
+ },
+ {
+  "en": "creativity",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 11728
+ },
+ {
+  "en": "dishonest",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 11813
+ },
+ {
+  "en": "composer",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 12001
+ },
+ {
+  "en": "seafood",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 12149
+ },
+ {
+  "en": "progressive",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 12339
+ },
+ {
+  "en": "grandchild",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 12694
+ },
+ {
+  "en": "playful",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 12902
+ },
+ {
+  "en": "drugstore",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 12926
+ },
+ {
+  "en": "right-hand",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 13100
+ },
+ {
+  "en": "energetic",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 13193
+ },
+ {
+  "en": "tram",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 13246
+ },
+ {
+  "en": "cassette",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 13384
+ },
+ {
+  "en": "pilgrim",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 13530
+ },
+ {
+  "en": "harmful",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 13594
+ },
+ {
+  "en": "widely",
+  "cefr": "A2",
+  "pos": "adverb",
+  "rank": 13764
+ },
+ {
+  "en": "tights",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 13830
+ },
+ {
+  "en": "midday",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 14017
+ },
+ {
+  "en": "vocabulary",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 14156
+ },
+ {
+  "en": "unforgettable",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 14365
+ },
+ {
+  "en": "prediction",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 14645
+ },
+ {
+  "en": "unhealthy",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 14700
+ },
+ {
+  "en": "sleepless",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 14725
+ },
+ {
+  "en": "unimportant",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 14858
+ },
+ {
+  "en": "beginner",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 15437
+ },
+ {
+  "en": "swimsuit",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 15904
+ },
+ {
+  "en": "summary",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 16038
+ },
+ {
+  "en": "disadvantage",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 16201
+ },
+ {
+  "en": "indoor",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 16218
+ },
+ {
+  "en": "overweight",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 16382
+ },
+ {
+  "en": "raincoat",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 16415
+ },
+ {
+  "en": "singular",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 16463
+ },
+ {
+  "en": "timetable",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 17412
+ },
+ {
+  "en": "learner",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 17449
+ },
+ {
+  "en": "angrily",
+  "cefr": "A2",
+  "pos": "adverb",
+  "rank": 18450
+ },
+ {
+  "en": "lyric",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 18934
+ },
+ {
+  "en": "chirp",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 19294
+ },
+ {
+  "en": "plural",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 19767
+ },
+ {
+  "en": "cooker",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 20143
+ },
+ {
+  "en": "motorway",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 20406
+ },
+ {
+  "en": "chimpanzee",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 20565
+ },
+ {
+  "en": "injure",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 20831
+ },
+ {
+  "en": "verb",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 21019
+ },
+ {
+  "en": "armchair",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 21051
+ },
+ {
+  "en": "roundabout",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 21271
+ },
+ {
+  "en": "left-hand",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 21722
+ },
+ {
+  "en": "thunderstorm",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 21903
+ },
+ {
+  "en": "policewoman",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 23568
+ },
+ {
+  "en": "businesswoman",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 24397
+ },
+ {
+  "en": "bookshop",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 24653
+ },
+ {
+  "en": "brainstorm",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 24746
+ },
+ {
+  "en": "escalator",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 24859
+ },
+ {
+  "en": "footballer",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 25093
+ },
+ {
+  "en": "schoolwork",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 25528
+ },
+ {
+  "en": "stair",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 25588
+ },
+ {
+  "en": "pronunciation",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 25594
+ },
+ {
+  "en": "consist",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 25618
+ },
+ {
+  "en": "terrify",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 26448
+ },
+ {
+  "en": "bookcase",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 27930
+ },
+ {
+  "en": "laziness",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 28392
+ },
+ {
+  "en": "pollute",
+  "cefr": "A2",
+  "pos": "verb",
+  "rank": 29359
+ },
+ {
+  "en": "comparative",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 30085
+ },
+ {
+  "en": "adjective",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 31411
+ },
+ {
+  "en": "noun",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 31678
+ },
+ {
+  "en": "guidebook",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 32196
+ },
+ {
+  "en": "weekday",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 36133
+ },
+ {
+  "en": "half-price",
+  "cefr": "A2",
+  "pos": "adjective",
+  "rank": 38615
+ },
+ {
+  "en": "punctuation",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 39573
+ },
+ {
+  "en": "washing-up",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 47924
+ },
+ {
+  "en": "headteacher",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 1000000000
+ },
+ {
+  "en": "superlative",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 1000000000
+ },
+ {
+  "en": "tablespoon",
+  "cefr": "A2",
+  "pos": "noun",
+  "rank": 1000000000
+ },
+ {
+  "en": "per",
+  "cefr": "B1",
+  "pos": "preposition",
+  "rank": 2046
+ },
+ {
+  "en": "positive",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 2050
+ },
+ {
+  "en": "grant",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 2060
+ },
+ {
+  "en": "christian",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 2228
+ },
+ {
+  "en": "penny",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 2300
+ },
+ {
+  "en": "vice",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 3156
+ },
+ {
+  "en": "gene",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 3561
+ },
+ {
+  "en": "shortly",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 3978
+ },
+ {
+  "en": "homeless",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 4068
+ },
+ {
+  "en": "old-fashioned",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 5168
+ },
+ {
+  "en": "salesman",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6171
+ },
+ {
+  "en": "brand-new",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6184
+ },
+ {
+  "en": "salmon",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6203
+ },
+ {
+  "en": "wax",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6212
+ },
+ {
+  "en": "herd",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6216
+ },
+ {
+  "en": "mentally",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 6234
+ },
+ {
+  "en": "beautifully",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 6237
+ },
+ {
+  "en": "altogether",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 6244
+ },
+ {
+  "en": "attract",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 6245
+ },
+ {
+  "en": "embarrass",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 6260
+ },
+ {
+  "en": "occasionally",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 6276
+ },
+ {
+  "en": "organic",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6292
+ },
+ {
+  "en": "seize",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 6293
+ },
+ {
+  "en": "crow",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6297
+ },
+ {
+  "en": "observation",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6300
+ },
+ {
+  "en": "railroad",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6302
+ },
+ {
+  "en": "jade",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6315
+ },
+ {
+  "en": "gap",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6364
+ },
+ {
+  "en": "alcoholic",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6373
+ },
+ {
+  "en": "railway",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6376
+ },
+ {
+  "en": "possess",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 6383
+ },
+ {
+  "en": "delightful",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6391
+ },
+ {
+  "en": "emotionally",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 6400
+ },
+ {
+  "en": "visible",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6413
+ },
+ {
+  "en": "maintenance",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6432
+ },
+ {
+  "en": "tobacco",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6433
+ },
+ {
+  "en": "whisper",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6446
+ },
+ {
+  "en": "origin",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6471
+ },
+ {
+  "en": "vet",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6489
+ },
+ {
+  "en": "canal",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6493
+ },
+ {
+  "en": "ambitious",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6496
+ },
+ {
+  "en": "guidance",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6499
+ },
+ {
+  "en": "inevitable",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6504
+ },
+ {
+  "en": "tick",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6505
+ },
+ {
+  "en": "craft",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6516
+ },
+ {
+  "en": "resident",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6536
+ },
+ {
+  "en": "triumph",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6546
+ },
+ {
+  "en": "frequency",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6548
+ },
+ {
+  "en": "satisfaction",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6552
+ },
+ {
+  "en": "historical",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6553
+ },
+ {
+  "en": "freely",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 6561
+ },
+ {
+  "en": "concentration",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6574
+ },
+ {
+  "en": "protective",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6579
+ },
+ {
+  "en": "preserve",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 6598
+ },
+ {
+  "en": "outstanding",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6626
+ },
+ {
+  "en": "essence",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6627
+ },
+ {
+  "en": "thankful",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6643
+ },
+ {
+  "en": "urge",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6646
+ },
+ {
+  "en": "strain",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6648
+ },
+ {
+  "en": "examination",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6658
+ },
+ {
+  "en": "participate",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 6659
+ },
+ {
+  "en": "heavenly",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6678
+ },
+ {
+  "en": "bark",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6684
+ },
+ {
+  "en": "casual",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6688
+ },
+ {
+  "en": "respectable",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6700
+ },
+ {
+  "en": "demonstration",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6701
+ },
+ {
+  "en": "tuna",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6715
+ },
+ {
+  "en": "inspection",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6717
+ },
+ {
+  "en": "choke",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 6734
+ },
+ {
+  "en": "rapidly",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 6754
+ },
+ {
+  "en": "efficient",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6762
+ },
+ {
+  "en": "mechanic",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6772
+ },
+ {
+  "en": "relation",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6778
+ },
+ {
+  "en": "mechanical",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6780
+ },
+ {
+  "en": "extend",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 6786
+ },
+ {
+  "en": "accomplish",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 6793
+ },
+ {
+  "en": "lightly",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 6803
+ },
+ {
+  "en": "layer",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6807
+ },
+ {
+  "en": "gown",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6808
+ },
+ {
+  "en": "adopt",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 6833
+ },
+ {
+  "en": "consideration",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6836
+ },
+ {
+  "en": "registration",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6851
+ },
+ {
+  "en": "constitution",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6854
+ },
+ {
+  "en": "buyer",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6859
+ },
+ {
+  "en": "nevertheless",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 6874
+ },
+ {
+  "en": "supposedly",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 6887
+ },
+ {
+  "en": "syndrome",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6896
+ },
+ {
+  "en": "entertain",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 6900
+ },
+ {
+  "en": "politician",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6914
+ },
+ {
+  "en": "phantom",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6944
+ },
+ {
+  "en": "notion",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6945
+ },
+ {
+  "en": "tease",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6947
+ },
+ {
+  "en": "extent",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 6961
+ },
+ {
+  "en": "shallow",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 6998
+ },
+ {
+  "en": "horizon",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7029
+ },
+ {
+  "en": "reflection",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7031
+ },
+ {
+  "en": "merchant",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7034
+ },
+ {
+  "en": "disappointment",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7039
+ },
+ {
+  "en": "voyage",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7041
+ },
+ {
+  "en": "define",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 7062
+ },
+ {
+  "en": "reject",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 7070
+ },
+ {
+  "en": "heel",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7080
+ },
+ {
+  "en": "acknowledge",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 7115
+ },
+ {
+  "en": "fade",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 7126
+ },
+ {
+  "en": "submarine",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7170
+ },
+ {
+  "en": "opposition",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7179
+ },
+ {
+  "en": "rapid",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7197
+ },
+ {
+  "en": "definition",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7211
+ },
+ {
+  "en": "handwriting",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7231
+ },
+ {
+  "en": "attraction",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7243
+ },
+ {
+  "en": "selection",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7272
+ },
+ {
+  "en": "democratic",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7279
+ },
+ {
+  "en": "translate",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 7285
+ },
+ {
+  "en": "primitive",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7298
+ },
+ {
+  "en": "peculiar",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7306
+ },
+ {
+  "en": "freezer",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7316
+ },
+ {
+  "en": "jewel",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7320
+ },
+ {
+  "en": "artistic",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7326
+ },
+ {
+  "en": "ferry",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7328
+ },
+ {
+  "en": "atomic",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7332
+ },
+ {
+  "en": "sensation",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7340
+ },
+ {
+  "en": "delight",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7349
+ },
+ {
+  "en": "caution",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7353
+ },
+ {
+  "en": "thorough",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7356
+ },
+ {
+  "en": "sleeve",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7373
+ },
+ {
+  "en": "confirmation",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7382
+ },
+ {
+  "en": "comet",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7391
+ },
+ {
+  "en": "cheerful",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7393
+ },
+ {
+  "en": "realistic",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7396
+ },
+ {
+  "en": "sufficient",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7398
+ },
+ {
+  "en": "warmth",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7405
+ },
+ {
+  "en": "instructor",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7421
+ },
+ {
+  "en": "edition",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7446
+ },
+ {
+  "en": "demonstrate",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 7457
+ },
+ {
+  "en": "sheer",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7482
+ },
+ {
+  "en": "employment",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7515
+ },
+ {
+  "en": "unite",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 7519
+ },
+ {
+  "en": "mule",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7523
+ },
+ {
+  "en": "phenomenon",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7536
+ },
+ {
+  "en": "ape",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7547
+ },
+ {
+  "en": "sponsor",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7572
+ },
+ {
+  "en": "enthusiasm",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7640
+ },
+ {
+  "en": "acquaintance",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7666
+ },
+ {
+  "en": "rail",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7668
+ },
+ {
+  "en": "crop",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7700
+ },
+ {
+  "en": "careless",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7705
+ },
+ {
+  "en": "separation",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7712
+ },
+ {
+  "en": "spice",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7759
+ },
+ {
+  "en": "caller",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7760
+ },
+ {
+  "en": "rational",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7762
+ },
+ {
+  "en": "competitive",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7771
+ },
+ {
+  "en": "mustard",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7792
+ },
+ {
+  "en": "transportation",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7797
+ },
+ {
+  "en": "immigration",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7812
+ },
+ {
+  "en": "teen",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7844
+ },
+ {
+  "en": "definite",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7845
+ },
+ {
+  "en": "aspect",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7860
+ },
+ {
+  "en": "relate",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 7861
+ },
+ {
+  "en": "dusty",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7866
+ },
+ {
+  "en": "strangely",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 7874
+ },
+ {
+  "en": "substitute",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7884
+ },
+ {
+  "en": "aspirin",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7888
+ },
+ {
+  "en": "summit",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7891
+ },
+ {
+  "en": "permanently",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 7899
+ },
+ {
+  "en": "poisonous",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 7915
+ },
+ {
+  "en": "transform",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 7935
+ },
+ {
+  "en": "skeleton",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7946
+ },
+ {
+  "en": "baggage",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 7957
+ },
+ {
+  "en": "obtain",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 8010
+ },
+ {
+  "en": "mild",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8017
+ },
+ {
+  "en": "dynasty",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8025
+ },
+ {
+  "en": "countless",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8028
+ },
+ {
+  "en": "establishment",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8047
+ },
+ {
+  "en": "environmental",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8051
+ },
+ {
+  "en": "fax",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8062
+ },
+ {
+  "en": "partial",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8064
+ },
+ {
+  "en": "neutral",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8080
+ },
+ {
+  "en": "surprisingly",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 8093
+ },
+ {
+  "en": "conservative",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8124
+ },
+ {
+  "en": "slavery",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8132
+ },
+ {
+  "en": "specially",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 8145
+ },
+ {
+  "en": "trumpet",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8152
+ },
+ {
+  "en": "debris",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8164
+ },
+ {
+  "en": "comedian",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8174
+ },
+ {
+  "en": "imaginary",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8186
+ },
+ {
+  "en": "babysitter",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8216
+ },
+ {
+  "en": "marble",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8271
+ },
+ {
+  "en": "relatively",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 8305
+ },
+ {
+  "en": "numerous",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8327
+ },
+ {
+  "en": "flock",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8330
+ },
+ {
+  "en": "glimpse",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8333
+ },
+ {
+  "en": "kettle",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8336
+ },
+ {
+  "en": "achievement",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8377
+ },
+ {
+  "en": "newly",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 8381
+ },
+ {
+  "en": "distribution",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8396
+ },
+ {
+  "en": "juicy",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8414
+ },
+ {
+  "en": "apparent",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8425
+ },
+ {
+  "en": "preparation",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8438
+ },
+ {
+  "en": "kitten",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8454
+ },
+ {
+  "en": "contribution",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8467
+ },
+ {
+  "en": "devotion",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8483
+ },
+ {
+  "en": "glance",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8498
+ },
+ {
+  "en": "appreciation",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8515
+ },
+ {
+  "en": "historic",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8517
+ },
+ {
+  "en": "promote",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 8519
+ },
+ {
+  "en": "introduction",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8528
+ },
+ {
+  "en": "part-time",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8537
+ },
+ {
+  "en": "absent",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8553
+ },
+ {
+  "en": "supportive",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8563
+ },
+ {
+  "en": "scholar",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8569
+ },
+ {
+  "en": "embarrassment",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8584
+ },
+ {
+  "en": "handkerchief",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8591
+ },
+ {
+  "en": "brotherhood",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8604
+ },
+ {
+  "en": "academic",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8610
+ },
+ {
+  "en": "publicly",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 8613
+ },
+ {
+  "en": "unpredictable",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8627
+ },
+ {
+  "en": "category",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8632
+ },
+ {
+  "en": "cautious",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8635
+ },
+ {
+  "en": "comparison",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8638
+ },
+ {
+  "en": "freshman",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8643
+ },
+ {
+  "en": "haunt",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8652
+ },
+ {
+  "en": "improvement",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8653
+ },
+ {
+  "en": "admission",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8666
+ },
+ {
+  "en": "ecstasy",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8674
+ },
+ {
+  "en": "tropical",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8677
+ },
+ {
+  "en": "full-time",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8693
+ },
+ {
+  "en": "breakthrough",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8715
+ },
+ {
+  "en": "considerable",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8744
+ },
+ {
+  "en": "inspire",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 8749
+ },
+ {
+  "en": "positively",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 8750
+ },
+ {
+  "en": "vague",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8755
+ },
+ {
+  "en": "insight",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8758
+ },
+ {
+  "en": "repeatedly",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 8806
+ },
+ {
+  "en": "motto",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8837
+ },
+ {
+  "en": "moss",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8838
+ },
+ {
+  "en": "monthly",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8846
+ },
+ {
+  "en": "notorious",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 8871
+ },
+ {
+  "en": "briefly",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 8913
+ },
+ {
+  "en": "slot",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8925
+ },
+ {
+  "en": "cherish",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 8952
+ },
+ {
+  "en": "sponge",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8955
+ },
+ {
+  "en": "calf",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8969
+ },
+ {
+  "en": "allowance",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8971
+ },
+ {
+  "en": "publisher",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 8992
+ },
+ {
+  "en": "burglar",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9005
+ },
+ {
+  "en": "scope",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9018
+ },
+ {
+  "en": "gravy",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9024
+ },
+ {
+  "en": "severely",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 9027
+ },
+ {
+  "en": "runaway",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9049
+ },
+ {
+  "en": "adapt",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 9054
+ },
+ {
+  "en": "isolation",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9078
+ },
+ {
+  "en": "beaver",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9152
+ },
+ {
+  "en": "bronze",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9202
+ },
+ {
+  "en": "airline",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9204
+ },
+ {
+  "en": "surround",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 9212
+ },
+ {
+  "en": "fright",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9222
+ },
+ {
+  "en": "contribute",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 9232
+ },
+ {
+  "en": "obstacle",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9244
+ },
+ {
+  "en": "arise",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 9256
+ },
+ {
+  "en": "regain",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 9266
+ },
+ {
+  "en": "firmly",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 9300
+ },
+ {
+  "en": "reef",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9318
+ },
+ {
+  "en": "mathematics",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9322
+ },
+ {
+  "en": "shameful",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 9325
+ },
+ {
+  "en": "strategic",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 9327
+ },
+ {
+  "en": "teller",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9338
+ },
+ {
+  "en": "regional",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 9354
+ },
+ {
+  "en": "pupil",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9397
+ },
+ {
+  "en": "liberation",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9413
+ },
+ {
+  "en": "disturbance",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9425
+ },
+ {
+  "en": "motivation",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9433
+ },
+ {
+  "en": "stressful",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 9451
+ },
+ {
+  "en": "bathe",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 9473
+ },
+ {
+  "en": "stem",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 9479
+ },
+ {
+  "en": "diaper",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9495
+ },
+ {
+  "en": "increasingly",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 9536
+ },
+ {
+  "en": "initially",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 9549
+ },
+ {
+  "en": "frequently",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 9580
+ },
+ {
+  "en": "philosopher",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9610
+ },
+ {
+  "en": "transformation",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9684
+ },
+ {
+  "en": "combine",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 9702
+ },
+ {
+  "en": "limp",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 9706
+ },
+ {
+  "en": "parachute",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9716
+ },
+ {
+  "en": "wildlife",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9729
+ },
+ {
+  "en": "hazard",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9742
+ },
+ {
+  "en": "frustration",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9747
+ },
+ {
+  "en": "significance",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9762
+ },
+ {
+  "en": "illegally",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 9787
+ },
+ {
+  "en": "declaration",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9793
+ },
+ {
+  "en": "substantial",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 9817
+ },
+ {
+  "en": "ache",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9829
+ },
+ {
+  "en": "emerge",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 9831
+ },
+ {
+  "en": "mineral",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9854
+ },
+ {
+  "en": "meaningful",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 9874
+ },
+ {
+  "en": "mediterranean",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9891
+ },
+ {
+  "en": "headline",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9939
+ },
+ {
+  "en": "occasional",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 9950
+ },
+ {
+  "en": "mend",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 9960
+ },
+ {
+  "en": "athletic",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 9982
+ },
+ {
+  "en": "jumper",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 9984
+ },
+ {
+  "en": "worthwhile",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 9996
+ },
+ {
+  "en": "remedy",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10046
+ },
+ {
+  "en": "damp",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10047
+ },
+ {
+  "en": "vein",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10064
+ },
+ {
+  "en": "accidental",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10113
+ },
+ {
+  "en": "convey",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 10115
+ },
+ {
+  "en": "mourn",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 10137
+ },
+ {
+  "en": "loaf",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10177
+ },
+ {
+  "en": "harness",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10214
+ },
+ {
+  "en": "orderly",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10221
+ },
+ {
+  "en": "scold",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 10224
+ },
+ {
+  "en": "certainty",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10225
+ },
+ {
+  "en": "mailbox",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10256
+ },
+ {
+  "en": "destructive",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10283
+ },
+ {
+  "en": "whichever",
+  "cefr": "B1",
+  "pos": "determiner",
+  "rank": 10301
+ },
+ {
+  "en": "prosperity",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10307
+ },
+ {
+  "en": "literary",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10308
+ },
+ {
+  "en": "excess",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10316
+ },
+ {
+  "en": "unemployment",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10317
+ },
+ {
+  "en": "dependent",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10329
+ },
+ {
+  "en": "abnormal",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10336
+ },
+ {
+  "en": "generate",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 10354
+ },
+ {
+  "en": "extinct",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10396
+ },
+ {
+  "en": "recite",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 10407
+ },
+ {
+  "en": "tightly",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 10436
+ },
+ {
+  "en": "hasty",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10459
+ },
+ {
+  "en": "acquire",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 10469
+ },
+ {
+  "en": "dedicate",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 10475
+ },
+ {
+  "en": "occupy",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 10482
+ },
+ {
+  "en": "critic",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10508
+ },
+ {
+  "en": "prejudice",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10516
+ },
+ {
+  "en": "paddle",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10590
+ },
+ {
+  "en": "attach",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 10620
+ },
+ {
+  "en": "slope",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10628
+ },
+ {
+  "en": "awareness",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10630
+ },
+ {
+  "en": "typically",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 10644
+ },
+ {
+  "en": "spiral",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10662
+ },
+ {
+  "en": "correction",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10672
+ },
+ {
+  "en": "frequent",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10689
+ },
+ {
+  "en": "negotiation",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10694
+ },
+ {
+  "en": "calculate",
+  "cefr": "B1",
+  "pos": "verb",
+  "rank": 10698
+ },
+ {
+  "en": "mischief",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10707
+ },
+ {
+  "en": "canteen",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10746
+ },
+ {
+  "en": "controversial",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10750
+ },
+ {
+  "en": "enthusiastic",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10751
+ },
+ {
+  "en": "nonetheless",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 10781
+ },
+ {
+  "en": "composition",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10784
+ },
+ {
+  "en": "intentionally",
+  "cefr": "B1",
+  "pos": "adverb",
+  "rank": 10800
+ },
+ {
+  "en": "prominent",
+  "cefr": "B1",
+  "pos": "adjective",
+  "rank": 10847
+ },
+ {
+  "en": "hairdresser",
+  "cefr": "B1",
+  "pos": "noun",
+  "rank": 10854
+ }
+]

@@ -1,0 +1,882 @@
+[
+ {
+  "en": "quit",
+  "cn": "退出",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "leave",
+  "cn": "离开",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "visit",
+  "cn": "拜访",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "travel",
+  "cn": "旅行",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "explore",
+  "cn": "探索",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "discover",
+  "cn": "发现",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "realize",
+  "cn": "意识到",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "recognize",
+  "cn": "认识到",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "notice",
+  "cn": "注意",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "ignore",
+  "cn": "忽视",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "remember",
+  "cn": "记住",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "forget",
+  "cn": "忘记",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "miss",
+  "cn": "怀念",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "recall",
+  "cn": "想起",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "reflect",
+  "cn": "反映",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "consider",
+  "cn": "考虑",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "imagine",
+  "cn": "想象",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "assume",
+  "cn": "假设",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "guess",
+  "cn": "猜测",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "predict",
+  "cn": "预测",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "expect",
+  "cn": "期望",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "hope",
+  "cn": "希望",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "wish",
+  "cn": "渴望",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "dream",
+  "cn": "梦想",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "enjoy",
+  "cn": "享受",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "appreciate",
+  "cn": "欣赏",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "respect",
+  "cn": "尊重",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "admire",
+  "cn": "钦佩",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "hate",
+  "cn": "讨厌",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "detest",
+  "cn": "厌恶",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "tolerate",
+  "cn": "容忍",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "endure",
+  "cn": "忍受",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "overcome",
+  "cn": "克服",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "handle",
+  "cn": "处理",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "cope",
+  "cn": "应对",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "deal",
+  "cn": "管理",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "bring",
+  "cn": "带来",
+  "from": "verb_hand"
+ },
+ {
+  "en": "set",
+  "cn": "放置；一套",
+  "from": "verb_hand"
+ },
+ {
+  "en": "touch",
+  "cn": "触摸",
+  "from": "verb_hand"
+ },
+ {
+  "en": "carry",
+  "cn": "携带",
+  "from": "verb_hand"
+ },
+ {
+  "en": "grab",
+  "cn": "抓住",
+  "from": "verb_hand"
+ },
+ {
+  "en": "reach",
+  "cn": "到达",
+  "from": "verb_hand"
+ },
+ {
+  "en": "deliver",
+  "cn": "递送",
+  "from": "verb_hand"
+ },
+ {
+  "en": "dump",
+  "cn": "倾倒；甩掉",
+  "from": "verb_hand"
+ },
+ {
+  "en": "gather",
+  "cn": "聚集",
+  "from": "verb_hand"
+ },
+ {
+  "en": "fetch",
+  "cn": "取来",
+  "from": "verb_hand"
+ },
+ {
+  "en": "mount",
+  "cn": "登上；安装",
+  "from": "verb_hand"
+ },
+ {
+  "en": "toss",
+  "cn": "扔",
+  "from": "verb_hand"
+ },
+ {
+  "en": "shove",
+  "cn": "推",
+  "from": "verb_hand"
+ },
+ {
+  "en": "grip",
+  "cn": "紧握",
+  "from": "verb_hand"
+ },
+ {
+  "en": "reserve",
+  "cn": "预订；保留",
+  "from": "verb_hand"
+ },
+ {
+  "en": "rid",
+  "cn": "摆脱",
+  "from": "verb_break"
+ },
+ {
+  "en": "knock",
+  "cn": "敲",
+  "from": "verb_break"
+ },
+ {
+  "en": "press",
+  "cn": "按；新闻界",
+  "from": "verb_break"
+ },
+ {
+  "en": "split",
+  "cn": "分开",
+  "from": "verb_break"
+ },
+ {
+  "en": "dig",
+  "cn": "挖",
+  "from": "verb_break"
+ },
+ {
+  "en": "ruin",
+  "cn": "毁掉",
+  "from": "verb_break"
+ },
+ {
+  "en": "separate",
+  "cn": "分开的",
+  "from": "verb_break"
+ },
+ {
+  "en": "rip",
+  "cn": "撕",
+  "from": "verb_break"
+ },
+ {
+  "en": "crush",
+  "cn": "压碎；暗恋",
+  "from": "verb_break"
+ },
+ {
+  "en": "scratch",
+  "cn": "抓；刮",
+  "from": "verb_break"
+ },
+ {
+  "en": "strip",
+  "cn": "剥去；条",
+  "from": "verb_break"
+ },
+ {
+  "en": "slap",
+  "cn": "扇耳光",
+  "from": "verb_break"
+ },
+ {
+  "en": "drill",
+  "cn": "钻；演练",
+  "from": "verb_break"
+ },
+ {
+  "en": "prick",
+  "cn": "刺；扎",
+  "from": "verb_break"
+ },
+ {
+  "en": "squeeze",
+  "cn": "挤压",
+  "from": "verb_break"
+ },
+ {
+  "en": "abandon",
+  "cn": "抛弃",
+  "from": "verb_break"
+ },
+ {
+  "en": "rub",
+  "cn": "摩擦",
+  "from": "verb_break"
+ },
+ {
+  "en": "polish",
+  "cn": "抛光；波兰语",
+  "from": "verb_break"
+ },
+ {
+  "en": "smash",
+  "cn": "砸碎",
+  "from": "verb_break"
+ },
+ {
+  "en": "burst",
+  "cn": "爆裂",
+  "from": "verb_break"
+ },
+ {
+  "en": "spoil",
+  "cn": "破坏；溺爱",
+  "from": "verb_break"
+ },
+ {
+  "en": "explode",
+  "cn": "爆炸",
+  "from": "verb_break"
+ },
+ {
+  "en": "wreck",
+  "cn": "残骸；毁坏",
+  "from": "verb_break"
+ },
+ {
+  "en": "stink",
+  "cn": "发臭",
+  "from": "verb_break"
+ },
+ {
+  "en": "bump",
+  "cn": "碰撞；肿块",
+  "from": "verb_break"
+ },
+ {
+  "en": "rot",
+  "cn": "腐烂",
+  "from": "verb_break"
+ },
+ {
+  "en": "eliminate",
+  "cn": "消除；淘汰",
+  "from": "verb_break"
+ },
+ {
+  "en": "smack",
+  "cn": "拍打；啪的一声",
+  "from": "verb_break"
+ },
+ {
+  "en": "sit",
+  "cn": "坐",
+  "from": "verb_move"
+ },
+ {
+  "en": "stand",
+  "cn": "站",
+  "from": "verb_move"
+ },
+ {
+  "en": "hurry",
+  "cn": "赶快",
+  "from": "verb_move"
+ },
+ {
+  "en": "fall",
+  "cn": "落下",
+  "from": "verb_move"
+ },
+ {
+  "en": "wake",
+  "cn": "醒来",
+  "from": "verb_move"
+ },
+ {
+  "en": "roll",
+  "cn": "滚动",
+  "from": "verb_move"
+ },
+ {
+  "en": "settle",
+  "cn": "定居；解决",
+  "from": "verb_move"
+ },
+ {
+  "en": "shake",
+  "cn": "摇动",
+  "from": "verb_move"
+ },
+ {
+  "en": "approach",
+  "cn": "靠近；方法",
+  "from": "verb_move"
+ },
+ {
+  "en": "slip",
+  "cn": "滑倒；纸条",
+  "from": "verb_move"
+ },
+ {
+  "en": "advance",
+  "cn": "前进；预付",
+  "from": "verb_move"
+ },
+ {
+  "en": "swing",
+  "cn": "摇摆",
+  "from": "verb_move"
+ },
+ {
+  "en": "proceed",
+  "cn": "继续",
+  "from": "verb_move"
+ },
+ {
+  "en": "spin",
+  "cn": "旋转",
+  "from": "verb_move"
+ },
+ {
+  "en": "escort",
+  "cn": "护送；陪同",
+  "from": "verb_move"
+ },
+ {
+  "en": "hop",
+  "cn": "跳跃",
+  "from": "verb_move"
+ },
+ {
+  "en": "sneak",
+  "cn": "偷偷地走",
+  "from": "verb_move"
+ },
+ {
+  "en": "bend",
+  "cn": "弯曲",
+  "from": "verb_move"
+ },
+ {
+  "en": "flip",
+  "cn": "翻转",
+  "from": "verb_move"
+ },
+ {
+  "en": "twist",
+  "cn": "扭曲",
+  "from": "verb_move"
+ },
+ {
+  "en": "reverse",
+  "cn": "反转",
+  "from": "verb_move"
+ },
+ {
+  "en": "lean",
+  "cn": "倾斜；瘦的",
+  "from": "verb_move"
+ },
+ {
+  "en": "crawl",
+  "cn": "爬",
+  "from": "verb_move"
+ },
+ {
+  "en": "pace",
+  "cn": "步伐",
+  "from": "verb_move"
+ },
+ {
+  "en": "creep",
+  "cn": "爬；令人毛骨悚然的人",
+  "from": "verb_move"
+ },
+ {
+  "en": "float",
+  "cn": "漂浮",
+  "from": "verb_move"
+ },
+ {
+  "en": "leap",
+  "cn": "跳跃",
+  "from": "verb_move"
+ },
+ {
+  "en": "bounce",
+  "cn": "弹跳",
+  "from": "verb_move"
+ },
+ {
+  "en": "pursue",
+  "cn": "追求；追赶",
+  "from": "verb_move"
+ },
+ {
+  "en": "blow",
+  "cn": "吹；打击",
+  "from": "verb_flow"
+ },
+ {
+  "en": "fill",
+  "cn": "装满",
+  "from": "verb_flow"
+ },
+ {
+  "en": "suck",
+  "cn": "糟糕；吸",
+  "from": "verb_flow"
+ },
+ {
+  "en": "seal",
+  "cn": "密封；海豹",
+  "from": "verb_flow"
+ },
+ {
+  "en": "spit",
+  "cn": "吐",
+  "from": "verb_flow"
+ },
+ {
+  "en": "flow",
+  "cn": "流动",
+  "from": "verb_flow"
+ },
+ {
+  "en": "leak",
+  "cn": "泄漏",
+  "from": "verb_flow"
+ },
+ {
+  "en": "spray",
+  "cn": "喷",
+  "from": "verb_flow"
+ },
+ {
+  "en": "drain",
+  "cn": "排水；消耗",
+  "from": "verb_flow"
+ },
+ {
+  "en": "spill",
+  "cn": "洒",
+  "from": "verb_flow"
+ },
+ {
+  "en": "dip",
+  "cn": "蘸；下降",
+  "from": "verb_flow"
+ },
+ {
+  "en": "flush",
+  "cn": "冲洗；脸红",
+  "from": "verb_flow"
+ },
+ {
+  "en": "pretend",
+  "cn": "假装",
+  "from": "verb_show"
+ },
+ {
+  "en": "spell",
+  "cn": "拼写；咒语",
+  "from": "verb_show"
+ },
+ {
+  "en": "seek",
+  "cn": "寻求",
+  "from": "verb_show"
+ },
+ {
+  "en": "behave",
+  "cn": "表现",
+  "from": "verb_show"
+ },
+ {
+  "en": "shine",
+  "cn": "照耀",
+  "from": "verb_show"
+ },
+ {
+  "en": "represent",
+  "cn": "代表",
+  "from": "verb_show"
+ },
+ {
+  "en": "snap",
+  "cn": "啪；快照",
+  "from": "verb_show"
+ },
+ {
+  "en": "react",
+  "cn": "反应",
+  "from": "verb_show"
+ },
+ {
+  "en": "display",
+  "cn": "展示",
+  "from": "verb_show"
+ },
+ {
+  "en": "encounter",
+  "cn": "遭遇",
+  "from": "verb_show"
+ },
+ {
+  "en": "pose",
+  "cn": "摆姿势；构成",
+  "from": "verb_show"
+ },
+ {
+  "en": "behold",
+  "cn": "看哪",
+  "from": "verb_show"
+ },
+ {
+  "en": "dare",
+  "cn": "敢",
+  "from": "verb_together"
+ },
+ {
+  "en": "treat",
+  "cn": "对待",
+  "from": "verb_together"
+ },
+ {
+  "en": "foster",
+  "cn": "抚养",
+  "from": "verb_together"
+ },
+ {
+  "en": "obey",
+  "cn": "服从",
+  "from": "verb_together"
+ },
+ {
+  "en": "rely",
+  "cn": "依赖",
+  "from": "verb_together"
+ },
+ {
+  "en": "embrace",
+  "cn": "拥抱",
+  "from": "verb_together"
+ },
+ {
+  "en": "rear",
+  "cn": "后部；抚养",
+  "from": "verb_together"
+ },
+ {
+  "en": "cooperate",
+  "cn": "合作",
+  "from": "verb_together"
+ },
+ {
+  "en": "depend",
+  "cn": "依赖",
+  "from": "verb_together"
+ },
+ {
+  "en": "accompany",
+  "cn": "陪伴",
+  "from": "verb_together"
+ },
+ {
+  "en": "assist",
+  "cn": "协助",
+  "from": "verb_together"
+ },
+ {
+  "en": "engage",
+  "cn": "参与；从事",
+  "from": "verb_together"
+ },
+ {
+  "en": "shut",
+  "cn": "关上",
+  "from": "verb_stop"
+ },
+ {
+  "en": "cover",
+  "cn": "覆盖",
+  "from": "verb_stop"
+ },
+ {
+  "en": "hide",
+  "cn": "躲藏",
+  "from": "verb_stop"
+ },
+ {
+  "en": "bother",
+  "cn": "打扰",
+  "from": "verb_stop"
+ },
+ {
+  "en": "struggle",
+  "cn": "挣扎",
+  "from": "verb_stop"
+ },
+ {
+  "en": "prevent",
+  "cn": "阻止",
+  "from": "verb_stop"
+ },
+ {
+  "en": "resist",
+  "cn": "抵抗",
+  "from": "verb_stop"
+ },
+ {
+  "en": "disturb",
+  "cn": "打扰",
+  "from": "verb_stop"
+ },
+ {
+  "en": "interfere",
+  "cn": "干涉",
+  "from": "verb_stop"
+ },
+ {
+  "en": "halt",
+  "cn": "停止",
+  "from": "verb_stop"
+ },
+ {
+  "en": "contain",
+  "cn": "包含",
+  "from": "verb_stop"
+ },
+ {
+  "en": "cease",
+  "cn": "停止",
+  "from": "verb_stop"
+ },
+ {
+  "en": "deserve",
+  "cn": "值得",
+  "from": "verb_exist"
+ },
+ {
+  "en": "belong",
+  "cn": "属于",
+  "from": "verb_exist"
+ },
+ {
+  "en": "remain",
+  "cn": "保持",
+  "from": "verb_exist"
+ },
+ {
+  "en": "exist",
+  "cn": "存在",
+  "from": "verb_exist"
+ },
+ {
+  "en": "tend",
+  "cn": "倾向于",
+  "from": "verb_exist"
+ },
+ {
+  "en": "maintain",
+  "cn": "维持",
+  "from": "verb_exist"
+ },
+ {
+  "en": "require",
+  "cn": "需要",
+  "from": "verb_exist"
+ },
+ {
+  "en": "achieve",
+  "cn": "实现",
+  "from": "verb_exist"
+ },
+ {
+  "en": "include",
+  "cn": "包括",
+  "from": "verb_exist"
+ },
+ {
+  "en": "ensure",
+  "cn": "确保",
+  "from": "verb_exist"
+ },
+ {
+  "en": "involve",
+  "cn": "涉及；牵涉",
+  "from": "verb_exist"
+ },
+ {
+  "en": "occur",
+  "cn": "发生",
+  "from": "verb_exist"
+ },
+ {
+  "en": "add",
+  "cn": "添加",
+  "from": "verb_operate"
+ },
+ {
+  "en": "spread",
+  "cn": "传播",
+  "from": "verb_operate"
+ },
+ {
+  "en": "switch",
+  "cn": "切换",
+  "from": "verb_operate"
+ },
+ {
+  "en": "provide",
+  "cn": "提供",
+  "from": "verb_operate"
+ },
+ {
+  "en": "trigger",
+  "cn": "触发",
+  "from": "verb_operate"
+ },
+ {
+  "en": "replace",
+  "cn": "替换",
+  "from": "verb_operate"
+ },
+ {
+  "en": "produce",
+  "cn": "生产",
+  "from": "verb_operate"
+ },
+ {
+  "en": "measure",
+  "cn": "测量",
+  "from": "verb_operate"
+ }
+]

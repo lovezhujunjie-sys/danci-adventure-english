@@ -1,0 +1,882 @@
+[
+ {
+  "en": "thought",
+  "cn": "思想",
+  "from": "abstract"
+ },
+ {
+  "en": "opinion",
+  "cn": "意见",
+  "from": "abstract"
+ },
+ {
+  "en": "viewpoint",
+  "cn": "观点",
+  "from": "abstract"
+ },
+ {
+  "en": "concept",
+  "cn": "观念",
+  "from": "abstract"
+ },
+ {
+  "en": "truth",
+  "cn": "真相",
+  "from": "abstract"
+ },
+ {
+  "en": "fact",
+  "cn": "事实",
+  "from": "abstract"
+ },
+ {
+  "en": "reality",
+  "cn": "现实",
+  "from": "abstract"
+ },
+ {
+  "en": "theory",
+  "cn": "理论",
+  "from": "abstract"
+ },
+ {
+  "en": "belief",
+  "cn": "信念",
+  "from": "abstract"
+ },
+ {
+  "en": "trust",
+  "cn": "信任",
+  "from": "abstract"
+ },
+ {
+  "en": "doubt",
+  "cn": "怀疑",
+  "from": "abstract"
+ },
+ {
+  "en": "reason",
+  "cn": "理由",
+  "from": "abstract"
+ },
+ {
+  "en": "cause",
+  "cn": "原因",
+  "from": "abstract"
+ },
+ {
+  "en": "result",
+  "cn": "结果",
+  "from": "abstract"
+ },
+ {
+  "en": "effect",
+  "cn": "效果",
+  "from": "abstract"
+ },
+ {
+  "en": "influence",
+  "cn": "影响",
+  "from": "abstract"
+ },
+ {
+  "en": "purpose",
+  "cn": "目的",
+  "from": "abstract"
+ },
+ {
+  "en": "meaning",
+  "cn": "意义",
+  "from": "abstract"
+ },
+ {
+  "en": "value",
+  "cn": "价值",
+  "from": "abstract"
+ },
+ {
+  "en": "importance",
+  "cn": "重要性",
+  "from": "abstract"
+ },
+ {
+  "en": "opportunity",
+  "cn": "机会",
+  "from": "abstract"
+ },
+ {
+  "en": "possibility",
+  "cn": "可能性",
+  "from": "abstract"
+ },
+ {
+  "en": "choice",
+  "cn": "选择",
+  "from": "abstract"
+ },
+ {
+  "en": "decision",
+  "cn": "决定",
+  "from": "abstract"
+ },
+ {
+  "en": "answer",
+  "cn": "回答",
+  "from": "abstract"
+ },
+ {
+  "en": "problem",
+  "cn": "问题",
+  "from": "abstract"
+ },
+ {
+  "en": "solution",
+  "cn": "解决方案",
+  "from": "abstract"
+ },
+ {
+  "en": "method",
+  "cn": "方法",
+  "from": "abstract"
+ },
+ {
+  "en": "way",
+  "cn": "方式",
+  "from": "abstract"
+ },
+ {
+  "en": "process",
+  "cn": "过程",
+  "from": "abstract"
+ },
+ {
+  "en": "step",
+  "cn": "步骤",
+  "from": "abstract"
+ },
+ {
+  "en": "stage",
+  "cn": "阶段",
+  "from": "abstract"
+ },
+ {
+  "en": "level",
+  "cn": "水平",
+  "from": "abstract"
+ },
+ {
+  "en": "rank",
+  "cn": "等级",
+  "from": "abstract"
+ },
+ {
+  "en": "status",
+  "cn": "地位",
+  "from": "abstract"
+ },
+ {
+  "en": "situation",
+  "cn": "情况",
+  "from": "abstract"
+ },
+ {
+  "en": "condition",
+  "cn": "条件",
+  "from": "abstract"
+ },
+ {
+  "en": "context",
+  "cn": "情境",
+  "from": "abstract"
+ },
+ {
+  "en": "background",
+  "cn": "背景",
+  "from": "abstract"
+ },
+ {
+  "en": "experience",
+  "cn": "经验",
+  "from": "abstract"
+ },
+ {
+  "en": "memory",
+  "cn": "记忆",
+  "from": "abstract"
+ },
+ {
+  "en": "habit",
+  "cn": "习惯",
+  "from": "abstract"
+ },
+ {
+  "en": "tradition",
+  "cn": "传统",
+  "from": "abstract"
+ },
+ {
+  "en": "culture",
+  "cn": "文化",
+  "from": "abstract"
+ },
+ {
+  "en": "freedom",
+  "cn": "自由",
+  "from": "abstract"
+ },
+ {
+  "en": "right",
+  "cn": "权利",
+  "from": "abstract"
+ },
+ {
+  "en": "responsibility",
+  "cn": "责任",
+  "from": "abstract"
+ },
+ {
+  "en": "duty",
+  "cn": "义务",
+  "from": "abstract"
+ },
+ {
+  "en": "rule",
+  "cn": "规则",
+  "from": "abstract"
+ },
+ {
+  "en": "law",
+  "cn": "法律",
+  "from": "abstract"
+ },
+ {
+  "en": "justice",
+  "cn": "正义",
+  "from": "abstract"
+ },
+ {
+  "en": "peace",
+  "cn": "和平",
+  "from": "abstract"
+ },
+ {
+  "en": "war",
+  "cn": "战争",
+  "from": "abstract"
+ },
+ {
+  "en": "victory",
+  "cn": "胜利",
+  "from": "abstract"
+ },
+ {
+  "en": "failure",
+  "cn": "失败",
+  "from": "abstract"
+ },
+ {
+  "en": "success",
+  "cn": "成功",
+  "from": "abstract"
+ },
+ {
+  "en": "progress",
+  "cn": "进步",
+  "from": "abstract"
+ },
+ {
+  "en": "development",
+  "cn": "发展",
+  "from": "abstract"
+ },
+ {
+  "en": "change",
+  "cn": "变化",
+  "from": "abstract"
+ },
+ {
+  "en": "difference",
+  "cn": "差异",
+  "from": "abstract"
+ },
+ {
+  "en": "similarity",
+  "cn": "相似",
+  "from": "abstract"
+ },
+ {
+  "en": "relationship",
+  "cn": "关系",
+  "from": "abstract"
+ },
+ {
+  "en": "connection",
+  "cn": "联系",
+  "from": "abstract"
+ },
+ {
+  "en": "communication",
+  "cn": "交流",
+  "from": "abstract"
+ },
+ {
+  "en": "interaction",
+  "cn": "沟通",
+  "from": "abstract"
+ },
+ {
+  "en": "behavior",
+  "cn": "行为",
+  "from": "abstract"
+ },
+ {
+  "en": "attitude",
+  "cn": "态度",
+  "from": "abstract"
+ },
+ {
+  "en": "personality",
+  "cn": "性格",
+  "from": "abstract"
+ },
+ {
+  "en": "character",
+  "cn": "个性",
+  "from": "abstract"
+ },
+ {
+  "en": "quality",
+  "cn": "品质",
+  "from": "abstract"
+ },
+ {
+  "en": "ability",
+  "cn": "能力",
+  "from": "abstract"
+ },
+ {
+  "en": "talent",
+  "cn": "才能",
+  "from": "abstract"
+ },
+ {
+  "en": "gift",
+  "cn": "天赋",
+  "from": "abstract"
+ },
+ {
+  "en": "wisdom",
+  "cn": "智慧",
+  "from": "abstract"
+ },
+ {
+  "en": "knowledge",
+  "cn": "知识",
+  "from": "abstract"
+ },
+ {
+  "en": "intelligence",
+  "cn": "智力",
+  "from": "abstract"
+ },
+ {
+  "en": "commonsense",
+  "cn": "常识",
+  "from": "abstract"
+ },
+ {
+  "en": "logic",
+  "cn": "逻辑",
+  "from": "abstract"
+ },
+ {
+  "en": "imagination",
+  "cn": "想象",
+  "from": "abstract"
+ },
+ {
+  "en": "creation",
+  "cn": "创造",
+  "from": "abstract"
+ },
+ {
+  "en": "innovation",
+  "cn": "创新",
+  "from": "abstract"
+ },
+ {
+  "en": "invention",
+  "cn": "发明",
+  "from": "abstract"
+ },
+ {
+  "en": "discovery",
+  "cn": "发现",
+  "from": "abstract"
+ },
+ {
+  "en": "courage",
+  "cn": "勇气",
+  "from": "abstract"
+ },
+ {
+  "en": "patience",
+  "cn": "耐心",
+  "from": "abstract"
+ },
+ {
+  "en": "perseverance",
+  "cn": "毅力",
+  "from": "abstract"
+ },
+ {
+  "en": "determination",
+  "cn": "决心",
+  "from": "abstract"
+ },
+ {
+  "en": "dream",
+  "cn": "梦想",
+  "from": "abstract"
+ },
+ {
+  "en": "hope",
+  "cn": "希望",
+  "from": "abstract"
+ },
+ {
+  "en": "wish",
+  "cn": "愿望",
+  "from": "abstract"
+ },
+ {
+  "en": "expectation",
+  "cn": "期望",
+  "from": "abstract"
+ },
+ {
+  "en": "plan",
+  "cn": "计划",
+  "from": "abstract"
+ },
+ {
+  "en": "goal",
+  "cn": "目标",
+  "from": "abstract"
+ },
+ {
+  "en": "ideal",
+  "cn": "理想",
+  "from": "abstract"
+ },
+ {
+  "en": "desire",
+  "cn": "欲望",
+  "from": "abstract"
+ },
+ {
+  "en": "matter",
+  "cn": "事情；要紧",
+  "from": "abstract"
+ },
+ {
+  "en": "chance",
+  "cn": "机会",
+  "from": "abstract"
+ },
+ {
+  "en": "trouble",
+  "cn": "麻烦",
+  "from": "abstract"
+ },
+ {
+  "en": "power",
+  "cn": "力量",
+  "from": "abstract"
+ },
+ {
+  "en": "sex",
+  "cn": "性",
+  "from": "abstract"
+ },
+ {
+  "en": "secret",
+  "cn": "秘密",
+  "from": "abstract"
+ },
+ {
+  "en": "fault",
+  "cn": "过错",
+  "from": "abstract"
+ },
+ {
+  "en": "worth",
+  "cn": "值得",
+  "from": "abstract"
+ },
+ {
+  "en": "mistake",
+  "cn": "错误",
+  "from": "abstract"
+ },
+ {
+  "en": "marry",
+  "cn": "结婚",
+  "from": "abstract"
+ },
+ {
+  "en": "information",
+  "cn": "信息",
+  "from": "abstract"
+ },
+ {
+  "en": "force",
+  "cn": "力量；强迫",
+  "from": "abstract"
+ },
+ {
+  "en": "honour",
+  "cn": "荣誉",
+  "from": "abstract"
+ },
+ {
+  "en": "accident",
+  "cn": "事故",
+  "from": "abstract"
+ },
+ {
+  "en": "mess",
+  "cn": "混乱",
+  "from": "abstract"
+ },
+ {
+  "en": "sake",
+  "cn": "缘故",
+  "from": "abstract"
+ },
+ {
+  "en": "type",
+  "cn": "类型；打字",
+  "from": "abstract"
+ },
+ {
+  "en": "mission",
+  "cn": "任务",
+  "from": "abstract"
+ },
+ {
+  "en": "risk",
+  "cn": "风险",
+  "from": "abstract"
+ },
+ {
+  "en": "favour",
+  "cn": "恩惠；赞成",
+  "from": "abstract"
+ },
+ {
+  "en": "form",
+  "cn": "形式",
+  "from": "abstract"
+ },
+ {
+  "en": "danger",
+  "cn": "危险",
+  "from": "abstract"
+ },
+ {
+  "en": "beauty",
+  "cn": "美丽",
+  "from": "abstract"
+ },
+ {
+  "en": "challenge",
+  "cn": "挑战",
+  "from": "abstract"
+ },
+ {
+  "en": "strength",
+  "cn": "力量",
+  "from": "abstract"
+ },
+ {
+  "en": "example",
+  "cn": "例子",
+  "from": "abstract"
+ },
+ {
+  "en": "trick",
+  "cn": "诡计",
+  "from": "abstract"
+ },
+ {
+  "en": "target",
+  "cn": "目标",
+  "from": "abstract"
+ },
+ {
+  "en": "fate",
+  "cn": "命运",
+  "from": "abstract"
+ },
+ {
+  "en": "harm",
+  "cn": "伤害",
+  "from": "abstract"
+ },
+ {
+  "en": "damage",
+  "cn": "损害",
+  "from": "abstract"
+ },
+ {
+  "en": "silence",
+  "cn": "沉默",
+  "from": "abstract"
+ },
+ {
+  "en": "safety",
+  "cn": "安全",
+  "from": "abstract"
+ },
+ {
+  "en": "lesson",
+  "cn": "课",
+  "from": "abstract"
+ },
+ {
+  "en": "event",
+  "cn": "事件",
+  "from": "abstract"
+ },
+ {
+  "en": "affair",
+  "cn": "事件；外遇",
+  "from": "abstract"
+ },
+ {
+  "en": "sexual",
+  "cn": "性的",
+  "from": "abstract"
+ },
+ {
+  "en": "source",
+  "cn": "来源",
+  "from": "abstract"
+ },
+ {
+  "en": "advantage",
+  "cn": "优势",
+  "from": "abstract"
+ },
+ {
+  "en": "protection",
+  "cn": "保护",
+  "from": "abstract"
+ },
+ {
+  "en": "friendship",
+  "cn": "友谊",
+  "from": "abstract"
+ },
+ {
+  "en": "theme",
+  "cn": "主题",
+  "from": "abstract"
+ },
+ {
+  "en": "surface",
+  "cn": "表面",
+  "from": "abstract"
+ },
+ {
+  "en": "presence",
+  "cn": "存在；出席",
+  "from": "abstract"
+ },
+ {
+  "en": "section",
+  "cn": "部分",
+  "from": "abstract"
+ },
+ {
+  "en": "darkness",
+  "cn": "黑暗",
+  "from": "abstract"
+ },
+ {
+  "en": "destiny",
+  "cn": "命运",
+  "from": "abstract"
+ },
+ {
+  "en": "incident",
+  "cn": "事件",
+  "from": "abstract"
+ },
+ {
+  "en": "movement",
+  "cn": "运动",
+  "from": "abstract"
+ },
+ {
+  "en": "authority",
+  "cn": "权威",
+  "from": "abstract"
+ },
+ {
+  "en": "glory",
+  "cn": "荣耀",
+  "from": "abstract"
+ },
+ {
+  "en": "reputation",
+  "cn": "名声",
+  "from": "abstract"
+ },
+ {
+  "en": "lack",
+  "cn": "缺乏",
+  "from": "abstract"
+ },
+ {
+  "en": "detail",
+  "cn": "细节",
+  "from": "abstract"
+ },
+ {
+  "en": "disaster",
+  "cn": "灾难",
+  "from": "abstract"
+ },
+ {
+  "en": "coincidence",
+  "cn": "巧合",
+  "from": "abstract"
+ },
+ {
+  "en": "balance",
+  "cn": "平衡",
+  "from": "abstract"
+ },
+ {
+  "en": "term",
+  "cn": "术语；学期",
+  "from": "abstract"
+ },
+ {
+  "en": "bond",
+  "cn": "纽带；债券",
+  "from": "abstract"
+ },
+ {
+  "en": "motion",
+  "cn": "运动",
+  "from": "abstract"
+ },
+ {
+  "en": "centre",
+  "cn": "中心",
+  "from": "abstract"
+ },
+ {
+  "en": "standard",
+  "cn": "标准",
+  "from": "abstract"
+ },
+ {
+  "en": "construction",
+  "cn": "建设",
+  "from": "abstract"
+ },
+ {
+  "en": "routine",
+  "cn": "例行公事",
+  "from": "abstract"
+ },
+ {
+  "en": "pattern",
+  "cn": "模式",
+  "from": "abstract"
+ },
+ {
+  "en": "aim",
+  "cn": "目标；瞄准",
+  "from": "abstract"
+ },
+ {
+  "en": "ease",
+  "cn": "轻松",
+  "from": "abstract"
+ },
+ {
+  "en": "conscience",
+  "cn": "良心",
+  "from": "abstract"
+ },
+ {
+  "en": "behalf",
+  "cn": "代表",
+  "from": "abstract"
+ },
+ {
+  "en": "motive",
+  "cn": "动机",
+  "from": "abstract"
+ },
+ {
+  "en": "benefit",
+  "cn": "好处",
+  "from": "abstract"
+ },
+ {
+  "en": "atmosphere",
+  "cn": "气氛",
+  "from": "abstract"
+ },
+ {
+  "en": "activity",
+  "cn": "活动",
+  "from": "abstract"
+ },
+ {
+  "en": "frame",
+  "cn": "框架",
+  "from": "abstract"
+ },
+ {
+  "en": "existence",
+  "cn": "存在",
+  "from": "abstract"
+ },
+ {
+  "en": "limit",
+  "cn": "限制",
+  "from": "abstract"
+ },
+ {
+  "en": "impact",
+  "cn": "影响；冲击",
+  "from": "abstract"
+ },
+ {
+  "en": "odds",
+  "cn": "可能性",
+  "from": "abstract"
+ },
+ {
+  "en": "signature",
+  "cn": "签名",
+  "from": "abstract"
+ },
+ {
+  "en": "charm",
+  "cn": "魅力",
+  "from": "abstract"
+ },
+ {
+  "en": "humanity",
+  "cn": "人类；人性",
+  "from": "abstract"
+ }
+]

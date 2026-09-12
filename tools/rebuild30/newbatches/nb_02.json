@@ -1,0 +1,872 @@
+[
+ {
+  "en": "escalator",
+  "cn": "电动扶梯；自动扶梯",
+  "cefr": "A2"
+ },
+ {
+  "en": "footballer",
+  "cn": "足球员；足球选手",
+  "cefr": "A2"
+ },
+ {
+  "en": "schoolwork",
+  "cn": "功课；作业",
+  "cefr": "A2"
+ },
+ {
+  "en": "stair",
+  "cn": "楼梯；梯级",
+  "cefr": "A2"
+ },
+ {
+  "en": "pronunciation",
+  "cn": "发音；读法",
+  "cefr": "A2"
+ },
+ {
+  "en": "consist",
+  "cn": "由……组成",
+  "cefr": "A2"
+ },
+ {
+  "en": "terrify",
+  "cn": "使恐惧",
+  "cefr": "A2"
+ },
+ {
+  "en": "bookcase",
+  "cn": "书架；书柜",
+  "cefr": "A2"
+ },
+ {
+  "en": "laziness",
+  "cn": "懒惰",
+  "cefr": "A2"
+ },
+ {
+  "en": "pollute",
+  "cn": "污染",
+  "cefr": "A2"
+ },
+ {
+  "en": "comparative",
+  "cn": "比较的；相对的",
+  "cefr": "A2"
+ },
+ {
+  "en": "adjective",
+  "cn": "形容词",
+  "cefr": "A2"
+ },
+ {
+  "en": "noun",
+  "cn": "名词",
+  "cefr": "A2"
+ },
+ {
+  "en": "guidebook",
+  "cn": "指南；手册",
+  "cefr": "A2"
+ },
+ {
+  "en": "weekday",
+  "cn": "工作日",
+  "cefr": "A2"
+ },
+ {
+  "en": "half-price",
+  "cn": "半价",
+  "cefr": "A2"
+ },
+ {
+  "en": "punctuation",
+  "cn": "标点符号",
+  "cefr": "A2"
+ },
+ {
+  "en": "washing-up",
+  "cn": "洗碗；待洗餐具",
+  "cefr": "A2"
+ },
+ {
+  "en": "headteacher",
+  "cn": "中小学的校长",
+  "cefr": "A2"
+ },
+ {
+  "en": "superlative",
+  "cn": "最高的",
+  "cefr": "A2"
+ },
+ {
+  "en": "tablespoon",
+  "cn": "大汤匙",
+  "cefr": "A2"
+ },
+ {
+  "en": "per",
+  "cn": "每一；通过",
+  "cefr": "B1"
+ },
+ {
+  "en": "positive",
+  "cn": "肯定的；积极的",
+  "cefr": "B1"
+ },
+ {
+  "en": "grant",
+  "cn": "授予；补助金",
+  "cefr": "B1"
+ },
+ {
+  "en": "christian",
+  "cn": "基督徒",
+  "cefr": "B1"
+ },
+ {
+  "en": "penny",
+  "cn": "便士",
+  "cefr": "B1"
+ },
+ {
+  "en": "vice",
+  "cn": "恶习；副的",
+  "cefr": "B1"
+ },
+ {
+  "en": "gene",
+  "cn": "基因",
+  "cefr": "B1"
+ },
+ {
+  "en": "shortly",
+  "cn": "不久；简短地",
+  "cefr": "B1"
+ },
+ {
+  "en": "homeless",
+  "cn": "无家的；无养主的",
+  "cefr": "B1"
+ },
+ {
+  "en": "old-fashioned",
+  "cn": "旧式的；过时的",
+  "cefr": "B1"
+ },
+ {
+  "en": "salesman",
+  "cn": "推销员",
+  "cefr": "B1"
+ },
+ {
+  "en": "brand-new",
+  "cn": "崭新的",
+  "cefr": "B1"
+ },
+ {
+  "en": "salmon",
+  "cn": "鲑鱼",
+  "cefr": "B1"
+ },
+ {
+  "en": "wax",
+  "cn": "蜡",
+  "cefr": "B1"
+ },
+ {
+  "en": "herd",
+  "cn": "兽群；人群",
+  "cefr": "B1"
+ },
+ {
+  "en": "mentally",
+  "cn": "心理上；精神上",
+  "cefr": "B1"
+ },
+ {
+  "en": "beautifully",
+  "cn": "美好地；漂亮地",
+  "cefr": "B1"
+ },
+ {
+  "en": "altogether",
+  "cn": "完全地；总而言之",
+  "cefr": "B1"
+ },
+ {
+  "en": "attract",
+  "cn": "吸引；诱惑",
+  "cefr": "B1"
+ },
+ {
+  "en": "embarrass",
+  "cn": "使困窘；使局促不安",
+  "cefr": "B1"
+ },
+ {
+  "en": "occasionally",
+  "cn": "有时候；偶而",
+  "cefr": "B1"
+ },
+ {
+  "en": "organic",
+  "cn": "有机的",
+  "cefr": "B1"
+ },
+ {
+  "en": "seize",
+  "cn": "抓住；逮捕",
+  "cefr": "B1"
+ },
+ {
+  "en": "crow",
+  "cn": "乌鸦",
+  "cefr": "B1"
+ },
+ {
+  "en": "observation",
+  "cn": "观察；注意",
+  "cefr": "B1"
+ },
+ {
+  "en": "railroad",
+  "cn": "铁路",
+  "cefr": "B1"
+ },
+ {
+  "en": "jade",
+  "cn": "玉；翡翠",
+  "cefr": "B1"
+ },
+ {
+  "en": "gap",
+  "cn": "缝隙；缺口",
+  "cefr": "B1"
+ },
+ {
+  "en": "alcoholic",
+  "cn": "酒鬼；酒精中毒者",
+  "cefr": "B1"
+ },
+ {
+  "en": "railway",
+  "cn": "铁路",
+  "cefr": "B1"
+ },
+ {
+  "en": "possess",
+  "cn": "拥有；持有",
+  "cefr": "B1"
+ },
+ {
+  "en": "delightful",
+  "cn": "令人愉快的；可爱的",
+  "cefr": "B1"
+ },
+ {
+  "en": "emotionally",
+  "cn": "在情绪上",
+  "cefr": "B1"
+ },
+ {
+  "en": "visible",
+  "cn": "看得见的；明显的",
+  "cefr": "B1"
+ },
+ {
+  "en": "maintenance",
+  "cn": "维护；保持",
+  "cefr": "B1"
+ },
+ {
+  "en": "tobacco",
+  "cn": "烟草",
+  "cefr": "B1"
+ },
+ {
+  "en": "whisper",
+  "cn": "耳语；低语",
+  "cefr": "B1"
+ },
+ {
+  "en": "origin",
+  "cn": "起源；起因",
+  "cefr": "B1"
+ },
+ {
+  "en": "vet",
+  "cn": "兽医",
+  "cefr": "B1"
+ },
+ {
+  "en": "canal",
+  "cn": "运河；水道",
+  "cefr": "B1"
+ },
+ {
+  "en": "ambitious",
+  "cn": "有野心的；抱负不凡的",
+  "cefr": "B1"
+ },
+ {
+  "en": "guidance",
+  "cn": "指导；领导",
+  "cefr": "B1"
+ },
+ {
+  "en": "inevitable",
+  "cn": "不可避免的；必然的",
+  "cefr": "B1"
+ },
+ {
+  "en": "tick",
+  "cn": "滴答声；打勾",
+  "cefr": "B1"
+ },
+ {
+  "en": "craft",
+  "cn": "技艺；手艺",
+  "cefr": "B1"
+ },
+ {
+  "en": "resident",
+  "cn": "居民",
+  "cefr": "B1"
+ },
+ {
+  "en": "triumph",
+  "cn": "胜利；凯旋",
+  "cefr": "B1"
+ },
+ {
+  "en": "frequency",
+  "cn": "频率；频数",
+  "cefr": "B1"
+ },
+ {
+  "en": "satisfaction",
+  "cn": "满足；满意",
+  "cefr": "B1"
+ },
+ {
+  "en": "historical",
+  "cn": "历史的；史实的",
+  "cefr": "B1"
+ },
+ {
+  "en": "freely",
+  "cn": "自由地；随意地",
+  "cefr": "B1"
+ },
+ {
+  "en": "concentration",
+  "cn": "集中；专心",
+  "cefr": "B1"
+ },
+ {
+  "en": "protective",
+  "cn": "给予保护的；防护的",
+  "cefr": "B1"
+ },
+ {
+  "en": "preserve",
+  "cn": "保护；保存",
+  "cefr": "B1"
+ },
+ {
+  "en": "outstanding",
+  "cn": "杰出的；突出的",
+  "cefr": "B1"
+ },
+ {
+  "en": "essence",
+  "cn": "实质；本质",
+  "cefr": "B1"
+ },
+ {
+  "en": "thankful",
+  "cn": "感激的",
+  "cefr": "B1"
+ },
+ {
+  "en": "urge",
+  "cn": "冲动；催促",
+  "cefr": "B1"
+ },
+ {
+  "en": "strain",
+  "cn": "压力；拉紧",
+  "cefr": "B1"
+ },
+ {
+  "en": "examination",
+  "cn": "考试；测验",
+  "cefr": "B1"
+ },
+ {
+  "en": "participate",
+  "cn": "参加；分享",
+  "cefr": "B1"
+ },
+ {
+  "en": "heavenly",
+  "cn": "天上的；神圣的",
+  "cefr": "B1"
+ },
+ {
+  "en": "bark",
+  "cn": "树皮；吠声",
+  "cefr": "B1"
+ },
+ {
+  "en": "casual",
+  "cn": "偶然的；不经意的",
+  "cefr": "B1"
+ },
+ {
+  "en": "respectable",
+  "cn": "体面的；值得尊敬的",
+  "cefr": "B1"
+ },
+ {
+  "en": "demonstration",
+  "cn": "示范；实证",
+  "cefr": "B1"
+ },
+ {
+  "en": "tuna",
+  "cn": "金枪鱼",
+  "cefr": "B1"
+ },
+ {
+  "en": "inspection",
+  "cn": "检验；检查",
+  "cefr": "B1"
+ },
+ {
+  "en": "choke",
+  "cn": "窒息；阻塞",
+  "cefr": "B1"
+ },
+ {
+  "en": "rapidly",
+  "cn": "飞快地；迅速地",
+  "cefr": "B1"
+ },
+ {
+  "en": "efficient",
+  "cn": "有效率的；能干的",
+  "cefr": "B1"
+ },
+ {
+  "en": "mechanic",
+  "cn": "机械工；技工",
+  "cefr": "B1"
+ },
+ {
+  "en": "relation",
+  "cn": "关系",
+  "cefr": "B1"
+ },
+ {
+  "en": "mechanical",
+  "cn": "机械的；机械性的",
+  "cefr": "B1"
+ },
+ {
+  "en": "extend",
+  "cn": "扩充；延伸",
+  "cefr": "B1"
+ },
+ {
+  "en": "accomplish",
+  "cn": "完成；达到",
+  "cefr": "B1"
+ },
+ {
+  "en": "lightly",
+  "cn": "轻轻地；少许",
+  "cefr": "B1"
+ },
+ {
+  "en": "layer",
+  "cn": "层",
+  "cefr": "B1"
+ },
+ {
+  "en": "gown",
+  "cn": "长袍；礼服",
+  "cefr": "B1"
+ },
+ {
+  "en": "adopt",
+  "cn": "采用；正式通过",
+  "cefr": "B1"
+ },
+ {
+  "en": "consideration",
+  "cn": "考虑；原因",
+  "cefr": "B1"
+ },
+ {
+  "en": "registration",
+  "cn": "登记；注册",
+  "cefr": "B1"
+ },
+ {
+  "en": "constitution",
+  "cn": "构成；宪法",
+  "cefr": "B1"
+ },
+ {
+  "en": "buyer",
+  "cn": "买主；买方",
+  "cefr": "B1"
+ },
+ {
+  "en": "nevertheless",
+  "cn": "然而；虽然如此",
+  "cefr": "B1"
+ },
+ {
+  "en": "supposedly",
+  "cn": "据说",
+  "cefr": "B1"
+ },
+ {
+  "en": "syndrome",
+  "cn": "综合征",
+  "cefr": "B1"
+ },
+ {
+  "en": "entertain",
+  "cn": "娱乐；招待",
+  "cefr": "B1"
+ },
+ {
+  "en": "politician",
+  "cn": "政治家；政客",
+  "cefr": "B1"
+ },
+ {
+  "en": "phantom",
+  "cn": "幻影",
+  "cefr": "B1"
+ },
+ {
+  "en": "notion",
+  "cn": "概念；观念",
+  "cefr": "B1"
+ },
+ {
+  "en": "tease",
+  "cn": "取笑；戏弄",
+  "cefr": "B1"
+ },
+ {
+  "en": "extent",
+  "cn": "范围；程度",
+  "cefr": "B1"
+ },
+ {
+  "en": "shallow",
+  "cn": "浅的",
+  "cefr": "B1"
+ },
+ {
+  "en": "horizon",
+  "cn": "地平线；眼界",
+  "cefr": "B1"
+ },
+ {
+  "en": "reflection",
+  "cn": "反映；倒影",
+  "cefr": "B1"
+ },
+ {
+  "en": "merchant",
+  "cn": "商人；店主",
+  "cefr": "B1"
+ },
+ {
+  "en": "disappointment",
+  "cn": "失望",
+  "cefr": "B1"
+ },
+ {
+  "en": "voyage",
+  "cn": "航行；航海",
+  "cefr": "B1"
+ },
+ {
+  "en": "define",
+  "cn": "定义；界定",
+  "cefr": "B1"
+ },
+ {
+  "en": "reject",
+  "cn": "拒绝",
+  "cefr": "B1"
+ },
+ {
+  "en": "heel",
+  "cn": "脚后跟",
+  "cefr": "B1"
+ },
+ {
+  "en": "acknowledge",
+  "cn": "承认；告知收悉",
+  "cefr": "B1"
+ },
+ {
+  "en": "fade",
+  "cn": "褪色；消失",
+  "cefr": "B1"
+ },
+ {
+  "en": "submarine",
+  "cn": "潜水艇",
+  "cefr": "B1"
+ },
+ {
+  "en": "opposition",
+  "cn": "反对；敌对",
+  "cefr": "B1"
+ },
+ {
+  "en": "rapid",
+  "cn": "迅速的；飞快的",
+  "cefr": "B1"
+ },
+ {
+  "en": "definition",
+  "cn": "定义",
+  "cefr": "B1"
+ },
+ {
+  "en": "handwriting",
+  "cn": "笔迹",
+  "cefr": "B1"
+ },
+ {
+  "en": "attraction",
+  "cn": "吸引",
+  "cefr": "B1"
+ },
+ {
+  "en": "selection",
+  "cn": "选择；精选",
+  "cefr": "B1"
+ },
+ {
+  "en": "democratic",
+  "cn": "民主的；民主政体的",
+  "cefr": "B1"
+ },
+ {
+  "en": "translate",
+  "cn": "翻译",
+  "cefr": "B1"
+ },
+ {
+  "en": "primitive",
+  "cn": "原始的",
+  "cefr": "B1"
+ },
+ {
+  "en": "peculiar",
+  "cn": "奇特的；罕见的",
+  "cefr": "B1"
+ },
+ {
+  "en": "freezer",
+  "cn": "冰库；冰箱",
+  "cefr": "B1"
+ },
+ {
+  "en": "jewel",
+  "cn": "珠宝；贵重物",
+  "cefr": "B1"
+ },
+ {
+  "en": "artistic",
+  "cn": "艺术的；艺术家的",
+  "cefr": "B1"
+ },
+ {
+  "en": "ferry",
+  "cn": "渡船；渡口",
+  "cefr": "B1"
+ },
+ {
+  "en": "atomic",
+  "cn": "原子的；原子能的",
+  "cefr": "B1"
+ },
+ {
+  "en": "sensation",
+  "cn": "感觉；轰动",
+  "cefr": "B1"
+ },
+ {
+  "en": "delight",
+  "cn": "高兴；愉快",
+  "cefr": "B1"
+ },
+ {
+  "en": "caution",
+  "cn": "小心；慎重",
+  "cefr": "B1"
+ },
+ {
+  "en": "thorough",
+  "cn": "彻底的",
+  "cefr": "B1"
+ },
+ {
+  "en": "sleeve",
+  "cn": "袖子",
+  "cefr": "B1"
+ },
+ {
+  "en": "confirmation",
+  "cn": "证实；证明",
+  "cefr": "B1"
+ },
+ {
+  "en": "comet",
+  "cn": "彗星",
+  "cefr": "B1"
+ },
+ {
+  "en": "cheerful",
+  "cn": "快活的；高兴的",
+  "cefr": "B1"
+ },
+ {
+  "en": "realistic",
+  "cn": "现实的；逼真的",
+  "cefr": "B1"
+ },
+ {
+  "en": "sufficient",
+  "cn": "充足的",
+  "cefr": "B1"
+ },
+ {
+  "en": "warmth",
+  "cn": "温暖",
+  "cefr": "B1"
+ },
+ {
+  "en": "instructor",
+  "cn": "教员；讲师",
+  "cefr": "B1"
+ },
+ {
+  "en": "edition",
+  "cn": "版本；翻版",
+  "cefr": "B1"
+ },
+ {
+  "en": "demonstrate",
+  "cn": "示范；证明",
+  "cefr": "B1"
+ },
+ {
+  "en": "sheer",
+  "cn": "纯粹的；陡峭的",
+  "cefr": "B1"
+ },
+ {
+  "en": "employment",
+  "cn": "雇用；职业",
+  "cefr": "B1"
+ },
+ {
+  "en": "unite",
+  "cn": "联合；团结",
+  "cefr": "B1"
+ },
+ {
+  "en": "mule",
+  "cn": "骡子",
+  "cefr": "B1"
+ },
+ {
+  "en": "phenomenon",
+  "cn": "现象",
+  "cefr": "B1"
+ },
+ {
+  "en": "ape",
+  "cn": "猿猴",
+  "cefr": "B1"
+ },
+ {
+  "en": "sponsor",
+  "cn": "赞助商；发起人",
+  "cefr": "B1"
+ },
+ {
+  "en": "enthusiasm",
+  "cn": "巨大的热情；热心",
+  "cefr": "B1"
+ },
+ {
+  "en": "acquaintance",
+  "cn": "认识；相识者",
+  "cefr": "B1"
+ },
+ {
+  "en": "rail",
+  "cn": "铁轨；栏杆",
+  "cefr": "B1"
+ },
+ {
+  "en": "crop",
+  "cn": "农作物；产量",
+  "cefr": "B1"
+ },
+ {
+  "en": "careless",
+  "cn": "粗心的；不关心的",
+  "cefr": "B1"
+ },
+ {
+  "en": "separation",
+  "cn": "分离；分居",
+  "cefr": "B1"
+ },
+ {
+  "en": "spice",
+  "cn": "香料",
+  "cefr": "B1"
+ },
+ {
+  "en": "caller",
+  "cn": "来电者；访客",
+  "cefr": "B1"
+ },
+ {
+  "en": "rational",
+  "cn": "理性的",
+  "cefr": "B1"
+ },
+ {
+  "en": "competitive",
+  "cn": "竞争的",
+  "cefr": "B1"
+ },
+ {
+  "en": "mustard",
+  "cn": "芥末",
+  "cefr": "B1"
+ },
+ {
+  "en": "transportation",
+  "cn": "运输",
+  "cefr": "B1"
+ }
+]

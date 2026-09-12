@@ -1,0 +1,882 @@
+[
+ {
+  "en": "wakeup",
+  "cn": "起床",
+  "from": "daily"
+ },
+ {
+  "en": "sleep",
+  "cn": "睡觉",
+  "from": "daily"
+ },
+ {
+  "en": "nap",
+  "cn": "打盹",
+  "from": "daily"
+ },
+ {
+  "en": "lie in bed",
+  "cn": "赖床",
+  "from": "daily"
+ },
+ {
+  "en": "dream",
+  "cn": "做梦",
+  "from": "daily"
+ },
+ {
+  "en": "snore",
+  "cn": "打呼噜",
+  "from": "daily"
+ },
+ {
+  "en": "awake",
+  "cn": "醒来",
+  "from": "daily"
+ },
+ {
+  "en": "stay up",
+  "cn": "熬夜",
+  "from": "daily"
+ },
+ {
+  "en": "shower",
+  "cn": "洗澡",
+  "from": "daily"
+ },
+ {
+  "en": "bath",
+  "cn": "泡澡",
+  "from": "daily"
+ },
+ {
+  "en": "brush teeth",
+  "cn": "刷牙",
+  "from": "daily"
+ },
+ {
+  "en": "wash face",
+  "cn": "洗脸",
+  "from": "daily"
+ },
+ {
+  "en": "wash hair",
+  "cn": "洗头",
+  "from": "daily"
+ },
+ {
+  "en": "blow-dry",
+  "cn": "吹头发",
+  "from": "daily"
+ },
+ {
+  "en": "comb",
+  "cn": "梳头",
+  "from": "daily"
+ },
+ {
+  "en": "shave",
+  "cn": "剃须",
+  "from": "daily"
+ },
+ {
+  "en": "makeup",
+  "cn": "化妆",
+  "from": "daily"
+ },
+ {
+  "en": "remove makeup",
+  "cn": "卸妆",
+  "from": "daily"
+ },
+ {
+  "en": "skincare",
+  "cn": "护肤",
+  "from": "daily"
+ },
+ {
+  "en": "apply cream",
+  "cn": "涂面霜",
+  "from": "daily"
+ },
+ {
+  "en": "trim nails",
+  "cn": "剪指甲",
+  "from": "daily"
+ },
+ {
+  "en": "restroom",
+  "cn": "上厕所",
+  "from": "daily"
+ },
+ {
+  "en": "wash hands",
+  "cn": "洗手",
+  "from": "daily"
+ },
+ {
+  "en": "dress",
+  "cn": "穿衣服",
+  "from": "daily"
+ },
+ {
+  "en": "undress",
+  "cn": "脱衣服",
+  "from": "daily"
+ },
+ {
+  "en": "change clothes",
+  "cn": "换衣服",
+  "from": "daily"
+ },
+ {
+  "en": "tie shoes",
+  "cn": "系鞋带",
+  "from": "daily"
+ },
+ {
+  "en": "button up",
+  "cn": "系扣子",
+  "from": "daily"
+ },
+ {
+  "en": "zip up",
+  "cn": "拉拉链",
+  "from": "daily"
+ },
+ {
+  "en": "wear a hat",
+  "cn": "戴帽子",
+  "from": "daily"
+ },
+ {
+  "en": "wear glasses",
+  "cn": "戴眼镜",
+  "from": "daily"
+ },
+ {
+  "en": "wear a mask",
+  "cn": "戴口罩",
+  "from": "daily"
+ },
+ {
+  "en": "groom",
+  "cn": "整理仪容",
+  "from": "daily"
+ },
+ {
+  "en": "mirror",
+  "cn": "照镜子",
+  "from": "daily"
+ },
+ {
+  "en": "eat",
+  "cn": "吃饭",
+  "from": "daily"
+ },
+ {
+  "en": "eat breakfast",
+  "cn": "吃早餐",
+  "from": "daily"
+ },
+ {
+  "en": "eat lunch",
+  "cn": "吃午餐",
+  "from": "daily"
+ },
+ {
+  "en": "eat dinner",
+  "cn": "吃晚餐",
+  "from": "daily"
+ },
+ {
+  "en": "snack",
+  "cn": "吃零食",
+  "from": "daily"
+ },
+ {
+  "en": "order takeout",
+  "cn": "点外卖",
+  "from": "daily"
+ },
+ {
+  "en": "delivery",
+  "cn": "外卖",
+  "from": "daily"
+ },
+ {
+  "en": "takeout",
+  "cn": "外带",
+  "from": "daily"
+ },
+ {
+  "en": "eat out",
+  "cn": "在外面吃",
+  "from": "daily"
+ },
+ {
+  "en": "dine out",
+  "cn": "聚餐",
+  "from": "daily"
+ },
+ {
+  "en": "eat together",
+  "cn": "约饭",
+  "from": "daily"
+ },
+ {
+  "en": "drink water",
+  "cn": "喝水",
+  "from": "daily"
+ },
+ {
+  "en": "drink coffee",
+  "cn": "喝咖啡",
+  "from": "daily"
+ },
+ {
+  "en": "drink alcohol",
+  "cn": "喝酒",
+  "from": "daily"
+ },
+ {
+  "en": "taste",
+  "cn": "尝一尝",
+  "from": "daily"
+ },
+ {
+  "en": "savor",
+  "cn": "品尝",
+  "from": "daily"
+ },
+ {
+  "en": "chew",
+  "cn": "咀嚼",
+  "from": "daily"
+ },
+ {
+  "en": "swallow",
+  "cn": "吞咽",
+  "from": "daily"
+ },
+ {
+  "en": "bite",
+  "cn": "咬",
+  "from": "daily"
+ },
+ {
+  "en": "lick",
+  "cn": "舔",
+  "from": "daily"
+ },
+ {
+  "en": "stuffed",
+  "cn": "饱了",
+  "from": "daily"
+ },
+ {
+  "en": "hungry",
+  "cn": "饿了",
+  "from": "daily"
+ },
+ {
+  "en": "cook",
+  "cn": "做饭",
+  "from": "daily"
+ },
+ {
+  "en": "boil",
+  "cn": "煮",
+  "from": "daily"
+ },
+ {
+  "en": "stir-fry",
+  "cn": "炒",
+  "from": "daily"
+ },
+ {
+  "en": "fry",
+  "cn": "煎",
+  "from": "daily"
+ },
+ {
+  "en": "bake",
+  "cn": "烤",
+  "from": "daily"
+ },
+ {
+  "en": "grill",
+  "cn": "烧烤",
+  "from": "daily"
+ },
+ {
+  "en": "steam",
+  "cn": "蒸",
+  "from": "daily"
+ },
+ {
+  "en": "stew",
+  "cn": "炖",
+  "from": "daily"
+ },
+ {
+  "en": "microwave",
+  "cn": "微波加热",
+  "from": "daily"
+ },
+ {
+  "en": "chop",
+  "cn": "切",
+  "from": "daily"
+ },
+ {
+  "en": "slice",
+  "cn": "切片",
+  "from": "daily"
+ },
+ {
+  "en": "dice",
+  "cn": "切丁",
+  "from": "daily"
+ },
+ {
+  "en": "peel",
+  "cn": "削皮",
+  "from": "daily"
+ },
+ {
+  "en": "stir",
+  "cn": "搅拌",
+  "from": "daily"
+ },
+ {
+  "en": "mix",
+  "cn": "混合",
+  "from": "daily"
+ },
+ {
+  "en": "season",
+  "cn": "加调料",
+  "from": "daily"
+ },
+ {
+  "en": "serve",
+  "cn": "端菜",
+  "from": "daily"
+ },
+ {
+  "en": "scoop rice",
+  "cn": "盛饭",
+  "from": "daily"
+ },
+ {
+  "en": "wash dishes",
+  "cn": "洗碗",
+  "from": "daily"
+ },
+ {
+  "en": "wipe the table",
+  "cn": "擦桌子",
+  "from": "daily"
+ },
+ {
+  "en": "sweep",
+  "cn": "扫地",
+  "from": "daily"
+ },
+ {
+  "en": "mop the floor",
+  "cn": "拖地",
+  "from": "daily"
+ },
+ {
+  "en": "vacuum",
+  "cn": "吸尘",
+  "from": "daily"
+ },
+ {
+  "en": "clean",
+  "cn": "打扫",
+  "from": "daily"
+ },
+ {
+  "en": "tidy",
+  "cn": "整理",
+  "from": "daily"
+ },
+ {
+  "en": "put away",
+  "cn": "收拾",
+  "from": "daily"
+ },
+ {
+  "en": "make the bed",
+  "cn": "叠被子",
+  "from": "daily"
+ },
+ {
+  "en": "make the bed",
+  "cn": "铺床",
+  "from": "daily"
+ },
+ {
+  "en": "laundry",
+  "cn": "洗衣服",
+  "from": "daily"
+ },
+ {
+  "en": "hang clothes",
+  "cn": "晾衣服",
+  "from": "daily"
+ },
+ {
+  "en": "dry",
+  "cn": "烘干",
+  "from": "daily"
+ },
+ {
+  "en": "iron",
+  "cn": "熨衣服",
+  "from": "daily"
+ },
+ {
+  "en": "fold clothes",
+  "cn": "叠衣服",
+  "from": "daily"
+ },
+ {
+  "en": "hang up",
+  "cn": "挂衣服",
+  "from": "daily"
+ },
+ {
+  "en": "take out trash",
+  "cn": "倒垃圾",
+  "from": "daily"
+ },
+ {
+  "en": "recycle",
+  "cn": "回收",
+  "from": "daily"
+ },
+ {
+  "en": "sort",
+  "cn": "分类",
+  "from": "daily"
+ },
+ {
+  "en": "discard",
+  "cn": "丢弃",
+  "from": "daily"
+ },
+ {
+  "en": "wipe the window",
+  "cn": "擦窗户",
+  "from": "daily"
+ },
+ {
+  "en": "dust",
+  "cn": "除尘",
+  "from": "daily"
+ },
+ {
+  "en": "rinse",
+  "cn": "清洗",
+  "from": "daily"
+ },
+ {
+  "en": "disinfect",
+  "cn": "消毒",
+  "from": "daily"
+ },
+ {
+  "en": "shopping",
+  "cn": "购物",
+  "from": "daily"
+ },
+ {
+  "en": "window shopping",
+  "cn": "逛街",
+  "from": "daily"
+ },
+ {
+  "en": "buy",
+  "cn": "买",
+  "from": "daily"
+ },
+ {
+  "en": "sell",
+  "cn": "卖",
+  "from": "daily"
+ },
+ {
+  "en": "pay",
+  "cn": "付款",
+  "from": "daily"
+ },
+ {
+  "en": "change",
+  "cn": "找零",
+  "from": "daily"
+ },
+ {
+  "en": "discount",
+  "cn": "打折",
+  "from": "daily"
+ },
+ {
+  "en": "cheap",
+  "cn": "便宜",
+  "from": "daily"
+ },
+ {
+  "en": "expensive",
+  "cn": "贵",
+  "from": "daily"
+ },
+ {
+  "en": "free",
+  "cn": "免费",
+  "from": "daily"
+ },
+ {
+  "en": "price",
+  "cn": "价格",
+  "from": "daily"
+ },
+ {
+  "en": "receipt",
+  "cn": "发票",
+  "from": "daily"
+ },
+ {
+  "en": "coin",
+  "cn": "零钱",
+  "from": "daily"
+ },
+ {
+  "en": "cash",
+  "cn": "现金",
+  "from": "daily"
+ },
+ {
+  "en": "credit card",
+  "cn": "信用卡",
+  "from": "daily"
+ },
+ {
+  "en": "scan code",
+  "cn": "扫码",
+  "from": "daily"
+ },
+ {
+  "en": "money",
+  "cn": "钱",
+  "from": "daily"
+ },
+ {
+  "en": "bank",
+  "cn": "银行",
+  "from": "daily"
+ },
+ {
+  "en": "account",
+  "cn": "账户",
+  "from": "daily"
+ },
+ {
+  "en": "save",
+  "cn": "存款",
+  "from": "daily"
+ },
+ {
+  "en": "withdraw",
+  "cn": "取款",
+  "from": "daily"
+ },
+ {
+  "en": "transfer",
+  "cn": "转账",
+  "from": "daily"
+ },
+ {
+  "en": "borrow",
+  "cn": "借",
+  "from": "daily"
+ },
+ {
+  "en": "return",
+  "cn": "还",
+  "from": "daily"
+ },
+ {
+  "en": "repay",
+  "cn": "还钱",
+  "from": "daily"
+ },
+ {
+  "en": "indebt",
+  "cn": "欠债",
+  "from": "daily"
+ },
+ {
+  "en": "financial",
+  "cn": "理财",
+  "from": "daily"
+ },
+ {
+  "en": "bookkeep",
+  "cn": "记账",
+  "from": "daily"
+ },
+ {
+  "en": "save money",
+  "cn": "省钱",
+  "from": "daily"
+ },
+ {
+  "en": "spend",
+  "cn": "花钱",
+  "from": "daily"
+ },
+ {
+  "en": "earn",
+  "cn": "赚钱",
+  "from": "daily"
+ },
+ {
+  "en": "make money",
+  "cn": "挣钱",
+  "from": "daily"
+ },
+ {
+  "en": "bargain",
+  "cn": "讨价还价",
+  "from": "daily"
+ },
+ {
+  "en": "return goods",
+  "cn": "退货",
+  "from": "daily"
+ },
+ {
+  "en": "refund",
+  "cn": "退款",
+  "from": "daily"
+ },
+ {
+  "en": "exchange",
+  "cn": "换货",
+  "from": "daily"
+ },
+ {
+  "en": "try on",
+  "cn": "试穿",
+  "from": "daily"
+ },
+ {
+  "en": "try it",
+  "cn": "试用",
+  "from": "daily"
+ },
+ {
+  "en": "compare prices",
+  "cn": "比价",
+  "from": "daily"
+ },
+ {
+  "en": "shop online",
+  "cn": "网购",
+  "from": "daily"
+ },
+ {
+  "en": "cod",
+  "cn": "货到付款",
+  "from": "daily"
+ },
+ {
+  "en": "home delivery",
+  "cn": "送货上门",
+  "from": "daily"
+ },
+ {
+  "en": "pickup",
+  "cn": "自取",
+  "from": "daily"
+ },
+ {
+  "en": "study",
+  "cn": "学习",
+  "from": "daily"
+ },
+ {
+  "en": "work",
+  "cn": "工作",
+  "from": "daily"
+ },
+ {
+  "en": "work overtime",
+  "cn": "加班",
+  "from": "daily"
+ },
+ {
+  "en": "go to work",
+  "cn": "上班",
+  "from": "daily"
+ },
+ {
+  "en": "get off work",
+  "cn": "下班",
+  "from": "daily"
+ },
+ {
+  "en": "go to school",
+  "cn": "上学",
+  "from": "daily"
+ },
+ {
+  "en": "after school",
+  "cn": "放学",
+  "from": "daily"
+ },
+ {
+  "en": "rest",
+  "cn": "休息",
+  "from": "daily"
+ },
+ {
+  "en": "vacation",
+  "cn": "放假",
+  "from": "daily"
+ },
+ {
+  "en": "ask for leave",
+  "cn": "请假",
+  "from": "daily"
+ },
+ {
+  "en": "business trip",
+  "cn": "出差",
+  "from": "daily"
+ },
+ {
+  "en": "have a meeting",
+  "cn": "开会",
+  "from": "daily"
+ },
+ {
+  "en": "homework",
+  "cn": "做作业",
+  "from": "daily"
+ },
+ {
+  "en": "submit homework",
+  "cn": "交作业",
+  "from": "daily"
+ },
+ {
+  "en": "review",
+  "cn": "复习",
+  "from": "daily"
+ },
+ {
+  "en": "preview",
+  "cn": "预习",
+  "from": "daily"
+ },
+ {
+  "en": "memorize",
+  "cn": "背单词",
+  "from": "daily"
+ },
+ {
+  "en": "read a book",
+  "cn": "看书",
+  "from": "daily"
+ },
+ {
+  "en": "take notes",
+  "cn": "做笔记",
+  "from": "daily"
+ },
+ {
+  "en": "research",
+  "cn": "查资料",
+  "from": "daily"
+ },
+ {
+  "en": "write an article",
+  "cn": "写文章",
+  "from": "daily"
+ },
+ {
+  "en": "draft",
+  "cn": "打草稿",
+  "from": "daily"
+ },
+ {
+  "en": "revise",
+  "cn": "修改",
+  "from": "daily"
+ },
+ {
+  "en": "proofread",
+  "cn": "校对",
+  "from": "daily"
+ },
+ {
+  "en": "print",
+  "cn": "打印",
+  "from": "daily"
+ },
+ {
+  "en": "photocopy",
+  "cn": "复印",
+  "from": "daily"
+ },
+ {
+  "en": "scan",
+  "cn": "扫描",
+  "from": "daily"
+ },
+ {
+  "en": "sign",
+  "cn": "签名",
+  "from": "daily"
+ },
+ {
+  "en": "send email",
+  "cn": "发邮件",
+  "from": "daily"
+ },
+ {
+  "en": "reply email",
+  "cn": "回邮件",
+  "from": "daily"
+ },
+ {
+  "en": "answer the phone",
+  "cn": "接电话",
+  "from": "daily"
+ },
+ {
+  "en": "make a call",
+  "cn": "打电话",
+  "from": "daily"
+ },
+ {
+  "en": "hang up",
+  "cn": "挂电话",
+  "from": "daily"
+ },
+ {
+  "en": "schedule a meeting",
+  "cn": "约会议",
+  "from": "daily"
+ },
+ {
+  "en": "discuss",
+  "cn": "讨论",
+  "from": "daily"
+ }
+]

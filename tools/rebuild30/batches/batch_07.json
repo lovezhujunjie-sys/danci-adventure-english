@@ -1,0 +1,882 @@
+[
+ {
+  "en": "find",
+  "cn": "找",
+  "from": "verb_basic"
+ },
+ {
+  "en": "tell",
+  "cn": "告诉",
+  "from": "verb_basic"
+ },
+ {
+  "en": "ask",
+  "cn": "问",
+  "from": "verb_basic"
+ },
+ {
+  "en": "work",
+  "cn": "工作",
+  "from": "verb_basic"
+ },
+ {
+  "en": "call",
+  "cn": "打电话",
+  "from": "verb_basic"
+ },
+ {
+  "en": "try",
+  "cn": "尝试",
+  "from": "verb_basic"
+ },
+ {
+  "en": "need",
+  "cn": "需要",
+  "from": "verb_basic"
+ },
+ {
+  "en": "feel",
+  "cn": "感觉",
+  "from": "verb_basic"
+ },
+ {
+  "en": "become",
+  "cn": "变成",
+  "from": "verb_basic"
+ },
+ {
+  "en": "leave",
+  "cn": "离开",
+  "from": "verb_basic"
+ },
+ {
+  "en": "put",
+  "cn": "放",
+  "from": "verb_basic"
+ },
+ {
+  "en": "mean",
+  "cn": "意味着",
+  "from": "verb_basic"
+ },
+ {
+  "en": "keep",
+  "cn": "保持",
+  "from": "verb_basic"
+ },
+ {
+  "en": "let",
+  "cn": "让",
+  "from": "verb_basic"
+ },
+ {
+  "en": "begin",
+  "cn": "开始",
+  "from": "verb_basic"
+ },
+ {
+  "en": "help",
+  "cn": "帮助",
+  "from": "verb_basic"
+ },
+ {
+  "en": "talk",
+  "cn": "谈话",
+  "from": "verb_basic"
+ },
+ {
+  "en": "turn",
+  "cn": "回头",
+  "from": "verb_basic"
+ },
+ {
+  "en": "start",
+  "cn": "出发",
+  "from": "verb_basic"
+ },
+ {
+  "en": "show",
+  "cn": "显示",
+  "from": "verb_basic"
+ },
+ {
+  "en": "hear",
+  "cn": "听",
+  "from": "verb_basic"
+ },
+ {
+  "en": "play",
+  "cn": "玩",
+  "from": "verb_basic"
+ },
+ {
+  "en": "run",
+  "cn": "跑",
+  "from": "verb_basic"
+ },
+ {
+  "en": "walk",
+  "cn": "走",
+  "from": "verb_basic"
+ },
+ {
+  "en": "move",
+  "cn": "移动",
+  "from": "verb_basic"
+ },
+ {
+  "en": "live",
+  "cn": "住",
+  "from": "verb_basic"
+ },
+ {
+  "en": "believe",
+  "cn": "相信",
+  "from": "verb_basic"
+ },
+ {
+  "en": "own",
+  "cn": "拥有",
+  "from": "verb_basic"
+ },
+ {
+  "en": "learn",
+  "cn": "学习",
+  "from": "verb_basic"
+ },
+ {
+  "en": "change",
+  "cn": "改变",
+  "from": "verb_basic"
+ },
+ {
+  "en": "offer",
+  "cn": "提供",
+  "from": "verb_basic"
+ },
+ {
+  "en": "decide",
+  "cn": "决定",
+  "from": "verb_basic"
+ },
+ {
+  "en": "wait",
+  "cn": "等",
+  "from": "verb_basic"
+ },
+ {
+  "en": "happen",
+  "cn": "发生",
+  "from": "verb_basic"
+ },
+ {
+  "en": "send",
+  "cn": "发送",
+  "from": "verb_basic"
+ },
+ {
+  "en": "understand",
+  "cn": "理解",
+  "from": "verb_basic"
+ },
+ {
+  "en": "pull",
+  "cn": "拉",
+  "from": "verb_basic"
+ },
+ {
+  "en": "push",
+  "cn": "推",
+  "from": "verb_basic"
+ },
+ {
+  "en": "jump",
+  "cn": "跳",
+  "from": "verb_basic"
+ },
+ {
+  "en": "fly",
+  "cn": "飞",
+  "from": "verb_basic"
+ },
+ {
+  "en": "climb",
+  "cn": "爬",
+  "from": "verb_basic"
+ },
+ {
+  "en": "swim",
+  "cn": "游",
+  "from": "verb_basic"
+ },
+ {
+  "en": "swimming",
+  "cn": "游泳",
+  "from": "verb_basic"
+ },
+ {
+  "en": "drive",
+  "cn": "驾驶",
+  "from": "verb_basic"
+ },
+ {
+  "en": "ride",
+  "cn": "骑",
+  "from": "verb_basic"
+ },
+ {
+  "en": "win",
+  "cn": "赢",
+  "from": "verb_basic"
+ },
+ {
+  "en": "lose",
+  "cn": "输",
+  "from": "verb_basic"
+ },
+ {
+  "en": "hit",
+  "cn": "击中",
+  "from": "verb_basic"
+ },
+ {
+  "en": "catch",
+  "cn": "抓",
+  "from": "verb_basic"
+ },
+ {
+  "en": "throw",
+  "cn": "扔",
+  "from": "verb_basic"
+ },
+ {
+  "en": "kick",
+  "cn": "踢",
+  "from": "verb_basic"
+ },
+ {
+  "en": "hold",
+  "cn": "抱",
+  "from": "verb_basic"
+ },
+ {
+  "en": "smile",
+  "cn": "微笑",
+  "from": "verb_basic"
+ },
+ {
+  "en": "laugh",
+  "cn": "笑",
+  "from": "verb_basic"
+ },
+ {
+  "en": "cry",
+  "cn": "哭",
+  "from": "verb_basic"
+ },
+ {
+  "en": "sing",
+  "cn": "唱",
+  "from": "verb_basic"
+ },
+ {
+  "en": "dance",
+  "cn": "跳舞",
+  "from": "verb_basic"
+ },
+ {
+  "en": "draw",
+  "cn": "画",
+  "from": "verb_basic"
+ },
+ {
+  "en": "write",
+  "cn": "写",
+  "from": "verb_basic"
+ },
+ {
+  "en": "read",
+  "cn": "读",
+  "from": "verb_basic"
+ },
+ {
+  "en": "open",
+  "cn": "打开",
+  "from": "verb_basic"
+ },
+ {
+  "en": "close",
+  "cn": "关闭",
+  "from": "verb_basic"
+ },
+ {
+  "en": "break",
+  "cn": "打破",
+  "from": "verb_basic"
+ },
+ {
+  "en": "fix",
+  "cn": "修理",
+  "from": "verb_basic"
+ },
+ {
+  "en": "build",
+  "cn": "建造",
+  "from": "verb_basic"
+ },
+ {
+  "en": "destroy",
+  "cn": "摧毁",
+  "from": "verb_basic"
+ },
+ {
+  "en": "choose",
+  "cn": "挑选",
+  "from": "verb_basic"
+ },
+ {
+  "en": "buy",
+  "cn": "买",
+  "from": "verb_basic"
+ },
+ {
+  "en": "sell",
+  "cn": "卖",
+  "from": "verb_basic"
+ },
+ {
+  "en": "pay",
+  "cn": "付款",
+  "from": "verb_basic"
+ },
+ {
+  "en": "earn",
+  "cn": "赚",
+  "from": "verb_basic"
+ },
+ {
+  "en": "spend",
+  "cn": "花费",
+  "from": "verb_basic"
+ },
+ {
+  "en": "waste",
+  "cn": "浪费",
+  "from": "verb_basic"
+ },
+ {
+  "en": "save",
+  "cn": "存",
+  "from": "verb_basic"
+ },
+ {
+  "en": "lend",
+  "cn": "借",
+  "from": "verb_basic"
+ },
+ {
+  "en": "borrow",
+  "cn": "借入",
+  "from": "verb_basic"
+ },
+ {
+  "en": "share",
+  "cn": "分享",
+  "from": "verb_basic"
+ },
+ {
+  "en": "trade",
+  "cn": "交易",
+  "from": "verb_basic"
+ },
+ {
+  "en": "receive",
+  "cn": "收到",
+  "from": "verb_basic"
+ },
+ {
+  "en": "accept",
+  "cn": "接受",
+  "from": "verb_basic"
+ },
+ {
+  "en": "refuse",
+  "cn": "拒绝",
+  "from": "verb_basic"
+ },
+ {
+  "en": "agree",
+  "cn": "同意",
+  "from": "verb_basic"
+ },
+ {
+  "en": "disagree",
+  "cn": "不同意",
+  "from": "verb_basic"
+ },
+ {
+  "en": "allow",
+  "cn": "允许",
+  "from": "verb_basic"
+ },
+ {
+  "en": "forbid",
+  "cn": "禁止",
+  "from": "verb_basic"
+ },
+ {
+  "en": "invite",
+  "cn": "邀请",
+  "from": "verb_basic"
+ },
+ {
+  "en": "visit",
+  "cn": "访问",
+  "from": "verb_basic"
+ },
+ {
+  "en": "welcome",
+  "cn": "欢迎",
+  "from": "verb_basic"
+ },
+ {
+  "en": "thank",
+  "cn": "感谢",
+  "from": "verb_basic"
+ },
+ {
+  "en": "apologize",
+  "cn": "道歉",
+  "from": "verb_basic"
+ },
+ {
+  "en": "forgive",
+  "cn": "原谅",
+  "from": "verb_basic"
+ },
+ {
+  "en": "ignore",
+  "cn": "忽略",
+  "from": "verb_basic"
+ },
+ {
+  "en": "notice",
+  "cn": "注意",
+  "from": "verb_basic"
+ },
+ {
+  "en": "solve",
+  "cn": "解决",
+  "from": "verb_basic"
+ },
+ {
+  "en": "cause",
+  "cn": "引起",
+  "from": "verb_basic"
+ },
+ {
+  "en": "avoid",
+  "cn": "避免",
+  "from": "verb_basic"
+ },
+ {
+  "en": "prepare",
+  "cn": "准备",
+  "from": "verb_basic"
+ },
+ {
+  "en": "finish",
+  "cn": "完成",
+  "from": "verb_basic"
+ },
+ {
+  "en": "continue",
+  "cn": "继续",
+  "from": "verb_basic"
+ },
+ {
+  "en": "stop",
+  "cn": "停止",
+  "from": "verb_basic"
+ },
+ {
+  "en": "end",
+  "cn": "结束",
+  "from": "verb_basic"
+ },
+ {
+  "en": "repeat",
+  "cn": "重复",
+  "from": "verb_basic"
+ },
+ {
+  "en": "practice",
+  "cn": "练习",
+  "from": "verb_basic"
+ },
+ {
+  "en": "succeed",
+  "cn": "成功",
+  "from": "verb_basic"
+ },
+ {
+  "en": "fail",
+  "cn": "失败",
+  "from": "verb_basic"
+ },
+ {
+  "en": "attempt",
+  "cn": "尝试",
+  "from": "verb_basic"
+ },
+ {
+  "en": "effort",
+  "cn": "努力",
+  "from": "verb_basic"
+ },
+ {
+  "en": "rest",
+  "cn": "休息",
+  "from": "verb_basic"
+ },
+ {
+  "en": "sleep",
+  "cn": "睡觉",
+  "from": "verb_basic"
+ },
+ {
+  "en": "kiss",
+  "cn": "亲吻",
+  "from": "verb_basic"
+ },
+ {
+  "en": "bow",
+  "cn": "鞠躬；弓",
+  "from": "verb_basic"
+ },
+ {
+  "en": "woo",
+  "cn": "追求；求爱",
+  "from": "verb_basic"
+ },
+ {
+  "en": "discuss",
+  "cn": "讨论",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "explain",
+  "cn": "解释",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "describe",
+  "cn": "描述",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "mention",
+  "cn": "提到",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "suggest",
+  "cn": "建议",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "recommend",
+  "cn": "推荐",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "warn",
+  "cn": "警告",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "notify",
+  "cn": "通知",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "promise",
+  "cn": "承诺",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "prove",
+  "cn": "证明",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "confirm",
+  "cn": "证实",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "deny",
+  "cn": "否认",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "admit",
+  "cn": "承认",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "claim",
+  "cn": "声称",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "announce",
+  "cn": "宣布",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "release",
+  "cn": "公布",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "analyze",
+  "cn": "分析",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "research",
+  "cn": "研究",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "investigate",
+  "cn": "调查",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "observe",
+  "cn": "观察",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "inspect",
+  "cn": "检查",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "test",
+  "cn": "测试",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "evaluate",
+  "cn": "评估",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "rate",
+  "cn": "评价",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "compare",
+  "cn": "比较",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "contrast",
+  "cn": "对比",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "distinguish",
+  "cn": "区分",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "identify",
+  "cn": "识别",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "classify",
+  "cn": "分类",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "organize",
+  "cn": "组织",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "arrange",
+  "cn": "安排",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "manage",
+  "cn": "管理",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "control",
+  "cn": "控制",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "guide",
+  "cn": "引导",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "lead",
+  "cn": "领导",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "follow",
+  "cn": "追随",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "support",
+  "cn": "支持",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "oppose",
+  "cn": "反对",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "criticize",
+  "cn": "批评",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "praise",
+  "cn": "赞扬",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "encourage",
+  "cn": "鼓励",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "discourage",
+  "cn": "劝阻",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "persuade",
+  "cn": "说服",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "affect",
+  "cn": "影响",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "improve",
+  "cn": "改善",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "increase",
+  "cn": "增加",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "decrease",
+  "cn": "减少",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "expand",
+  "cn": "扩大",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "shrink",
+  "cn": "缩小",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "grow",
+  "cn": "增长",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "develop",
+  "cn": "发展",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "enhance",
+  "cn": "提升",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "reduce",
+  "cn": "降低",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "raise",
+  "cn": "提高",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "drop",
+  "cn": "下降",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "rise",
+  "cn": "上升",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "appear",
+  "cn": "出现",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "disappear",
+  "cn": "消失",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "arrive",
+  "cn": "到达",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "depart",
+  "cn": "离开",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "enter",
+  "cn": "进入",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "exit",
+  "cn": "退出",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "attend",
+  "cn": "参加",
+  "from": "common_verb_advanced"
+ },
+ {
+  "en": "join",
+  "cn": "加入",
+  "from": "common_verb_advanced"
+ }
+]

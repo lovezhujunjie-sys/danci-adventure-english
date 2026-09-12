@@ -1,0 +1,882 @@
+[
+ {
+  "en": "chaos",
+  "cn": "混乱",
+  "from": "abstract"
+ },
+ {
+  "en": "procedure",
+  "cn": "程序",
+  "from": "abstract"
+ },
+ {
+  "en": "engagement",
+  "cn": "订婚；约定",
+  "from": "abstract"
+ },
+ {
+  "en": "destruction",
+  "cn": "毁灭",
+  "from": "abstract"
+ },
+ {
+  "en": "instance",
+  "cn": "实例",
+  "from": "abstract"
+ },
+ {
+  "en": "moral",
+  "cn": "道德的",
+  "from": "abstract"
+ },
+ {
+  "en": "award",
+  "cn": "奖项",
+  "from": "abstract"
+ },
+ {
+  "en": "core",
+  "cn": "核心",
+  "from": "abstract"
+ },
+ {
+  "en": "survival",
+  "cn": "生存",
+  "from": "abstract"
+ },
+ {
+  "en": "possession",
+  "cn": "拥有；财产",
+  "from": "abstract"
+ },
+ {
+  "en": "honeymoon",
+  "cn": "蜜月",
+  "from": "abstract"
+ },
+ {
+  "en": "symbol",
+  "cn": "象征",
+  "from": "abstract"
+ },
+ {
+  "en": "structure",
+  "cn": "结构",
+  "from": "abstract"
+ },
+ {
+  "en": "burden",
+  "cn": "负担",
+  "from": "abstract"
+ },
+ {
+  "en": "manner",
+  "cn": "方式",
+  "from": "abstract"
+ },
+ {
+  "en": "function",
+  "cn": "功能",
+  "from": "abstract"
+ },
+ {
+  "en": "foundation",
+  "cn": "基础；基金会",
+  "from": "abstract"
+ },
+ {
+  "en": "basis",
+  "cn": "基础",
+  "from": "abstract"
+ },
+ {
+  "en": "humour",
+  "cn": "幽默",
+  "from": "abstract"
+ },
+ {
+  "en": "technique",
+  "cn": "技术",
+  "from": "abstract"
+ },
+ {
+  "en": "conduct",
+  "cn": "行为；指挥",
+  "from": "abstract"
+ },
+ {
+  "en": "priority",
+  "cn": "优先",
+  "from": "abstract"
+ },
+ {
+  "en": "combination",
+  "cn": "组合",
+  "from": "abstract"
+ },
+ {
+  "en": "physically",
+  "cn": "身体上",
+  "from": "abstract"
+ },
+ {
+  "en": "scandal",
+  "cn": "丑闻",
+  "from": "abstract"
+ },
+ {
+  "en": "dignity",
+  "cn": "尊严",
+  "from": "abstract"
+ },
+ {
+  "en": "assistance",
+  "cn": "帮助",
+  "from": "abstract"
+ },
+ {
+  "en": "fame",
+  "cn": "名声",
+  "from": "abstract"
+ },
+ {
+  "en": "certificate",
+  "cn": "证书",
+  "from": "abstract"
+ },
+ {
+  "en": "upside",
+  "cn": "好处；上面",
+  "from": "abstract"
+ },
+ {
+  "en": "principle",
+  "cn": "原则",
+  "from": "abstract"
+ },
+ {
+  "en": "arrangement",
+  "cn": "安排",
+  "from": "abstract"
+ },
+ {
+  "en": "discipline",
+  "cn": "纪律",
+  "from": "abstract"
+ },
+ {
+  "en": "absence",
+  "cn": "缺席",
+  "from": "abstract"
+ },
+ {
+  "en": "philosophy",
+  "cn": "哲学",
+  "from": "abstract"
+ },
+ {
+  "en": "privilege",
+  "cn": "特权",
+  "from": "abstract"
+ },
+ {
+  "en": "consent",
+  "cn": "同意",
+  "from": "abstract"
+ },
+ {
+  "en": "deed",
+  "cn": "行为；契约",
+  "from": "abstract"
+ },
+ {
+  "en": "reference",
+  "cn": "参考",
+  "from": "abstract"
+ },
+ {
+  "en": "collapse",
+  "cn": "崩溃",
+  "from": "abstract"
+ },
+ {
+  "en": "civilization",
+  "cn": "文明",
+  "from": "abstract"
+ },
+ {
+  "en": "approval",
+  "cn": "批准",
+  "from": "abstract"
+ },
+ {
+  "en": "growth",
+  "cn": "增长",
+  "from": "abstract"
+ },
+ {
+  "en": "confusion",
+  "cn": "混乱",
+  "from": "abstract"
+ },
+ {
+  "en": "exception",
+  "cn": "例外",
+  "from": "abstract"
+ },
+ {
+  "en": "journal",
+  "cn": "期刊；日记",
+  "from": "abstract"
+ },
+ {
+  "en": "poverty",
+  "cn": "贫穷",
+  "from": "abstract"
+ },
+ {
+  "en": "factor",
+  "cn": "因素",
+  "from": "abstract"
+ },
+ {
+  "en": "font",
+  "cn": "字体",
+  "from": "abstract"
+ },
+ {
+  "en": "quest",
+  "cn": "探索；追寻",
+  "from": "abstract"
+ },
+ {
+  "en": "manual",
+  "cn": "手册；手动的",
+  "from": "abstract"
+ },
+ {
+  "en": "legacy",
+  "cn": "遗产；遗留",
+  "from": "abstract"
+ },
+ {
+  "en": "sequence",
+  "cn": "顺序；序列",
+  "from": "abstract"
+ },
+ {
+  "en": "sexually",
+  "cn": "性方面地",
+  "from": "abstract"
+ },
+ {
+  "en": "translation",
+  "cn": "翻译",
+  "from": "abstract"
+ },
+ {
+  "en": "cultural",
+  "cn": "文化的",
+  "from": "abstract"
+ },
+ {
+  "en": "disorder",
+  "cn": "混乱；失调",
+  "from": "abstract"
+ },
+ {
+  "en": "graduation",
+  "cn": "毕业",
+  "from": "abstract"
+ },
+ {
+  "en": "grid",
+  "cn": "网格",
+  "from": "abstract"
+ },
+ {
+  "en": "loop",
+  "cn": "环；循环",
+  "from": "abstract"
+ },
+ {
+  "en": "good",
+  "cn": "好",
+  "from": "adj_basic"
+ },
+ {
+  "en": "bad",
+  "cn": "坏",
+  "from": "adj_basic"
+ },
+ {
+  "en": "big",
+  "cn": "大",
+  "from": "adj_basic"
+ },
+ {
+  "en": "small",
+  "cn": "小",
+  "from": "adj_basic"
+ },
+ {
+  "en": "long",
+  "cn": "长",
+  "from": "adj_basic"
+ },
+ {
+  "en": "short",
+  "cn": "短",
+  "from": "adj_basic"
+ },
+ {
+  "en": "high",
+  "cn": "高",
+  "from": "adj_basic"
+ },
+ {
+  "en": "low",
+  "cn": "低",
+  "from": "adj_basic"
+ },
+ {
+  "en": "wide",
+  "cn": "宽",
+  "from": "adj_basic"
+ },
+ {
+  "en": "narrow",
+  "cn": "窄",
+  "from": "adj_basic"
+ },
+ {
+  "en": "thick",
+  "cn": "厚",
+  "from": "adj_basic"
+ },
+ {
+  "en": "thin",
+  "cn": "薄",
+  "from": "adj_basic"
+ },
+ {
+  "en": "heavy",
+  "cn": "重",
+  "from": "adj_basic"
+ },
+ {
+  "en": "light",
+  "cn": "轻",
+  "from": "adj_basic"
+ },
+ {
+  "en": "quick",
+  "cn": "快",
+  "from": "adj_basic"
+ },
+ {
+  "en": "slow",
+  "cn": "慢",
+  "from": "adj_basic"
+ },
+ {
+  "en": "early",
+  "cn": "早",
+  "from": "adj_basic"
+ },
+ {
+  "en": "late",
+  "cn": "晚",
+  "from": "adj_basic"
+ },
+ {
+  "en": "new",
+  "cn": "新",
+  "from": "adj_basic"
+ },
+ {
+  "en": "old",
+  "cn": "旧",
+  "from": "adj_basic"
+ },
+ {
+  "en": "young",
+  "cn": "年轻",
+  "from": "adj_basic"
+ },
+ {
+  "en": "aged",
+  "cn": "老",
+  "from": "adj_basic"
+ },
+ {
+  "en": "hot",
+  "cn": "热",
+  "from": "adj_basic"
+ },
+ {
+  "en": "cold",
+  "cn": "冷",
+  "from": "adj_basic"
+ },
+ {
+  "en": "warm",
+  "cn": "暖",
+  "from": "adj_basic"
+ },
+ {
+  "en": "cool",
+  "cn": "凉",
+  "from": "adj_basic"
+ },
+ {
+  "en": "dry",
+  "cn": "干",
+  "from": "adj_basic"
+ },
+ {
+  "en": "wet",
+  "cn": "湿",
+  "from": "adj_basic"
+ },
+ {
+  "en": "hard",
+  "cn": "硬",
+  "from": "adj_basic"
+ },
+ {
+  "en": "soft",
+  "cn": "软",
+  "from": "adj_basic"
+ },
+ {
+  "en": "smooth",
+  "cn": "光滑",
+  "from": "adj_basic"
+ },
+ {
+  "en": "rough",
+  "cn": "粗糙",
+  "from": "adj_basic"
+ },
+ {
+  "en": "sharp",
+  "cn": "锋利",
+  "from": "adj_basic"
+ },
+ {
+  "en": "dull",
+  "cn": "钝",
+  "from": "adj_basic"
+ },
+ {
+  "en": "strong",
+  "cn": "强",
+  "from": "adj_basic"
+ },
+ {
+  "en": "weak",
+  "cn": "弱",
+  "from": "adj_basic"
+ },
+ {
+  "en": "full",
+  "cn": "满",
+  "from": "adj_basic"
+ },
+ {
+  "en": "empty",
+  "cn": "空",
+  "from": "adj_basic"
+ },
+ {
+  "en": "open",
+  "cn": "开",
+  "from": "adj_basic"
+ },
+ {
+  "en": "closed",
+  "cn": "关",
+  "from": "adj_basic"
+ },
+ {
+  "en": "clean",
+  "cn": "干净",
+  "from": "adj_basic"
+ },
+ {
+  "en": "dirty",
+  "cn": "脏",
+  "from": "adj_basic"
+ },
+ {
+  "en": "neat",
+  "cn": "整齐",
+  "from": "adj_basic"
+ },
+ {
+  "en": "messy",
+  "cn": "凌乱",
+  "from": "adj_basic"
+ },
+ {
+  "en": "quiet",
+  "cn": "安静",
+  "from": "adj_basic"
+ },
+ {
+  "en": "noisy",
+  "cn": "吵闹",
+  "from": "adj_basic"
+ },
+ {
+  "en": "loud",
+  "cn": "吵",
+  "from": "adj_basic"
+ },
+ {
+  "en": "gentle",
+  "cn": "柔和",
+  "from": "adj_basic"
+ },
+ {
+  "en": "bright",
+  "cn": "亮",
+  "from": "adj_basic"
+ },
+ {
+  "en": "dark",
+  "cn": "暗",
+  "from": "adj_basic"
+ },
+ {
+  "en": "simple",
+  "cn": "简单",
+  "from": "adj_basic"
+ },
+ {
+  "en": "complex",
+  "cn": "复杂",
+  "from": "adj_basic"
+ },
+ {
+  "en": "easy",
+  "cn": "容易",
+  "from": "adj_basic"
+ },
+ {
+  "en": "difficult",
+  "cn": "困难",
+  "from": "adj_basic"
+ },
+ {
+  "en": "correct",
+  "cn": "正确",
+  "from": "adj_basic"
+ },
+ {
+  "en": "wrong",
+  "cn": "错误",
+  "from": "adj_basic"
+ },
+ {
+  "en": "true",
+  "cn": "真实",
+  "from": "adj_basic"
+ },
+ {
+  "en": "false",
+  "cn": "虚假",
+  "from": "adj_basic"
+ },
+ {
+  "en": "real",
+  "cn": "真的",
+  "from": "adj_basic"
+ },
+ {
+  "en": "fake",
+  "cn": "假的",
+  "from": "adj_basic"
+ },
+ {
+  "en": "same",
+  "cn": "相同",
+  "from": "adj_basic"
+ },
+ {
+  "en": "different",
+  "cn": "不同",
+  "from": "adj_basic"
+ },
+ {
+  "en": "similar",
+  "cn": "相似",
+  "from": "adj_basic"
+ },
+ {
+  "en": "ordinary",
+  "cn": "普通",
+  "from": "adj_basic"
+ },
+ {
+  "en": "special",
+  "cn": "特别",
+  "from": "adj_basic"
+ },
+ {
+  "en": "important",
+  "cn": "重要",
+  "from": "adj_basic"
+ },
+ {
+  "en": "useful",
+  "cn": "有用",
+  "from": "adj_basic"
+ },
+ {
+  "en": "interesting",
+  "cn": "有趣",
+  "from": "adj_basic"
+ },
+ {
+  "en": "boring",
+  "cn": "无聊",
+  "from": "adj_basic"
+ },
+ {
+  "en": "strange",
+  "cn": "奇怪",
+  "from": "adj_basic"
+ },
+ {
+  "en": "normal",
+  "cn": "正常",
+  "from": "adj_basic"
+ },
+ {
+  "en": "wonderful",
+  "cn": "奇妙",
+  "from": "adj_basic"
+ },
+ {
+  "en": "terrible",
+  "cn": "可怕",
+  "from": "adj_basic"
+ },
+ {
+  "en": "amazing",
+  "cn": "惊人",
+  "from": "adj_basic"
+ },
+ {
+  "en": "lovely",
+  "cn": "可爱",
+  "from": "adj_basic"
+ },
+ {
+  "en": "ugly",
+  "cn": "丑陋",
+  "from": "adj_basic"
+ },
+ {
+  "en": "smart",
+  "cn": "聪明",
+  "from": "adj_basic"
+ },
+ {
+  "en": "stupid",
+  "cn": "愚蠢",
+  "from": "adj_basic"
+ },
+ {
+  "en": "hardworking",
+  "cn": "勤奋",
+  "from": "adj_basic"
+ },
+ {
+  "en": "lazy",
+  "cn": "懒惰",
+  "from": "adj_basic"
+ },
+ {
+  "en": "kind",
+  "cn": "善良",
+  "from": "adj_basic"
+ },
+ {
+  "en": "cruel",
+  "cn": "残忍",
+  "from": "adj_basic"
+ },
+ {
+  "en": "honest",
+  "cn": "诚实",
+  "from": "adj_basic"
+ },
+ {
+  "en": "friendly",
+  "cn": "友好",
+  "from": "adj_basic"
+ },
+ {
+  "en": "polite",
+  "cn": "有礼貌",
+  "from": "adj_basic"
+ },
+ {
+  "en": "rude",
+  "cn": "粗鲁",
+  "from": "adj_basic"
+ },
+ {
+  "en": "generous",
+  "cn": "慷慨",
+  "from": "adj_basic"
+ },
+ {
+  "en": "selfish",
+  "cn": "自私",
+  "from": "adj_basic"
+ },
+ {
+  "en": "courageous",
+  "cn": "勇敢",
+  "from": "adj_basic"
+ },
+ {
+  "en": "timid",
+  "cn": "胆怯",
+  "from": "adj_basic"
+ },
+ {
+  "en": "lucky",
+  "cn": "幸运",
+  "from": "adj_basic"
+ },
+ {
+  "en": "unlucky",
+  "cn": "不幸",
+  "from": "adj_basic"
+ },
+ {
+  "en": "rich",
+  "cn": "富有",
+  "from": "adj_basic"
+ },
+ {
+  "en": "poor",
+  "cn": "贫穷",
+  "from": "adj_basic"
+ },
+ {
+  "en": "free",
+  "cn": "免费",
+  "from": "adj_basic"
+ },
+ {
+  "en": "valuable",
+  "cn": "珍贵",
+  "from": "adj_basic"
+ },
+ {
+  "en": "inexpensive",
+  "cn": "便宜",
+  "from": "adj_basic"
+ },
+ {
+  "en": "costly",
+  "cn": "昂贵",
+  "from": "adj_basic"
+ },
+ {
+  "en": "popular",
+  "cn": "受欢迎",
+  "from": "adj_basic"
+ },
+ {
+  "en": "famous",
+  "cn": "著名",
+  "from": "adj_basic"
+ },
+ {
+  "en": "alone",
+  "cn": "独自",
+  "from": "adj_basic"
+ },
+ {
+  "en": "gay",
+  "cn": "同性恋的",
+  "from": "adj_basic"
+ },
+ {
+  "en": "be",
+  "cn": "是",
+  "from": "verb_basic"
+ },
+ {
+  "en": "have",
+  "cn": "有",
+  "from": "verb_basic"
+ },
+ {
+  "en": "do",
+  "cn": "做",
+  "from": "verb_basic"
+ },
+ {
+  "en": "say",
+  "cn": "说",
+  "from": "verb_basic"
+ },
+ {
+  "en": "go",
+  "cn": "去",
+  "from": "verb_basic"
+ },
+ {
+  "en": "come",
+  "cn": "来",
+  "from": "verb_basic"
+ },
+ {
+  "en": "see",
+  "cn": "看",
+  "from": "verb_basic"
+ },
+ {
+  "en": "know",
+  "cn": "知道",
+  "from": "verb_basic"
+ },
+ {
+  "en": "take",
+  "cn": "拿",
+  "from": "verb_basic"
+ },
+ {
+  "en": "think",
+  "cn": "想",
+  "from": "verb_basic"
+ },
+ {
+  "en": "look",
+  "cn": "看见",
+  "from": "verb_basic"
+ },
+ {
+  "en": "want",
+  "cn": "想要",
+  "from": "verb_basic"
+ },
+ {
+  "en": "give",
+  "cn": "给",
+  "from": "verb_basic"
+ },
+ {
+  "en": "use",
+  "cn": "使用",
+  "from": "verb_basic"
+ }
+]

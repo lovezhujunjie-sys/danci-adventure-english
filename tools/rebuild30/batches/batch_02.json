@@ -1,0 +1,882 @@
+[
+ {
+  "en": "report",
+  "cn": "汇报",
+  "from": "daily"
+ },
+ {
+  "en": "exercise",
+  "cn": "锻炼",
+  "from": "daily"
+ },
+ {
+  "en": "workout",
+  "cn": "健身",
+  "from": "daily"
+ },
+ {
+  "en": "warmup",
+  "cn": "热身",
+  "from": "daily"
+ },
+ {
+  "en": "stretch",
+  "cn": "拉伸",
+  "from": "daily"
+ },
+ {
+  "en": "walk",
+  "cn": "散步",
+  "from": "daily"
+ },
+ {
+  "en": "run",
+  "cn": "跑步",
+  "from": "daily"
+ },
+ {
+  "en": "jog",
+  "cn": "慢跑",
+  "from": "daily"
+ },
+ {
+  "en": "brisk walk",
+  "cn": "快走",
+  "from": "daily"
+ },
+ {
+  "en": "swim",
+  "cn": "游泳",
+  "from": "daily"
+ },
+ {
+  "en": "cycle",
+  "cn": "骑车",
+  "from": "daily"
+ },
+ {
+  "en": "biking",
+  "cn": "骑行",
+  "from": "daily"
+ },
+ {
+  "en": "hike",
+  "cn": "登山",
+  "from": "daily"
+ },
+ {
+  "en": "trek",
+  "cn": "徒步",
+  "from": "daily"
+ },
+ {
+  "en": "climb",
+  "cn": "攀岩",
+  "from": "daily"
+ },
+ {
+  "en": "skip rope",
+  "cn": "跳绳",
+  "from": "daily"
+ },
+ {
+  "en": "yoga",
+  "cn": "做瑜伽",
+  "from": "daily"
+ },
+ {
+  "en": "play ball",
+  "cn": "打球",
+  "from": "daily"
+ },
+ {
+  "en": "dance",
+  "cn": "跳舞",
+  "from": "daily"
+ },
+ {
+  "en": "skate",
+  "cn": "滑冰",
+  "from": "daily"
+ },
+ {
+  "en": "ski",
+  "cn": "滑雪",
+  "from": "daily"
+ },
+ {
+  "en": "lift weights",
+  "cn": "举重",
+  "from": "daily"
+ },
+ {
+  "en": "push-up",
+  "cn": "做俯卧撑",
+  "from": "daily"
+ },
+ {
+  "en": "sit-up",
+  "cn": "做仰卧起坐",
+  "from": "daily"
+ },
+ {
+  "en": "squat",
+  "cn": "深蹲",
+  "from": "daily"
+ },
+ {
+  "en": "sweat",
+  "cn": "出汗",
+  "from": "daily"
+ },
+ {
+  "en": "out of breath",
+  "cn": "喘气",
+  "from": "daily"
+ },
+ {
+  "en": "relax",
+  "cn": "放松",
+  "from": "daily"
+ },
+ {
+  "en": "chat",
+  "cn": "聊天",
+  "from": "daily"
+ },
+ {
+  "en": "call",
+  "cn": "打电话",
+  "from": "daily"
+ },
+ {
+  "en": "video call",
+  "cn": "视频通话",
+  "from": "daily"
+ },
+ {
+  "en": "text",
+  "cn": "发短信",
+  "from": "daily"
+ },
+ {
+  "en": "email",
+  "cn": "发邮件",
+  "from": "daily"
+ },
+ {
+  "en": "send message",
+  "cn": "发消息",
+  "from": "daily"
+ },
+ {
+  "en": "reply message",
+  "cn": "回消息",
+  "from": "daily"
+ },
+ {
+  "en": "get message",
+  "cn": "收消息",
+  "from": "daily"
+ },
+ {
+  "en": "voice message",
+  "cn": "发语音",
+  "from": "daily"
+ },
+ {
+  "en": "greet",
+  "cn": "打招呼",
+  "from": "daily"
+ },
+ {
+  "en": "say hi",
+  "cn": "问好",
+  "from": "daily"
+ },
+ {
+  "en": "say bye",
+  "cn": "告别",
+  "from": "daily"
+ },
+ {
+  "en": "introduce",
+  "cn": "自我介绍",
+  "from": "daily"
+ },
+ {
+  "en": "meet someone",
+  "cn": "认识",
+  "from": "daily"
+ },
+ {
+  "en": "make friends",
+  "cn": "交朋友",
+  "from": "daily"
+ },
+ {
+  "en": "arrange a meeting",
+  "cn": "约见面",
+  "from": "daily"
+ },
+ {
+  "en": "date",
+  "cn": "约会",
+  "from": "daily"
+ },
+ {
+  "en": "party",
+  "cn": "聚会",
+  "from": "daily"
+ },
+ {
+  "en": "visit",
+  "cn": "拜访",
+  "from": "daily"
+ },
+ {
+  "en": "host",
+  "cn": "接待",
+  "from": "daily"
+ },
+ {
+  "en": "see off",
+  "cn": "送客",
+  "from": "daily"
+ },
+ {
+  "en": "pick up and drop off",
+  "cn": "接送",
+  "from": "daily"
+ },
+ {
+  "en": "welcome",
+  "cn": "迎接",
+  "from": "daily"
+ },
+ {
+  "en": "give a gift",
+  "cn": "送礼物",
+  "from": "daily"
+ },
+ {
+  "en": "get a gift",
+  "cn": "收礼物",
+  "from": "daily"
+ },
+ {
+  "en": "congratulate",
+  "cn": "祝贺",
+  "from": "daily"
+ },
+ {
+  "en": "bless",
+  "cn": "祝福",
+  "from": "daily"
+ },
+ {
+  "en": "thank",
+  "cn": "道谢",
+  "from": "daily"
+ },
+ {
+  "en": "apologize",
+  "cn": "道歉",
+  "from": "daily"
+ },
+ {
+  "en": "farewell",
+  "cn": "道别",
+  "from": "daily"
+ },
+ {
+  "en": "toast",
+  "cn": "敬酒",
+  "from": "daily"
+ },
+ {
+  "en": "hug",
+  "cn": "拥抱",
+  "from": "daily"
+ },
+ {
+  "en": "handshake",
+  "cn": "握手",
+  "from": "daily"
+ },
+ {
+  "en": "wave",
+  "cn": "挥手",
+  "from": "daily"
+ },
+ {
+  "en": "nod",
+  "cn": "点头",
+  "from": "daily"
+ },
+ {
+  "en": "shakehead",
+  "cn": "摇头",
+  "from": "daily"
+ },
+ {
+  "en": "smile",
+  "cn": "微笑",
+  "from": "daily"
+ },
+ {
+  "en": "salute",
+  "cn": "打招呼",
+  "from": "daily"
+ },
+ {
+  "en": "watch TV",
+  "cn": "看电视",
+  "from": "daily"
+ },
+ {
+  "en": "watch a movie",
+  "cn": "看电影",
+  "from": "daily"
+ },
+ {
+  "en": "binge-watch",
+  "cn": "追剧",
+  "from": "daily"
+ },
+ {
+  "en": "watch a game",
+  "cn": "看比赛",
+  "from": "daily"
+ },
+ {
+  "en": "watch live",
+  "cn": "看直播",
+  "from": "daily"
+ },
+ {
+  "en": "watch videos",
+  "cn": "看视频",
+  "from": "daily"
+ },
+ {
+  "en": "short video",
+  "cn": "看短视频",
+  "from": "daily"
+ },
+ {
+  "en": "listen to music",
+  "cn": "听音乐",
+  "from": "daily"
+ },
+ {
+  "en": "podcast",
+  "cn": "听播客",
+  "from": "daily"
+ },
+ {
+  "en": "radio",
+  "cn": "听广播",
+  "from": "daily"
+ },
+ {
+  "en": "read",
+  "cn": "看书",
+  "from": "daily"
+ },
+ {
+  "en": "read novels",
+  "cn": "看小说",
+  "from": "daily"
+ },
+ {
+  "en": "read comics",
+  "cn": "看漫画",
+  "from": "daily"
+ },
+ {
+  "en": "magazine",
+  "cn": "看杂志",
+  "from": "daily"
+ },
+ {
+  "en": "play games",
+  "cn": "玩游戏",
+  "from": "daily"
+ },
+ {
+  "en": "play on phone",
+  "cn": "玩手机",
+  "from": "daily"
+ },
+ {
+  "en": "scroll videos",
+  "cn": "刷视频",
+  "from": "daily"
+ },
+ {
+  "en": "scroll feed",
+  "cn": "刷朋友圈",
+  "from": "daily"
+ },
+ {
+  "en": "videogame",
+  "cn": "打游戏",
+  "from": "daily"
+ },
+ {
+  "en": "play cards",
+  "cn": "玩牌",
+  "from": "daily"
+ },
+ {
+  "en": "chess",
+  "cn": "下棋",
+  "from": "daily"
+ },
+ {
+  "en": "take a photo",
+  "cn": "拍照",
+  "from": "daily"
+ },
+ {
+  "en": "selfie",
+  "cn": "自拍",
+  "from": "daily"
+ },
+ {
+  "en": "record video",
+  "cn": "录像",
+  "from": "daily"
+ },
+ {
+  "en": "edit photo",
+  "cn": "修图",
+  "from": "daily"
+ },
+ {
+  "en": "sing",
+  "cn": "唱歌",
+  "from": "daily"
+ },
+ {
+  "en": "draw",
+  "cn": "画画",
+  "from": "daily"
+ },
+ {
+  "en": "diary",
+  "cn": "写日记",
+  "from": "daily"
+ },
+ {
+  "en": "collect",
+  "cn": "收集",
+  "from": "daily"
+ },
+ {
+  "en": "fish",
+  "cn": "钓鱼",
+  "from": "daily"
+ },
+ {
+  "en": "gardening",
+  "cn": "园艺",
+  "from": "daily"
+ },
+ {
+  "en": "diy",
+  "cn": "做手工",
+  "from": "daily"
+ },
+ {
+  "en": "go out",
+  "cn": "出门",
+  "from": "daily"
+ },
+ {
+  "en": "go home",
+  "cn": "回家",
+  "from": "daily"
+ },
+ {
+  "en": "leave",
+  "cn": "出去",
+  "from": "daily"
+ },
+ {
+  "en": "come back",
+  "cn": "回来",
+  "from": "daily"
+ },
+ {
+  "en": "cross the road",
+  "cn": "过马路",
+  "from": "daily"
+ },
+ {
+  "en": "wait for the light",
+  "cn": "等红灯",
+  "from": "daily"
+ },
+ {
+  "en": "call a taxi",
+  "cn": "打车",
+  "from": "daily"
+ },
+ {
+  "en": "hail",
+  "cn": "打的",
+  "from": "daily"
+ },
+ {
+  "en": "ride in a car",
+  "cn": "坐车",
+  "from": "daily"
+ },
+ {
+  "en": "take bus",
+  "cn": "坐公交",
+  "from": "daily"
+ },
+ {
+  "en": "take subway",
+  "cn": "坐地铁",
+  "from": "daily"
+ },
+ {
+  "en": "take train",
+  "cn": "坐火车",
+  "from": "daily"
+ },
+ {
+  "en": "take a flight",
+  "cn": "坐飞机",
+  "from": "daily"
+ },
+ {
+  "en": "drive",
+  "cn": "开车",
+  "from": "daily"
+ },
+ {
+  "en": "ride a motorcycle",
+  "cn": "骑摩托",
+  "from": "daily"
+ },
+ {
+  "en": "refuel",
+  "cn": "加油",
+  "from": "daily"
+ },
+ {
+  "en": "park",
+  "cn": "停车",
+  "from": "daily"
+ },
+ {
+  "en": "find the way",
+  "cn": "找路",
+  "from": "daily"
+ },
+ {
+  "en": "lost",
+  "cn": "迷路",
+  "from": "daily"
+ },
+ {
+  "en": "ask for directions",
+  "cn": "问路",
+  "from": "daily"
+ },
+ {
+  "en": "rush",
+  "cn": "赶时间",
+  "from": "daily"
+ },
+ {
+  "en": "catch the bus",
+  "cn": "赶车",
+  "from": "daily"
+ },
+ {
+  "en": "delayed",
+  "cn": "误点",
+  "from": "daily"
+ },
+ {
+  "en": "belate",
+  "cn": "迟到",
+  "from": "daily"
+ },
+ {
+  "en": "on time",
+  "cn": "准时",
+  "from": "daily"
+ },
+ {
+  "en": "early",
+  "cn": "早到",
+  "from": "daily"
+ },
+ {
+  "en": "travel",
+  "cn": "旅行",
+  "from": "daily"
+ },
+ {
+  "en": "tourism",
+  "cn": "旅游",
+  "from": "daily"
+ },
+ {
+  "en": "outing",
+  "cn": "出游",
+  "from": "daily"
+ },
+ {
+  "en": "picnic",
+  "cn": "野餐",
+  "from": "daily"
+ },
+ {
+  "en": "barbecue",
+  "cn": "烧烤",
+  "from": "daily"
+ },
+ {
+  "en": "camping",
+  "cn": "露营",
+  "from": "daily"
+ },
+ {
+  "en": "climb a mountain",
+  "cn": "爬山",
+  "from": "daily"
+ },
+ {
+  "en": "watch sunrise",
+  "cn": "看日出",
+  "from": "daily"
+ },
+ {
+  "en": "watch sunset",
+  "cn": "看日落",
+  "from": "daily"
+ },
+ {
+  "en": "stargaze",
+  "cn": "看星星",
+  "from": "daily"
+ },
+ {
+  "en": "pack",
+  "cn": "打包行李",
+  "from": "daily"
+ },
+ {
+  "en": "pack luggage",
+  "cn": "整理行李",
+  "from": "daily"
+ },
+ {
+  "en": "book a flight",
+  "cn": "订机票",
+  "from": "daily"
+ },
+ {
+  "en": "book a hotel",
+  "cn": "订酒店",
+  "from": "daily"
+ },
+ {
+  "en": "checkout",
+  "cn": "退房",
+  "from": "daily"
+ },
+ {
+  "en": "checkin",
+  "cn": "入住",
+  "from": "daily"
+ },
+ {
+  "en": "tour",
+  "cn": "参观",
+  "from": "daily"
+ },
+ {
+  "en": "check in",
+  "cn": "打卡",
+  "from": "daily"
+ },
+ {
+  "en": "souvenir",
+  "cn": "购买纪念品",
+  "from": "daily"
+ },
+ {
+  "en": "group photo",
+  "cn": "拍合影",
+  "from": "daily"
+ },
+ {
+  "en": "water plants",
+  "cn": "浇花",
+  "from": "daily"
+ },
+ {
+  "en": "plant",
+  "cn": "种花",
+  "from": "daily"
+ },
+ {
+  "en": "trim",
+  "cn": "修剪",
+  "from": "daily"
+ },
+ {
+  "en": "feed pet",
+  "cn": "喂宠物",
+  "from": "daily"
+ },
+ {
+  "en": "walk the dog",
+  "cn": "遛狗",
+  "from": "daily"
+ },
+ {
+  "en": "wash pet",
+  "cn": "洗宠物",
+  "from": "daily"
+ },
+ {
+  "en": "repair",
+  "cn": "修东西",
+  "from": "daily"
+ },
+ {
+  "en": "install",
+  "cn": "装东西",
+  "from": "daily"
+ },
+ {
+  "en": "assemble",
+  "cn": "组装",
+  "from": "daily"
+ },
+ {
+  "en": "disassemble",
+  "cn": "拆开",
+  "from": "daily"
+ },
+ {
+  "en": "receive package",
+  "cn": "收快递",
+  "from": "daily"
+ },
+ {
+  "en": "send package",
+  "cn": "寄快递",
+  "from": "daily"
+ },
+ {
+  "en": "pick up package",
+  "cn": "取快递",
+  "from": "daily"
+ },
+ {
+  "en": "pay bills",
+  "cn": "交水电费",
+  "from": "daily"
+ },
+ {
+  "en": "take a break",
+  "cn": "放松一下",
+  "from": "daily"
+ },
+ {
+  "en": "daydream",
+  "cn": "发呆",
+  "from": "daily"
+ },
+ {
+  "en": "breathe",
+  "cn": "深呼吸",
+  "from": "daily"
+ },
+ {
+  "en": "sigh",
+  "cn": "叹气",
+  "from": "daily"
+ },
+ {
+  "en": "get angry",
+  "cn": "生气",
+  "from": "daily"
+ },
+ {
+  "en": "throw a tantrum",
+  "cn": "发脾气",
+  "from": "daily"
+ },
+ {
+  "en": "calm down",
+  "cn": "冷静下来",
+  "from": "daily"
+ },
+ {
+  "en": "cry",
+  "cn": "哭",
+  "from": "daily"
+ },
+ {
+  "en": "laugh",
+  "cn": "笑",
+  "from": "daily"
+ },
+ {
+  "en": "laugh out loud",
+  "cn": "大笑",
+  "from": "daily"
+ },
+ {
+  "en": "grin",
+  "cn": "微笑2",
+  "from": "daily"
+ },
+ {
+  "en": "see a doctor",
+  "cn": "看医生",
+  "from": "daily"
+ },
+ {
+  "en": "register",
+  "cn": "挂号",
+  "from": "daily"
+ },
+ {
+  "en": "queue",
+  "cn": "排队",
+  "from": "daily"
+ },
+ {
+  "en": "wait",
+  "cn": "等候",
+  "from": "daily"
+ },
+ {
+  "en": "checkup",
+  "cn": "体检",
+  "from": "daily"
+ },
+ {
+  "en": "get a shot",
+  "cn": "打针",
+  "from": "daily"
+ },
+ {
+  "en": "vaccinate",
+  "cn": "打疫苗",
+  "from": "daily"
+ }
+]

@@ -1,0 +1,862 @@
+[
+ {
+  "en": "immigration",
+  "cn": "移民；移居",
+  "cefr": "B1"
+ },
+ {
+  "en": "teen",
+  "cn": "青少年",
+  "cefr": "B1"
+ },
+ {
+  "en": "definite",
+  "cn": "明确的",
+  "cefr": "B1"
+ },
+ {
+  "en": "aspect",
+  "cn": "外观；方面",
+  "cefr": "B1"
+ },
+ {
+  "en": "relate",
+  "cn": "关联；讲述",
+  "cefr": "B1"
+ },
+ {
+  "en": "dusty",
+  "cn": "布满灰尘的",
+  "cefr": "B1"
+ },
+ {
+  "en": "strangely",
+  "cn": "奇妙地；奇怪地",
+  "cefr": "B1"
+ },
+ {
+  "en": "substitute",
+  "cn": "代替；替代品",
+  "cefr": "B1"
+ },
+ {
+  "en": "aspirin",
+  "cn": "阿斯匹林；乙酰水杨酸",
+  "cefr": "B1"
+ },
+ {
+  "en": "summit",
+  "cn": "顶峰；峰会",
+  "cefr": "B1"
+ },
+ {
+  "en": "permanently",
+  "cn": "永久地",
+  "cefr": "B1"
+ },
+ {
+  "en": "poisonous",
+  "cn": "有毒的",
+  "cefr": "B1"
+ },
+ {
+  "en": "transform",
+  "cn": "转变；变换",
+  "cefr": "B1"
+ },
+ {
+  "en": "skeleton",
+  "cn": "骨骼；骨架",
+  "cefr": "B1"
+ },
+ {
+  "en": "baggage",
+  "cn": "行李",
+  "cefr": "B1"
+ },
+ {
+  "en": "obtain",
+  "cn": "获得；达到",
+  "cefr": "B1"
+ },
+ {
+  "en": "mild",
+  "cn": "温和的",
+  "cefr": "B1"
+ },
+ {
+  "en": "dynasty",
+  "cn": "朝代；王朝",
+  "cefr": "B1"
+ },
+ {
+  "en": "countless",
+  "cn": "数不尽的；无数的",
+  "cefr": "B1"
+ },
+ {
+  "en": "establishment",
+  "cn": "建立；机构",
+  "cefr": "B1"
+ },
+ {
+  "en": "environmental",
+  "cn": "周围的；环境的",
+  "cefr": "B1"
+ },
+ {
+  "en": "fax",
+  "cn": "传真",
+  "cefr": "B1"
+ },
+ {
+  "en": "partial",
+  "cn": "部分的；偏袒的",
+  "cefr": "B1"
+ },
+ {
+  "en": "neutral",
+  "cn": "中立的",
+  "cefr": "B1"
+ },
+ {
+  "en": "surprisingly",
+  "cn": "使人惊奇；出人意外",
+  "cefr": "B1"
+ },
+ {
+  "en": "conservative",
+  "cn": "保守的；守旧的",
+  "cefr": "B1"
+ },
+ {
+  "en": "slavery",
+  "cn": "奴隶制",
+  "cefr": "B1"
+ },
+ {
+  "en": "specially",
+  "cn": "特别地；专门地",
+  "cefr": "B1"
+ },
+ {
+  "en": "trumpet",
+  "cn": "小号；喇叭",
+  "cefr": "B1"
+ },
+ {
+  "en": "debris",
+  "cn": "碎片；残骸",
+  "cefr": "B1"
+ },
+ {
+  "en": "comedian",
+  "cn": "喜剧演员",
+  "cefr": "B1"
+ },
+ {
+  "en": "imaginary",
+  "cn": "想象的；虚构的",
+  "cefr": "B1"
+ },
+ {
+  "en": "babysitter",
+  "cn": "临时照顾幼儿者",
+  "cefr": "B1"
+ },
+ {
+  "en": "marble",
+  "cn": "大理石；石弹",
+  "cefr": "B1"
+ },
+ {
+  "en": "relatively",
+  "cn": "相对地；比较地",
+  "cefr": "B1"
+ },
+ {
+  "en": "numerous",
+  "cn": "很多的；数目众多的",
+  "cefr": "B1"
+ },
+ {
+  "en": "flock",
+  "cn": "兽群；鸟群",
+  "cefr": "B1"
+ },
+ {
+  "en": "glimpse",
+  "cn": "一瞥；一闪",
+  "cefr": "B1"
+ },
+ {
+  "en": "kettle",
+  "cn": "水壶",
+  "cefr": "B1"
+ },
+ {
+  "en": "achievement",
+  "cn": "完成；成就",
+  "cefr": "B1"
+ },
+ {
+  "en": "newly",
+  "cn": "新近；最近",
+  "cefr": "B1"
+ },
+ {
+  "en": "distribution",
+  "cn": "分配；分布",
+  "cefr": "B1"
+ },
+ {
+  "en": "juicy",
+  "cn": "多汁液的；生动的",
+  "cefr": "B1"
+ },
+ {
+  "en": "apparent",
+  "cn": "清晰可见的；显然的",
+  "cefr": "B1"
+ },
+ {
+  "en": "preparation",
+  "cn": "准备",
+  "cefr": "B1"
+ },
+ {
+  "en": "kitten",
+  "cn": "小猫",
+  "cefr": "B1"
+ },
+ {
+  "en": "contribution",
+  "cn": "捐助；贡献",
+  "cefr": "B1"
+ },
+ {
+  "en": "devotion",
+  "cn": "热爱；投入",
+  "cefr": "B1"
+ },
+ {
+  "en": "glance",
+  "cn": "一瞥",
+  "cefr": "B1"
+ },
+ {
+  "en": "appreciation",
+  "cn": "感激；赏识",
+  "cefr": "B1"
+ },
+ {
+  "en": "historic",
+  "cn": "历史上著名的；有历史性的",
+  "cefr": "B1"
+ },
+ {
+  "en": "promote",
+  "cn": "促进；晋升",
+  "cefr": "B1"
+ },
+ {
+  "en": "introduction",
+  "cn": "介绍；传入",
+  "cefr": "B1"
+ },
+ {
+  "en": "part-time",
+  "cn": "兼任的；半工半读的",
+  "cefr": "B1"
+ },
+ {
+  "en": "absent",
+  "cn": "缺席的；不在的",
+  "cefr": "B1"
+ },
+ {
+  "en": "supportive",
+  "cn": "支持的",
+  "cefr": "B1"
+ },
+ {
+  "en": "scholar",
+  "cn": "学者；奖学金获得者",
+  "cefr": "B1"
+ },
+ {
+  "en": "embarrassment",
+  "cn": "尴尬；难堪",
+  "cefr": "B1"
+ },
+ {
+  "en": "handkerchief",
+  "cn": "手帕；头巾",
+  "cefr": "B1"
+ },
+ {
+  "en": "brotherhood",
+  "cn": "手足情谊；兄弟关系",
+  "cefr": "B1"
+ },
+ {
+  "en": "academic",
+  "cn": "学院的；学术的",
+  "cefr": "B1"
+ },
+ {
+  "en": "publicly",
+  "cn": "公开地",
+  "cefr": "B1"
+ },
+ {
+  "en": "unpredictable",
+  "cn": "不可预测的",
+  "cefr": "B1"
+ },
+ {
+  "en": "category",
+  "cn": "种类；类项",
+  "cefr": "B1"
+ },
+ {
+  "en": "cautious",
+  "cn": "谨慎的；小心的",
+  "cefr": "B1"
+ },
+ {
+  "en": "comparison",
+  "cn": "比较；对照",
+  "cefr": "B1"
+ },
+ {
+  "en": "freshman",
+  "cn": "大一新生",
+  "cefr": "B1"
+ },
+ {
+  "en": "haunt",
+  "cn": "常去的地方；萦绕",
+  "cefr": "B1"
+ },
+ {
+  "en": "improvement",
+  "cn": "进步；改善",
+  "cefr": "B1"
+ },
+ {
+  "en": "admission",
+  "cn": "准许进入；入场费",
+  "cefr": "B1"
+ },
+ {
+  "en": "ecstasy",
+  "cn": "狂喜；心醉神迷",
+  "cefr": "B1"
+ },
+ {
+  "en": "tropical",
+  "cn": "热带的",
+  "cefr": "B1"
+ },
+ {
+  "en": "full-time",
+  "cn": "全部时间的；专任的",
+  "cefr": "B1"
+ },
+ {
+  "en": "breakthrough",
+  "cn": "突破；新发现",
+  "cefr": "B1"
+ },
+ {
+  "en": "considerable",
+  "cn": "相当的；可观的",
+  "cefr": "B1"
+ },
+ {
+  "en": "inspire",
+  "cn": "使感动；激发",
+  "cefr": "B1"
+ },
+ {
+  "en": "positively",
+  "cn": "明确地；肯定地",
+  "cefr": "B1"
+ },
+ {
+  "en": "vague",
+  "cn": "模糊的；含糊的",
+  "cefr": "B1"
+ },
+ {
+  "en": "insight",
+  "cn": "洞察力",
+  "cefr": "B1"
+ },
+ {
+  "en": "repeatedly",
+  "cn": "反复地",
+  "cefr": "B1"
+ },
+ {
+  "en": "motto",
+  "cn": "箴言；座右铭",
+  "cefr": "B1"
+ },
+ {
+  "en": "moss",
+  "cn": "苔藓",
+  "cefr": "B1"
+ },
+ {
+  "en": "monthly",
+  "cn": "月刊；每月的",
+  "cefr": "B1"
+ },
+ {
+  "en": "notorious",
+  "cn": "声名狼藉的；臭名昭著的",
+  "cefr": "B1"
+ },
+ {
+  "en": "briefly",
+  "cn": "简短地；扼要地",
+  "cefr": "B1"
+ },
+ {
+  "en": "slot",
+  "cn": "狭槽；时段",
+  "cefr": "B1"
+ },
+ {
+  "en": "cherish",
+  "cn": "珍爱；怀有",
+  "cefr": "B1"
+ },
+ {
+  "en": "sponge",
+  "cn": "海绵",
+  "cefr": "B1"
+ },
+ {
+  "en": "calf",
+  "cn": "小牛；小腿",
+  "cefr": "B1"
+ },
+ {
+  "en": "allowance",
+  "cn": "津贴；零用钱",
+  "cefr": "B1"
+ },
+ {
+  "en": "publisher",
+  "cn": "出版商",
+  "cefr": "B1"
+ },
+ {
+  "en": "burglar",
+  "cn": "窃贼；夜盗",
+  "cefr": "B1"
+ },
+ {
+  "en": "scope",
+  "cn": "范围；余地",
+  "cefr": "B1"
+ },
+ {
+  "en": "gravy",
+  "cn": "肉汁",
+  "cefr": "B1"
+ },
+ {
+  "en": "severely",
+  "cn": "严重地；严厉地",
+  "cefr": "B1"
+ },
+ {
+  "en": "runaway",
+  "cn": "逃跑的",
+  "cefr": "B1"
+ },
+ {
+  "en": "adapt",
+  "cn": "使适应；改编",
+  "cefr": "B1"
+ },
+ {
+  "en": "isolation",
+  "cn": "隔绝；孤立",
+  "cefr": "B1"
+ },
+ {
+  "en": "beaver",
+  "cn": "海狸",
+  "cefr": "B1"
+ },
+ {
+  "en": "bronze",
+  "cn": "青铜；铜像",
+  "cefr": "B1"
+ },
+ {
+  "en": "airline",
+  "cn": "航线；航空公司",
+  "cefr": "B1"
+ },
+ {
+  "en": "surround",
+  "cn": "包围；环绕",
+  "cefr": "B1"
+ },
+ {
+  "en": "fright",
+  "cn": "惊骇；惊吓",
+  "cefr": "B1"
+ },
+ {
+  "en": "contribute",
+  "cn": "有助于；捐助",
+  "cefr": "B1"
+ },
+ {
+  "en": "obstacle",
+  "cn": "障碍；妨害物",
+  "cefr": "B1"
+ },
+ {
+  "en": "arise",
+  "cn": "出现；发生",
+  "cefr": "B1"
+ },
+ {
+  "en": "regain",
+  "cn": "恢复；取回",
+  "cefr": "B1"
+ },
+ {
+  "en": "firmly",
+  "cn": "坚定地",
+  "cefr": "B1"
+ },
+ {
+  "en": "reef",
+  "cn": "暗礁",
+  "cefr": "B1"
+ },
+ {
+  "en": "mathematics",
+  "cn": "数学",
+  "cefr": "B1"
+ },
+ {
+  "en": "shameful",
+  "cn": "可耻的",
+  "cefr": "B1"
+ },
+ {
+  "en": "strategic",
+  "cn": "战略的",
+  "cefr": "B1"
+ },
+ {
+  "en": "teller",
+  "cn": "出纳员；讲述者",
+  "cefr": "B1"
+ },
+ {
+  "en": "regional",
+  "cn": "地区的",
+  "cefr": "B1"
+ },
+ {
+  "en": "pupil",
+  "cn": "学生；门生",
+  "cefr": "B1"
+ },
+ {
+  "en": "liberation",
+  "cn": "释放；解放",
+  "cefr": "B1"
+ },
+ {
+  "en": "disturbance",
+  "cn": "扰乱；不安",
+  "cefr": "B1"
+ },
+ {
+  "en": "motivation",
+  "cn": "动机",
+  "cefr": "B1"
+ },
+ {
+  "en": "stressful",
+  "cn": "压力大的",
+  "cefr": "B1"
+ },
+ {
+  "en": "bathe",
+  "cn": "沐浴；用水洗",
+  "cefr": "B1"
+ },
+ {
+  "en": "stem",
+  "cn": "茎；干",
+  "cefr": "B1"
+ },
+ {
+  "en": "diaper",
+  "cn": "尿布",
+  "cefr": "B1"
+ },
+ {
+  "en": "increasingly",
+  "cn": "逐渐地；渐增地",
+  "cefr": "B1"
+ },
+ {
+  "en": "initially",
+  "cn": "最初；开头",
+  "cefr": "B1"
+ },
+ {
+  "en": "frequently",
+  "cn": "频繁；经常地",
+  "cefr": "B1"
+ },
+ {
+  "en": "philosopher",
+  "cn": "哲学家",
+  "cefr": "B1"
+ },
+ {
+  "en": "transformation",
+  "cn": "转变",
+  "cefr": "B1"
+ },
+ {
+  "en": "combine",
+  "cn": "联合；结合",
+  "cefr": "B1"
+ },
+ {
+  "en": "limp",
+  "cn": "跛行；柔软的",
+  "cefr": "B1"
+ },
+ {
+  "en": "parachute",
+  "cn": "降落伞；跳伞",
+  "cefr": "B1"
+ },
+ {
+  "en": "wildlife",
+  "cn": "野生动植物",
+  "cefr": "B1"
+ },
+ {
+  "en": "hazard",
+  "cn": "危险",
+  "cefr": "B1"
+ },
+ {
+  "en": "frustration",
+  "cn": "挫折；顿挫",
+  "cefr": "B1"
+ },
+ {
+  "en": "significance",
+  "cn": "重要性；意义",
+  "cefr": "B1"
+ },
+ {
+  "en": "illegally",
+  "cn": "非法地；不合法地",
+  "cefr": "B1"
+ },
+ {
+  "en": "declaration",
+  "cn": "宣告；申报",
+  "cefr": "B1"
+ },
+ {
+  "en": "substantial",
+  "cn": "大量的；实质的",
+  "cefr": "B1"
+ },
+ {
+  "en": "ache",
+  "cn": "疼痛",
+  "cefr": "B1"
+ },
+ {
+  "en": "emerge",
+  "cn": "浮现；形成",
+  "cefr": "B1"
+ },
+ {
+  "en": "mineral",
+  "cn": "矿物",
+  "cefr": "B1"
+ },
+ {
+  "en": "meaningful",
+  "cn": "意味深长的",
+  "cefr": "B1"
+ },
+ {
+  "en": "mediterranean",
+  "cn": "地中海",
+  "cefr": "B1"
+ },
+ {
+  "en": "headline",
+  "cn": "大标题；新闻摘要",
+  "cefr": "B1"
+ },
+ {
+  "en": "occasional",
+  "cn": "偶然的；临时的",
+  "cefr": "B1"
+ },
+ {
+  "en": "mend",
+  "cn": "修补",
+  "cefr": "B1"
+ },
+ {
+  "en": "athletic",
+  "cn": "运动的",
+  "cefr": "B1"
+ },
+ {
+  "en": "jumper",
+  "cn": "跳跃者；毛衣",
+  "cefr": "B1"
+ },
+ {
+  "en": "worthwhile",
+  "cn": "值得的",
+  "cefr": "B1"
+ },
+ {
+  "en": "remedy",
+  "cn": "药物；治疗法",
+  "cefr": "B1"
+ },
+ {
+  "en": "damp",
+  "cn": "潮湿；湿气",
+  "cefr": "B1"
+ },
+ {
+  "en": "vein",
+  "cn": "血管；静脉",
+  "cefr": "B1"
+ },
+ {
+  "en": "accidental",
+  "cn": "意外的；偶然的",
+  "cefr": "B1"
+ },
+ {
+  "en": "convey",
+  "cn": "传达；运输",
+  "cefr": "B1"
+ },
+ {
+  "en": "mourn",
+  "cn": "哀悼；忧伤",
+  "cefr": "B1"
+ },
+ {
+  "en": "loaf",
+  "cn": "一条面包",
+  "cefr": "B1"
+ },
+ {
+  "en": "harness",
+  "cn": "马具",
+  "cefr": "B1"
+ },
+ {
+  "en": "orderly",
+  "cn": "有秩序的；整齐的",
+  "cefr": "B1"
+ },
+ {
+  "en": "scold",
+  "cn": "责骂",
+  "cefr": "B1"
+ },
+ {
+  "en": "certainty",
+  "cn": "确定；确实的事情",
+  "cefr": "B1"
+ },
+ {
+  "en": "mailbox",
+  "cn": "邮筒；邮箱",
+  "cefr": "B1"
+ },
+ {
+  "en": "destructive",
+  "cn": "毁灭性的；破坏的",
+  "cefr": "B1"
+ },
+ {
+  "en": "whichever",
+  "cn": "无论哪个",
+  "cefr": "B1"
+ },
+ {
+  "en": "prosperity",
+  "cn": "繁荣",
+  "cefr": "B1"
+ },
+ {
+  "en": "literary",
+  "cn": "文学的；文艺的",
+  "cefr": "B1"
+ },
+ {
+  "en": "excess",
+  "cn": "过度；过量",
+  "cefr": "B1"
+ },
+ {
+  "en": "unemployment",
+  "cn": "失业",
+  "cefr": "B1"
+ },
+ {
+  "en": "dependent",
+  "cn": "依赖他人者；依赖的",
+  "cefr": "B1"
+ },
+ {
+  "en": "abnormal",
+  "cn": "反常的；不规则的",
+  "cefr": "B1"
+ },
+ {
+  "en": "generate",
+  "cn": "产生；发生",
+  "cefr": "B1"
+ },
+ {
+  "en": "extinct",
+  "cn": "灭绝的",
+  "cefr": "B1"
+ },
+ {
+  "en": "recite",
+  "cn": "背诵；朗读",
+  "cefr": "B1"
+ },
+ {
+  "en": "tightly",
+  "cn": "紧紧地；坚固地",
+  "cefr": "B1"
+ }
+]
