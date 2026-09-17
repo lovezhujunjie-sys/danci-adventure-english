@@ -9,7 +9,7 @@
 ```bash
 cd ~/.claude/skills/自学英语
 NODE_PATH=/tmp/pwtest/node_modules node tests/test_zixue_fixes.js  # 44 / 0  本次修的 bug 逐条回归
-NODE_PATH=/tmp/pwtest/node_modules node tests/test_ls_sent.js      # 60 / 0  听力·短文音源
+NODE_PATH=/tmp/pwtest/node_modules node tests/test_ls_sent.js      # 111 / 0 听力三音源 + 朗读三档参数（切片跑真代码）
 NODE_PATH=/tmp/pwtest/node_modules node tests/test_m30.js          # 24 / 0  今日 30 分钟计时
 NODE_PATH=/tmp/pwtest/node_modules node tests/test_idle.js         # 12 / 0  免提朗读时的挂机豁免（要真等 2 分钟）
 NODE_PATH=/tmp/pwtest/node_modules node tests/test_pat_words.js    # 20 / 0  句型骨架点词查义（真浏览器）
@@ -26,6 +26,7 @@ NODE_PATH=/tmp/pwtest/node_modules node tests/perf.js              # 见脚本  
 mkdir -p /tmp/pwtest && cd /tmp/pwtest && npm i playwright-core   # 只需一次
 cd ~/.claude/skills/自学英语
 NODE_PATH=/tmp/pwtest/node_modules node tests/smoke2.js            # 64 / 0
+NODE_PATH=/tmp/pwtest/node_modules node tests/test_ls_phrase.js    # 46 / 0  高频句音源 + 中英交替三档（hook TTS 验调用序列）
 ```
 
 🔴 **离线缓存测试（`test_sw_offline.js`）必须走 HTTP** —— `file://` 下 Service Worker

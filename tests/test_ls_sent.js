@@ -24,8 +24,10 @@ const LS_CODE = slice(
   '  // 控件',
   '听力引擎'
 );
-const READINGS_SRC = (() => {
-  const i = HTML.indexOf('const READINGS = ');
+// 从 HTML 里按大括号配平切出一个对象字面量（READINGS / SENTENCES 共用）
+function extractObj(marker) {
+  const i = HTML.indexOf(marker);
+  if (i < 0) throw new Error('找不到 ' + marker);
   let st = HTML.indexOf('{', i), d = 0, j = st, inStr = false, esc = false;
   for (; j < HTML.length; j++) {
     const c = HTML[j];
@@ -34,8 +36,9 @@ const READINGS_SRC = (() => {
     if (c === '{') d++; else if (c === '}') { d--; if (d === 0) { j++; break; } }
   }
   return HTML.slice(st, j);
-})();
-const READINGS = JSON.parse(READINGS_SRC);
+}
+const READINGS = JSON.parse(extractObj('const READINGS = '));
+const SENTENCES = JSON.parse(extractObj('const SENTENCES = '));
 const IPA_MAP = {};   // 短文整句必然查不到，正好验证兜底
 
 // ---- DOM 桩 ----
@@ -56,7 +59,8 @@ const getEl = id => (els[id] = els[id] || mkEl(id));
 
 const repChips = [1, 2, 3].map(n => { const e = mkEl('rep' + n); e.dataset.rep = String(n); return e; });
 const gapChips = [600, 900, 1200, 2500].map(n => { const e = mkEl('gap' + n); e.dataset.gap = String(n); return e; });
-const srcChips = ['word', 'sent'].map(s => { const e = mkEl('src' + s); e.dataset.lssrc = s; return e; });
+const srcChips = ['word', 'sent', 'phrase'].map(s => { const e = mkEl('src' + s); e.dataset.lssrc = s; return e; });
+const modeChips = ['en', 'mix', 'mix2'].map(m => { const e = mkEl('mode' + m); e.dataset.mode = m; return e; });
 
 const document = {
   getElementById: getEl,
@@ -64,6 +68,7 @@ const document = {
   querySelectorAll: sel => {
     if (sel.includes('ls-rep-chips')) return repChips;
     if (sel.includes('ls-gap-chips')) return gapChips;
+    if (sel.includes('ls-mode-chips')) return modeChips;
     if (sel.includes('ls-source-opts')) return srcChips;
     return [];
   },
@@ -85,16 +90,17 @@ const EXPOSE = `
   return { get lsSource(){return lsSource}, set lsSource(v){lsSource=v},
            get lsWords(){return lsWords}, get lsIdx(){return lsIdx},
            get lsRepeat(){return lsRepeat}, get lsGapMs(){return lsGapMs},
-           get lsSayCn(){return lsSayCn},
+           get lsMode(){return lsMode}, set lsMode(v){lsMode=v},
            get selectedBook(){return selectedBook}, set selectedBook(v){selectedBook=v},
-           lsKeys, lsDefaults, lsLoadSource, lsSyncChips, renderBookGrid, applyLsSource, startListening, syncStartBtn };
+           get selectedCat(){return selectedCat}, set selectedCat(v){selectedCat=v},
+           lsKeys, lsDefaults, lsLoadSource, lsSyncChips, renderBookGrid, renderCatGrid, applyLsSource, startListening, syncStartBtn };
 `;
 const API = new Function(
   'settings', 'saveSettings', 'shuffle', 'getVocabPool', 'selectedCount', 'speakRate', 'pageMode',
-  'selectedVoice', 'showScreen', 'READINGS', 'IPA_MAP', 'document', 'window',
+  'selectedVoice', 'showScreen', 'READINGS', 'SENTENCES', 'IPA_MAP', 'document', 'window',
   SETSHOWN_CODE + LS_CODE + EXPOSE
 )(settings, saveSettings, shuffle, getVocabPool, selectedCount, speakRate, pageMode, selectedVoice,
-  showScreen, READINGS, IPA_MAP, document, window);
+  showScreen, READINGS, SENTENCES, IPA_MAP, document, window);
 
 // ================= 断言 =================
 let pass = 0, fail = 0;
@@ -147,32 +153,55 @@ eq('单词数 = selectedCount(20)', API.lsWords.length, 20);
 ok('单词项没有 _book 字段', API.lsWords.every(w => w._book === undefined));
 ok('单词项带主题', API.lsWords.every(w => w._topic === 'T'));
 
-console.log('\n⑤ 两套参数互不污染');
-// 短文默认：1 遍 / 900ms / 不读中文
+console.log('\n⑤ 三套参数互不污染');
+// 短文默认：1 遍 / 900ms / 中英交替
 API.lsSource = 'sent'; API.lsLoadSource();
 eq('短文默认读几遍 = 1', API.lsRepeat, 1);
 eq('短文默认句间停顿 = 900', API.lsGapMs, 900);
-eq('短文默认不读中文', API.lsSayCn, false);
-// 默认值只在内存生效、不写回 settings（避免污染存档），这里验证「生效」而非「落盘」
-ok('短文默认不读中文(生效值)', API.lsSayCn === false);
-// 单词默认：2 遍 / 1200ms / 读中文
+eq('🔴 短文默认中英交替(2026-09-17 改，原来是死写纯英文)', API.lsMode, 'mix');
+// 单词默认：2 遍 / 1200ms / 中英交替
 API.lsSource = 'word'; API.lsLoadSource();
 eq('单词默认读几遍 = 2', API.lsRepeat, 2);
 eq('单词默认词间停顿 = 1200', API.lsGapMs, 1200);
-eq('单词默认读中文', API.lsSayCn, true);
-// 模拟用户在短文里改成 3 遍 + 开中文，切回单词不能被带跑
-API.lsSource = 'sent';
-settings.lsRepeatSent = 3; settings.lsSayCnSent = true;
-API.lsLoadSource();
+eq('单词默认中英交替', API.lsMode, 'mix');
+// 高频句默认：1 遍 / 900ms / 中英交替
+API.lsSource = 'phrase'; API.lsLoadSource();
+eq('高频句默认读几遍 = 1', API.lsRepeat, 1);
+eq('高频句默认句间停顿 = 900', API.lsGapMs, 900);
+eq('高频句默认中英交替', API.lsMode, 'mix');
+eq('高频句走自己一套键', JSON.stringify(API.lsKeys()),
+   JSON.stringify({ rep: 'lsRepeatPhrase', gap: 'lsGapPhrase', mode: 'lsModePhrase' }));
+// 逐套改，验证互不串味
+API.lsSource = 'sent'; settings.lsRepeatSent = 3; settings.lsModeSent = 'en'; API.lsLoadSource();
 eq('短文改成 3 遍生效', API.lsRepeat, 3);
-eq('短文开中文生效', API.lsSayCn, true);
+eq('短文改成纯英文生效', API.lsMode, 'en');
 API.lsSource = 'word'; API.lsLoadSource();
 eq('切回单词仍是 2 遍(未被短文 3 遍污染)', API.lsRepeat, 2);
-eq('切回单词中文仍是开(未被短文影响)', API.lsSayCn, true);
-settings.lsRepeat = 1; settings.lsSayCn = false;   // 用户把单词关掉中文
+eq('切回单词仍是中英交替(未被短文纯英文污染)', API.lsMode, 'mix');
+API.lsSource = 'phrase'; API.lsLoadSource();
+eq('高频句没被污染：仍是 1 遍', API.lsRepeat, 1);
+eq('高频句没被污染：仍是中英交替', API.lsMode, 'mix');
+settings.lsRepeat = 1; settings.lsMode = 'mix2';
 API.lsSource = 'sent'; API.lsLoadSource();
 eq('短文仍是 3 遍', API.lsRepeat, 3);
-eq('短文中文仍开着', API.lsSayCn, true);
+eq('短文仍是纯英文', API.lsMode, 'en');
+
+console.log('\n⑤b 老存档迁移（2026-09-11 的布尔 lsSayCn 必须翻译成三档，不能凭空回默认）');
+delete settings.lsModeSent; settings.lsSayCnSent = false;   // 老存档：短文关着中文
+API.lsSource = 'sent'; API.lsLoadSource();
+eq('短文老存档 false → 纯英文', API.lsMode, 'en');
+settings.lsSayCnSent = true;                                 // 老存档：短文开着中文
+API.lsLoadSource();
+eq('短文老存档 true → 中英交替', API.lsMode, 'mix');
+delete settings.lsMode; settings.lsSayCn = false;            // 老存档：单词关着中文
+API.lsSource = 'word'; API.lsLoadSource();
+eq('单词老存档 false → 纯英文', API.lsMode, 'en');
+delete settings.lsSayCn;                                     // 连老键都没有(全新用户)
+API.lsLoadSource();
+eq('无老键时落默认中英交替', API.lsMode, 'mix');
+settings.lsModePhrase = 'zzz';                               // 脏值
+API.lsSource = 'phrase'; API.lsLoadSource();
+eq('脏值回落到默认中英交替', API.lsMode, 'mix');
 
 console.log('\n⑥ 单位文案随音源切换');
 API.lsSource = 'sent'; API.lsSyncChips();
@@ -187,17 +216,29 @@ eq('单词 标签 = 英文读几遍', getEl('ls-rep-label').textContent, '英文
 eq('单词 标签 = 词间停顿', getEl('ls-gap-label').textContent, '词间停顿');
 
 console.log('\n⑦ 选中的 chip 与参数一致');
-API.lsSource = 'sent'; settings.lsRepeatSent = 2; settings.lsGapSent = 2500; settings.lsSayCnSent = false; API.lsLoadSource();
+API.lsSource = 'sent'; settings.lsRepeatSent = 2; settings.lsGapSent = 2500; settings.lsModeSent = 'mix2'; API.lsLoadSource();
 ok('2 遍的 chip 亮', repChips.find(c => c.dataset.rep === '2')._cls.has('active'));
 ok('1 遍的 chip 灭', !repChips.find(c => c.dataset.rep === '1')._cls.has('active'));
 ok('2500 停顿的 chip 亮', gapChips.find(c => c.dataset.gap === '2500')._cls.has('active'));
-ok('中文勾选框 = 未勾', getEl('ls-saycn').checked === false);
+ok('「中英加读」chip 亮', modeChips.find(c => c.dataset.mode === 'mix2')._cls.has('active'));
+ok('「纯英文」chip 灭', !modeChips.find(c => c.dataset.mode === 'en')._cls.has('active'));
+ok('🔴 旧的 ls-saycn 勾选框已从 HTML 里删干净', !/id="ls-saycn"/.test(HTML));
+ok('HTML 里三档 chips 齐全(en/mix/mix2)',
+   ['en', 'mix', 'mix2'].every(m => new RegExp('data-mode="' + m + '"').test(HTML)));
 
 console.log('\n⑧ 循环重播：短文必须原文顺序，不许洗牌');
 // 直接验证 lsRun 里的分支：把 lsWords 设成 3 句，lsIdx 顶到末尾，看是否回到 0 且顺序不变
 const sentCode = LS_CODE.slice(LS_CODE.indexOf('async function lsRun'), LS_CODE.indexOf('function lsPlay'));
 ok('lsRun 里有短文专属的不洗牌分支', /if \(lsSource === 'sent'\) lsIdx = 0;/.test(sentCode));
-ok('lsRun 里短文不改大小写', /lsSource === 'sent' \? w\.en :/.test(sentCode));
+ok('lsRun 里整句不改大小写', /isSent \? w\.en : w\.en\.replace/.test(sentCode));
+
+console.log('\n⑧b 三档朗读逻辑(2026-09-17 新增)');
+ok('纯英文档整段跳过中文', /if \(lsMode !== 'en' && zhVoice\(\)\)/.test(sentCode));
+ok('交替档回扣 1 遍、加读档回满 N 遍', /const back = \(lsMode === 'mix2'\) \? lsRepeat : 1;/.test(sentCode));
+ok('中文走 zhVoice() 普通话嗓子', /lsSpeak\(w\.cn, zhVoice\(\), 1\.0\)/.test(sentCode));
+ok('🔴 回扣那段有自己的 token 检查(否则暂停后会多念一遍)',
+   (sentCode.match(/if \(dead\(\)\) return;/g) || []).length >= 4);
+ok('中文读完先清 wave 再念回扣英文', /wave\.textContent = '🀄';[\s\S]*?wave\.textContent = '🔊 '/.test(sentCode));
 
 console.log('\n⑨ 单词音源的驼峰/大小写处理没被动');
 ok('单词仍走驼峰拆分+转小写', /w\.en\.replace\(\/\(\[a-z\]\)\(\[A-Z\]\)\/g, '\$1 \$2'\)\.toLowerCase\(\)/.test(sentCode));
@@ -205,6 +246,8 @@ ok('单词仍走驼峰拆分+转小写', /w\.en\.replace\(\/\(\[a-z\]\)\(\[A-Z\]
 console.log('\n⑩ 卡片样式类切换');
 API.lsSource = 'sent'; API.startListening();
 ok('短文时 .ls-card 加 sent 类', getEl('sel.ls-card')._cls.has('sent'));
+API.lsSource = 'phrase'; API.startListening();
+ok('高频句时 .ls-card 也带 sent 类（整句卡片样式共用）', getEl('sel.ls-card')._cls.has('sent'));
 API.lsSource = 'word'; API.startListening();
 ok('单词时 .ls-card 去掉 sent 类', !getEl('sel.ls-card')._cls.has('sent'));
 
@@ -225,6 +268,72 @@ API.lsSource = 'word'; API.applyLsSource();
 ok('切回单词 #ls-book-grid 重新藏好（hidden 类回来）', getEl('ls-book-grid')._cls.has('hidden'));
 ok('切回单词 主题区恢复显示', getEl('topic-grid').style.display === '');
 ok('切回单词 主题区的 hidden 类被摘掉', !getEl('topic-grid')._cls.has('hidden'));
+
+console.log('\n⑫ 高频句音源（2026-09-17 新增）');
+const catGrid = getEl('ls-cat-grid');
+delete catGrid.dataset.done;   // ⑪ 里 applyLsSource 已经建过网格了，不清掉重建标志这里只会拿到空串
+API.renderCatGrid();
+const catBtnCount = (catGrid.innerHTML.match(/data-cat=/g) || []).length;
+const catKeys = Object.keys(SENTENCES);
+const catTotal = catKeys.reduce((n, k) => n + SENTENCES[k].items.length, 0);
+eq('9 个按钮(全部 + 8 场景)', catBtnCount, catKeys.length + 1);
+ok('「全部」计数 = 总句数 ' + catTotal,
+   new RegExp('全部 ' + catKeys.length + ' 个场景<span class="cnt">' + catTotal + '<\\/span>').test(catGrid.innerHTML));
+ok('含首尾两个场景键', catGrid.innerHTML.includes('data-cat="' + catKeys[0] + '"') &&
+                        catGrid.innerHTML.includes('data-cat="' + catKeys[catKeys.length - 1] + '"'));
+eq('场景总数 = 8 个', catKeys.length, 8);
+eq('句库总数 = 392 句', catTotal, 392);
+
+API.lsSource = 'phrase'; API.selectedCat = 'health';
+API.startListening();
+const health = SENTENCES.health;
+eq('单场景：句数 = 该场景句数', API.lsWords.length, health.items.length);
+ok('单场景：保持原顺序(场景内有递进，不打乱)',
+   API.lsWords.every((w, i) => w.en === health.items[i].en));
+eq('单场景：标注 = 场景名', API.lsWords[0]._topic, health.name);
+eq('单场景：图标 = 场景图标', API.lsWords[0]._icon, health.icon);
+eq('单场景：带 _cat 回指键', API.lsWords[0]._cat, 'health');
+ok('每句都带中文', API.lsWords.every(w => w.cn && w.cn.length > 0));
+ok('每句都有英文本体', API.lsWords.every(w => w.en && w.en.length > 0));
+
+API.selectedCat = 'all';
+API.startListening();
+eq('全部场景：总句数 = 392', API.lsWords.length, 392);
+ok('全部场景：确实被打乱了(否则每次都从问候寒暄听起)',
+   API.lsWords.map(w => w.en).join() !== catKeys.flatMap(k => SENTENCES[k].items.map(i => i.en)).join());
+ok('全部场景：每句仍带 _cat，可回指场景', API.lsWords.every(w => catKeys.includes(w._cat)));
+ok('句库每条都没有空 en/cn', catKeys.every(k => SENTENCES[k].items.every(i => i.en && i.cn)));
+
+API.selectedCat = 'no-such-cat';    // 存档里留了个失效场景键
+API.startListening();
+eq('🔴 失效场景键回落到全部 392 句(不能让「开始」点了没反应)', API.lsWords.length, 392);
+API.selectedCat = 'all';
+
+console.log('\n⑬ 高频句设置屏的显隐');
+ok('HTML 里 #ls-cat-grid 初始带 hidden 类', /class="[^"]*\bhidden\b[^"]*" id="ls-cat-grid"/.test(HTML));
+ok('🔴 #ls-cat-grid 带 topic-open（不带的话第 10 个起的场景按钮会被 nth-child(n+10) 藏掉）',
+   /class="[^"]*\btopic-open\b[^"]*" id="ls-cat-grid"/.test(HTML));
+ok('HTML 里 #ls-cat-label 初始带 hidden 类', /<div class="section-label hidden" id="ls-cat-label">/.test(HTML));
+API.lsSource = 'phrase'; API.applyLsSource();
+ok('选高频句后 #ls-cat-grid 的 hidden 类被摘掉', !getEl('ls-cat-grid')._cls.has('hidden'));
+ok('选高频句后 #ls-cat-label 的 hidden 类被摘掉', !getEl('ls-cat-label')._cls.has('hidden'));
+ok('选高频句后 主题区被藏起来', getEl('topic-grid').style.display === 'none');
+ok('选高频句后 数量区被藏起来', getEl('sel.count-grid').style.display === 'none');
+ok('选高频句后 篇目区也藏好', getEl('ls-book-grid')._cls.has('hidden'));
+API.lsSource = 'sent'; API.applyLsSource();
+ok('切回短文 场景区藏好', getEl('ls-cat-grid')._cls.has('hidden'));
+API.lsSource = 'word'; API.applyLsSource();
+ok('切回单词 场景区仍藏好', getEl('ls-cat-grid')._cls.has('hidden'));
+ok('切回单词 篇目区也藏好', getEl('ls-book-grid')._cls.has('hidden'));
+ok('切回单词 数量区恢复', getEl('sel.count-grid').style.display !== 'none');
+
+console.log('\n⑭ 开始按钮文案跟音源走');
+API.lsSource = 'word'; API.syncStartBtn();
+eq('单词 → 开始磨耳朵', getEl('start-btn').textContent, '🎧 开始磨耳朵');
+API.lsSource = 'sent'; API.syncStartBtn();
+eq('短文 → 开始听短文', getEl('start-btn').textContent, '🎧 开始听短文');
+API.lsSource = 'phrase'; API.syncStartBtn();
+eq('高频句 → 开始听高频句', getEl('start-btn').textContent, '🎧 开始听高频句');
 
 console.log('\n' + '='.repeat(46));
 console.log(`结果：${pass} 通过 / ${fail} 失败`);

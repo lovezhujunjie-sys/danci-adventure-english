@@ -848,6 +848,10 @@
     background: var(--bg); color: var(--ink2); border: 1.5px solid var(--line2); cursor: pointer;
   }
   .ls-chip.active { background: #d97757; color: #fff; border-color: #d97757; }
+  /* 朗读方式三档(2026-09-17)：标签和 chips 分两行，三档平分整行宽度，
+     挤在一行的话「中英交替」这种 4 字 chip 在 375px 屏上点不准 */
+  .ls-row-col { flex-direction: column; align-items: stretch; gap: 7px; }
+  .ls-chips-wide .ls-chip { flex: 1; text-align: center; padding: 7px 4px; font-size: 12.5px; }
   .ls-tip { font-size: 11px; color: var(--ink4); text-align: center; line-height: 1.6; margin: 0 0 10px; }
 
   /* 入场微动效 */
@@ -1414,7 +1418,7 @@
         <div class="mc-icon">🎧</div>
         <div class="mc-body">
           <div class="mc-title">听力磨耳朵</div>
-          <div class="mc-desc">开车 / 跑步 / 做家务，戴上耳机自动循环听（免提学习）</div>
+          <div class="mc-desc">开车 / 跑步 / 做家务，戴上耳机自动循环听 · 单词/短文/高频句，可中英交替</div>
         </div>
       </div>
     </div>
@@ -1447,12 +1451,13 @@
       </div>
     </div>
 
-    <!-- 🎧 听力音源：单词 / 短文(2026-09-11 新增) -->
+    <!-- 🎧 听力音源：单词 / 短文 / 高频句(2026-09-11 建，2026-09-17 加高频句) -->
     <div id="ls-source-opts" class="hidden">
       <div class="section-label">听什么</div>
       <div class="mode-mini-grid">
         <button class="mode-btn-mini active" data-lssrc="word">🔤 单词</button>
         <button class="mode-btn-mini" data-lssrc="sent">📖 短文</button>
+        <button class="mode-btn-mini" data-lssrc="phrase">💬 高频句</button>
       </div>
     </div>
 
@@ -1464,6 +1469,10 @@
     <!-- topic-open 是必须的:全局规则 `.topic-grid:not(.topic-open) > .topic-btn:nth-child(n+10)`
          会藏掉第 10 个及以后的按钮,篇目有 21 个,不加这个类 r09~r20 这 12 篇点不到(2026-09-11 修) -->
     <div class="topic-grid topic-open hidden" id="ls-book-grid"></div>
+
+    <!-- 高频句音源专用：选场景(2026-09-17) -->
+    <div class="section-label hidden" id="ls-cat-label">听哪几个场景</div>
+    <div class="topic-grid topic-open hidden" id="ls-cat-grid"></div>
 
     <div class="section-label" id="count-label">每次学习数量</div>
     <div class="count-grid">
@@ -1809,8 +1818,17 @@
           <span class="ls-chip" data-gap="2500">长（跟读）</span>
         </span>
       </div>
+      <!-- 🔴 2026-09-17：原来这里是一个「朗读中文意思」勾选框，老曾在播放页从没注意到过，
+           短文音源更是被我写死默认不读中文，导致他以为短文听不了中英。
+           改成三档显式模式，默认中英交替（他原话：这样我才能学得懂） -->
+      <div class="ls-row ls-row-col"><span>朗读方式</span>
+        <span class="ls-chips ls-chips-wide" id="ls-mode-chips">
+          <span class="ls-chip" data-mode="en">🎧 纯英文</span>
+          <span class="ls-chip active" data-mode="mix">🀄 中英交替</span>
+          <span class="ls-chip" data-mode="mix2">🔁 中英加读</span>
+        </span>
+      </div>
       <div class="ls-row">
-        <label><input type="checkbox" id="ls-saycn" checked> 朗读中文意思</label>
         <label><input type="checkbox" id="ls-loop" checked> 循环播放（听完洗牌再来）</label>
       </div>
     </div>
@@ -5338,6 +5356,8 @@ const LOW_QUALITY_KEYWORDS = [
         // 非听力模式：把听力专属区块收起来
         setShown('ls-book-label', false);
         setShown('ls-book-grid', false);
+        setShown('ls-cat-label', false);
+        setShown('ls-cat-grid', false);
       }
 
       document.getElementById("count-label").textContent =
@@ -7437,40 +7457,56 @@ const LOW_QUALITY_KEYWORDS = [
   });
   let lsRepeat = settings.lsRepeat || 2;
   let lsGapMs = settings.lsGap || 1200;
-  let lsSayCn = settings.lsSayCn !== false;
+  // 朗读方式三档(2026-09-17 取代旧的布尔 lsSayCn)：
+  //   en   = 只读英文
+  //   mix  = 英文×N → 中文 → 英文×1（中文当桥，懂了之后立刻回扣一遍英文）
+  //   mix2 = 英文×N → 中文 → 英文×N（加码跟读）
+  let lsMode = 'mix';
   let lsLoopAll = settings.lsLoop !== false;
   let lsZhVoice = null;
 
-  // 音源：word=单词(老逻辑) / sent=短文逐句(2026-09-11 新增)
-  let lsSource = settings.lsSource === 'sent' ? 'sent' : 'word';
+  // 音源：word=单词(老逻辑) / sent=短文逐句(2026-09-11 新增) / phrase=日常高频句(2026-09-17 新增)
+  let lsSource = ['word', 'sent', 'phrase'].includes(settings.lsSource) ? settings.lsSource : 'word';
   let selectedBook = 'all';     // 短文音源选中的篇目键(r01..r20)或 'all'
+  let selectedCat = 'all';      // 高频句音源选中的场景键或 'all'
 
-  // 两套播放参数分开记：单词和短文的「读几遍/停顿/中文」诉求完全不同，
-  // 共用一份会把单词的设置冲掉(比如短文默认不读中文，切回单词就没释义了)
+  // 三套播放参数分开记：单词/短文/高频句的「读几遍/停顿/朗读方式」诉求完全不同，
+  // 共用一份会把各自的设置冲掉(比如短文停 900ms，切回单词就跟着变 900 了)
   function lsKeys() {
-    return lsSource === 'sent'
-      ? { rep: 'lsRepeatSent', gap: 'lsGapSent', cn: 'lsSayCnSent' }
-      : { rep: 'lsRepeat', gap: 'lsGap', cn: 'lsSayCn' };
+    if (lsSource === 'sent') return { rep: 'lsRepeatSent', gap: 'lsGapSent', mode: 'lsModeSent' };
+    if (lsSource === 'phrase') return { rep: 'lsRepeatPhrase', gap: 'lsGapPhrase', mode: 'lsModePhrase' };
+    return { rep: 'lsRepeat', gap: 'lsGap', mode: 'lsMode' };
   }
   function lsDefaults() {
-    return lsSource === 'sent'
-      ? { rep: 1, gap: 900, cn: false }    // 短文=磨耳朵整句流，默认不夹中文
-      : { rep: 2, gap: 1200, cn: true };
+    // 🔴 三档一律默认 mix(中英交替) —— 老曾是成年初学者，听不懂的输入等于白听。
+    //    短文原来默认 cn:false（当初理由是「磨耳朵要语流」），2026-09-17 按他本人要求改掉。
+    if (lsSource === 'sent') return { rep: 1, gap: 900, mode: 'mix' };
+    if (lsSource === 'phrase') return { rep: 1, gap: 900, mode: 'mix' };
+    return { rep: 2, gap: 1200, mode: 'mix' };
   }
   function lsLoadSource() {
     const k = lsKeys(), d = lsDefaults();
     lsRepeat = settings[k.rep] || d.rep;
     lsGapMs = settings[k.gap] || d.gap;
-    lsSayCn = (settings[k.cn] === undefined) ? d.cn : (settings[k.cn] === true);
+    // 老存档迁移：2026-09-11 版只有布尔 lsSayCn / lsSayCnSent，第一次进新版时翻译成三档，
+    // 不能让老曾已经调好的设置凭空回默认 —— false 是「纯英文」，true 是「中英交替」。
+    // 高频句是新音源，settings 里必然没有老键，直接落默认 mix。
+    if (settings[k.mode] === undefined) {
+      const legacy = (k.mode === 'lsModeSent') ? settings.lsSayCnSent : settings.lsSayCn;
+      lsMode = (legacy === undefined) ? d.mode : (legacy === false ? 'en' : 'mix');
+    } else {
+      lsMode = ['en', 'mix', 'mix2'].includes(settings[k.mode]) ? settings[k.mode] : d.mode;
+    }
     lsLoopAll = settings.lsLoop !== false;
     lsSyncChips();
   }
   function lsSyncChips() {
     document.querySelectorAll('#ls-rep-chips .ls-chip').forEach(c => c.classList.toggle('active', parseInt(c.dataset.rep) === lsRepeat));
     document.querySelectorAll('#ls-gap-chips .ls-chip').forEach(c => c.classList.toggle('active', parseInt(c.dataset.gap) === lsGapMs));
-    document.getElementById('ls-saycn').checked = lsSayCn;
+    document.querySelectorAll('#ls-mode-chips .ls-chip').forEach(c => c.classList.toggle('active', c.dataset.mode === lsMode));
     document.getElementById('ls-loop').checked = lsLoopAll;
-    const sent = lsSource === 'sent';
+    // 短文和高频句都是「整句流」，单位/文案一套；只有单词是「个/词」
+    const sent = lsSource !== 'word';
     document.getElementById('ls-unit').textContent = sent ? '句' : '个';
     document.getElementById('ls-unit2').textContent = sent ? '句' : '词';
     document.getElementById('ls-rep-label').textContent = sent ? '每句读几遍' : '英文读几遍';
@@ -7563,15 +7599,33 @@ const LOW_QUALITY_KEYWORDS = [
       lsRenderWord();
       const wave = document.getElementById('ls-wave');
       // 单词要拆驼峰+转小写(如 iPhone→i phone)；整句不能动，动了就把句首大写和专有名词毁了
-      const sayEn = lsSource === 'sent' ? w.en : w.en.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
+      const isSent = lsSource !== 'word';
+      const sayEn = isSent ? w.en : w.en.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
+      const segGap = isSent ? 500 : 350;
+      const dead = () => !lsPlaying || token !== lsToken;
       for (let i = 0; i < lsRepeat; i++) {
-        if (!lsPlaying || token !== lsToken) return;
+        if (dead()) return;
         wave.textContent = '🔊 ' + '· '.repeat(i + 1);
         await lsSpeak(sayEn, selectedVoice, speakRate);
-        await lsDelay(lsSource === 'sent' ? 500 : 350);
+        await lsDelay(segGap);
       }
-      if (!lsPlaying || token !== lsToken) return;
-      if (lsSayCn && zhVoice()) { wave.textContent = '🀄'; await lsSpeak(w.cn, zhVoice(), 1.0); }
+      if (dead()) return;
+      // 🀄 中文当桥(2026-09-17)：中文不是终点，是帮老曾听懂之后再拉回英文的那块跳板。
+      // 纯英文档跳过整段；旧的布尔 lsSayCn 已并入 lsMode。
+      if (lsMode !== 'en' && zhVoice()) {
+        wave.textContent = '🀄';
+        await lsSpeak(w.cn, zhVoice(), 1.0);
+        await lsDelay(segGap);
+        if (dead()) return;
+        // 回扣英文：交替档回 1 遍（把意思和声音重新绑一次）；加读档回满 N 遍
+        const back = (lsMode === 'mix2') ? lsRepeat : 1;
+        for (let i = 0; i < back; i++) {
+          if (dead()) return;
+          wave.textContent = '🔊 ' + '· '.repeat(i + 1);
+          await lsSpeak(sayEn, selectedVoice, speakRate);
+          await lsDelay(segGap);
+        }
+      }
       wave.textContent = '';
       await lsDelay(lsGapMs);
       if (!lsPlaying || token !== lsToken) return;
@@ -7632,6 +7686,30 @@ const LOW_QUALITY_KEYWORDS = [
       };
     });
   }
+
+  // 高频句音源的场景清单(2026-09-17，跟篇目网格一个套路)
+  function renderCatGrid() {
+    const grid = document.getElementById('ls-cat-grid');
+    if (grid.dataset.done === '1') return;
+    const keys = Object.keys(SENTENCES);
+    let total = 0;
+    keys.forEach(k => { total += SENTENCES[k].items.length; });
+    let html = '<button class="topic-btn active" data-cat="all"><span class="ic">🌈</span>全部 ' + keys.length + ' 个场景<span class="cnt">' + total + '</span></button>';
+    keys.forEach(k => {
+      const c = SENTENCES[k];
+      html += '<button class="topic-btn" data-cat="' + k + '"><span class="ic">' + c.icon + '</span>' + c.name +
+              '<span class="cnt">' + c.items.length + '</span></button>';
+    });
+    grid.innerHTML = html;
+    grid.dataset.done = '1';
+    grid.querySelectorAll('.topic-btn').forEach(btn => {
+      btn.onclick = () => {
+        grid.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedCat = btn.dataset.cat;
+      };
+    });
+  }
   // 设置屏上按音源切换「选主题 / 选篇目」两套 UI
   // 开始按钮的文案跟着「模式 + 音源」走。切换音源时也要调，不然切了短文按钮还写「开始磨耳朵」
   function syncStartBtn() {
@@ -7641,21 +7719,27 @@ const LOW_QUALITY_KEYWORDS = [
     else if (pageMode === 'phonics') t = '进入字母拼读';
     else if (pageMode === 'games') t = '进入游戏乐园';
     else if (pageMode === 'type') t = '开始默写';
-    else if (pageMode === 'listen') t = (lsSource === 'sent') ? '🎧 开始听短文' : '🎧 开始磨耳朵';
+    else if (pageMode === 'listen') t = (lsSource === 'sent') ? '🎧 开始听短文'
+                                          : (lsSource === 'phrase' ? '🎧 开始听高频句' : '🎧 开始磨耳朵');
     b.textContent = t;
   }
 
   function applyLsSource() {
-    const sent = lsSource === 'sent';
-    setShown('topic-section', !sent);
-    setShown('topic-grid', !sent);
-    setShown('topic-more', !sent);
-    setShown('ls-book-label', sent);
-    setShown('ls-book-grid', sent);
-    setShown('count-label', !sent);
+    const isWord = lsSource === 'word';
+    const isSent = lsSource === 'sent';
+    const isPhrase = lsSource === 'phrase';
+    setShown('topic-section', isWord);
+    setShown('topic-grid', isWord);
+    setShown('topic-more', isWord);
+    setShown('ls-book-label', isSent);
+    setShown('ls-book-grid', isSent);
+    setShown('ls-cat-label', isPhrase);
+    setShown('ls-cat-grid', isPhrase);
+    setShown('count-label', isWord);
     const cg = document.querySelector('.count-grid');
-    if (cg) { cg.style.display = sent ? 'none' : ''; cg.classList.toggle('hidden', sent); }
-    if (sent) renderBookGrid();
+    if (cg) { cg.style.display = isWord ? '' : 'none'; cg.classList.toggle('hidden', !isWord); }
+    if (isSent) renderBookGrid();
+    if (isPhrase) renderCatGrid();
     lsLoadSource();
     syncStartBtn();
   }
@@ -7672,12 +7756,26 @@ const LOW_QUALITY_KEYWORDS = [
         a.paras.forEach(p => sents.push({ en: p.en, cn: p.cn, _topic: a.title, _icon: a.icon, _book: k, _ipa: '' }));
       });
       lsWords = sents;
+    } else if (lsSource === 'phrase') {
+      // 日常高频句(2026-09-17)：句与句之间没有叙事依赖，所以「全部」直接打乱；
+      // 只勾了一个场景时保持场景内的原顺序(那个顺序本身是有递进的)。
+      // 场景键失效(存档里留着已删的场景)时回落到全部，别让「开始」点了没反应
+      const allCats = (selectedCat === 'all' || !SENTENCES[selectedCat]);
+      const cats = allCats ? Object.keys(SENTENCES) : [selectedCat];
+      const list = [];
+      cats.forEach(k => {
+        const c = SENTENCES[k];
+        if (!c) return;
+        c.items.forEach(it => list.push({ en: it.en, cn: it.cn, _topic: c.name, _icon: c.icon, _cat: k, _ipa: '' }));
+      });
+      lsWords = allCats ? shuffle(list) : list;
     } else {
       const pool = getVocabPool();
       lsWords = shuffle(pool).slice(0, selectedCount);
     }
     lsIdx = 0; lsListened = 0; lsZhVoice = null;
-    document.querySelector('.ls-card').classList.toggle('sent', lsSource === 'sent');
+    // 短文和高频句都是整句，共用「整句卡片」样式(字号收小、左对齐)
+    document.querySelector('.ls-card').classList.toggle('sent', lsSource !== 'word');
     lsLoadSource();
     showScreen('listen-screen');
     lsRenderWord();
@@ -7704,23 +7802,30 @@ const LOW_QUALITY_KEYWORDS = [
       lsGapMs = parseInt(c.dataset.gap); settings[lsKeys().gap] = lsGapMs; saveSettings();
     };
   });
-  document.getElementById('ls-saycn').onchange = (e) => { lsSayCn = e.target.checked; settings[lsKeys().cn] = lsSayCn; saveSettings(); };
+  document.querySelectorAll('#ls-mode-chips .ls-chip').forEach(c => {
+    c.onclick = () => {
+      document.querySelectorAll('#ls-mode-chips .ls-chip').forEach(x => x.classList.remove('active'));
+      c.classList.add('active');
+      lsMode = c.dataset.mode; settings[lsKeys().mode] = lsMode; saveSettings();
+    };
+  });
   document.getElementById('ls-loop').onchange = (e) => { lsLoopAll = e.target.checked; settings.lsLoop = lsLoopAll; saveSettings(); };
-  lsSyncChips();   // 恢复记忆的遍数/停顿/中文选中态 + 单位文案
+  lsSyncChips();   // 恢复记忆的遍数/停顿/朗读方式选中态 + 单位文案
 
-  // 音源切换：单词 / 短文
+  // 音源切换：单词 / 短文 / 高频句
   document.querySelectorAll('#ls-source-opts .mode-btn-mini').forEach(b => {
     b.onclick = () => {
       document.querySelectorAll('#ls-source-opts .mode-btn-mini').forEach(x => x.classList.remove('active'));
       b.classList.add('active');
-      lsSource = b.dataset.lssrc === 'sent' ? 'sent' : 'word';
+      const v = b.dataset.lssrc;
+      lsSource = (v === 'sent' || v === 'phrase') ? v : 'word';
       settings.lsSource = lsSource; saveSettings();
       applyLsSource();
     };
   });
   // 恢复上次选的音源
   document.querySelectorAll('#ls-source-opts .mode-btn-mini').forEach(b =>
-    b.classList.toggle('active', (b.dataset.lssrc === 'sent') === (lsSource === 'sent')));
+    b.classList.toggle('active', b.dataset.lssrc === lsSource));
 
   renderTopics();
 })();
