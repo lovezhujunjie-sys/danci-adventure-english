@@ -6,3 +6,6 @@ tools/*.bak
 /tmp_probe*.log
 # 跑 py_compile 会掉这个，是生成物不是源码
 __pycache__/
+# project-manager 的台账文件：给跨会话接续用，不属于 App 产物，别推到 GitHub
+PROGRESS.md
+HANDOFF.md

@@ -28,6 +28,7 @@ description: 开发与迭代「单词大冒险」英语学习 web 应用——�
 - `PHONICS` — 字母拼读数据（字母 / 辅音组合 / 元音组合 / 词尾词缀 / 其他组合）。
 - `IPA_MAP` — `{en: 音标}`，学习卡/选项/复习/反馈都从这里取音标显示（**音标仅供参考，准确发音以 🔊 TTS 为准**，UI 里有此说明）。**全量重写过(2026-06-21)**：旧数据是某个粗糙程序自动生成的垃圾(字母 c 一律误读成 /k/ → `slice /slaɪk/`、`niece /niːk/`；`temperature /tempəætɜː/`；多词词组黏成一坨乱码)，已用「对抗式发音 Agent 小队」(33 块 × 生成+独立核验)按**英式 RP** 标准全部重判，2627 词 100% 覆盖、带主重音 ˈ、词组保留空格(`cross the road /krɒs ðə rəʊd/`)。key 与 VOCAB 的 `en` 逐字一致(查表 `IPA_MAP[en]`)。**今后若新增单词，音标也要按英式 RP 手工核对，别再用程序硬转**。
 - `EMOJI_MAP` — `{en: emoji}`，看图猜词游戏用。
+- `PIC_MAP` — `{en: emoji}`，**翻卡配图**用（2026-09-20 新增，单词左边那张图）。**这是编译产物，别手改**：源头是 `tools/pics/parts/*.json`（按主题分批的人工图库）+ `tools/pics/pic_map.json`（总覆盖层，改单个词用），跑 `python3 tools/pics/build_pic_map.py` 生成。只收录 VOCAB 里真实存在的词，人工表优先、`EMOJI_MAP` 兜底。**故意和 `EMOJI_MAP` 分开**：那是看图猜词游戏的数据源，游戏靠它对选项去重，两件事不能混。
 - `PREMIUM_VOICES` / `LOW_QUALITY_KEYWORDS` — TTS 声音优选评分用（自动挑选系统里最像真人的英语声音）。
 
 ## 架构：两个 IIFE
@@ -39,7 +40,7 @@ description: 开发与迭代「单词大冒险」英语学习 web 应用——�
 
 ## 六大学习模式（首页 mode-card 选择）
 
-1. **📖 学习**（翻卡）— `startStudy/renderFlashcard`。看英文+音标→点卡显示中文→标「✅认识 / 🤔不熟」。自动朗读。结束页列出陌生词。
+1. **📖 学习**（翻卡）— `startStudy/renderFlashcard`。**单词左边一张对应图片**（2026-09-20 起，`PIC_MAP`，见下节）→ 看英文+音标→点卡显示中文→标「✅认识 / 🤔不熟」。自动朗读。结束页列出陌生词。
 2. **🗺️ 闯关地图**（选择题，2026-09-11 起替代原「✅ 闯关」入口）— `openMap/renderMap/startMapLevel/showMapEnd`。**29 座小岛 = 29 个主题词库**（2026-09-12 主题重构后），点岛直接开练，不再需要"先选主题、再选题数"两步（那两步是大人刷题思维，对小孩是门槛）。每关固定 **5 题**，按正确率给星：**全对 3 星 / ≥80% 2 星 / ≥60% 1 星**，不足 60% 得 0 星不计进度。顶部 HUD 实时显示「已通关 X / 29 关」+ 星星总数 ⭐。出题方向在地图顶部切（`#map-dir`：看中文→选英文 / 看英文→选中文），与全局 `selectedQuizMode` 共用。**不设关卡锁**——`mapUnlocked()` 恒 `true`，老曾 2026-09-11 定调："提前让大宝碰天书，锁关卡等于把天书藏起来，与目的相反"，**进度感交给星星总数而非锁**。当前进度岛飘「👦 你在这里」并自动 `scrollIntoView` 居中（`mapFrontier()` = 第一座还没拿到星的岛）。作答与结算沿用原闯关引擎：`renderQuestion/handleAnswer` 完全不变，`showEnd()` 开头 `if (mapKey) { showMapEnd(); return; }` 分流；`#restart-btn`「🔁 再挑战一次」、`#home-btn`/`#back-to-home`「🗺️ 回到地图」也都按 `mapKey` 是否非空分流。星星存 `localStorage['wordadv_map_stars']`（键为主题 key、值为该主题历史最高星数，只增不减），`['wordadv_map_open']` 存开图状态。**答对答错都不自动跳**：作答后停在当题显示反馈(✓/✗ + 音标 + 中文 + 🔊朗读)，由用户点 `#next-question-btn`「下一题 →」才前进——蒙对的词也能多看几眼加强记忆。（原有"⚡自动模式/📝练习模式"节奏切换器已移除，`selectedQuizPace` 变量保留但不再生效。）**遗留**：原闯关设置页里的「出题方向」`#quiz-options`（`data-quizmode` 按钮）因入口取消已成**孤儿 UI**（带 `hidden` 恒不显示），`syncQuizModeBtns()` 对它的操作已无实际作用；地图方向切换改用 `#map-dir`，勿误改。
 3. **🔤 字母拼读** — `renderPhonics`，5 个 tab（字母/辅音组合/元音组合/词尾词缀/其他组合），点卡或 🔊 听「字母名」与「拼读音」。
 4. **🎮 游戏乐园** — 5 个小游戏：看图猜词 `startEmojiGame`、字母拼图 `startSpellGame`、限时挑战 `startTimedGame`、连连看 `startMatchGame`、**听音选词** `startListenGame`（听 TTS 选中文）。`launchGame(g)` 统一入口，会调 `recordGamePlayed()`。**看图猜词为「手动翻页」**：答完不自动跳，停在当题显示反馈，由用户点 `#emoji-next`「下一题 →」（末题变「看结果 →」）才前进——给自学者看清答案/听完发音的节奏自主权（`renderEmojiQ` 每题开头先 `hidden` 掉该按钮，答完 `emojiIdx++` 后 `nextBtn.onclick = renderEmojiQ` 显示之）。
@@ -74,6 +75,75 @@ description: 开发与迭代「单词大冒险」英语学习 web 应用——�
 - **老存档迁移**：2026-09-11 版只有布尔 `lsSayCn/lsSayCnSent`，`lsLoadSource()` 在新键不存在时把它翻译成三档（`false → 'en'`、`true → 'mix'`），**不能让老曾已经调好的设置凭空回默认**；脏值/未知值一律回落 `mix`。
 - **为什么把勾选框改成三档 chips**：原来「朗读中文意思」是个藏在播放页底部的 checkbox，老曾**从没注意到过**，短文又是默认关着，导致他以为短文根本听不了中英。能力一直在，是入口不可见。**教训：默认关 + 开关不显眼 = 等于没做。**
 - 🔴 **别再用「纯英文才叫磨耳朵」当默认**：那是我的偏好不是他的需求。三种音源都默认中英交替，纯英文留在那儿给他自己想切时切。
+
+## 🖼️ 翻卡配图（2026-09-20 新增）
+
+老曾原话：「**我的自学英语 app 你帮我把翻卡学点词模块，每个单词的左边或者右边放一个对应单词的图片，
+我觉得这样非常重要有助于加强单词的记忆**」。
+
+### 为什么是 emoji，不是照片
+
+App 的硬约束是**单文件、零依赖、离线可用**（见文末「注意」）。5000 个词配真照片只有两条路，
+两条都走不通：塞进同一个 HTML（体积爆炸、首屏从 0.25 秒变十几秒）、
+或者走外链 CDN（断网/国内网络下大面积裂图，还带隐私与版权问题）。
+emoji 是系统自带的彩色图形字体，**零体积、零请求、永远在**，是目前唯一能同时满足
+「每个词都有图」和「离线可用」的做法。
+
+🔴 **诚实边界（必须主动告诉老曾，不许含糊）**：
+
+1. **它是图形不是照片**。苹果/桌子/狗这种具体名词，emoji 和照片一样好使；
+   但 `however`、`government` 这类抽象词没有真图可配。
+2. **当前覆盖率 69.9%（3495/5000 张卡）**。剩下的**故意留空**：`T27 程度与方式`（副词）、
+   `T29 功能词`（the/of/and）这两岛基本为 0，
+   **给「however」贴一张门 🚪 会教出错误联想，比没有图更糟**。没图的词卡片照旧居中，不留空框。
+3. **抽象词之间会共用图形**（`T02` 里有 15 个政治词共用 🏛️）。它们同属一个语义簇，
+   当锚点能用，但**别指望它能区分近义词**。
+
+### 数据与流水线（改配图唯一正确姿势）
+
+| 文件 | 干什么 |
+|---|---|
+| `tools/pics/parts/T01.json` … `T28.json` | **人工图库（唯一事实源）**：`{"单词": "emoji"}`，一岛一个文件 |
+| `tools/pics/pic_map.json` | 总覆盖层：改单个词 / 覆盖 `EMOJI_MAP` 兜底里不合适的（如 `chicken: 🍗→🐔`） |
+| `tools/pics/build_pic_map.py` | 编译成 `index.html` 的 `const PIC_MAP`，打印覆盖率；`--check` 只校验不写 |
+| `tools/pics/list_missing.py T13` | 列出某岛还没有配图的词（`en|cn` 一行一个），配图时照着填 |
+
+```bash
+cd ~/.agents/skills/自学英语
+python3 tools/pics/list_missing.py T13       # ① 看还缺哪些词
+# ② 往 tools/pics/parts/T13.json 里加
+python3 tools/pics/build_pic_map.py          # ③ 编译进 index.html（会报孤儿键/重复键/覆盖率）
+python3 tools/pics/build_pic_map.py --check  # ④ 校验产物与源文件一致
+```
+
+🔴 四条铁律（`tests/test_flashcard_pic.js` 机器守着前三条）：
+
+1. **`EMOJI_MAP` 一个字节都不许动** —— 它是「看图猜词」游戏的数据源，
+   `renderEmojiQ` 按它筛词、选项去重也依赖它。翻卡配图另开 `PIC_MAP`。
+2. **不许有孤儿键**：图库里的词必须在 `VOCAB` 里逐字存在（含大小写），拼错一个字母就静默失效。
+   两个分片文件里给同一个词配图也会被 build 喊停。
+3. **不认识的词宁可留空**，不许为了凑覆盖率硬贴一个不相干的图形。
+4. **加完必须跑 `build_pic_map.py`**：`index.html` 里的 `PIC_MAP` 是编译产物，
+   改了 `parts/*.json` 忘了编译 = 白改（`--check` 会当场抓出来）。
+
+### 界面（改之前先读）
+
+- 结构：`.flashcard > .fc-main > (.fc-pic + .fc-text)`，`renderFlashcard()` 里
+  按 `PIC_MAP[w.en]` 决定 `textContent` 与 `has-pic` 类。
+- **没图时 `.fc-pic` 同时挂 `.hidden` + CSS 兜底 `.fc-pic:empty{display:none}`**，卡片回到原来的居中版式。
+- 有图时图框 104px（圆角 26px、`--soft`→`--line2` 渐变底），单词跟着缩到 30px；
+  **≤430px 手机**降到 80px / 24px，免得英文单词被挤成三行。
+- 图框 `aria-hidden="true"`（装饰性，读屏只念单词），**不设 `pointer-events`**——
+  点图片等于点卡片，仍然翻中文。
+- 颜色一律走 CSS 变量，深色模式才不瞎（见文末注意）。
+
+### 验收
+
+| 脚本 | 管什么 |
+|---|---|
+| `tests/test_flashcard_pic.js` | 静态（孤儿键/纯度/覆盖率/与源文件一致）+ 真浏览器（20 张卡逐张比对 `PIC_MAP`、图片在单词左边、没图不裂版、不压住主题标签与 🔊） |
+
+配完图跑一次，20 项全绿才算数；改 UI 后还要跑 `smoke2.js`。
 
 ## 📖 分级阅读（2026-09-11 新增）
 
@@ -713,6 +783,7 @@ for fn in ('fetch', 'english_section', 'pick_ipa', 'spelling_target'):   # ← �
 | `tests/test_idle.js` | 免提朗读时的挂机豁免 | 12 / 0 |
 | `tests/smoke2.js` | **真 Chromium** 走遍每个界面 | 64 / 0 |
 | `tests/test_topics29.js` | **主题重构回归**（29 主题/5000 词不重复/大写词音标/地图 29 岛/星星迁移不漏星） | 30 / 0 |
+| `tests/test_flashcard_pic.js` | **翻卡配图**（孤儿键/纯度/覆盖率/与源文件一致 + 真浏览器逐卡比对/图片位置/不裂版） | 20 / 0 |
 | `tests/audit_static.js` | 静态审计（id 引用/落盘配对/.hidden 陷阱） | 无 ❌ |
 | `tests/audit_sentences.js` | 句库静态审计 | 无 ❌ |
 | `tests/perf.js` | 加载/渲染性能 | 见脚本 |
@@ -842,5 +913,7 @@ const CODE = cut('  function todayStr() {', '  function defaults()');
 - 新增持久化字段务必加进 `defaults()`，否则老用户存档读不到。
 - 词库是 `{cn,en}`；展示音标从 `IPA_MAP` 取，没有就留空（不要瞎编音标）。
 - 朗读始终是发音的权威来源，音标只是辅助。
+- **配图改了必须重跑 `python3 tools/pics/build_pic_map.py`**：`index.html` 里的 `PIC_MAP` 是编译产物，
+  只改 `tools/pics/parts/*.json` 而不编译 = 页面纹丝不动（`--check` 会当场抓出来）。
 - **数据常量里不要写 `//` 行内注释**：评估脚本用 `JSON.parse` 读它们会炸
   （`BASE_IPA` 里曾有个 `//` 注释，害得校验脚本报错）。要写说明就写进本文件。

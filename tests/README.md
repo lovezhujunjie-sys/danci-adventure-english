@@ -27,6 +27,7 @@ mkdir -p /tmp/pwtest && cd /tmp/pwtest && npm i playwright-core   # 只需一次
 cd ~/.claude/skills/自学英语
 NODE_PATH=/tmp/pwtest/node_modules node tests/smoke2.js            # 64 / 0
 NODE_PATH=/tmp/pwtest/node_modules node tests/test_ls_phrase.js    # 46 / 0  高频句音源 + 中英交替三档（hook TTS 验调用序列）
+NODE_PATH=/tmp/pwtest/node_modules node tests/test_flashcard_pic.js # 20 / 0 翻卡配图（图库结构 + 真卡片渲染/位置/不裂版）
 ```
 
 🔴 **离线缓存测试（`test_sw_offline.js`）必须走 HTTP** —— `file://` 下 Service Worker
