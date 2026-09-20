@@ -105,46 +105,65 @@ for (const k of Object.keys(VOCAB)) for (const w of VOCAB[k].words) if (!vocabWo
   await page.waitForTimeout(500);
 
   const click = async sel => { await page.locator(sel).first().click({ timeout: 5000, force: true }); await page.waitForTimeout(160); };
-  await click('#topic-more');                       // 展开全部主题（默认只露 9 个）
-  await click('.topic-btn[data-topic="T11"]');      // 动物与自然：最直观的一岛
-  await click('.count-btn[data-count="20"]');
-  await click('#start-btn');
 
-  ok('进入学习卡片模式', await page.evaluate(() => getComputedStyle(document.getElementById('study-screen')).display !== 'none' && !document.getElementById('study-screen').classList.contains('hidden')));
+  // 翻一岛 20 张卡，逐张把"用户看得见的东西"读回来
+  const sweep = async topic => {
+    // 回到设置屏（第一次进来时学习屏还没打开，按钮是 hidden，不能硬点）
+    const inStudy = await page.evaluate(() => !document.getElementById('study-screen').classList.contains('hidden'));
+    if (inStudy) { await click('#study-back'); await page.waitForTimeout(250); }
+    await click('#topic-more');                 // 展开全部主题（默认只露 9 个）
+    await click('.topic-btn[data-topic="' + topic + '"]');
+    await click('.count-btn[data-count="20"]');
+    await click('#start-btn');
+    const out = [];
+    for (let i = 0; i < 20; i++) {
+      const r = await page.evaluate(() => {
+        const pic = document.getElementById('fc-pic');
+        const en = document.getElementById('fc-en');
+        const main = document.getElementById('fc-main');
+        const card = document.getElementById('flashcard');
+        const tag = document.getElementById('fc-topic');
+        const spk = document.getElementById('fc-speak');
+        const pb = pic.getBoundingClientRect(), eb = en.getBoundingClientRect();
+        const tb = tag.getBoundingClientRect(), sb = spk.getBoundingClientRect();
+        const text = en.parentElement.getBoundingClientRect();
+        const cs = getComputedStyle(pic);
+        return {
+          en: en.textContent.trim(),
+          pic: pic.textContent.trim(),
+          picVisible: cs.display !== 'none' && pic.offsetParent !== null,
+          hasPicClass: main.classList.contains('has-pic'),
+          picLeft: pb.left, enLeft: eb.left, picW: pb.width, picTop: pb.top, picBottom: pb.bottom, picRight: pb.right,
+          tagBottom: tb.bottom, spkLeft: sb.left, spkBottom: sb.bottom,
+          picMid: pb.top + pb.height / 2, textMid: text.top + text.height / 2,
+          cardClip: card.scrollHeight > card.clientHeight + 2,
+          enClip: en.scrollHeight > en.clientHeight + 2,
+          cnHidden: document.getElementById('fc-cn').classList.contains('hidden-cn'),
+          vw: window.innerWidth, bodyScrollW: document.documentElement.scrollWidth,
+        };
+      });
+      r.expect = await page.evaluate(w => (typeof PIC_MAP !== 'undefined' ? (PIC_MAP[w] || '') : 'MISSING'), r.en);
+      out.push(r);
+      if (i < 19) await click('#next-btn');
+    }
+    return out;
+  };
 
-  const rows = [];
-  for (let i = 0; i < 20; i++) {
-    const r = await page.evaluate(() => {
-      const pic = document.getElementById('fc-pic');
-      const en = document.getElementById('fc-en');
-      const main = document.getElementById('fc-main');
-      const tag = document.getElementById('fc-topic');
-      const spk = document.getElementById('fc-speak');
-      const pb = pic.getBoundingClientRect(), eb = en.getBoundingClientRect();
-      const tb = tag.getBoundingClientRect(), sb = spk.getBoundingClientRect();
-      const text = en.parentElement.getBoundingClientRect();
-      const cs = getComputedStyle(pic);
-      return {
-        en: en.textContent.trim(),
-        pic: pic.textContent.trim(),
-        picVisible: cs.display !== 'none' && pic.offsetParent !== null,
-        hasPicClass: main.classList.contains('has-pic'),
-        picLeft: pb.left, enLeft: eb.left, picW: pb.width, picTop: pb.top, picBottom: pb.bottom, picRight: pb.right,
-        tagBottom: tb.bottom, spkLeft: sb.left, spkBottom: sb.bottom,
-        picMid: pb.top + pb.height / 2, textMid: text.top + text.height / 2,
-        enRight: eb.right, cardRight: document.getElementById('flashcard').getBoundingClientRect().right,
-        cnHidden: document.getElementById('fc-cn').classList.contains('hidden-cn'),
-        vw: window.innerWidth, bodyScrollW: document.documentElement.scrollWidth,
-      };
-    });
-    r.expect = await page.evaluate(w => (typeof PIC_MAP !== 'undefined' ? (PIC_MAP[w] || '') : 'MISSING'), r.en);
-    rows.push(r);
-    if (i < 19) await click('#next-btn');
-  }
+  let rows = await sweep('T11');   // 动物与自然：最直观的一岛
+  ok('进入学习卡片模式', await page.evaluate(() => !document.getElementById('study-screen').classList.contains('hidden')));
 
-  ok('20 张卡全部取到了英文单词', rows.every(r => r.en.length > 0));
+  const t11 = rows;
+  rows = rows.concat(await sweep('T02'));   // 社会与国家：专挑长单词（responsibility/international/constitution）
+  ok('两岛 40 张卡全部取到了英文单词', rows.every(r => r.en.length > 0));
   ok('渲染出的图片与 PIC_MAP 逐词一致', rows.every(r => r.pic === r.expect),
     rows.filter(r => r.pic !== r.expect).slice(0, 3).map(r => r.en + ': 页面=' + r.pic + ' 表=' + r.expect).join(' | '));
+  ok('长单词（14 字符级）没把卡片内部撑破/裁切', rows.every(r => !r.cardClip && !r.enClip),
+    rows.filter(r => r.cardClip || r.enClip).slice(0, 3).map(r => r.en).join(' '));
+
+  const withPic = t11.filter(r => r.expect).length;
+  ok('「动物与自然」这岛 20 张里至少 14 张有图（当前 ' + withPic + '/20）', withPic >= 14);
+  rows = t11;   // 后面的位置/版式断言继续用第一岛的数据
+
   ok('有图 → 图框真的可见（不是空的）', rows.filter(r => r.expect).every(r => r.picVisible && r.pic.length > 0));
   ok('没图 → 图框隐藏、卡片不留空框', rows.filter(r => !r.expect).every(r => !r.picVisible && !r.hasPicClass));
   ok('有图 → 图片在单词左边', rows.filter(r => r.expect).every(r => r.picLeft < r.enLeft));
@@ -157,9 +176,6 @@ for (const k of Object.keys(VOCAB)) for (const w of VOCAB[k].words) if (!vocabWo
     pic.filter(r => Math.abs(r.picMid - r.textMid) > 14).slice(0, 3).map(r => r.en + ':' + Math.round(r.picMid - r.textMid)).join(' '));
   ok('卡片没被配图挤到横向溢出', rows.every(r => r.bodyScrollW <= r.vw + 1),
     rows.filter(r => r.bodyScrollW > r.vw + 1).slice(0, 2).map(r => r.en + ':' + r.bodyScrollW + '>' + r.vw).join(' '));
-
-  const withPic = rows.filter(r => r.expect).length;
-  ok('「动物与自然」这岛 20 张里至少 14 张有图（当前 ' + withPic + '/20）', withPic >= 14);
 
   // 翻开中文：配图不该把原来的翻卡流程弄坏
   await page.locator('#flashcard').click({ force: true });
