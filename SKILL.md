@@ -40,7 +40,7 @@ description: 开发与迭代「单词大冒险」英语学习 web 应用——�
 
 ## 六大学习模式（首页 mode-card 选择）
 
-1. **📖 学习**（翻卡）— `startStudy/renderFlashcard`。**单词左边一张对应图片**（2026-09-20 起，`PIC_MAP`，见下节）→ 看英文+音标→点卡显示中文→标「✅认识 / 🤔不熟」。自动朗读。结束页列出陌生词。
+1. **📖 学习**（翻卡）— `startStudy/renderFlashcard`。看英文+音标→点卡显示中文→标「✅认识 / 🤔不熟」。自动朗读。结束页列出陌生词。**点开中文之后，单词左边会出现一张对应图片**（2026-09-20 起，`PIC_MAP`，见下节）——**没翻之前不出图**。
 2. **🗺️ 闯关地图**（选择题，2026-09-11 起替代原「✅ 闯关」入口）— `openMap/renderMap/startMapLevel/showMapEnd`。**29 座小岛 = 29 个主题词库**（2026-09-12 主题重构后），点岛直接开练，不再需要"先选主题、再选题数"两步（那两步是大人刷题思维，对小孩是门槛）。每关固定 **5 题**，按正确率给星：**全对 3 星 / ≥80% 2 星 / ≥60% 1 星**，不足 60% 得 0 星不计进度。顶部 HUD 实时显示「已通关 X / 29 关」+ 星星总数 ⭐。出题方向在地图顶部切（`#map-dir`：看中文→选英文 / 看英文→选中文），与全局 `selectedQuizMode` 共用。**不设关卡锁**——`mapUnlocked()` 恒 `true`，老曾 2026-09-11 定调："提前让大宝碰天书，锁关卡等于把天书藏起来，与目的相反"，**进度感交给星星总数而非锁**。当前进度岛飘「👦 你在这里」并自动 `scrollIntoView` 居中（`mapFrontier()` = 第一座还没拿到星的岛）。作答与结算沿用原闯关引擎：`renderQuestion/handleAnswer` 完全不变，`showEnd()` 开头 `if (mapKey) { showMapEnd(); return; }` 分流；`#restart-btn`「🔁 再挑战一次」、`#home-btn`/`#back-to-home`「🗺️ 回到地图」也都按 `mapKey` 是否非空分流。星星存 `localStorage['wordadv_map_stars']`（键为主题 key、值为该主题历史最高星数，只增不减），`['wordadv_map_open']` 存开图状态。**答对答错都不自动跳**：作答后停在当题显示反馈(✓/✗ + 音标 + 中文 + 🔊朗读)，由用户点 `#next-question-btn`「下一题 →」才前进——蒙对的词也能多看几眼加强记忆。（原有"⚡自动模式/📝练习模式"节奏切换器已移除，`selectedQuizPace` 变量保留但不再生效。）**遗留**：原闯关设置页里的「出题方向」`#quiz-options`（`data-quizmode` 按钮）因入口取消已成**孤儿 UI**（带 `hidden` 恒不显示），`syncQuizModeBtns()` 对它的操作已无实际作用；地图方向切换改用 `#map-dir`，勿误改。
 3. **🔤 字母拼读** — `renderPhonics`，5 个 tab（字母/辅音组合/元音组合/词尾词缀/其他组合），点卡或 🔊 听「字母名」与「拼读音」。
 4. **🎮 游戏乐园** — 5 个小游戏：看图猜词 `startEmojiGame`、字母拼图 `startSpellGame`、限时挑战 `startTimedGame`、连连看 `startMatchGame`、**听音选词** `startListenGame`（听 TTS 选中文）。`launchGame(g)` 统一入口，会调 `recordGamePlayed()`。**看图猜词为「手动翻页」**：答完不自动跳，停在当题显示反馈，由用户点 `#emoji-next`「下一题 →」（末题变「看结果 →」）才前进——给自学者看清答案/听完发音的节奏自主权（`renderEmojiQ` 每题开头先 `hidden` 掉该按钮，答完 `emojiIdx++` 后 `nextBtn.onclick = renderEmojiQ` 显示之）。
@@ -80,6 +80,10 @@ description: 开发与迭代「单词大冒险」英语学习 web 应用——�
 
 老曾原话：「**我的自学英语 app 你帮我把翻卡学点词模块，每个单词的左边或者右边放一个对应单词的图片，
 我觉得这样非常重要有助于加强单词的记忆**」。
+
+当天追加（原话）：「**调整下，当我没有点卡片显示中文的时候图片先不要出来**」——
+所以**图片属于"答案"的一部分：点开中文时它才和中文一起出现，没翻之前连图框都不许有**
+（他的理由很直白：图一亮出来就等于提前把答案泄露了，那这张卡就白翻了）。
 
 ### 为什么是 emoji，不是照片
 
@@ -128,9 +132,14 @@ python3 tools/pics/build_pic_map.py --check  # ④ 校验产物与源文件一�
 
 ### 界面（改之前先读）
 
-- 结构：`.flashcard > .fc-main > (.fc-pic + .fc-text)`，`renderFlashcard()` 里
-  按 `PIC_MAP[w.en]` 决定 `textContent` 与 `has-pic` 类。
+- 结构：`.flashcard > .fc-main > (.fc-pic + .fc-text)`。`renderFlashcard()` 只把
+  `PIC_MAP[w.en]` 塞进 `#fc-pic`，**然后统一调 `setPicVisible(false)` 藏起来**。
+- 🔴 **`setPicVisible(on)` 是唯一的开关**：`toggleCn()` 翻开中文时、`markUnknown()` 自动翻答案时
+  才传 `true`；收起中文时传 `false`。**判定同时看 DOM 里到底有没有图**——
+  没图的词永远不出图，卡片保持原来的居中版式。
 - **没图时 `.fc-pic` 同时挂 `.hidden` + CSS 兜底 `.fc-pic:empty{display:none}`**，卡片回到原来的居中版式。
+- 翻出来时图有个 0.18s 的 `picIn`（淡入 + 轻微放大），别让版式变化显得像卡了一下；
+  `prefers-reduced-motion` 下已一并关掉。
 - 有图时图框 104px（圆角 26px、`--soft`→`--line2` 渐变底），单词跟着缩到 30px；
   **≤430px 手机**降到 80px / 24px，免得英文单词被挤成三行。
 - 图框 `aria-hidden="true"`（装饰性，读屏只念单词），**不设 `pointer-events`**——
@@ -141,9 +150,9 @@ python3 tools/pics/build_pic_map.py --check  # ④ 校验产物与源文件一�
 
 | 脚本 | 管什么 |
 |---|---|
-| `tests/test_flashcard_pic.js` | 静态（孤儿键/纯度/覆盖率/与源文件一致）+ 真浏览器（20 张卡逐张比对 `PIC_MAP`、图片在单词左边、没图不裂版、不压住主题标签与 🔊） |
+| `tests/test_flashcard_pic.js` | 静态（孤儿键/纯度/覆盖率/与源文件一致）+ 真浏览器（**每张卡取"没翻/翻开"两次快照**：没翻时不许出图、翻开后逐张比对 `PIC_MAP`、图片在单词左边、没图不裂版、不压住主题标签与 🔊） |
 
-配完图跑一次，20 项全绿才算数；改 UI 后还要跑 `smoke2.js`。
+配完图跑一次，28 项全绿才算数；改 UI 后还要跑 `smoke2.js`。
 
 ## 📖 分级阅读（2026-09-11 新增）
 

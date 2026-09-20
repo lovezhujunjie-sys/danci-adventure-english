@@ -327,6 +327,9 @@
   .flashcard .fc-pic:empty { display: none; }
   .flashcard .fc-main.has-pic .fc-text { text-align: left; min-width: 0; }
   .flashcard .fc-main.has-pic .fc-en { font-size: 30px; }
+  /* 图是"翻开中文"时才出现的 —— 给个轻微的弹出，别让版式变化显得像卡了一下 */
+  @keyframes picIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: none; } }
+  .flashcard .fc-main.has-pic .fc-pic { animation: picIn 0.18s ease; }
   .flashcard .fc-ipa {
     font-size: 17px; color: #d97757;
     margin: 0 0 14px; font-weight: 500;
@@ -885,7 +888,7 @@
   @keyframes cardIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   .flashcard, .qcard, .type-card, .flashcard#review-card { animation: cardIn 0.22s ease; }
   @media (prefers-reduced-motion: reduce) {
-    .flashcard, .qcard, .type-card, .tslot, html, body { animation: none !important; transition: none !important; }
+    .flashcard, .qcard, .type-card, .tslot, .flashcard .fc-pic, html, body { animation: none !important; transition: none !important; }
   }
 
   /* ===== 日常高频句 + 句型骨架(2026-09-11 新增) ===== */
@@ -5474,13 +5477,11 @@ const LOW_QUALITY_KEYWORDS = [
     document.getElementById("fc-tap").textContent = "点卡片显示中文";
     document.getElementById("fc-topic").textContent = w._icon + " " + w._topic;
 
-    // 配图：有图 → 图片摆在单词左边（老曾 2026-09-20 的需求，图片帮着记词）；
-    // 没图的词隐藏图框，卡片照旧居中，不留空框。图库见 tools/pics/。
-    const pic = PIC_MAP[w.en] || "";
-    const picEl = document.getElementById("fc-pic");
-    picEl.textContent = pic;
-    picEl.classList.toggle("hidden", !pic);
-    document.getElementById("fc-main").classList.toggle("has-pic", !!pic);
+    // 配图：图片摆在单词左边（老曾 2026-09-20 的需求，图片帮着记词），
+    // 🔴 但**只在点开中文之后才出现**——没翻之前出图等于提前把答案泄露了（老曾 2026-09-20 补的要求）。
+    // 有图的词先只把图存进 DOM，不显示；没图的词更是从头到尾隐藏，卡片照旧居中不留空框。图库见 tools/pics/。
+    document.getElementById("fc-pic").textContent = PIC_MAP[w.en] || "";
+    setPicVisible(false);
 
     document.getElementById("prev-btn").disabled = studyIdx === 0;
 
@@ -5500,10 +5501,20 @@ const LOW_QUALITY_KEYWORDS = [
     unknownBtn.querySelector(".ab-text").textContent = isUnknown ? "✓ 不熟" : "不熟";
   }
 
+  // 配图的显示开关：只有"中文已翻开"时才把图放出来（老曾 2026-09-20）。
+  // 判定同时看 DOM 里到底有没有图 —— 没图的词永远不出图，卡片保持原来的居中版式。
+  function setPicVisible(on) {
+    const picEl = document.getElementById("fc-pic");
+    const show = !!on && !!picEl.textContent.trim();
+    picEl.classList.toggle("hidden", !show);
+    document.getElementById("fc-main").classList.toggle("has-pic", show);
+  }
+
   function toggleCn() {
     studyCnVisible = !studyCnVisible;
     document.getElementById("fc-cn").classList.toggle("hidden-cn", !studyCnVisible);
     document.getElementById("fc-tap").textContent = studyCnVisible ? "再次点击隐藏" : "点卡片显示中文";
+    setPicVisible(studyCnVisible);
   }
 
   function markKnown() {
@@ -5528,6 +5539,7 @@ const LOW_QUALITY_KEYWORDS = [
     // 显示中文（让用户看到答案）
     studyCnVisible = true;
     document.getElementById("fc-cn").classList.remove("hidden-cn");
+    setPicVisible(true);
     document.getElementById("fc-tap").textContent = "已记为陌生 · 点\"下一个\"继续";
     // 更新按钮状态
     document.getElementById("known-count").textContent = studyKnown.size;

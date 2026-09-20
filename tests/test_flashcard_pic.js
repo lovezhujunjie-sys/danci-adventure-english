@@ -1,5 +1,9 @@
 // 翻卡配图回归（2026-09-20 老曾需求：翻卡学单词时，单词旁边放一张对应图片）
 //
+// 🔴 2026-09-20 追加的要求：「当我没有点卡片显示中文的时候图片先不要出来」
+//    → 图片属于"答案"，只在点开中文之后才出现；没翻之前连图框都不许出现。
+//    下面每张卡都取两次快照：①没点开中文之前 ②点开中文之后，两次都要断言。
+//
 // 分两层：
 //   ① 静态：图库结构（孤儿键/纯度/覆盖率）+ index.html 里的 PIC_MAP 与 tools/pics/pic_map.json 是否一致
 //   ② 真浏览器：卡片上到底渲不渲染得出来、图片在不在单词左边、没图的词会不会裂版
@@ -57,6 +61,11 @@ for (const k of Object.keys(VOCAB)) for (const w of VOCAB[k].words) if (!vocabWo
   const cov = Object.keys(PIC_MAP).length / vocabWords.size;
   ok('图片覆盖率 ≥ ' + Math.round(COVER_FLOOR * 100) + '%（当前 ' + (cov * 100).toFixed(1) + '%）', cov >= COVER_FLOOR);
 
+  // 具体名词那一岛必须配得密（这一条是确定的，不受"随机抽 20 张"影响）
+  const t11 = VOCAB.T11.words;
+  const t11cov = t11.filter(w => PIC_MAP[w.en]).length / t11.length;
+  ok('「动物与自然」覆盖率 ≥ 75%（当前 ' + (t11cov * 100).toFixed(0) + '%）', t11cov >= 0.75);
+
   const authoredOrphans = Object.keys(AUTHORED).filter(k => !vocabWords.has(k));
   ok('人工表 pic_map.json 没有孤儿键', authoredOrphans.length === 0, authoredOrphans.slice(0, 8).join(', '));
 
@@ -106,7 +115,34 @@ for (const k of Object.keys(VOCAB)) for (const w of VOCAB[k].words) if (!vocabWo
 
   const click = async sel => { await page.locator(sel).first().click({ timeout: 5000, force: true }); await page.waitForTimeout(160); };
 
-  // 翻一岛 20 张卡，逐张把"用户看得见的东西"读回来
+  // 把"用户此刻看得见的东西"读回来
+  const snap = () => page.evaluate(() => {
+    const pic = document.getElementById('fc-pic');
+    const en = document.getElementById('fc-en');
+    const main = document.getElementById('fc-main');
+    const card = document.getElementById('flashcard');
+    const tag = document.getElementById('fc-topic');
+    const spk = document.getElementById('fc-speak');
+    const pb = pic.getBoundingClientRect(), eb = en.getBoundingClientRect();
+    const tb = tag.getBoundingClientRect(), sb = spk.getBoundingClientRect();
+    const text = en.parentElement.getBoundingClientRect();
+    const cs = getComputedStyle(pic);
+    return {
+      en: en.textContent.trim(),
+      pic: pic.textContent.trim(),
+      picVisible: cs.display !== 'none' && pic.offsetParent !== null,
+      hasPicClass: main.classList.contains('has-pic'),
+      picLeft: pb.left, enLeft: eb.left, picW: pb.width, picTop: pb.top, picBottom: pb.bottom, picRight: pb.right,
+      tagBottom: tb.bottom, spkLeft: sb.left, spkBottom: sb.bottom,
+      picMid: pb.top + pb.height / 2, textMid: text.top + text.height / 2,
+      cardClip: card.scrollHeight > card.clientHeight + 2,
+      enClip: en.scrollHeight > en.clientHeight + 2,
+      cnHidden: document.getElementById('fc-cn').classList.contains('hidden-cn'),
+      vw: window.innerWidth, bodyScrollW: document.documentElement.scrollWidth,
+    };
+  });
+
+  // 翻一岛 20 张卡：每张卡先量"没翻之前"，点开中文再量"翻之后"
   const sweep = async topic => {
     // 回到设置屏（第一次进来时学习屏还没打开，按钮是 hidden，不能硬点）
     const inStudy = await page.evaluate(() => !document.getElementById('study-screen').classList.contains('hidden'));
@@ -117,33 +153,12 @@ for (const k of Object.keys(VOCAB)) for (const w of VOCAB[k].words) if (!vocabWo
     await click('#start-btn');
     const out = [];
     for (let i = 0; i < 20; i++) {
-      const r = await page.evaluate(() => {
-        const pic = document.getElementById('fc-pic');
-        const en = document.getElementById('fc-en');
-        const main = document.getElementById('fc-main');
-        const card = document.getElementById('flashcard');
-        const tag = document.getElementById('fc-topic');
-        const spk = document.getElementById('fc-speak');
-        const pb = pic.getBoundingClientRect(), eb = en.getBoundingClientRect();
-        const tb = tag.getBoundingClientRect(), sb = spk.getBoundingClientRect();
-        const text = en.parentElement.getBoundingClientRect();
-        const cs = getComputedStyle(pic);
-        return {
-          en: en.textContent.trim(),
-          pic: pic.textContent.trim(),
-          picVisible: cs.display !== 'none' && pic.offsetParent !== null,
-          hasPicClass: main.classList.contains('has-pic'),
-          picLeft: pb.left, enLeft: eb.left, picW: pb.width, picTop: pb.top, picBottom: pb.bottom, picRight: pb.right,
-          tagBottom: tb.bottom, spkLeft: sb.left, spkBottom: sb.bottom,
-          picMid: pb.top + pb.height / 2, textMid: text.top + text.height / 2,
-          cardClip: card.scrollHeight > card.clientHeight + 2,
-          enClip: en.scrollHeight > en.clientHeight + 2,
-          cnHidden: document.getElementById('fc-cn').classList.contains('hidden-cn'),
-          vw: window.innerWidth, bodyScrollW: document.documentElement.scrollWidth,
-        };
-      });
-      r.expect = await page.evaluate(w => (typeof PIC_MAP !== 'undefined' ? (PIC_MAP[w] || '') : 'MISSING'), r.en);
-      out.push(r);
+      const before = await snap();
+      const expect = await page.evaluate(w => (typeof PIC_MAP !== 'undefined' ? (PIC_MAP[w] || '') : 'MISSING'), before.en);
+      await page.locator('#flashcard').click({ force: true });   // 点卡片 → 翻开中文
+      await page.waitForTimeout(200);
+      const after = await snap();
+      out.push({ en: before.en, expect, before, after });
       if (i < 19) await click('#next-btn');
     }
     return out;
@@ -152,20 +167,36 @@ for (const k of Object.keys(VOCAB)) for (const w of VOCAB[k].words) if (!vocabWo
   let rows = await sweep('T11');   // 动物与自然：最直观的一岛
   ok('进入学习卡片模式', await page.evaluate(() => !document.getElementById('study-screen').classList.contains('hidden')));
 
-  const t11 = rows;
   rows = rows.concat(await sweep('T02'));   // 社会与国家：专挑长单词（responsibility/international/constitution）
   ok('两岛 40 张卡全部取到了英文单词', rows.every(r => r.en.length > 0));
-  ok('渲染出的图片与 PIC_MAP 逐词一致', rows.every(r => r.pic === r.expect),
-    rows.filter(r => r.pic !== r.expect).slice(0, 3).map(r => r.en + ': 页面=' + r.pic + ' 表=' + r.expect).join(' | '));
-  ok('长单词（14 字符级）没把卡片内部撑破/裁切', rows.every(r => !r.cardClip && !r.enClip),
-    rows.filter(r => r.cardClip || r.enClip).slice(0, 3).map(r => r.en).join(' '));
 
-  const withPic = t11.filter(r => r.expect).length;
-  ok('「动物与自然」这岛 20 张里至少 14 张有图（当前 ' + withPic + '/20）', withPic >= 14);
-  rows = t11;   // 后面的位置/版式断言继续用第一岛的数据
+  // ① 没点开中文之前：图片和中文都不许出现
+  ok('没点开中文之前 → 中文是藏着的', rows.every(r => r.before.cnHidden));
+  ok('没点开中文之前 → 图片一律不出现（老曾 2026-09-20 的要求）',
+    rows.every(r => !r.before.picVisible && !r.before.hasPicClass),
+    rows.filter(r => r.before.picVisible || r.before.hasPicClass).slice(0, 3).map(r => r.en + '=' + r.before.pic).join(' '));
+  ok('没点开中文之前 → 有图的卡也不占位置（单词照旧居中）',
+    rows.filter(r => r.expect).every(r => !r.before.hasPicClass));
 
-  ok('有图 → 图框真的可见（不是空的）', rows.filter(r => r.expect).every(r => r.picVisible && r.pic.length > 0));
-  ok('没图 → 图框隐藏、卡片不留空框', rows.filter(r => !r.expect).every(r => !r.picVisible && !r.hasPicClass));
+  // ② 点开中文之后：中文和图一起出来
+  ok('点开中文之后 → 中文出来了', rows.every(r => !r.after.cnHidden));
+  ok('点开中文之后 → 图片与 PIC_MAP 逐词一致', rows.every(r => r.after.pic === r.expect),
+    rows.filter(r => r.after.pic !== r.expect).slice(0, 3).map(r => r.en + ': 页面=' + r.after.pic + ' 表=' + r.expect).join(' | '));
+  ok('点开中文之后 → 有图的卡图框真的显示出来（不是空的）',
+    rows.filter(r => r.expect).every(r => r.after.picVisible && r.after.pic.length > 0));
+  ok('点开中文之后 → 本来没图的卡仍然没有图框', rows.filter(r => !r.expect).every(r => !r.after.picVisible && !r.after.hasPicClass));
+  ok('长单词（14 字符级）没把卡片内部撑破/裁切', rows.every(r => !r.after.cardClip && !r.after.enClip),
+    rows.filter(r => r.after.cardClip || r.after.enClip).slice(0, 3).map(r => r.en).join(' '));
+
+  // 随机抽 20 张的落点会抖，这里只做"确实在渲染"的疏松下限（密度由上面静态那条守）
+  const sampled11 = rows.slice(0, 20).filter(r => r.expect).length;
+  ok('「动物与自然」随机抽的 20 张里有图（当前 ' + sampled11 + '/20）', sampled11 >= 10);
+  rows = rows.slice(0, 20).map(r => Object.assign({}, r, { pic: r.after.pic, expect: r.expect, picVisible: r.after.picVisible,
+    hasPicClass: r.after.hasPicClass, picLeft: r.after.picLeft, enLeft: r.after.enLeft, picW: r.after.picW,
+    picTop: r.after.picTop, picBottom: r.after.picBottom, picRight: r.after.picRight, tagBottom: r.after.tagBottom,
+    spkLeft: r.after.spkLeft, spkBottom: r.after.spkBottom, picMid: r.after.picMid, textMid: r.after.textMid,
+    vw: r.after.vw, bodyScrollW: r.after.bodyScrollW }));   // 位置/版式断言用"翻之后"的数据
+
   ok('有图 → 图片在单词左边', rows.filter(r => r.expect).every(r => r.picLeft < r.enLeft));
   ok('有图 → 图框尺寸正常（桌面/手机自适应后仍 ≥ 70px）', rows.filter(r => r.expect).every(r => r.picW >= 70));
   const pic = rows.filter(r => r.expect);
@@ -177,10 +208,24 @@ for (const k of Object.keys(VOCAB)) for (const w of VOCAB[k].words) if (!vocabWo
   ok('卡片没被配图挤到横向溢出', rows.every(r => r.bodyScrollW <= r.vw + 1),
     rows.filter(r => r.bodyScrollW > r.vw + 1).slice(0, 2).map(r => r.en + ':' + r.bodyScrollW + '>' + r.vw).join(' '));
 
-  // 翻开中文：配图不该把原来的翻卡流程弄坏
+  // ③ 再点一次 = 收起答案：中文和图要一起收回去
   await page.locator('#flashcard').click({ force: true });
   await page.waitForTimeout(200);
-  ok('点卡片仍能翻出中文', !(await page.evaluate(() => document.getElementById('fc-cn').classList.contains('hidden-cn'))));
+  const hidden = await snap();
+  ok('再点一次 → 中文收回去，图片也一起收回去',
+    hidden.cnHidden && !hidden.picVisible && !hidden.hasPicClass);
+
+  // ④ 点「不熟」会自动翻出中文，此时图片也该跟着出来（否则答案只给一半）
+  await page.locator('#flashcard').click({ force: true });   // 先翻回来
+  await page.waitForTimeout(150);
+  await page.locator('#flashcard').click({ force: true });   // 再收起来
+  await page.waitForTimeout(150);
+  const lastEn = await page.evaluate(() => document.getElementById('fc-en').textContent.trim());
+  const lastExpect = await page.evaluate(w => (PIC_MAP[w] || ''), lastEn);
+  await click('#btn-unknown');
+  const afterUnknown = await snap();
+  ok('点「不熟」自动翻出中文时，图片也跟着出来',
+    !afterUnknown.cnHidden && (lastExpect ? afterUnknown.picVisible : !afterUnknown.picVisible));
   ok('翻卡过程没有未捕获异常', errors.length === 0, errors[0]);
 
   await page.screenshot({ path: '/tmp/flashcard_pic.png' });
