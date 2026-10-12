@@ -1,0 +1,99 @@
+{
+  "groups": [
+    {
+      "name": "早上",
+      "icon": "🌅",
+      "tip": "起床到出门 —— 一天的开始最好说",
+      "items": [
+        ["I got up at six.", "我六点起的床。"],
+        ["I washed my face and brushed my teeth.", "我洗脸刷了牙。"],
+        ["I had eggs and milk for breakfast.", "我早饭吃的鸡蛋和牛奶。"],
+        ["I made a cup of coffee.", "我冲了杯咖啡。"],
+        ["I checked my phone.", "我看了下手机。"],
+        ["I got dressed and left home.", "我穿好衣服出门了。"],
+        ["It was raining this morning.", "今天早上下雨了。"],
+        ["I was ten minutes late.", "我晚了十分钟。"],
+        ["I didn't have time for breakfast.", "我没时间吃早饭。"],
+        ["I sent my daughter to school.", "我送女儿去了学校。"],
+        ["I read English for ten minutes.", "我读了十分钟英语。"],
+        ["I felt a little tired.", "我有点累。"]
+      ]
+    },
+    {
+      "name": "白天上班",
+      "icon": "💼",
+      "tip": "工作的一天 —— 忙、开会、见客户都在这",
+      "items": [
+        ["I went to work by subway.", "我坐地铁去上班。"],
+        ["I had a lot of things to do.", "我有很多事要做。"],
+        ["I had a meeting in the morning.", "我上午开了个会。"],
+        ["I answered many messages.", "我回了很多消息。"],
+        ["I had lunch with my colleague.", "我和同事一起吃了午饭。"],
+        ["I was very busy today.", "我今天很忙。"],
+        ["I talked with a customer.", "我和一个客户聊了。"],
+        ["I finished two tasks.", "我完成了两件事。"],
+        ["I was a little stressed.", "我有点压力。"],
+        ["I made a small mistake.", "我犯了个小错。"],
+        ["I learned something new today.", "我今天学了点新东西。"],
+        ["I didn't rest at noon.", "我中午没休息。"]
+      ]
+    },
+    {
+      "name": "下班路上",
+      "icon": "🌆",
+      "tip": "离开公司到回家 —— 买菜、接孩子、路上堵",
+      "items": [
+        ["I left the office at seven.", "我七点离开办公室。"],
+        ["I went to the market.", "我去了趟菜市场。"],
+        ["I bought some vegetables and fruit.", "我买了些蔬菜和水果。"],
+        ["I took a bus home.", "我坐公交回家。"],
+        ["The traffic was bad.", "路上很堵。"],
+        ["I picked up my daughter.", "我接了女儿。"],
+        ["I called my wife.", "我给我太太打了电话。"],
+        ["I walked for twenty minutes.", "我走了二十分钟。"],
+        ["I felt tired but fine.", "我累，但还好。"],
+        ["I wanted to go home quickly.", "我想快点回家。"],
+        ["It was already dark.", "天已经黑了。"],
+        ["I was hungry.", "我饿了。"]
+      ]
+    },
+    {
+      "name": "晚上在家",
+      "icon": "🌙",
+      "tip": "晚饭到睡觉 —— 做家务、陪娃、学英语",
+      "items": [
+        ["I had dinner at home.", "我在家吃的晚饭。"],
+        ["My wife cooked noodles.", "我太太煮了面。"],
+        ["I helped my daughter with her homework.", "我陪女儿写了作业。"],
+        ["I watched the news.", "我看了新闻。"],
+        ["I studied English for thirty minutes.", "我学了半小时英语。"],
+        ["I listened to English on my phone.", "我用手机听了英语。"],
+        ["I read a few pages of a book.", "我读了几页书。"],
+        ["I took a shower.", "我洗了个澡。"],
+        ["I talked with my family.", "我和家人聊了会儿。"],
+        ["I cleaned the kitchen.", "我收拾了厨房。"],
+        ["I felt much better.", "我好多了。"],
+        ["I went to bed at eleven.", "我十一点睡的。"]
+      ]
+    },
+    {
+      "name": "今天的心情",
+      "icon": "💗",
+      "tip": "最后加一句感受 —— 这才是「表达自己」",
+      "items": [
+        ["Today was a good day.", "今天过得不错。"],
+        ["Today was a busy day.", "今天是忙碌的一天。"],
+        ["I was happy today.", "我今天很开心。"],
+        ["I was a little tired.", "我有点累。"],
+        ["I felt worried about my work.", "我为工作有点担心。"],
+        ["I felt relaxed in the evening.", "晚上我放松下来了。"],
+        ["I'm proud of myself.", "我为自己骄傲。"],
+        ["I didn't give up.", "我没放弃。"],
+        ["I did my best today.", "我今天尽力了。"],
+        ["I want to do better tomorrow.", "明天我想做得更好。"],
+        ["I'm glad I studied today.", "我很高兴今天学了。"],
+        ["Tomorrow will be better.", "明天会更好。"]
+      ]
+    }
+  ]
+}

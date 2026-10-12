@@ -1,0 +1,75 @@
+{
+  "p_base": {
+    "name": "起步地基",
+    "icon": "🪜",
+    "items": [
+      { "frame": "I am ___", "cn": "我是……", "tip": "最基础的句型。am 只跟 I 用；说身份、状态、来自哪里都靠它", "slots": [["a teacher", "老师"], ["from Shanghai", "来自上海"], ["at home", "在家"], ["very tired", "很累"], ["busy today", "今天很忙"]] },
+      { "frame": "I am not ___", "cn": "我不是……", "tip": "否定就在 am 后面加 not，口语常说 I'm not", "slots": [["a doctor", "医生"], ["free today", "今天没空"], ["sure", "不确定"], ["ready", "没准备好"], ["hungry", "不饿"]] },
+      { "frame": "I have ___", "cn": "我有……", "tip": "表示拥有，也用来讲家人、时间、问题", "slots": [["two kids", "两个孩子"], ["a car", "一辆车"], ["no time", "没时间"], ["a question", "一个问题"], ["good news", "好消息"]] },
+      { "frame": "I have to ___", "cn": "我必须……", "tip": "have to = 不得不，讲责任和规定，比 must 更口语", "slots": [["go now", "现在就走"], ["work late", "加班"], ["cook dinner", "做晚饭"], ["take a bus", "坐公交"], ["finish it today", "今天做完"]] },
+      { "frame": "I like ___", "cn": "我喜欢……", "tip": "后面接名词或 -ing：I like coffee / I like reading", "slots": [["coffee", "咖啡"], ["reading", "读书"], ["this song", "这首歌"], ["walking", "散步"], ["Chinese food", "中餐"]] },
+      { "frame": "I don't like ___", "cn": "我不喜欢……", "tip": "don't 否定「我」的动词；主语是 he/she 才用 doesn't", "slots": [["spicy food", "辣的"], ["waiting", "等人"], ["rain", "下雨"], ["this color", "这个颜色"], ["crowded places", "人多的地方"]] },
+      { "frame": "I can ___", "cn": "我能……", "tip": "can 后面永远跟动词原形，不加 to", "slots": [["swim", "游泳"], ["drive", "开车"], ["help you", "帮你"], ["cook", "做饭"], ["speak a little English", "说一点英语"]] },
+      { "frame": "I can't ___", "cn": "我不能……", "tip": "can't 是 cannot 的缩写，口语里几乎都说 can't", "slots": [["hear you", "听不见你"], ["go today", "今天去不了"], ["sleep", "睡不着"], ["find it", "找不到"], ["afford it", "买不起"]] }
+    ]
+  },
+
+  "p_ask2": {
+    "name": "基础提问",
+    "icon": "❓",
+    "items": [
+      { "frame": "Do you ___?", "cn": "你……吗？", "tip": "一般疑问句，回答 Yes, I do. / No, I don't.", "slots": [["like coffee", "喜欢咖啡吗"], ["have time", "有时间吗"], ["live here", "住这儿吗"], ["speak English", "说英语吗"], ["need help", "需要帮忙吗"]] },
+      { "frame": "Are you ___?", "cn": "你是……吗？", "tip": "be 动词提问，回答 Yes, I am. / No, I'm not.", "slots": [["free tonight", "今晚有空吗"], ["from China", "来自中国吗"], ["ok", "还好吧"], ["busy now", "现在忙吗"], ["ready", "准备好了吗"]] },
+      { "frame": "Can you ___?", "cn": "你能……吗？", "tip": "请人帮忙最常用，对熟人刚好；要更客气用 Could you", "slots": [["help me", "帮我一下"], ["say it again", "再说一遍"], ["drive me there", "送我去那儿"], ["wait a minute", "等一分钟"], ["show me", "给我看看"]] },
+      { "frame": "What is ___?", "cn": "……是什么？", "tip": "问「是什么」，回答用 It's ...", "slots": [["this", "这是什么"], ["your name", "你叫什么"], ["the price", "价格多少"], ["your plan", "你打算怎么办"], ["the problem", "问题出在哪"]] },
+      { "frame": "What are you ___?", "cn": "你在……？", "tip": "问对方正在做什么，回答用 I'm -ing", "slots": [["doing", "在做什么"], ["looking for", "在找什么"], ["talking about", "在说什么"], ["waiting for", "在等什么"], ["thinking about", "在想什么"]] },
+      { "frame": "Where is ___?", "cn": "……在哪儿？", "tip": "找东西找地方都用它；复数要用 Where are ...", "slots": [["the toilet", "洗手间在哪"], ["my phone", "我手机在哪"], ["the station", "车站在哪"], ["your office", "你办公室在哪"], ["the key", "钥匙在哪"]] },
+      { "frame": "How much ___?", "cn": "……多少钱？", "tip": "问价钱。单数 How much is it? 复数 How much are they?", "slots": [["is it", "多少钱"], ["is this", "这个多少钱"], ["are these", "这些多少钱"], ["is the ticket", "票多少钱"], ["do I need", "我需要多少"]] },
+      { "frame": "Who is ___?", "cn": "……是谁？", "tip": "问人。回答用 He's / She's / That's ...", "slots": [["he", "他是谁"], ["that", "那是谁"], ["your teacher", "你老师是谁"], ["calling", "谁打来的"], ["coming", "谁要来"]] }
+    ]
+  },
+
+  "p_self": {
+    "name": "说我自己",
+    "icon": "🙋",
+    "items": [
+      { "frame": "I'm ___", "cn": "我现在……", "tip": "说状态和心情，一个词就能开口：I'm tired.", "slots": [["tired", "累"], ["hungry", "饿"], ["busy", "忙"], ["happy", "开心"], ["worried", "担心"]] },
+      { "frame": "I'm from ___", "cn": "我来自……", "tip": "自我介绍第一句。也可以说 I come from ...", "slots": [["Shanghai", "上海"], ["China", "中国"], ["the north", "北方"], ["a small town", "小地方"], ["Jiangsu", "江苏"]] },
+      { "frame": "I live in ___", "cn": "我住在……", "tip": "城市用 in，街道门牌用 at", "slots": [["Shanghai", "上海"], ["Pudong", "浦东"], ["a small city", "小城市"], ["the city center", "市中心"], ["that building", "那栋楼"]] },
+      { "frame": "I work ___", "cn": "我在……工作", "tip": "讲职业和地点，是别人最常问的两件事", "slots": [["in a hospital", "在医院"], ["at home", "在家"], ["for a small company", "在小公司"], ["as a driver", "当司机"], ["in sales", "做销售"]] },
+      { "frame": "My ___ is ___", "cn": "我的……是……", "tip": "介绍自己的信息，名字、电话、工作都能套", "slots": [["name is Wei", "名字叫阿伟"], ["number is 138...", "电话是……"], ["job is hard", "工作很累"], ["English is poor", "英语不好"], ["son is ten", "儿子十岁"]] },
+      { "frame": "I want to ___", "cn": "我想……", "tip": "想做什么，后面直接跟动词", "slots": [["learn English", "学英语"], ["buy a house", "买房"], ["go home", "回家"], ["take a rest", "歇一会儿"], ["change my job", "换个工作"]] },
+      { "frame": "I think ___", "cn": "我觉得……", "tip": "说看法最万能的开口，后面是一整句话，别省主语", "slots": [["it's fine", "挺好的"], ["I can do it", "我能做到"], ["it's too late", "太晚了"], ["we should go", "该走了"], ["English is useful", "英语有用"]] },
+      { "frame": "I'm going to ___", "cn": "我打算……", "tip": "讲计划。将来时最口语的说法，跟 I will 意思接近", "slots": [["learn English", "学英语"], ["see a friend", "见个朋友"], ["take a trip", "出去旅个游"], ["start tomorrow", "明天开始"], ["buy a new phone", "买个新手机"]] }
+    ]
+  },
+
+  "p_daily": {
+    "name": "过一天",
+    "icon": "📔",
+    "items": [
+      { "frame": "I get up at ___", "cn": "我……起床", "tip": "讲每天的习惯用一般现在时，几点用 at", "slots": [["six", "六点"], ["six thirty", "六点半"], ["seven", "七点"], ["eight", "八点"], ["nine on weekends", "周末九点"]] },
+      { "frame": "I have ___ for breakfast", "cn": "我早饭吃……", "tip": "三餐都用 for：breakfast / lunch / dinner", "slots": [["eggs", "鸡蛋"], ["noodles", "面条"], ["milk and bread", "牛奶面包"], ["rice", "米饭"], ["nothing", "什么都不吃"]] },
+      { "frame": "I go to work ___", "cn": "我……去上班", "tip": "交通方式：by bus / by subway / on foot / drive", "slots": [["by subway", "坐地铁"], ["by bus", "坐公交"], ["by car", "开车"], ["on foot", "走路"], ["at eight", "八点去"]] },
+      { "frame": "I'm ___ now", "cn": "我现在正在……", "tip": "进行时 = be + doing，只在「此刻正在做」时用", "slots": [["working", "在工作"], ["cooking", "做饭"], ["driving", "开车"], ["waiting", "等人"], ["eating", "吃饭"]] },
+      { "frame": "I ___ every day", "cn": "我每天……", "tip": "讲习惯和坚持的事，every day 放句尾最自然", "slots": [["read", "读书"], ["walk", "散步"], ["study English", "学英语"], ["clean the room", "打扫房间"], ["call my mom", "给我妈打电话"]] },
+      { "frame": "I'm busy ___", "cn": "我……很忙", "tip": "说忙可以加时间：today / this week / these days", "slots": [["today", "今天很忙"], ["this week", "这周很忙"], ["this morning", "今早很忙"], ["right now", "现在很忙"], ["these days", "最近很忙"]] },
+      { "frame": "I want to ___ first", "cn": "我想先……", "tip": "先做哪件事，first 放句尾最自然", "slots": [["take a shower", "先洗个澡"], ["have a rest", "先歇会儿"], ["eat something", "先吃点东西"], ["finish this", "先做完这个"], ["go home", "先回家"]] },
+      { "frame": "It's time to ___", "cn": "该……了", "tip": "最常用的「催自己/催别人」句型", "slots": [["go", "该走了"], ["sleep", "该睡了"], ["eat", "该吃饭了"], ["work", "该干活了"], ["pick up the kids", "该接孩子了"]] }
+    ]
+  },
+
+  "p_past": {
+    "name": "说昨天",
+    "icon": "⏪",
+    "items": [
+      { "frame": "I ___ yesterday", "cn": "我昨天……", "tip": "说过去要用过去式：worked / played / watched，规则动词加 -ed", "slots": [["worked", "上班了"], ["rested", "休息了"], ["went out", "出门了"], ["stayed home", "待在家"], ["studied English", "学了英语"]] },
+      { "frame": "I went to ___", "cn": "我去了……", "tip": "go 的过去式是 went，去任何地方都用它", "slots": [["work", "上班"], ["the market", "菜市场"], ["the hospital", "医院"], ["a meeting", "开了个会"], ["see a friend", "见朋友"]] },
+      { "frame": "I was ___", "cn": "我那时……", "tip": "be 动词过去式：I/he/she 用 was，you/we/they 用 were", "slots": [["very tired", "很累"], ["at home", "在家"], ["busy all day", "忙了一整天"], ["late", "迟到了"], ["happy to see him", "见到他很高兴"]] },
+      { "frame": "I had ___", "cn": "我吃了 / 我有……", "tip": "have 的过去式是 had，吃饭、开会都能用", "slots": [["breakfast at seven", "七点吃的早饭"], ["a long day", "忙了一整天"], ["a meeting", "开了个会"], ["no time", "没时间"], ["a good rest", "好好休息了"]] },
+      { "frame": "It was ___", "cn": "那……", "tip": "形容过去的事或天气：It was great / hot / boring", "slots": [["great", "很棒"], ["very hot", "很热"], ["a busy day", "忙碌的一天"], ["too expensive", "太贵了"], ["ok", "还行"]] },
+      { "frame": "I didn't ___", "cn": "我没……", "tip": "过去时否定用 didn't + 动词原形，动词不再加 -ed", "slots": [["sleep well", "没睡好"], ["go out", "没出门"], ["finish it", "没做完"], ["see him", "没见到他"], ["have time", "没时间"]] },
+      { "frame": "Did you ___?", "cn": "你……了吗？", "tip": "过去时提问用 Did + 动词原形，回答 Yes, I did. / No, I didn't.", "slots": [["sleep well", "睡好了吗"], ["eat", "吃了吗"], ["go there", "去了吗"], ["like it", "喜欢吗"], ["call him", "给他打电话了吗"]] }
+    ]
+  }
+}

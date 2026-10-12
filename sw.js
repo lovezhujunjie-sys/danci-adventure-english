@@ -23,7 +23,7 @@
 //    2026-09-11 v3：主题重构 51→82，10 个「高频补充①~⑩」拆成 41 个按词义命名的主题。
 //    2026-09-17 v4：磨耳朵加「💬 高频句」音源(392 句/8 场景)、朗读方式改三档
 //                   (纯英文/中英交替/中英加读，默认中英交替)，短文默认值一并改掉。
-const VERSION = 'danci-2026-09-17';
+const VERSION = 'danci-2026-10-12';
 const INDEX = new URL('./index.html', self.location.href).href;
 
 self.addEventListener('install', e => {

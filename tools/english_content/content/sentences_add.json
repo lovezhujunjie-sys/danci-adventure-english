@@ -1,0 +1,105 @@
+{
+  "greeting": [
+    ["How are things with you?", "你那边情况怎么样？"],
+    ["It's good to see you again.", "又见到你真好。"],
+    ["I hope you're doing well.", "希望你一切都好。"],
+    ["Give my regards to your family.", "代我问候你家人。"],
+    ["Say hello to your wife for me.", "帮我向你太太问好。"],
+    ["Long time no see, you look great.", "好久不见，你气色不错。"],
+    ["What have you been up to?", "你最近在忙什么？"],
+    ["Let's catch up soon.", "我们找时间聊聊。"],
+    ["Have a safe trip.", "一路平安。"],
+    ["Take care.", "多保重。"]
+  ],
+
+  "smalltalk": [
+    ["The weather is nice today.", "今天天气不错。"],
+    ["How's your family?", "你家人怎么样？"],
+    ["Are you busy these days?", "你最近忙吗？"],
+    ["What do you do for fun?", "你平时有什么爱好？"],
+    ["I like watching movies.", "我喜欢看电影。"],
+    ["Do you like this city?", "你喜欢这座城市吗？"],
+    ["I've heard a lot about you.", "久仰大名。"],
+    ["It's been a long day.", "今天真够累的。"],
+    ["Let's have dinner together sometime.", "改天一起吃饭。"],
+    ["I should get going.", "我该走了。"]
+  ],
+
+  "dining": [
+    ["A table for two, please.", "两位，谢谢。"],
+    ["Can I see the menu?", "能看下菜单吗？"],
+    ["What do you recommend?", "你推荐什么？"],
+    ["I'll have the same.", "我要一样的。"],
+    ["Not too spicy, please.", "不要太辣。"],
+    ["Could we have some water?", "能给我们点水吗？"],
+    ["This is delicious.", "这个真好吃。"],
+    ["Can I have the bill?", "买单。"],
+    ["Let's split the bill.", "我们 AA 吧。"],
+    ["I'm full, thanks.", "我吃饱了，谢谢。"]
+  ],
+
+  "shopping": [
+    ["How much is this?", "这个多少钱？"],
+    ["Do you have a bigger size?", "有大一号的吗？"],
+    ["Can I try it on?", "能试穿吗？"],
+    ["It's too expensive.", "太贵了。"],
+    ["Any discount?", "有折扣吗？"],
+    ["I'll take it.", "我买了。"],
+    ["Do you have this in another color?", "这个有别的颜色吗？"],
+    ["Can I pay by card?", "能刷卡吗？"],
+    ["Please give me a receipt.", "请给我小票。"],
+    ["I'm just looking, thanks.", "我随便看看，谢谢。"]
+  ],
+
+  "travel": [
+    ["Where is the subway station?", "地铁站在哪？"],
+    ["How do I get to the airport?", "怎么去机场？"],
+    ["Is it far from here?", "离这儿远吗？"],
+    ["Which line should I take?", "我该坐哪条线？"],
+    ["How long does it take?", "要多长时间？"],
+    ["One ticket to the city center, please.", "一张去市中心的票。"],
+    ["Is this seat taken?", "这个座位有人吗？"],
+    ["Please let me know when we arrive.", "到了请告诉我。"],
+    ["I think I'm lost.", "我好像迷路了。"],
+    ["Can you show me on the map?", "能在地图上指给我看吗？"]
+  ],
+
+  "health": [
+    ["I don't feel well.", "我不太舒服。"],
+    ["I have a headache.", "我头疼。"],
+    ["I have a fever.", "我发烧了。"],
+    ["My stomach hurts.", "我胃疼。"],
+    ["I need to see a doctor.", "我要看医生。"],
+    ["Where is the hospital?", "医院在哪？"],
+    ["Do I need medicine?", "要吃药吗？"],
+    ["How many times a day?", "一天吃几次？"],
+    ["I'm allergic to this.", "我对这个过敏。"],
+    ["I feel much better now.", "我现在好多了。"]
+  ],
+
+  "requests": [
+    ["Could you help me?", "能帮我一下吗？"],
+    ["Would you mind waiting?", "你介意等一下吗？"],
+    ["Can I ask you something?", "我能问你件事吗？"],
+    ["Please speak a bit slower.", "请说慢一点。"],
+    ["Could you write it down?", "能写下来吗？"],
+    ["Can I borrow your phone?", "能借下你手机吗？"],
+    ["Please don't tell anyone.", "请别告诉别人。"],
+    ["Could you do me a favor?", "能帮我个忙吗？"],
+    ["I'm sorry to bother you.", "抱歉打扰你。"],
+    ["Thanks a lot for your help.", "非常感谢你的帮助。"]
+  ],
+
+  "daily": [
+    ["What time do you get up?", "你几点起床？"],
+    ["I have to go now.", "我得走了。"],
+    ["Let me think about it.", "让我想想。"],
+    ["I'll do it right away.", "我马上去做。"],
+    ["Have you eaten yet?", "你吃饭了吗？"],
+    ["I'm cooking dinner.", "我在做晚饭。"],
+    ["Please turn off the light.", "请关灯。"],
+    ["I'm going to take a shower.", "我去洗个澡。"],
+    ["Let's go for a walk.", "我们出去走走吧。"],
+    ["I'm going to bed now.", "我睡了。"]
+  ]
+}

@@ -81,11 +81,12 @@ const ok = (name, cond, extra) => {
   ok('主题区已隐藏', !(await vis('#topic-grid')));
   ok('数量选择器已隐藏', !(await vis('.count-grid')));
   ok('篇目区已隐藏', !(await vis('#ls-book-grid')));
-  ok('场景网格 9 个按钮（全部 + 8 场景）', (await page.locator('#ls-cat-grid .topic-btn').count()) === 9);
-  // —— nth-child(n+10) 陷阱：全局规则会藏掉第 10 个及以后。8 个场景刚好卡在边界上，
-  //    将来加第 9 个场景就会踩到，所以这里连「最后一个可见」一起验
-  ok('🔴「全部」按钮可见', await vis('#ls-cat-grid .topic-btn[data-cat="all"]'));
+  // 🔴 数量必须**动态**跟 SENTENCES 走（2026-10-12 扩到 16 场景时这里还写死 9，直接把测试打挂）
   const catKeys = await page.evaluate(() => Object.keys(SENTENCES));
+  ok(`场景网格 ${1 + catKeys.length} 个按钮（全部 + ${catKeys.length} 场景）`, (await page.locator('#ls-cat-grid .topic-btn').count()) === 1 + catKeys.length);
+  // —— nth-child(n+10) 陷阱：全局规则会藏掉第 10 个及以后。场景数早已越过边界，
+  //    所以这里连「最后一个可见」一起验（#ls-cat-grid 必须带 topic-open 类）
+  ok('🔴「全部」按钮可见', await vis('#ls-cat-grid .topic-btn[data-cat="all"]'));
   ok('🔴 最后一个场景按钮可见 —— nth-child 陷阱', await vis('#ls-cat-grid .topic-btn[data-cat="' + catKeys[catKeys.length - 1] + '"]'));
   const startTxt = ((await page.locator('#start-btn').textContent()) || '').trim();
   ok('🔴 开始按钮文案跟着变「高频句」', startTxt.includes('高频句'), '实际「' + startTxt + '」');

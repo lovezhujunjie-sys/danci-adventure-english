@@ -1,0 +1,34 @@
+{
+  "p_request": [
+    { "frame": "Do you mind if I ___?", "cn": "我……你介意吗？", "tip": "请求许可，比 Can I 更客气；注意反着答：不介意要说 No", "slots": [["sit here", "坐这儿"], ["open the window", "开窗"], ["turn on the AC", "开空调"], ["take this", "拿这个"], ["leave early", "早点走"]] },
+    { "frame": "Could I ___?", "cn": "我可以……吗？", "tip": "Could I 比 Can I 客气，办公、打电话最常用", "slots": [["ask a question", "问个问题"], ["have your name", "问下你怎么称呼"], ["get a menu", "要份菜单"], ["pay later", "晚点付"], ["take a photo", "拍张照"]] }
+  ],
+  "p_want": [
+    { "frame": "I'd rather ___", "cn": "我宁愿……", "tip": "表达偏好，后面跟动词原形：I'd rather stay home.", "slots": [["stay home", "待在家"], ["walk", "走路"], ["wait", "等一等"], ["eat out", "出去吃"], ["do it tomorrow", "明天再做"]] },
+    { "frame": "I'm looking for ___", "cn": "我在找……", "tip": "逛店、找路、找人的万能句", "slots": [["a jacket", "一件外套"], ["my keys", "我的钥匙"], ["a hotel", "一家酒店"], ["the manager", "经理"], ["a cheaper one", "便宜点的"]] }
+  ],
+  "p_opinion": [
+    { "frame": "I agree ___", "cn": "我同意……", "tip": "同意人用 with you，同意方案用 with the plan", "slots": [["with you", "同意你"], ["with that", "同意那个"], ["completely", "完全同意"], ["in part", "部分同意"], ["it's a good idea", "这主意不错"]] },
+    { "frame": "I'm afraid ___", "cn": "恐怕……", "tip": "委婉地拒绝或说不好的消息，比直接拒绝好听得多", "slots": [["I can't", "恐怕我去不了"], ["it's sold out", "恐怕卖完了"], ["I'm late", "恐怕我要迟到"], ["not", "恐怕不行"], ["it won't work", "恐怕行不通"]] }
+  ],
+  "p_ask": [
+    { "frame": "Is this ___?", "cn": "这是……吗？", "tip": "确认东西时的基本问法", "slots": [["the right way", "走对了吗"], ["your bag", "你的包吗"], ["the last one", "最后一个吗"], ["free", "免费的吗"], ["ok", "这个可以吗"]] },
+    { "frame": "How long ___?", "cn": "要多久？", "tip": "问时间长度，也是砍价的软话", "slots": [["does it take", "要多久"], ["will it take", "得多久"], ["is the wait", "要等多久"], ["do I wait", "我要等多久"], ["is the trip", "路上多久"]] }
+  ],
+  "p_time": [
+    { "frame": "What time ___?", "cn": "几点……？", "tip": "问具体钟点，回答用 at + 时间（at six / at six thirty）", "slots": [["do you open", "你们几点开门"], ["is the meeting", "会议几点"], ["do we leave", "我们几点走"], ["does it start", "几点开始"], ["shall I come", "我几点来"]] },
+    { "frame": "Let's meet ___", "cn": "我们……见吧", "tip": "约见面最省事的一句", "slots": [["at six", "六点见"], ["tomorrow", "明天见"], ["at the station", "车站见"], ["after work", "下班见"], ["next week", "下周见"]] }
+  ],
+  "p_feel": [
+    { "frame": "I feel ___", "cn": "我觉得……", "tip": "后面接形容词，说身体和心情都行", "slots": [["much better", "好多了"], ["a bit tired", "有点累"], ["cold", "有点冷"], ["nervous", "紧张"], ["great today", "今天感觉很好"]] },
+    { "frame": "I'm worried about ___", "cn": "我担心……", "tip": "讲心事的高频句，about 后面接人或事", "slots": [["my son", "我儿子"], ["the price", "价格"], ["tomorrow's test", "明天的考试"], ["my job", "我的工作"], ["the weather", "天气"]] }
+  ],
+  "p_advice": [
+    { "frame": "You'd better ___", "cn": "你最好……", "tip": "建议里带点提醒意味，比 should 更急一点", "slots": [["take a rest", "休息一下"], ["go now", "现在就走"], ["see a doctor", "去看医生"], ["book early", "早点订"], ["not be late", "别迟到"]] },
+    { "frame": "Why not ___?", "cn": "为什么不……？", "tip": "提议和劝人，后面接动词原形", "slots": [["ask him", "问问他"], ["try again", "再试一次"], ["take a taxi", "打个车吧"], ["come with us", "跟我们一起来"], ["do it now", "现在就做"]] }
+  ],
+  "p_confirm": [
+    { "frame": "Is that ___?", "cn": "那是……吗？", "tip": "确认理解或确认东西，一句话就够", "slots": [["right", "对吗"], ["ok", "可以吗"], ["what you mean", "你的意思吗"], ["all", "就这些吗"], ["enough", "够了吗"]] },
+    { "frame": "You mean ___?", "cn": "你是说……？", "tip": "没听清或想确认，把关键词重复一遍就行", "slots": [["tomorrow", "明天吗"], ["he's coming", "他要来吗"], ["it's free", "免费的吗"], ["not now", "现在不行吗"], ["this one", "是这个吗"]] }
+  ]
+}

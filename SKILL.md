@@ -1,6 +1,6 @@
 ---
 name: 自学英语
-description: 开发与迭代「单词大冒险」英语学习 web 应用——🔴**主要给老曾本人用**（成年初学者，自述水平"和大宝差不多"；大宝曾麟轩只是偶尔陪玩）。老曾 2026-09-11 亲口修正，旧"亲子共学玩具/决策先问大宝"的锚点已作废。单文件 index.html，纯前端 + localStorage，含六大单词模式(翻卡学习/🗺️闯关地图29岛拿星/字母拼读/游戏乐园/拼写默写/听力磨耳朵免提自动连播,音源三个:**单词**/**短文逐句**/**日常高频句392句8场景**,朗读方式三档(纯英文/中英交替/中英加读,默认中英交替)) + 📖分级阅读(2026-09-11 已扩充到 20 篇分级短文:入门4/进阶8/挑战8,在App里直接读·点词即查即收·全文连播·一键转听力磨耳朵) + ⏱️今日30分钟打卡(只算真在学的时长:学习界面+页面可见+2分钟内有操作) + 🔤基础词表层 BASE_CN/BASE_IPA(根修词库对虚词/代词/不规则过去式/数词/人名的盲区) + 开口说双模块(日常高频句 392 句·点词查义·整句朗读 + 句型骨架 24 个可替换框架)+ 生词本间隔复习(SRS,可移除/全部提前复习) + 进度仪表盘(每日目标可调) + 成就系统 + 优选发音朗读 + 深色模式 + 设置持久化(发音/语速/主题/打字偏好) + 亲子向可爱皮肤(糖果色/果冻卡/撒花动效) + 双人对战(爸爸 vs 大宝)。词库 5000 个日常高频词、29 个主题（主题按词义命名，🔴**不许再出现「高频补充①~⑩」这类无语义桶、也不许按词性分桶**）。触发场景：用户想新增/优化单词大冒险的功能、加单词/主题词库、加新游戏或学习模式、改 SRS/生词本逻辑、做学习数据可视化与激励、调发音/音标、改视觉文案、或部署分享。每次改完都要：①更新本地 skill 文件 ②commit 并 push 到 GitHub。
+description: 开发与迭代「单词大冒险」英语学习 web 应用——🔴**主要给老曾本人用**（成年初学者，自述水平"和大宝差不多"；大宝曾麟轩只是偶尔陪玩）。老曾 2026-09-11 亲口修正，旧"亲子共学玩具/决策先问大宝"的锚点已作废。单文件 index.html，纯前端 + localStorage，含六大单词模式(翻卡学习/🗺️闯关地图29岛拿星/字母拼读/游戏乐园/拼写默写/听力磨耳朵免提自动连播,音源三个:**单词**/**短文逐句**/**日常高频句792句16场景**,朗读方式三档(纯英文/中英交替/中英加读,默认中英交替)) + 📖分级阅读(2026-09-11 已扩充到 20 篇分级短文:入门4/进阶8/挑战8,在App里直接读·点词即查即收·全文连播·一键转听力磨耳朵) + ⏱️今日30分钟打卡(只算真在学的时长:学习界面+页面可见+2分钟内有操作) + 🎯每天30分钟三步走(2026-10-12,10分钟高频句/10分钟听力跟读/10分钟自己开口,可打勾) + 🔤基础词表层 BASE_CN/BASE_IPA(根修词库对虚词/代词/不规则过去式/数词/人名的盲区) + 开口说四模块(日常高频句 792 句·点词查义·整句朗读 + 句型骨架 79 个可替换框架/13 组·点词查义·🔁跟读 + 📔说今天的事(按时间线勾句拼成"我的一天",不看中文自己说) + 🪜零基础起步(I am/I have/I like/I can/Do you 等 15 个地基骨架)) + 🔁跟读引擎(waitSpeak/followSpeak/followList:读→停→再读,带兜底超时与令牌作废) + 生词本间隔复习(SRS,可移除/全部提前复习) + 进度仪表盘(每日目标可调) + 成就系统 + 优选发音朗读 + 深色模式 + 设置持久化(发音/语速/主题/打字偏好) + 亲子向可爱皮肤(糖果色/果冻卡/撒花动效) + 双人对战(爸爸 vs 大宝)。词库 5000 个日常高频词、29 个主题（主题按词义命名，🔴**不许再出现「高频补充①~⑩」这类无语义桶、也不许按词性分桶**）。🔴**扩充内容的唯一正确姿势**：改 `tools/english_content/content/*.json` 再跑 `node tools/english_content/build.mjs`（逐词释义/音标自动生成并自检，别手写进 index.html）。触发场景：用户想新增/优化单词大冒险的功能、加单词/主题词库、加句子/句型内容、加新游戏或学习模式、改 SRS 生词本逻辑、做学习数据可视化与激励、调发音/音标、改视觉文案、或部署分享。每次改完都要：①更新本地 skill 文件 ②commit 并 push 到 GitHub。
 ---
 
 # 自学英语 · 单词大冒险 App
@@ -48,7 +48,7 @@ description: 开发与迭代「单词大冒险」英语学习 web 应用——�
 6. **🎧 听力磨耳朵**（顶级模式，整行 featured 卡）— `startListening/lsRun/lsPlay/lsPause`。**免提自动连播**：按选定的「朗读方式」念完一条再走下一个（见下节），列表播完若开「循环播放」则洗牌再来。供开车/跑步/做家务戴耳机用。核心约定：**`lsSpeak()` 是带兜底超时的可等待朗读**（防个别机型 `onend` 不触发卡死队列）；`lsToken` 令牌使暂停/跳词后旧循环立即作废；播放中用 **Wake Lock API 防熄屏**（`lsWakeOn/lsWakeOff` + visibilitychange 回来重新申请），因为锁屏会被系统掐断 speechSynthesis；每听完一句 `recordStudied()` 计入今日/连续天数。控件：⏮ ▶/⏸ ⏭ 大按钮 + `ls-*` 系列 id。UI 有安全提示（开车用车架、锁屏可能停）。
 
 ### 🎧 听力三音源：单词 / 短文 / 高频句
-听力模式有**三个音源**（`lsSource`）：`word`（单词连播，老逻辑）、`sent`（分级阅读 20 篇按句连听，2026-09-11 加）、`phrase`（**日常高频句 392 句 / 8 场景**，2026-09-17 加）。
+听力模式有**三个音源**（`lsSource`）：`word`（单词连播，老逻辑）、`sent`（分级阅读 20 篇按句连听，2026-09-11 加）、`phrase`（**日常高频句 792 句 / 16 场景**，2026-09-17 加、2026-10-12 扩倍）。
 - 设置屏「听什么：🔤单词 / 📖短文 / 💬高频句」三片 chips（`#ls-source-opts`）。选短文 → 「选择主题+数量」换成「听哪几篇」（`#ls-book-grid`，21 个按钮 = 全部 + 20 篇，计数是**段数**）；选高频句 → 换成「听哪几个场景」（`#ls-cat-grid`，9 个按钮 = 全部 + 8 场景，计数是**句数**）。`applyLsSource()` 统一管这三套显隐，开始按钮文案跟着变（开始磨耳朵 / 开始听短文 / 开始听高频句）。
 - 🔴 **`#ls-cat-grid` 和 `#ls-book-grid` 都必须带 `topic-open` 类**：全局规则 `.topic-grid:not(.topic-open) > .topic-btn:nth-child(n+10)` 会藏掉第 10 个起的按钮。场景现在刚好 8 个卡在边界上，**加到第 9 个就会踩**，所以 `topic-open` 一上来就带着。
 - **播放单元 = 一句**，不是单词。`lsWords` 里放 `{en, cn, _topic, _icon, _ipa:'', _book|_cat}`，播放循环本来就只读 `.en`/`.cn`，所以句子对象能直接流过同一套引擎，`lsSpeak/lsWakeOn/循环/停顿/recordStudied` 全部复用。
@@ -209,7 +209,10 @@ python3 tools/pics/build_pic_map.py --check  # ④ 校验产物与源文件一�
 
 ### 💬 日常高频句 `SENTENCES`
 
-- **392 句 / 8 个场景**：问候寒暄 greeting(50)、闲聊家常 smalltalk(50)、点餐吃饭 dining(46)、购物买东西 shopping(50)、出行问路 travel(48)、看病求助 health(50)、礼貌请求 requests(48)、日常生活 daily(50)。
+- **792 句 / 16 个场景**（2026-10-12 从 392 句/8 场景扩一倍）：
+  原 8 个 —— 问候寒暄 greeting(60)、闲聊家常 smalltalk(60)、点餐吃饭 dining(56)、购物买东西 shopping(60)、出行问路 travel(58)、看病求助 health(60)、礼貌请求 requests(58)、日常生活 daily(60)；
+  新增 8 个 —— 自我介绍 selfintro(40)、上班同事 work(40)、电话视频 phone(40)、心情感受 feelings(40)、时间日期 time_date(40)、天气冷热 weather(40)、住店订房 hotel(40)、银行邮局 bank_post(40)。
+  新增的「心情感受」直接对应 ChatGPT 那条建议：*不要追求"学会英语"，先追求"能表达自己"*（I'm tired / I'm hungry / I'm busy / I'm worried…）。
 - **数据格式**：`{ 场景key: { name, icon, items:[{ en, cn, g }] } }`。`g` 是**逐词释义表** `{句中原始拼写: 中文}`，覆盖句中每一个词（含 the/a/to/of 等虚词），缩写（`I'm`/`don't`/`it's`）整体作一个 key。
 - **点词查义（核心功能）**：句子渲染时每个词包成 `<span class="w" data-w="原词">`，点击弹 `.word-pop`：词 + 音标 + **当句释义** + 🔊读这个词 + ＋生词本（直通 SRS）。
 - **释义优先级** `glossOf(raw, sentG)`：① 本句 `g`（最准，含多义词的当句义）② `GLOSS_MAP`（全句库合并词表，首见优先）③ 词形还原后再查 ④ `EN2CN`（主词库反查）。**实测 1880 词命中 1880（100%）**。
@@ -220,10 +223,77 @@ python3 tools/pics/build_pic_map.py --check  # ④ 校验产物与源文件一�
 
 ### 🏗️ 句型骨架 `PATTERNS`
 
-- **8 组 × 3 骨架 = 24 个可替换框架、约 110 个词槽**：礼貌请求／表达想要／表达看法／问路问事／约定时间／表达感受／给建议／确认理解。
-- **数据格式**：`{ 组key: { name, icon, items:[{ frame, cn, tip, slots:[{en,cn}] }] } }`，`frame` 里用 `___` 作占位符。
-- **交互**：点词槽按钮 → 骨架里 `___` 替换成该词 → 下方展开整句（替换部分橙色高亮）+ 中文 + 🔊读整句 → 自动朗读并 `recordStudied()` 记账。
+- **13 组 × 若干骨架 = 79 个可替换框架、392 条空位例句**（2026-10-12 从 24 个/8 组扩到 79 个/13 组）：
+  新增 5 组 —— 🪜**起步地基**(I am / I have / I like / I don't like / I can / I can't / I have to / I am not，**排在最前**)、❓基础提问(Do you / Are you / Can you / What is / What are you / Where is / How much / Who is)、🙋说我自己、📔过一天(一般现在时+进行时)、⏪说昨天(一般过去时)；
+  原有 8 组各 +2 骨架 —— 礼貌请求／表达想要／表达看法／问路问事／约定时间／表达感受／给建议／确认理解。
+  🔴 这 5 组就是 ChatGPT 建议里「第一阶段：先彻底吃透的 15 个骨架」的落地，**首页「🪜 零基础起步」卡直接进这一组**。
+- **数据格式**：`{ 组key: { name, icon, items:[{ frame, cn, tip, g, slots:[{en,cn}] }] } }`，`frame` 里用 `___` 作占位符。
+- **交互**：点词槽按钮 → 骨架里 `___` 替换成该词 → 下方展开整句（替换部分橙色高亮）+ 中文 + 🔊读整句 + 🔁跟读 → 自动朗读并 `recordStudied()` 记账。
 - **设计意图**：句型 = **可替换框架**，不是语法讲解。给骨架 + 词槽，换词造出真实句子，直接能说出口。
+
+### 🎯 每天 30 分钟三步走（2026-10-12 新增）
+
+> 起因：老曾转来 ChatGPT 的一段建议 —— **基础差的人别一上来背几千词、别先啃语法**，
+> 先建「**句子骨架 + 高频词汇 + 听说反应**」；每天 30 分钟拆成 10 分钟高频句 / 10 分钟听力跟读 /
+> 10 分钟自己开口说今天的事。这一节就是那条路线在 App 里的落点。
+
+- **首页卡片** `#plan`（在「今日 30 分钟」计时卡下面）：三步各一行，点了先打勾再跳对应的屏。
+- **状态** 存 `localStorage['wordadv_plan30'] = { date, done:[1,2,3] }` —— **按自然日重置**（`toDateString()` 比对）。
+- **与计时卡的分工**：`m30` 记「今天学了多少分钟」，`plan30` 记「今天这几步做没做」。**两个都要**，
+  别合并 —— 分钟数可能是挂机堆出来的，步骤是流程完整性。
+- 三步的落点：① `openSentHome()` ② 点 `[data-pagemode="listen"]` 那张卡（复用现成入口，别另开分支）③ `openDiary()`。
+- ⚠️ 改首页卡片时要记得 `.sent-scene-count` / `.pat-group-count` 两个数字是 JS 填的（跟着 `SENTENCES`/`PATTERNS` 走），别写死。
+
+### 📔 说今天的事（2026-10-12 新增，对应"第三阶段：自己开口"）
+
+- **用途**：不看中文，用英语讲今天发生了什么。素材是 `DIARY`：**5 组 × 12 句 = 60 句**（早上 🌅 / 白天上班 💼 / 下班路上 🌆 / 晚上在家 🌙 / 今天的心情 💗）。
+- **交互**：点句子 = 勾选（落盘 `localStorage['wordadv_diary_pick']`，**跨会话保留**）；选够 3 句 → 底部 `#dy-output` 自动把它拼成一段「我的一天」；
+  点句子里的词 → 复用 `showWordPop` 弹卡（传`{topic:'说今天的事', icon:'📔'}`）。
+- **按钮**：`#dy-read` 读整段 / `#dy-follow` 跟读模式（逐句读一句停一句）/ `#dy-play` 连播我选的 / `#dy-clear` 清空重选 / `#dy-hide-cn` 遮住中文（blur，跟句库同一套 CSS 做法）。
+- **屏 id 是 `diary-screen`** 🔴 **必须登记进 `TOP_SCREENS`**：`showScreen()` 只 toggle 那个数组里的元素，
+  漏登记的症状是「点了没反应」（屏一直带 `hidden`）——2026-10-12 就踩了这一下，靠新测试抓出来的。
+
+### 🔁 跟读引擎（2026-10-12 新增，对应"听 → 模仿 → 开口 → 再听"）
+
+三个原语，都在主 IIFE 里（**不挂在 window 上**）：
+
+- `waitSpeak(text)` — **可等待的朗读**（Promise）。🔴 必须带兜底超时（`max(2500, 长度×140+1500)`）：
+  个别机型 `onend` 不触发会把队列卡死 —— 听力磨耳朵早踩过同一个坑，别改成裸 `speak()`。
+- `followSpeak(text, btnEl, gapSec=2.2)` — 单句「读 → 停 → 再读」，给句型骨架卡用（`[data-pat-follow]`）。
+- `followList(texts, btnEl, gapSec=3.2)` — 成串「读一句 → 停一句」，给句库跟读模式（`#sent-follow`）和日记（`#dy-follow`）用；跑完 `recordStudied()`。
+- **令牌 `followToken`**：再点一次 = 停（`stopFollow()`），切屏（`backHome` / 返回）也会作废旧流程 —— 否则两段朗读抢麦。
+- 按钮 `.follow-btn`，`on` 类表示进行中；两次朗读之间的停顿就是**留给用户跟着念的时间**，别为了测试把它调小。
+
+### 🔧 内容扩充流水线 `tools/english_content/`（2026-10-12 新增）
+
+> 老曾：「句型骨架和日常高频句里面内容太少了」「结合这些建议帮我优化一下」。
+> 内容从 392 句/24 骨架 扩到 792 句/79 骨架 全靠这条流水线 —— **别再手写进 index.html**。
+
+```bash
+cd ~/.agents/skills/自学英语
+node tools/english_content/build.mjs --check   # 只校验，报缺词，不写文件
+node tools/english_content/build.mjs           # 生成并写回 index.html
+```
+
+- **输入**：`tools/english_content/content/*.json`（手写）——
+  `patterns.json`（新组）、`patterns_add.json`（给已有组加骨架）、`sentences.json`/`sentences_a.json`/`sentences_b.json`（新场景，可拆多文件）、
+  `sentences_add.json`（给已有场景加句）、`diary.json`（说今天的事）、
+  `cn_extra.json`（新词中文）、`ipa_extra.json`（新词音标，英式 RP）、`gloss_override.json`（虚词释义钉死）。
+- **输出**：PATTERNS / SENTENCES / DIARY / IPA_EXTRA 四个字面量，用 `/* ===CONTENT:XXX:START=== */` 标记夹住。
+- **自动做的事**：从全库（VOCAB/句库/阅读/BASE_CN/IPA_MAP/IPA_EXTRA/FORMS_MAP）抽主词典 →
+  给每句自动生成逐词表 `g` → 报出查不到的词（缺中文/缺音标）→ 全绿才写回。
+- 🔴 **四个必守规矩**（都是踩出来的）：
+  1. **原有数据从 `baseline.html` 读**（`git show HEAD:index.html > tools/english_content/baseline.html`），
+     **不要从 index.html 读** —— 否则第二次跑会把新增内容再加一遍（内容翻倍、构建不幂等）。
+  2. **替换必须从 `const NAME = ` 的声明起点切**。只从 `{` 切会留下前缀 → `const SENTENCES = const SENTENCES = …`，
+     整段脚本语法错误、页面所有全局常量全丢（症状：控制台 `Unexpected token 'const'`，`VOCAB is not defined`）。
+  3. **`SENTENCES` 必须是严格 JSON**（键带引号）：`tests/test_ls_sent.js` 直接 `JSON.parse` 它。PATTERNS 可以不加引号（测试用 eval）。
+  4. **虚词释义靠 `gloss_override.json` 钉死**：自动释义取「全库首见」，`up` 会变成"事"（来自 what's up）、
+     `brushed` 会变成"画笔"（名词义）。这些必须人工覆盖。
+- 🔴 **新词只出现在句型骨架里时，还要补进 `BASE_CN`**：句库点词走 `glossOf(word, it.g)`，
+  但**骨架槽位弹卡传的是 `null`**（见 `showWordPop(wEl, …, null, …)`），所以骨架专属词必须落在全局兜底层。
+  （2026-10-12 补了 ac / jiangsu / pudong / studied / won't / you'd 六个，就是被 `vfy3.js` 抓出来的。）
+- **改完必跑**：`node tests/audit_sentences.js`（零死区）+ `node tests/vfy3.js`（点词死区，含骨架）+ `node tests/test_plan_diary.js`。
 
 ### 改这块别踩的坑
 
@@ -787,14 +857,16 @@ for fn in ('fetch', 'english_section', 'pick_ipa', 'spelling_target'):   # ← �
 | 脚本 | 内容 | 期望 |
 |---|---|---|
 | `tests/test_zixue_fixes.js` | 全盘体检修的 bug 逐条回归 | 44 通过 / 0 失败 |
-| `tests/test_ls_sent.js` | 听力·短文音源 | 60 / 0 |
+| `tests/test_ls_sent.js` | 听力·短文音源 + 朗读三档（🔴 场景/句数断言**动态跟 SENTENCES 走**，别写死） | 111 / 0 |
+| `tests/test_ls_phrase.js` | 听力·高频句音源 + 中英交替三档 | 46 / 0 |
+| `tests/test_plan_diary.js` | 🆕 **每天 30 分钟三步走 + 说今天的事 + 跟读**（2026-10-12） | 44 / 0 |
 | `tests/test_m30.js` | 今日 30 分钟计时 | 24 / 0 |
 | `tests/test_idle.js` | 免提朗读时的挂机豁免 | 12 / 0 |
 | `tests/smoke2.js` | **真 Chromium** 走遍每个界面 | 64 / 0 |
 | `tests/test_topics29.js` | **主题重构回归**（29 主题/5000 词不重复/大写词音标/地图 29 岛/星星迁移不漏星） | 30 / 0 |
 | `tests/test_flashcard_pic.js` | **翻卡配图**（孤儿键/纯度/覆盖率/与源文件一致 + 真浏览器逐卡比对/图片位置/不裂版） | 20 / 0 |
 | `tests/audit_static.js` | 静态审计（id 引用/落盘配对/.hidden 陷阱） | 无 ❌ |
-| `tests/audit_sentences.js` | 句库静态审计 | 无 ❌ |
+| `tests/audit_sentences.js` | 句库静态审计（场景/句数/骨架/阅读篇 + 零死区） | 无 ❌ |
 | `tests/perf.js` | 加载/渲染性能 | 见脚本 |
 | `tests/vfy3.js` | 🔴 点词死区（音标 + 释义，含句型骨架） | 无 ❌ |
 | `tests/test_sw_offline.js` | sw.js 离线缓存真机（**要先起 127.0.0.1:8899**） | 10 / 0 |

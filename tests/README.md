@@ -28,7 +28,12 @@ cd ~/.claude/skills/自学英语
 NODE_PATH=/tmp/pwtest/node_modules node tests/smoke2.js            # 64 / 0
 NODE_PATH=/tmp/pwtest/node_modules node tests/test_ls_phrase.js    # 46 / 0  高频句音源 + 中英交替三档（hook TTS 验调用序列）
 NODE_PATH=/tmp/pwtest/node_modules node tests/test_flashcard_pic.js # 28 / 0 翻卡配图（图库结构 + 没翻不出图/翻开才出图 + 位置/不裂版）
+NODE_PATH=/tmp/pwtest/node_modules node tests/test_plan_diary.js    # 44 / 0 🆕 每天30分钟三步走 + 说今天的事 + 跟读（2026-10-12）
 ```
+
+🔴 **测试里不许写死内容数量**（2026-10-12 踩过）：内容从 392 句扩到 792 句、首页卡片从 9 张变 11 张时，
+`test_ls_sent`（写死 8 场景/392 句）、`test_ls_phrase`（写死 9 个按钮）、`test_sw_offline`（写死 9 张 mode-card）
+三处断言一起挂。**一律从 `SENTENCES` / 联网时的真值动态推导**。
 
 🔴 **离线缓存测试（`test_sw_offline.js`）必须走 HTTP** —— `file://` 下 Service Worker
 根本不工作，而它的判据正是「断网后还能不能打开」：

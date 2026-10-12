@@ -276,13 +276,14 @@ API.renderCatGrid();
 const catBtnCount = (catGrid.innerHTML.match(/data-cat=/g) || []).length;
 const catKeys = Object.keys(SENTENCES);
 const catTotal = catKeys.reduce((n, k) => n + SENTENCES[k].items.length, 0);
-eq('9 个按钮(全部 + 8 场景)', catBtnCount, catKeys.length + 1);
+eq(catKeys.length + 1 + ' 个按钮(全部 + ' + catKeys.length + ' 场景)', catBtnCount, catKeys.length + 1);
 ok('「全部」计数 = 总句数 ' + catTotal,
    new RegExp('全部 ' + catKeys.length + ' 个场景<span class="cnt">' + catTotal + '<\\/span>').test(catGrid.innerHTML));
 ok('含首尾两个场景键', catGrid.innerHTML.includes('data-cat="' + catKeys[0] + '"') &&
                         catGrid.innerHTML.includes('data-cat="' + catKeys[catKeys.length - 1] + '"'));
-eq('场景总数 = 8 个', catKeys.length, 8);
-eq('句库总数 = 392 句', catTotal, 392);
+const SENT_TOTAL = Object.values(SENTENCES).reduce((a, v) => a + v.items.length, 0);
+  eq('场景总数 = ' + catKeys.length + ' 个（来自 SENTENCES，别写死）', catKeys.length, Object.keys(SENTENCES).length);
+eq('句库总数 = ' + SENT_TOTAL + ' 句（来自 SENTENCES，别写死）', catTotal, SENT_TOTAL);
 
 API.lsSource = 'phrase'; API.selectedCat = 'health';
 API.startListening();
@@ -298,7 +299,7 @@ ok('每句都有英文本体', API.lsWords.every(w => w.en && w.en.length > 0));
 
 API.selectedCat = 'all';
 API.startListening();
-eq('全部场景：总句数 = 392', API.lsWords.length, 392);
+eq('全部场景：总句数 = ' + SENT_TOTAL, API.lsWords.length, SENT_TOTAL);
 ok('全部场景：确实被打乱了(否则每次都从问候寒暄听起)',
    API.lsWords.map(w => w.en).join() !== catKeys.flatMap(k => SENTENCES[k].items.map(i => i.en)).join());
 ok('全部场景：每句仍带 _cat，可回指场景', API.lsWords.every(w => catKeys.includes(w._cat)));
@@ -306,7 +307,7 @@ ok('句库每条都没有空 en/cn', catKeys.every(k => SENTENCES[k].items.every
 
 API.selectedCat = 'no-such-cat';    // 存档里留了个失效场景键
 API.startListening();
-eq('🔴 失效场景键回落到全部 392 句(不能让「开始」点了没反应)', API.lsWords.length, 392);
+eq('🔴 失效场景键回落到全部 ' + SENT_TOTAL + ' 句(不能让「开始」点了没反应)', API.lsWords.length, SENT_TOTAL);
 API.selectedCat = 'all';
 
 console.log('\n⑬ 高频句设置屏的显隐');

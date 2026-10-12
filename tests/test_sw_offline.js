@@ -59,6 +59,9 @@ const fcpOf = p => p.evaluate(()=>{
   ok('预缓存里有 index.html', reg.entries.some(u=>u.endsWith('index.html')), JSON.stringify(reg.entries));
 
   console.log('\n③ 断网 reload（核心判据）');
+  // 🔴 卡片数用「联网时的真值」比对，别写死 9（2026-10-12 加了「说今天的事 / 零基础起步」两张卡，
+  //    写死就把测试打挂了）。判据本意是「离线看到的和在线一样全」，不是「永远 9 张」。
+  const cardsOnline = await page.locator('.mode-card').count();
   await ctx.setOffline(true);
   let t=0;
   try{ const t0=Date.now(); await page.reload({waitUntil:'load',timeout:15000}); t=Date.now()-t0; }
@@ -66,7 +69,7 @@ const fcpOf = p => p.evaluate(()=>{
   await page.waitForTimeout(900);
   const cards1=await page.locator('.mode-card').count();
   const st=await page.evaluate(()=>({len:document.body.innerHTML.length, ctl:!!navigator.serviceWorker.controller}));
-  ok('断网后页面完整加载', cards1===9 && st.len>400000, 'mode-card '+cards1+' / body '+st.len+' / 耗时 '+t+'ms');
+  ok('断网后页面完整加载', cards1===cardsOnline && st.len>400000, 'mode-card '+cards1+'/'+cardsOnline+' / body '+st.len+' / 耗时 '+t+'ms');
   ok('断网后由 SW 接管', st.ctl===true, String(st.ctl));
 
   console.log('\n④ 断网后各模块有没有真内容（每个模块先回首页再进）');

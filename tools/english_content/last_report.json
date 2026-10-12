@@ -1,0 +1,20 @@
+{
+  "missCn": [],
+  "missIpa": [],
+  "counts": {
+    "patterns": {
+      "groups": 13,
+      "items": 79
+    },
+    "sentences": {
+      "groups": 16,
+      "items": 792
+    },
+    "diary": {
+      "groups": 5,
+      "items": 60
+    },
+    "diarySentences": 60,
+    "ipaExtraTotal": 204
+  }
+}
